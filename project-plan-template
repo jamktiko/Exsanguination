@@ -1,0 +1,355 @@
+# Project Plan
+
+- [Project Plan] (#project-plan)
+  - [Project Information] (#project-information)
+  - [Terms and Abbreviations] (#terms-and-abbreviations)
+  - [References] (#references)
+  - [Project Contents] (#project-contents)
+  - [Introduction] (#introduction)
+  - [Project Background and Objectives] (#project-background-and-objectives]
+  - [End Products] (#end-products)
+  - [Project Qualifications) (#project-qualifications)
+  - [Plan of Action] (#plan-of-action)
+    - [Project Start] (#project-start)
+  - [Project Implementation] (#project-implementation)
+  - [Project Testing] (#project-testing)
+  - [Project Ending] (#project-ending)
+  - [Project Resources] (#project-resources)
+  - [Project Organization] (#project-organization)
+  - [Steering Group] (#steering-group)
+  - [Work Groups] (#work-groups)
+  - [Client's Responsibilites] (#clients-responsibilites)
+  - [Tools] (#tools)
+  - [Timetable] (#timetable)
+  - [Reporting and Communication] (#reporting-and-communication)
+    - [Internal Reporting] (#internal-reporting)
+    - [Client Reporting] (#client-reporting)
+    - [Daily Scrum Plan] (#daily-scrum-plan)
+    - [Communication Channels] (#communication-channels)
+  - [Documentation]
+  - [Documentation Templates] (#documentation-templates)
+  - [Document Control] (#document-control)
+  - [Risk Management] (#risk-management)
+  - [To Be Determined] (#to-be-determined)
+
+## Project Information
+
+### Exsanguination
+
+Authors:
+Aapo Vanhainen
+Emilia Hietikko
+Charles Silvennoinen
+Kimmo Riipinen
+Vili Jalonen
+
+### Terms and Abbreviations
+
+| Term       | Description                                                                                      |
+| ---------- | ------------------------------------------------------------------------------------------------ |
+| git        | Version management system                                                                        |
+| GitHub     | Service built around making git easier to use                                                    |
+| MarkdownMD | Markdown is a lightweight markup language for creating formatted text using a plain-text editor. |
+
+### References
+
+| Reference | Material                        |
+| --------- | ------------------------------- |
+| GDD       | https://jamkstudent-my.sharepoint.com/:w:/g/personal/ab0136_student_jamk_fi/EcBIe04fTqhJp-EJaoX6wcABmW627E1VOgleJI4CBGZKuA?e=oGp4Um |
+
+## Project Contents
+
+### Introduction
+
+You are a vampire hunter, who freshly got turned into a vampire. 
+Being a vampire isn’t going to stop you from killing other vampires, merely it’s an improvement over your previous situation. 
+Explore your new abilities as you take down hordes of vampires, hellbent on killing you, an abomination. 
+The world is dark and gloomy, and you must grapple with your new reality. Is there any escape or are you forever doomed to be the monster you swore to destroy?
+
+In Exsanguination, you play as a former vampire slayer turned vampire, battling hordes of undead in a fast-paced, first-person melee combat experience.
+Armed with gadgets from your old life, you'll need to kill swiftly—or be killed even faster.
+The game focuses on high-intensity, brutal action where survival depends on your speed and skill.
+
+### Project Background and Objectives
+
+## Kimmo 
+  Lead programmer 
+    Player mechanics 
+    Enemy 
+  Audio 
+    SFX 
+  Lead QA 
+
+## Emilia 
+Design 
+  Game mechanics design 
+  Narrative Design 
+  Enemy Design 
+VFX 
+Programming  
+  Game manager 
+Narrative 
+  Characters 
+Implementation (support) 
+Scrum master 
+
+## Vili 
+Lead Narrative 
+  World building 
+  Story telling/ writing 
+  Lore 
+Implementation 
+  Lore implementation to the game
+Narrative stuff into the game 
+Business 
+
+## Jesse 
+Junior Programmer 
+  UI 
+  Stamina bar 
+  Health bar 
+  Cooldown icons 
+  Pause menu 
+  UI text 
+  Level Interactions 
+  
+## Aapo 
+Design 
+  GDD 
+  Game Mechanics design 
+  Gameplay Design 
+  Enemy Design 
+Audio 
+  Music 
+  SFX 
+
+
+## Charles 
+Design 
+  Level Design 
+  Art Design 
+  Environment Design 
+  UI Design 
+Graphics 
+  Ps1 shader 
+  Blocks
+  Assets
+  Color scheme 
+Implement 
+  Import 3D assets
+  PSX Shader
+  Creating level 
+  
+### End Products
+
+● Project Plan
+
+● Game Design Document
+
+● Sprint Backlog
+
+● Steam Demo
+
+### Project Qualifications
+
+1  Mechanics
+•	Player
+  o	Movement
+  o	Combat
+  	Melee weapons
+  	One Special weapon (Crossbow/Stake/Alch bomb/etc.)
+  	Player health
+  	Heal
+  	Parry
+  o	Special skill
+  	Grappling hook
+  	Stake
+•	Enemies
+  o	Types
+  	Melee
+  	Ranged
+  	Elite
+  o	Animations
+  o	Health
+  	Can take damage
+  	Can die
+  o	Spawn
+  o	AI
+  o	Damage player
+2  Audio
+  •	Music
+  o	Non-combat music track for menu / non-combat instances
+  o	Combat music which is adaptive-ish
+  	Intros
+  	Few loops that can be stopped when combat ends, max 5 seconds of play after outro
+  	Outros
+•	SFX
+  o	Player
+  	Footstep
+  	Etc.
+  	Melee weapons
+  	Sword swing
+  	Sword hit
+  	Special weapons and skills
+  	Throw/use
+  	Hit
+  o	Enemy
+  	Footstep
+  	Etc.
+  o	Level
+  	Interactions
+  	Door open/close
+  	Pull lever
+  	Pick up item
+3  UI
+  •	Main menu
+  •	Pause menu
+  •	You are dead text
+  o	Press Ö to restart
+  •	Health bar
+  •	Stamina bar
+  •	Icons for weapons in slots 1-3
+  o	Use number keys or mousewheel
+4  Level
+  •	Room assets
+  •	Level layout
+  •	Level spawns
+  •	Checkpoints
+  •	Lighting
+5  Graphics
+  •	Models
+  o	Weapon and enemies
+  •	Textures
+  •	Materials
+  •	Item pickups
+  •	Shader implementation
+  o	PSX
+6  Build
+  •	Can run in Windows
+  •	Build works
+  •	1920x1080, 60fps
+
+
+## Plan of action
+
+### Project Timetable
+Pre-production weeks 36-37
+Production weeks 38-43
+Post-Production weeks 44-47
+Publishing weeks 48-50
+
+### Project Testing
+
+Testing times TBD
+
+## Project Resources
+
+Unity: Game development
+Visual Studio: Coding and debugging
+Jira: Task management and progress tracking
+Word: Documentation
+WhatsApp: Quick communication
+GitHub: Version control
+Excel: Timesheets
+Discord: Collaboration, links, notes, and meetings
+Google, YouTube, ChatGPT: Research and examples
+
+### Project Organization
+
+
+| Name                 | Roles                   | Contact                 |
+| -------------------- | ----------------------- | ----------------------- |
+| Aapo Vanhainen       | Lead Designer           | <AB0136@student.jamk.fi>|
+| Charles Silvennoinen | Lead Artist             | <B1234@student.jamk.fi> |
+| Emilia Hietikko      | Scrum Master            | <B1234@student.jamk.fi> |
+| Kimmo Riipinen       | Lead Programmer         | <B1234@student.jamk.fi> |
+| Vili Jalonen         | Lead Narrative          | <B1234@student.jamk.fi> |
+
+### Steering Group
+
+| Name              | Roles     | Contact                    |
+| ----------------- | --------- | ----------------------- -- |
+| Jere Lamberg      | Teacher   | jere.lamberg@jamk.fi       |
+| Risto Koskenkorva | Professor | risto.koskenkorva@jamk.fi  |
+
+### Work Groups
+
+\<if there is one>
+
+| Name           | Roles                   | Contact                 |
+| -------------- | ----------------------- | ----------------------- |
+| Martti Vainaa  | Scrum Master            | <A1234@student.jamk.fi> |
+| Kalevi Kuollut | Developer, testing lead | <B1234@student.jamk.fi> |
+
+### Client’s Responsibilities
+
+\<If you have a client!>
+
+\<In this chapter you will describe what responsibilities the client has towards the project. List all the resources which client will provide to the project in its different phases. These can be seen as client’s responsibilities so that the project can move forward. Remember to inform the client what is needed from them to make the project succeed.>
+
+### Tools
+
+\<List all the tools which the project needs to succeed, software and hardware. If the client offers something, it needs to be mentioned on this chapter.>
+
+• Servers?
+
+• Cloud services?
+
+• Workstations?
+
+• Etc.
+
+### Timetable
+
+\<Write down a timetable on this chapter. In what way is the project carried through? You can decide what level of detail is the most appropriate for your project.>
+
+| Event                | Date      | Additional information/Participants    |
+| -------------------- | --------- | -------------------------------------- |
+| Preproduction Begins | 18.1.2021 | Online meeting space, Full work group. |
+| Initial sprint       | 1.2.2021  | Online meeting space, Full work group  |
+| Project ending       | 12.5.2021 | Unknown                                |
+
+## Reporting and Communication
+
+### Internal Reporting
+
+\<Describe how the project reports to its organization and who is responsible for which type of reporting.>
+
+| Name | Role | Responsibilities |
+| ---- | ---- | ---------------- |
+
+## Client Reporting
+
+\<Describe how project reports to its client and in what timeframe. Who is the recipient of the finished reports?>
+
+## Daily Scrum Plan
+
+\<Project’s weekly meeting is held at xxx in xxx. During the meeting, all the finished work is checked, and upcoming work is planned. Meeting transcript is made from each meeting and it is contained in the project directory.>
+
+## Communication Channels
+
+\<Describe the communication channels project and the client have on their disposal during the project. If the business or the client has a system for conference calls for example, it needs to be mentioned here (user manual would be appreciated as well).>
+
+## Documentation
+
+\<Write here how project intends to document their work. Or will there be documentation at all?>
+
+### Documentation Templates
+
+\<Describe which templates the documents use. Are the templates JAMK templates or project’s own templates or something else?>
+
+### Document Control
+
+\<Describe how the documents will be secured, who has the rights to handle the documents, how are backups done, which documents use version control (E.g., the document version 1.0 when the client has approved the document) and are named (whether the document name will have version number).>
+
+## Risk Management
+
+\<Describe here how project intends to manage and track the risks of the project.>
+
+| Risks                                                  | Probability | Impact | Prevention                     |
+| ------------------------------------------------------ | ----------- | ------ | ------------------------------ |
+| Employees are not motivated and do not show up to work | Small       | Big    | Coffee and pulla at workplace. |
+
+## To Be Determined
+
+\<Describe what things are still open in the project. What else needs client’s input?
