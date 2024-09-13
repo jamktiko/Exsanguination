@@ -153,9 +153,10 @@ Implement
 ### Project Qualifications
 
 1  Mechanics
+
 •	Player
-  o	Movement
-  o	Combat
+  • Movement
+  •	Combat
   	Melee weapons
   	One Special weapon (Crossbow/Stake/Alch bomb/etc.)
   	Player health
