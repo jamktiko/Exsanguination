@@ -154,81 +154,135 @@ Implement
 
 1  Mechanics
 
-•	Player
-  • Movement
-  •	Combat
-  	Melee weapons
-  	One Special weapon (Crossbow/Stake/Alch bomb/etc.)
-  	Player health
-  	Heal
-  	Parry
-  o	Special skill
-  	Grappling hook
-  	Stake
-•	Enemies
-  o	Types
-  	Melee
-  	Ranged
-  	Elite
-  o	Animations
-  o	Health
-  	Can take damage
-  	Can die
-  o	Spawn
-  o	AI
-  o	Damage player
+●	Player
+
+  ● Movement
+  
+  ●	Combat
+  
+  ●	Melee weapons
+  
+  ● One Special weapon (Crossbow/Stake/Alch bomb/etc.)
+  
+  ●	Player health
+  
+  ●	Heal
+  
+  ●	Parry
+  
+  ●	Special skill
+  
+  ●	Grappling hook
+  
+  ●	Stake
+  
+●	Enemies
+
+  ●	Types
+  
+    ●	Melee
+  
+    ●	Ranged
+  
+    ●	Elite
+    
+  ●	Animations
+  
+  ●	Health
+  
+  ●	Can take damage
+  
+  ●	Can die
+  
+  ●	Spawn
+  
+  ●	AI
+  
+  ●	Damage player
+  
 2  Audio
-  •	Music
-  o	Non-combat music track for menu / non-combat instances
-  o	Combat music which is adaptive-ish
-  	Intros
-  	Few loops that can be stopped when combat ends, max 5 seconds of play after outro
-  	Outros
-•	SFX
-  o	Player
-  	Footstep
-  	Etc.
-  	Melee weapons
-  	Sword swing
-  	Sword hit
-  	Special weapons and skills
-  	Throw/use
-  	Hit
-  o	Enemy
-  	Footstep
-  	Etc.
-  o	Level
-  	Interactions
-  	Door open/close
-  	Pull lever
-  	Pick up item
+
+  ●	Music
+  
+    ●	Non-combat music track for menu / non-combat instances
+    ●	Combat music which is adaptive-ish
+  ●	Intros
+  
+  ●	Few loops that can be stopped when combat ends, max 5 seconds of play after outro
+  
+  ●	Outros
+  
+●	SFX
+
+  ●	Player
+  
+    ●	Footstep
+    ●	Etc.
+    ●	Melee weapons
+    ●	Sword swing
+    ●	Sword hit
+    ●	Special weapons and skills
+    ●	Throw/use
+    ●	Hit
+  ●	Enemy
+  
+    ●	Footstep
+    ●	Etc.
+  ●	Level
+  
+    ●	Interactions
+    ●	Door open/close
+    ●	Pull lever
+    ●	Pick up item
 3  UI
-  •	Main menu
-  •	Pause menu
-  •	You are dead text
-  o	Press Ö to restart
-  •	Health bar
-  •	Stamina bar
-  •	Icons for weapons in slots 1-3
-  o	Use number keys or mousewheel
+
+  ●	Main menu
+  
+  ●	Pause menu
+  
+  ●	You are dead text
+  
+    ●	Press Ö to restart
+  ●	Health bar
+  
+  ●	Stamina bar
+  
+  ●	Icons for weapons in slots 1-3
+  
+    ●	Use number keys or mousewheel
 4  Level
-  •	Room assets
-  •	Level layout
-  •	Level spawns
-  •	Checkpoints
-  •	Lighting
+
+  ●	Room assets
+  
+  ●	Level layout
+  
+  ●	Level spawns
+  
+  ●	Checkpoints
+  
+  ●	Lighting
 5  Graphics
-  •	Models
-  o	Weapon and enemies
-  •	Textures
-  •	Materials
-  •	Item pickups
-  •	Shader implementation
-  o	PSX
+  
+  ●	Models
+  
+    ●	Weapon and enemies
+  
+  ● Textures
+  
+  ●	Materials
+  
+  ●	Item pickups
+  
+  ●	Shader implementation
+  
+    ●	PSX
 6  Build
-  •	Can run in Windows
-  •	Build works
-  •	1920x1080, 60fps
+
+  ●	Can run in Windows
+  
+  ●	Build works
+  
+  ●	1920x1080, 60fps
 
 
 ## Plan of action
