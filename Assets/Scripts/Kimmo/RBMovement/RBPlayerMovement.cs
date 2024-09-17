@@ -5,10 +5,10 @@ using UnityEngine;
 public class RBPlayerMovement : MonoBehaviour
 {
     // WASD Movement
-    [SerializeField] Rigidbody rigidbody;
+    [SerializeField] Rigidbody rb;
     [SerializeField] float moveSpeed;
-    [SerializeField] float gravity;
-    [SerializeField] float jumpHeight;
+    [SerializeField] float groundDrag;
+    [SerializeField] float jumpForce;
     [SerializeField] LayerMask groundMask;
     bool canMove;
     public bool isMoving;
@@ -17,7 +17,7 @@ public class RBPlayerMovement : MonoBehaviour
     // Jump
     Vector3 verticalVelocity = Vector3.zero;
     public bool isGrounded;
-    bool isJumping;
+    [SerializeField] bool isJumping;
 
     // Dash
     public Transform orientation;
@@ -26,18 +26,20 @@ public class RBPlayerMovement : MonoBehaviour
     [SerializeField] float dashTime;
     [SerializeField] float dashCooldown;
     float dashCooldownTimer;
+    [SerializeField] bool isDashing;
 
     // Slide
     [SerializeField] float slideSpeed;
     [SerializeField] float slideTime;
     float slideCooldownTimer;
     [SerializeField] bool canSlide;
+    [SerializeField] bool isSliding;
     [SerializeField] Transform cam;
 
     private void Start()
     {
-        rigidbody = GetComponent<Rigidbody>();
-        rigidbody.freezeRotation = true;
+        rb = GetComponent<Rigidbody>();
+        rb.freezeRotation = true;
 
         canMove = true;
         canSlide = true;
@@ -45,38 +47,80 @@ public class RBPlayerMovement : MonoBehaviour
 
     private void Update()
     {
-
         isGrounded = Physics.CheckSphere(groundCheck.position, 0.1f, groundMask);
 
         if (isGrounded)
         {
+            rb.drag = groundDrag;
             verticalVelocity.y = 0;
         }
 
-        if (canMove)
-        {
-            Vector3 horizontalVelocity = (transform.right * horizontalInput.x + transform.forward * horizontalInput.y) * moveSpeed;
-            rigidbody.AddForce(horizontalVelocity * Time.deltaTime);
-            //controller.Move(horizontalVelocity * Time.deltaTime);
-        }
-
-        if (isJumping)
-        {
-            if (isGrounded)
-            {
-                verticalVelocity.y = Mathf.Sqrt(-2f * jumpHeight * gravity);
-            }
-
-            isJumping = false;
-        }
-
-        verticalVelocity.y += gravity * Time.deltaTime;
+        //verticalVelocity.y += gravity * Time.deltaTime;
         //controller.Move(verticalVelocity * Time.deltaTime);
 
         if (dashCooldownTimer > 0)
         {
             dashCooldownTimer -= Time.deltaTime;
         }
+    }
+
+    private void FixedUpdate()
+    {
+        if (canMove)
+        {
+            Move();
+        }
+
+        if (isJumping)
+        {
+            Jump();
+        }
+
+        if (isDashing)
+        {
+            Dash();
+        }
+
+        if (isSliding)
+        {
+            Slide();
+        }
+    }
+
+    private void Move()
+    {
+        Vector3 moveDirection = transform.right * horizontalInput.x + transform.forward * horizontalInput.y;
+        rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+    }
+
+    private void Jump()
+    {
+        
+        if (isGrounded)
+        {
+            //verticalVelocity.y = Mathf.Sqrt(-2f * jumpHeight * gravity);
+            rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+            rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+        }
+
+        isJumping = false;
+    }
+
+    private void Dash()
+    {
+        Transform forwardT;
+        forwardT = orientation;
+        Vector3 direction = GetDirection(forwardT);
+        rb.AddForce(direction * dashSpeed, ForceMode.Impulse);
+        //controller.Move(forceToApply * Time.deltaTime);
+    }
+
+    private void Slide()
+    {
+        slideSpeed = moveSpeed * 1.5f;
+        rb.AddForce(orientation.forward * slideSpeed * 10f, ForceMode.Force);
+        //Vector3 forceToApply = orientation.forward * slideSpeed;
+        //controller.Move(forceToApply * Time.deltaTime);
     }
 
     public void ReceiveInput(Vector2 _horizontalInput)
@@ -95,8 +139,7 @@ public class RBPlayerMovement : MonoBehaviour
         else dashCooldownTimer = dashCooldown;
 
         canMove = false;
-        StartCoroutine(Dash());
-        canMove = true;
+        StartCoroutine(DashCoroutine());
     }
 
     private Vector3 GetDirection(Transform forwardT)
@@ -115,22 +158,17 @@ public class RBPlayerMovement : MonoBehaviour
         return direction.normalized;
     }
 
-    IEnumerator Dash()
+    IEnumerator DashCoroutine()
     {
         float startTime = Time.time;
 
-        Transform forwardT;
-        forwardT = orientation;
-
-        Vector3 direction = GetDirection(forwardT);
-
         while (Time.time < startTime + dashTime)
         {
-            Vector3 forceToApply = direction * dashSpeed;
-            //controller.Move(forceToApply * Time.deltaTime);
+            isDashing = true;
             
             yield return null;
         }
+        OnCoroutineStopped();
     }
 
     public void OnSlidePressed()
@@ -138,24 +176,21 @@ public class RBPlayerMovement : MonoBehaviour
         if (canSlide && isMoving)
         {
             canMove = false;
+            canSlide = true;
             //controller.height = 1f;
             //controller.center = new Vector3(0,-0.5f,0);
-            cam.localPosition = new Vector3(0, 0, 0.5f);
-            StartCoroutine(Slide());
+            cam.localPosition = new Vector3(0, 0.5f, 0.25f);
+            StartCoroutine(SlideCoroutine());
         }
     }
 
-    IEnumerator Slide()
+    IEnumerator SlideCoroutine()
     {
         float startTime = Time.time;
 
-        slideSpeed = moveSpeed * 1.5f;
-
         while (Time.time < startTime + slideTime)
         {
-            canSlide = false;
-            Vector3 forceToApply = orientation.forward * slideSpeed;
-            //controller.Move(forceToApply * Time.deltaTime);
+            isSliding = true;
 
             if (slideSpeed > moveSpeed)
             {
@@ -170,9 +205,11 @@ public class RBPlayerMovement : MonoBehaviour
     {
         canMove = true;
         canSlide = true;
+        isSliding = false;
+        isDashing = false;
         slideSpeed = moveSpeed;
         //controller.height = 2f;
         //controller.center = Vector3.zero;
-        cam.localPosition = new Vector3(0, 0.5f, 0.5f);
+        cam.localPosition = new Vector3(0, 1.5f, 0.25f);
     }
 }
