@@ -41,8 +41,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4827726996024871688}
   - component: {fileID: 9217188834733241655}
-  - component: {fileID: 3456926574704434843}
-  - component: {fileID: 6655046780861689464}
   - component: {fileID: 7818325113408206601}
   - component: {fileID: 8368987281808212101}
   m_Layer: 0
@@ -96,51 +94,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &3456926574704434843
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4464055717771322989}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7225340b88904cb49a68e61fb3a329d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerMovement: {fileID: 6655046780861689464}
-  aapoSwordSwing: {fileID: 5894258350010474175}
-  mouseLook: {fileID: 7818325113408206601}
---- !u!114 &6655046780861689464
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4464055717771322989}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d1eeef40ce8ba942b67ca58d7cdbaab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 9217188834733241655}
-  moveSpeed: 5
-  gravity: -25
-  jumpHeight: 2
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 64
-  isMoving: 0
-  isGrounded: 0
-  orientation: {fileID: 4827726996024871688}
-  groundCheck: {fileID: 830154590060528316}
-  dashSpeed: 15
-  dashTime: 0.5
-  dashCooldown: 2
-  slideSpeed: 10
-  slideTime: 1
-  canSlide: 0
-  cam: {fileID: 0}
 --- !u!114 &7818325113408206601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -519,17 +472,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 10
   canDamage: 1
---- !u!114 &5894258350010474175 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3608552568401995783, guid: 347b0cf02ed8a344a8cc00b942df4700, type: 3}
-  m_PrefabInstance: {fileID: 7194706891017926328}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 484905631312837686}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3b9a6f8791811342aa27ade81112b1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &7008448989234533586 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 187947173951349354, guid: 347b0cf02ed8a344a8cc00b942df4700, type: 3}
