@@ -26,7 +26,7 @@ public class AapoEnemyAI : MonoBehaviour
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private LayerMask ignoreLayers; // LayerMask to specify which layers to ignore when jumping
     [SerializeField] private float jumpCooldown = 2f;      // Time in seconds between jumps
-    [SerializeField] private PlayerMovement playerMovementScript; // Reference to the player's movement script
+    [SerializeField] private RBPlayerMovement playerMovementScript; // Reference to the player's movement script
     [SerializeField] private float attackRange = 1.5f; // Range within which the enemy will attack the player
     [SerializeField] private float attackCooldown = 1.0f; // Time in seconds between attacks
     [SerializeField] private float separationDistance = 2f; // Distance to maintain from other enemies

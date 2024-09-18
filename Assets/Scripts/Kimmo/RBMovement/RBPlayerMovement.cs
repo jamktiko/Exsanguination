@@ -13,8 +13,9 @@ public class RBPlayerMovement : MonoBehaviour
     bool canMove;
     public bool isMoving;
     Vector2 horizontalInput;
-    
+
     // Jump
+    [SerializeField] float airMultiplier;
     Vector3 verticalVelocity = Vector3.zero;
     public bool isGrounded;
     [SerializeField] bool isJumping;
@@ -38,9 +39,6 @@ public class RBPlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        rb.freezeRotation = true;
-
         canMove = true;
         canSlide = true;
     }
@@ -59,10 +57,17 @@ public class RBPlayerMovement : MonoBehaviour
         {
             dashCooldownTimer -= Time.deltaTime;
         }
+
+        SpeedControl();
     }
 
     private void FixedUpdate()
     {
+        if (!isGrounded)
+        {
+            //rb.velocity += custom
+        }
+
         if (canMove)
         {
             Move();
@@ -87,7 +92,27 @@ public class RBPlayerMovement : MonoBehaviour
     private void Move()
     {
         Vector3 moveDirection = transform.right * horizontalInput.x + transform.forward * horizontalInput.y;
-        rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+
+        if (isGrounded)
+        {
+            rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+        }
+
+        else if (!isJumping) 
+        {
+            rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
+        } 
+    }
+
+    private void SpeedControl()
+    {
+        Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
+        if (flatVel.magnitude > moveSpeed)
+        {
+            Vector3 limitedVel = flatVel.normalized * moveSpeed;
+            rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
+        }
     }
 
     private void Jump()
