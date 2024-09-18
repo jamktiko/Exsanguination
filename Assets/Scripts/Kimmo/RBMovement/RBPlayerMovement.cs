@@ -55,9 +55,6 @@ public class RBPlayerMovement : MonoBehaviour
             verticalVelocity.y = 0;
         }
 
-        //verticalVelocity.y += gravity * Time.deltaTime;
-        //controller.Move(verticalVelocity * Time.deltaTime);
-
         if (dashCooldownTimer > 0)
         {
             dashCooldownTimer -= Time.deltaTime;
@@ -98,7 +95,6 @@ public class RBPlayerMovement : MonoBehaviour
         
         if (isGrounded)
         {
-            //verticalVelocity.y = Mathf.Sqrt(-2f * jumpHeight * gravity);
             rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
             rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
         }
@@ -112,15 +108,12 @@ public class RBPlayerMovement : MonoBehaviour
         forwardT = orientation;
         Vector3 direction = GetDirection(forwardT);
         rb.AddForce(direction * dashSpeed, ForceMode.Impulse);
-        //controller.Move(forceToApply * Time.deltaTime);
     }
 
     private void Slide()
     {
         slideSpeed = moveSpeed * 1.5f;
         rb.AddForce(orientation.forward * slideSpeed * 10f, ForceMode.Force);
-        //Vector3 forceToApply = orientation.forward * slideSpeed;
-        //controller.Move(forceToApply * Time.deltaTime);
     }
 
     public void ReceiveInput(Vector2 _horizontalInput)
@@ -177,8 +170,6 @@ public class RBPlayerMovement : MonoBehaviour
         {
             canMove = false;
             canSlide = true;
-            //controller.height = 1f;
-            //controller.center = new Vector3(0,-0.5f,0);
             cam.localPosition = new Vector3(0, 0.5f, 0.25f);
             StartCoroutine(SlideCoroutine());
         }
@@ -208,8 +199,6 @@ public class RBPlayerMovement : MonoBehaviour
         isSliding = false;
         isDashing = false;
         slideSpeed = moveSpeed;
-        //controller.height = 2f;
-        //controller.center = Vector3.zero;
         cam.localPosition = new Vector3(0, 1.5f, 0.25f);
     }
 }
