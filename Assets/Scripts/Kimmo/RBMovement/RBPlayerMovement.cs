@@ -13,6 +13,8 @@ public class RBPlayerMovement : MonoBehaviour
     bool canMove;
     public bool isMoving;
     Vector2 horizontalInput;
+    Vector3 currentMovementDirection;
+    public Vector3 lastMovementDirection;
 
     // Jump
     [SerializeField] float airMultiplier;
@@ -21,6 +23,7 @@ public class RBPlayerMovement : MonoBehaviour
     [SerializeField] bool isJumping;
 
     // Dash
+    Vector3 dashDirection;
     public Transform orientation;
     [SerializeField] Transform groundCheck;
     [SerializeField] float dashSpeed;
@@ -41,6 +44,7 @@ public class RBPlayerMovement : MonoBehaviour
     {
         canMove = true;
         canSlide = true;
+        dashDirection = orientation.forward;
     }
 
     private void Update()
@@ -59,6 +63,7 @@ public class RBPlayerMovement : MonoBehaviour
         }
 
         SpeedControl();
+        GetLastDirection();
     }
 
     private void FixedUpdate()
@@ -101,7 +106,29 @@ public class RBPlayerMovement : MonoBehaviour
         else if (!isJumping) 
         {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
-        } 
+        }
+    }
+
+    private void GetLastDirection()
+    {
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+
+        currentMovementDirection = new Vector3(horizontal, 0f, vertical);
+
+        if (currentMovementDirection != Vector3.zero)
+        {
+            currentMovementDirection.Normalize();
+            dashDirection = currentMovementDirection;
+            StartCoroutine(DirectionCoroutine());
+        }
+    }
+
+    IEnumerator DirectionCoroutine()
+    {
+        yield return new WaitForSeconds(3);
+        Debug.Log("Direction is forward!");
+        dashDirection = orientation.forward;
     }
 
     private void SpeedControl()
@@ -117,7 +144,6 @@ public class RBPlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        
         if (isGrounded)
         {
             rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
@@ -129,9 +155,28 @@ public class RBPlayerMovement : MonoBehaviour
 
     private void Dash()
     {
-        Transform forwardT;
-        forwardT = orientation;
-        Vector3 direction = GetDirection(forwardT);
+        //Transform forwardT;
+        //forwardT = orientation;
+
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+
+
+        currentMovementDirection = new Vector3(horizontal, 0f, vertical);
+
+        if (currentMovementDirection != Vector3.zero)
+        {
+            //currentMovementDirection.Normalize();
+            dashDirection = currentMovementDirection;
+
+            //StartCoroutine(DirectionCoroutine());
+        }
+        else
+        {
+            dashDirection = orientation.forward;
+        }
+
+        Vector3 direction = dashDirection;
         rb.AddForce(direction * dashSpeed, ForceMode.Impulse);
     }
 
@@ -160,21 +205,22 @@ public class RBPlayerMovement : MonoBehaviour
         StartCoroutine(DashCoroutine());
     }
 
-    private Vector3 GetDirection(Transform forwardT)
-    {
-        float horizontalInput = Input.GetAxisRaw("Horizontal");
-        float verticalInput = Input.GetAxisRaw("Vertical");
+    //private Vector3 GetDirection(Transform forwardT)
+    //{
+    //    float horizontalInput = Input.GetAxisRaw("Horizontal");
+    //    float verticalInput = Input.GetAxisRaw("Vertical");
 
-        Vector3 direction = new Vector3();
-        direction = forwardT.forward * verticalInput + forwardT.right * horizontalInput;
+    //    Vector3 direction = new Vector3();
 
-        if (verticalInput == 0 && horizontalInput == 0)
-        {
-            direction = forwardT.forward;
-        }
+    //    direction = forwardT.forward * verticalInput + forwardT.right * horizontalInput;
 
-        return direction.normalized;
-    }
+    //    if (verticalInput == 0 && horizontalInput == 0)
+    //    {
+    //        direction = forwardT.forward;
+    //    }
+
+    //    return direction.normalized;
+    //}
 
     IEnumerator DashCoroutine()
     {
@@ -183,9 +229,11 @@ public class RBPlayerMovement : MonoBehaviour
         while (Time.time < startTime + dashTime)
         {
             isDashing = true;
+            canMove = false;
             
             yield return null;
         }
+
         OnCoroutineStopped();
     }
 
@@ -214,6 +262,7 @@ public class RBPlayerMovement : MonoBehaviour
             }
             yield return null;
         }
+
         OnCoroutineStopped();
     }
 

@@ -43,7 +43,6 @@ public class RBInputManager : MonoBehaviour
         mouseLook.ReceiveInput(mouseInput);
     }
 
-
     private void OnEnable()
     {
         controls.Enable();
@@ -57,15 +56,14 @@ public class RBInputManager : MonoBehaviour
     private void HorizontalInputCheck(InputAction.CallbackContext ctx)
     {
         Vector2 movementInput = ctx.ReadValue < Vector2>();
-        if (movementInput == Vector2.zero)
-        {
-            playerMovement.isMoving = false;
-
-        }
-        else 
+        if (movementInput != Vector2.zero)
         {
             playerMovement.isMoving = true;
+            playerMovement.lastMovementDirection = new Vector3(movementInput.x, 0, movementInput.y).normalized;
         }
-
+        else
+        {
+            playerMovement.isMoving = false;
+        }
     }
 }
