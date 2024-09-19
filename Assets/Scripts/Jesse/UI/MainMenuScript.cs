@@ -7,8 +7,9 @@ public class MainMenuScript : MonoBehaviour
     [SerializeField] Button startButton;
     [SerializeField] Button settingsButton;
     [SerializeField] Button quitButton;
-    
 
+    [SerializeField] SettingsMenu settingsMenu;
+    [SerializeField] GameObject mainMenu;
 
     void Awake()
     {
@@ -28,9 +29,9 @@ public class MainMenuScript : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
-    public void OpenSettings()
+    private void OpenSettings()
     {
-
+        settingsMenu.OpenSettings(mainMenu);
     }
 
     public void ExitGame()

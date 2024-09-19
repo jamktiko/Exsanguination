@@ -1,4 +1,5 @@
 using EmiliaScripts;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -19,12 +20,6 @@ public class DeathScript : MonoBehaviour
     void Start()
     {
         pauseScript = GetComponent<PauseScript>();
-    }
-
-
-    void Update()
-    {
-
     }
     public void Die()
     {

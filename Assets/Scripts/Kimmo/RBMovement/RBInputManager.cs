@@ -59,7 +59,6 @@ public class RBInputManager : MonoBehaviour
         if (movementInput != Vector2.zero)
         {
             playerMovement.isMoving = true;
-            playerMovement.lastMovementDirection = new Vector3(movementInput.x, 0, movementInput.y).normalized;
         }
         else
         {

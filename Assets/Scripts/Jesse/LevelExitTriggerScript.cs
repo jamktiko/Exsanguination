@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelExitTriggerScript : MonoBehaviour
 {
-    [SerializeField] LevelManager levelManager;
 
     void Start()
     {
@@ -21,7 +21,12 @@ public class LevelExitTriggerScript : MonoBehaviour
         Debug.Log(other.name);
         if (other.tag == "Player")
         {
-            levelManager.CheckExit();
+            CheckExit();
         }
+    }
+
+    public void CheckExit()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
