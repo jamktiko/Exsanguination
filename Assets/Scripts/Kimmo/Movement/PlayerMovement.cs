@@ -8,41 +8,45 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] CharacterController controller;
     [SerializeField] float moveSpeed;
     [SerializeField] float gravity;
-    [SerializeField] float jumpHeight;
+    [SerializeField] float jumpForce;
     [SerializeField] LayerMask groundMask;
-    bool canMove;
+    [SerializeField] bool canMove;
     public bool isMoving;
     Vector2 horizontalInput;
     
     // Jump
     Vector3 verticalVelocity = Vector3.zero;
     public bool isGrounded;
-    bool isJumping;
+    [SerializeField] bool isJumping;
 
     // Dash
+    Vector3 dashDirection;
     public Transform orientation;
     [SerializeField] Transform groundCheck;
     [SerializeField] float dashSpeed;
     [SerializeField] float dashTime;
     [SerializeField] float dashCooldown;
     float dashCooldownTimer;
+    [SerializeField] bool isDashing;
+    Transform forwardT;
 
     // Slide
     [SerializeField] float slideSpeed;
     [SerializeField] float slideTime;
     float slideCooldownTimer;
     [SerializeField] bool canSlide;
+    [SerializeField] bool isSliding;
     [SerializeField] Transform cam;
 
     private void Start()
     {
         canMove = true;
         canSlide = true;
+        dashDirection = orientation.forward;
     }
 
     private void Update()
     {
-
         isGrounded = Physics.CheckSphere(groundCheck.position, 0.1f, groundMask);
 
         if (isGrounded)
@@ -58,21 +62,50 @@ public class PlayerMovement : MonoBehaviour
 
         if (isJumping)
         {
-            if (isGrounded)
-            {
-                verticalVelocity.y = Mathf.Sqrt(-2f * jumpHeight * gravity);
-            }
-
-            isJumping = false;
+            Jump();
         }
 
-        verticalVelocity.y += gravity * Time.deltaTime;
-        controller.Move(verticalVelocity * Time.deltaTime);
+        if (isSliding)
+        {
+            Slide();
+        }
 
         if (dashCooldownTimer > 0)
         {
             dashCooldownTimer -= Time.deltaTime;
         }
+
+        if (isDashing)
+        {
+            Dash();
+        }
+    }
+
+    private void Jump()
+    {
+        if (isGrounded)
+        {
+            verticalVelocity.y = Mathf.Sqrt(-2f * jumpForce * gravity);
+        }
+
+        verticalVelocity.y += gravity * Time.deltaTime;
+        controller.Move(verticalVelocity * Time.deltaTime);
+
+        isJumping = false;
+    }
+
+    private void Dash()
+    {
+        Vector3 direction = dashDirection;
+        Vector3 forceToApply = direction * dashSpeed;
+        controller.Move(forceToApply * Time.deltaTime);
+    }
+
+    private void Slide()
+    {
+        slideSpeed = moveSpeed * 1.5f;
+        Vector3 forceToApply = orientation.forward * slideSpeed;
+        controller.Move(forceToApply * Time.deltaTime);
     }
 
     public void ReceiveInput(Vector2 _horizontalInput)
@@ -91,42 +124,41 @@ public class PlayerMovement : MonoBehaviour
         else dashCooldownTimer = dashCooldown;
 
         canMove = false;
-        StartCoroutine(Dash());
-        canMove = true;
+        StartCoroutine(DashCoroutine());
     }
 
-    private Vector3 GetDirection(Transform forwardT)
+    public void GetDirection()
     {
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         float verticalInput = Input.GetAxisRaw("Vertical");
 
+        forwardT = orientation;
+
         Vector3 direction = new Vector3();
+
         direction = forwardT.forward * verticalInput + forwardT.right * horizontalInput;
 
-        if (verticalInput == 0 && horizontalInput == 0)
+        if (verticalInput == 0 && horizontalInput == 0 && !isDashing)
         {
             direction = forwardT.forward;
         }
 
-        return direction.normalized;
+        dashDirection = direction;
     }
 
-    IEnumerator Dash()
+    IEnumerator DashCoroutine()
     {
         float startTime = Time.time;
 
-        Transform forwardT;
-        forwardT = orientation;
-
-        Vector3 direction = GetDirection(forwardT);
-
         while (Time.time < startTime + dashTime)
         {
-            Vector3 forceToApply = direction * dashSpeed;
-            controller.Move(forceToApply * Time.deltaTime);
-            
+            isDashing = true;
+            canMove = false;
+
             yield return null;
         }
+
+        OnCoroutineStopped();
     }
 
     public void OnSlidePressed()
@@ -137,26 +169,23 @@ public class PlayerMovement : MonoBehaviour
             controller.height = 1f;
             controller.center = new Vector3(0,-0.5f,0);
             cam.localPosition = new Vector3(0, 0, 0.5f);
-            StartCoroutine(Slide());
+            StartCoroutine(SlideCoroutine());
         }
     }
 
-    IEnumerator Slide()
+    IEnumerator SlideCoroutine()
     {
         float startTime = Time.time;
 
-        slideSpeed = moveSpeed * 1.5f;
-
         while (Time.time < startTime + slideTime)
         {
-            canSlide = false;
-            Vector3 forceToApply = orientation.forward * slideSpeed;
-            controller.Move(forceToApply * Time.deltaTime);
-
+            isSliding = true;
+            
             if (slideSpeed > moveSpeed)
             {
                 slideSpeed -= Time.deltaTime * slideTime;
             }
+
             yield return null;
         }
         OnCoroutineStopped();
@@ -166,6 +195,8 @@ public class PlayerMovement : MonoBehaviour
     {
         canMove = true;
         canSlide = true;
+        isSliding = false;
+        isDashing = false;
         slideSpeed = moveSpeed;
         controller.height = 2f;
         controller.center = Vector3.zero;

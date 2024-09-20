@@ -8,6 +8,7 @@ public class RBPlayerMovement : MonoBehaviour
     [SerializeField] Rigidbody rb;
     [SerializeField] float moveSpeed;
     [SerializeField] float groundDrag;
+    [SerializeField] float airDrag;
     [SerializeField] float jumpForce;
     [SerializeField] LayerMask groundMask;
     [SerializeField] bool canMove;
@@ -56,13 +57,17 @@ public class RBPlayerMovement : MonoBehaviour
             verticalVelocity.y = 0;
         }
 
+        if (!isGrounded && rb.velocity.y < 0)
+        {
+            rb.drag = airDrag;
+        }
+
         if (dashCooldownTimer > 0)
         {
             dashCooldownTimer -= Time.deltaTime;
         }
 
         SpeedControl();
-        //GetLastDirection();
     }
 
     private void FixedUpdate()
@@ -132,10 +137,6 @@ public class RBPlayerMovement : MonoBehaviour
 
     private void Dash()
     {
-        //Transform forwardT;
-        //forwardT = orientation;
-
-        //Vector3 direction = dashDirection;
         rb.AddForce(dashDirection * dashSpeed, ForceMode.Impulse);
     }
 
@@ -181,28 +182,7 @@ public class RBPlayerMovement : MonoBehaviour
         }
 
         dashDirection = direction;
-
-        //return direction.normalized;
     }
-
-    //public IEnumerator DashDirectionTimerCoroutine()
-    //{
-    //    yield return new WaitForSeconds(1);
-    //    Debug.Log("Blaa");
-
-    //    if (!isDashing)
-    //    {
-    //        dashDirection = forwardT.forward;
-
-    //    }
-        
-    //}
-
-    //public void DashDirectionTimer()
-    //{
-    //    Debug.Log("Stopped to press button");
-    //    StartCoroutine(DashDirectionTimerCoroutine());
-    //}
 
     IEnumerator DashCoroutine()
     {
@@ -242,6 +222,7 @@ public class RBPlayerMovement : MonoBehaviour
             {
                 slideSpeed -= Time.deltaTime * slideTime;
             }
+
             yield return null;
         }
 

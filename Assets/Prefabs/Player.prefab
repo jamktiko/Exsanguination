@@ -241,21 +241,25 @@ MonoBehaviour:
   controller: {fileID: 5148637896186097604}
   moveSpeed: 5
   gravity: -25
-  jumpHeight: 2
+  jumpForce: 0
   groundMask:
     serializedVersion: 2
     m_Bits: 64
+  canMove: 0
   isMoving: 0
   isGrounded: 0
+  isJumping: 0
   orientation: {fileID: 8503497683743485455}
   groundCheck: {fileID: 2793396262659458697}
   dashSpeed: 15
   dashTime: 0.5
   dashCooldown: 2
+  isDashing: 0
   slideSpeed: 10
   slideTime: 1
   canSlide: 0
-  cam: {fileID: 0}
+  isSliding: 0
+  cam: {fileID: 472416122508589939}
 --- !u!114 &3088997637519020798
 MonoBehaviour:
   m_ObjectHideFlags: 0

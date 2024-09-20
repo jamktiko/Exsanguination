@@ -15,8 +15,6 @@ public class RBInputManager : MonoBehaviour
     Vector2 horizontalInput;
     Vector2 mouseInput;
 
-    bool isMoving;
-
     private void Awake()
     {
         controls = new PlayerControls();
@@ -25,7 +23,6 @@ public class RBInputManager : MonoBehaviour
         movement.HorizontalMovement.performed += ctx => horizontalInput = ctx.ReadValue<Vector2>();
         movement.HorizontalMovement.performed += HorizontalInputCheck;
         movement.HorizontalMovement.performed += ctx => playerMovement.GetDirection();
-        //movement.HorizontalMovement.canceled += ctx => playerMovement.DashDirectionTimer();
 
         movement.Jump.performed += ctx => playerMovement.OnJumpPressed();
 
