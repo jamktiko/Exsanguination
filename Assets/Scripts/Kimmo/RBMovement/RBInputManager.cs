@@ -24,6 +24,8 @@ public class RBInputManager : MonoBehaviour
         
         movement.HorizontalMovement.performed += ctx => horizontalInput = ctx.ReadValue<Vector2>();
         movement.HorizontalMovement.performed += HorizontalInputCheck;
+        movement.HorizontalMovement.performed += ctx => playerMovement.GetDirection();
+        //movement.HorizontalMovement.canceled += ctx => playerMovement.DashDirectionTimer();
 
         movement.Jump.performed += ctx => playerMovement.OnJumpPressed();
 
@@ -63,6 +65,7 @@ public class RBInputManager : MonoBehaviour
         else
         {
             playerMovement.isMoving = false;
+            
         }
     }
 }

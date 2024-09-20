@@ -10,7 +10,7 @@ public class RBPlayerMovement : MonoBehaviour
     [SerializeField] float groundDrag;
     [SerializeField] float jumpForce;
     [SerializeField] LayerMask groundMask;
-    bool canMove;
+    [SerializeField] bool canMove;
     public bool isMoving;
     Vector2 horizontalInput;
 
@@ -29,6 +29,7 @@ public class RBPlayerMovement : MonoBehaviour
     [SerializeField] float dashCooldown;
     float dashCooldownTimer;
     [SerializeField] bool isDashing;
+    Transform forwardT;
 
     // Slide
     [SerializeField] float slideSpeed;
@@ -62,8 +63,6 @@ public class RBPlayerMovement : MonoBehaviour
 
         SpeedControl();
         //GetLastDirection();
-
-        GetDirection();
     }
 
     private void FixedUpdate()
@@ -165,19 +164,18 @@ public class RBPlayerMovement : MonoBehaviour
         StartCoroutine(DashCoroutine());
     }
 
-    private void GetDirection()
+    public void GetDirection()
     {
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         float verticalInput = Input.GetAxisRaw("Vertical");
 
-        Transform forwardT;
         forwardT = orientation;
 
         Vector3 direction = new Vector3();
 
         direction = forwardT.forward * verticalInput + forwardT.right * horizontalInput;
 
-        if (verticalInput == 0 && horizontalInput == 0 && canMove)
+        if (verticalInput == 0 && horizontalInput == 0 && !isDashing)
         {
             direction = forwardT.forward;
         }
@@ -186,6 +184,25 @@ public class RBPlayerMovement : MonoBehaviour
 
         //return direction.normalized;
     }
+
+    //public IEnumerator DashDirectionTimerCoroutine()
+    //{
+    //    yield return new WaitForSeconds(1);
+    //    Debug.Log("Blaa");
+
+    //    if (!isDashing)
+    //    {
+    //        dashDirection = forwardT.forward;
+
+    //    }
+        
+    //}
+
+    //public void DashDirectionTimer()
+    //{
+    //    Debug.Log("Stopped to press button");
+    //    StartCoroutine(DashDirectionTimerCoroutine());
+    //}
 
     IEnumerator DashCoroutine()
     {
