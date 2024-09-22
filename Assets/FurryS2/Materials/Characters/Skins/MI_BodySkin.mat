@@ -23,17 +23,15 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: MI_BodySkin
-  m_Shader: {fileID: 4800000, guid: 34e22a54801ad5546bc8b3e0083d5b4e, type: 3}
+  m_Shader: {fileID: 4800000, guid: 9518dbdf86f9c4547a082727558f6ba1, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
-  m_InvalidKeywords:
-  - _ADD_PRECOMPUTED_VELOCITY
-  - _DISABLE_SSR_TRANSPARENT
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2000
   stringTagMap:
     MotionVector: User
   disabledShaderPasses:
@@ -44,6 +42,10 @@ Material:
     m_TexEnvs:
     - _AO:
         m_Texture: {fileID: 2800000, guid: 09a6ff309b9a58f4b9856748923ca480, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BC:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -86,7 +88,19 @@ Material:
         m_Texture: {fileID: 2800000, guid: 8213d8866931b8e4ab47ead922b3c9af, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Metallic:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Normal:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ORC:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -95,6 +109,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Roughness:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -120,6 +138,26 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _SkinRoughness:
         m_Texture: {fileID: 2800000, guid: e506a1e4d1b2eba41a84cc7435d09f5a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TattoMask1:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture01:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture02:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture03:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture04:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _texcoord:
@@ -151,7 +189,16 @@ Material:
     - _AlphaSrcBlend: 1
     - _AlphaToMask: 0
     - _AlphaToMaskInspectorValue: 0
+    - _BlendColorPower01: 0
+    - _BlendColorPower02: 0
+    - _BlendColorPower03: 0
+    - _BlendColorPower04: 0
     - _BlendMode: 0
+    - _BlendTexture01: 0
+    - _BlendTexture02: 0
+    - _BlendTexture03: 0
+    - _BlendTexture04: 0
+    - _BlendTextureMode: 0
     - _BumpScale: 1
     - _ColorPow: 0.25
     - _CullMode: 2
@@ -160,11 +207,16 @@ Material:
     - _DetailNormalMapScale: 1
     - _DiffusionProfileHash: 3.4393191
     - _DirtBoots: 0
+    - _DirtRoughness: 0
     - _DirtRoughness_Power: 0
     - _DoubleSidedEnable: 0
     - _DoubleSidedGIMode: 0
     - _DoubleSidedNormalMode: 2
     - _DstBlend: 0
+    - _EmissiveBoots1: 0
+    - _EmissiveBoots2: 0
+    - _EmissiveBoots3: 0
+    - _EmissiveBoots4: 0
     - _EmissivePannerTilling: 1
     - _EmissivePower1: 0
     - _EmissivePower2: 0
@@ -174,16 +226,22 @@ Material:
     - _EnableBlendModePreserveSpecularLighting: 1
     - _EnableFogOnTransparent: 1
     - _EnvironmentReflections: 1
+    - _Float0: 0
     - _FreaklesColorPower: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _HairCapColorPower: 0
     - _HairCapLongColorPower: 0
     - _HairCapRoughness: 0.6
     - _HairCapShortColorPower: 0
     - _LipNailColorPower: 0
     - _LipsNailRoughnessBoost: 0.75
     - _Metallic: 0
+    - _MetallicBoots01: 1
+    - _MetallicBoots02: 1
+    - _MetallicBoots03: 0
+    - _MetallicBoots04: 1
     - _Mode: 0
     - _OcclusionStrength: 1
     - _OpaqueCullMode: 2
@@ -196,6 +254,11 @@ Material:
     - _ReceivesSSRTransparent: 0
     - _RenderQueueType: 1
     - _RequireSplitLighting: 1
+    - _RoughnessBoost01: 1
+    - _RoughnessBoost02: 1
+    - _RoughnessBoost03: 1
+    - _RoughnessBoost04: 1
+    - _SSSPower: 1
     - _SSSonoff: 1.2
     - _SkinBlendColorPower01: 0
     - _SkinBlendColorPower02: 0
@@ -219,6 +282,7 @@ Material:
     - _StencilWriteMaskMV: 40
     - _SupportDecals: 1
     - _SurfaceType: 0
+    - _TattooBoots1: 0
     - _TransAmbient: 0.2
     - _TransDirect: 1
     - _TransNormal: 0.5
@@ -248,18 +312,25 @@ Material:
     - _BlendColor04: {r: 1, g: 1, b: 1, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _DiffusionProfileAsset: {r: -4.9436656e-19, g: 1.5117807e+9, b: -28098.584, a: -1.6688887e-26}
+    - _DirtColor: {r: 0.08490565, g: 0.049461536, b: 0.01401745, a: 1}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissiveColor01: {r: 0, g: 0, b: 0, a: 0}
+    - _EmissiveColor02: {r: 0, g: 0, b: 0, a: 0}
+    - _EmissiveColor03: {r: 0, g: 0, b: 0, a: 0}
+    - _EmissiveColor04: {r: 0, g: 0, b: 0, a: 0}
     - _EmissiveColor1: {r: 0, g: 0, b: 0, a: 0}
     - _EmissiveColor2: {r: 0, g: 0, b: 0, a: 0}
     - _EmissiveColor3: {r: 0, g: 0, b: 0, a: 0}
     - _EmissiveColor4: {r: 0, g: 0, b: 0, a: 0}
     - _FreaklesColor: {r: 1, g: 1, b: 1, a: 0}
+    - _HairCapColor: {r: 1, g: 1, b: 1, a: 0}
     - _HairCapLongColor: {r: 1, g: 1, b: 1, a: 0}
     - _HairCapShortColor: {r: 1, g: 1, b: 1, a: 0}
     - _LipNailColor: {r: 1, g: 1, b: 1, a: 0}
     - _PannerProperty: {r: 0, g: 0, b: 0, a: 0}
     - _Profile_asset: {r: 2.7217396e-14, g: -0.00000033793674, b: 6.503509e-25, a: 2.5157696e-15}
     - _SSSColor: {r: 0.5471698, g: 0.077783935, b: 0, a: 1}
+    - _TattooColor1: {r: 0.14226586, g: 0.18896288, b: 0.21698102, a: 0}
     - _Tint: {r: 1, g: 0.8288271, b: 0.7311321, a: 0}
   m_BuildTextureStacks: []
