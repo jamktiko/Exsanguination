@@ -34,8 +34,6 @@ public class SaveManager : MonoBehaviour
     /// </summary>
     public void StartLevelRestart()
     {
-        //Tp player to start of level, disable controller if using it
-        //Need to ask Kimmo for function once player is gooddd
 
         //Set player health to save point health
         GameObject.FindGameObjectWithTag("HealthManager").GetComponent<PlayerHealthManager>().SetPlayerHealth(playerHealth);
@@ -44,6 +42,12 @@ public class SaveManager : MonoBehaviour
         if (!isLevelCleared)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+        else
+        {
+            //Tp player to start of level, disable controller if using it
+            //Need to ask Kimmo for function once player is gooddd
+
         }
     }
 
