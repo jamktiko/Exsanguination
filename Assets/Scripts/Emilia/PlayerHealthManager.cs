@@ -42,6 +42,14 @@ namespace EmiliaScripts
             return maxHealth;
         }
 
+        /// <summary>
+        /// Sets the player health to an Int value. Should only be used by save manager, if you see this text you are using it wrong!
+        /// </summary>
+        public void SetPlayerHealth(int health)
+        {
+            currentHealth = health;
+        }
+
 
         /// <summary>
         /// Updates the player health. Input a negative number for damage and a positive for healing.
