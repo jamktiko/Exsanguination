@@ -1907,7 +1907,7 @@ MonoBehaviour:
   jumpForce: 12
   groundMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   canMove: 0
   isMoving: 0
   airMultiplier: 0.4
@@ -12931,7 +12931,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 220640534537844024}
-  canAttack: 0
+  attackDurations:
+  - 2
+  - 1.5
+  - 2.75
+  comboWindow: 5
 --- !u!1 &8884167800036510995
 GameObject:
   m_ObjectHideFlags: 0
