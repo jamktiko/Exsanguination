@@ -6,13 +6,17 @@ public class PauseScript : MonoBehaviour
 {
     [SerializeField] GameObject pauseMenu;
     [SerializeField] Button continueButton;
+    [SerializeField] Button settingsButton;
     [SerializeField] Button mainMenuButton;
+
+    [SerializeField] SettingsMenu settingsMenu;
 
     private bool paused;
     void Awake()
     {
-        mainMenuButton.onClick.AddListener(ExitToMainMenu);
         continueButton.onClick.AddListener(UnPauseGame);
+        settingsButton.onClick.AddListener(OpenSettings);
+        mainMenuButton.onClick.AddListener(ExitToMainMenu);
     }
 
     private void Start()
@@ -49,6 +53,11 @@ public class PauseScript : MonoBehaviour
         pauseMenu.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+    }
+
+    public void OpenSettings()
+    {
+        settingsMenu.OpenSettings(gameObject);
     }
 
     private void ExitToMainMenu()

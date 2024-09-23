@@ -7,8 +7,8 @@ using UnityEngine.UI;
 public class HealthBarScript : MonoBehaviour
 {
 
-    [SerializeField] Slider slider;
-    [SerializeField] TextMeshProUGUI healthText;
+    Slider slider;
+    TextMeshProUGUI healthText;
 
     GameObject player;
     PlayerHealthManager manager;
@@ -38,7 +38,7 @@ public class HealthBarScript : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindWithTag("Player");
-        
+        GetUpdates();
     }
 
     private void Update()

@@ -3,14 +3,10 @@ using UnityEngine;
 public class AapoSwordSwing : MonoBehaviour
 {
 
-    private Animator animator;
+    [SerializeField] private Animator animator;
     public bool canAttack;
 
-    private void Awake()
-    {
-        animator = GetComponent<Animator>();
-    }
-    
+  
     public void SwingSword()
     {
         if (canAttack)

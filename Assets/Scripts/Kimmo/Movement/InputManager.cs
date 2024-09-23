@@ -15,8 +15,6 @@ public class InputManager : MonoBehaviour
     Vector2 horizontalInput;
     Vector2 mouseInput;
 
-    bool isMoving;
-
     private void Awake()
     {
         controls = new PlayerControls();
@@ -24,6 +22,7 @@ public class InputManager : MonoBehaviour
         
         movement.HorizontalMovement.performed += ctx => horizontalInput = ctx.ReadValue<Vector2>();
         movement.HorizontalMovement.performed += HorizontalInputCheck;
+        movement.HorizontalMovement.performed += ctx => playerMovement.GetDirection();
 
         movement.Jump.performed += ctx => playerMovement.OnJumpPressed();
 
@@ -43,7 +42,6 @@ public class InputManager : MonoBehaviour
         mouseLook.ReceiveInput(mouseInput);
     }
 
-
     private void OnEnable()
     {
         controls.Enable();
@@ -57,15 +55,13 @@ public class InputManager : MonoBehaviour
     private void HorizontalInputCheck(InputAction.CallbackContext ctx)
     {
         Vector2 movementInput = ctx.ReadValue < Vector2>();
-        if (movementInput == Vector2.zero)
-        {
-            playerMovement.isMoving = false;
-
-        }
-        else 
+        if (movementInput != Vector2.zero)
         {
             playerMovement.isMoving = true;
         }
-
+        else 
+        {
+            playerMovement.isMoving = false;
+        }
     }
 }
