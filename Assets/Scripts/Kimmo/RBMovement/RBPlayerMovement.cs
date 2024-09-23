@@ -14,6 +14,7 @@ public class RBPlayerMovement : MonoBehaviour
     [SerializeField] bool canMove;
     public bool isMoving;
     Vector2 horizontalInput;
+    public bool freeze;
 
     // Jump
     [SerializeField] float airMultiplier;
@@ -49,6 +50,13 @@ public class RBPlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if (freeze)
+        {
+            rb.velocity = Vector3.zero;
+            canSlide = false;
+            
+        }
+
         isGrounded = Physics.CheckSphere(groundCheck.position, 0.1f, groundMask);
 
         if (isGrounded)
@@ -72,11 +80,6 @@ public class RBPlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!isGrounded)
-        {
-            //rb.velocity += custom
-        }
-
         if (canMove)
         {
             Move();

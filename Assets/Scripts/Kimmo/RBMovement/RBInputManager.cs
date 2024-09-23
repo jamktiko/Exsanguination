@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class RBInputManager : MonoBehaviour
 {
     [SerializeField] RBPlayerMovement playerMovement;
+    [SerializeField] Grappling grappling;
     public AapoSwordSwing aapoSwordSwing;
     [SerializeField] MouseLook mouseLook;
 
@@ -36,6 +37,8 @@ public class RBInputManager : MonoBehaviour
         movement.Attack.started += ctx => aapoSwordSwing.SwingSword();
         movement.Attack.performed += ctx => aapoSwordSwing.ContinueCombo();
         movement.Attack.canceled += ctx => aapoSwordSwing.StopCombo();
+
+        movement.GrapplingHook.performed += ctx => grappling.StartGrapple();
 
     }
 
