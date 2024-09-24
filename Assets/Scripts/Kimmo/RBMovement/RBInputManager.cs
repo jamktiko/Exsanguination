@@ -36,9 +36,7 @@ public class RBInputManager : MonoBehaviour
 
         movement.Slide.performed += ctx => playerMovement.OnSlidePressed();
 
-        movement.Attack.started += ctx => aapoSwordSwing.ContinueCombo();
-        //movement.Attack.performed += ctx => aapoSwordSwing.SwingSword();
-        movement.Attack.canceled += ctx => aapoSwordSwing.StopCombo();
+        movement.Attack.performed += ctx => aapoSwordSwing.ContinueCombo();
 
         movement.GrapplingHook.performed += ctx => grappling.StartGrapple();
 
@@ -75,5 +73,10 @@ public class RBInputManager : MonoBehaviour
             playerMovement.isMoving = false;
             
         }
+    }
+
+    public Vector2 GetHorizontalInput()
+    {
+        return horizontalInput;
     }
 }

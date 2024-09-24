@@ -34,7 +34,7 @@ public class InputManager : MonoBehaviour
 
         movement.Slide.performed += ctx => playerMovement.OnSlidePressed();
 
-        movement.Attack.performed += ctx => aapoSwordSwing.SwingSword();
+        movement.Attack.performed += ctx => aapoSwordSwing.ContinueCombo();
 
         movement.Stake.performed += ctx => stakeLogic.ThrowStake();
         movement.Use.performed += ctx => stakeLogic.RetrieveStake();

@@ -37,9 +37,16 @@ public class RBPlayerMovement : MonoBehaviour
     [SerializeField] float slideSpeed;
     [SerializeField] float slideTime;
     float slideCooldownTimer;
+    [SerializeField] CapsuleCollider playerCollider;
+    [SerializeField] float playerColliderHeight;
     [SerializeField] bool canSlide;
-    [SerializeField] bool isSliding;
+    public bool isSliding;
     [SerializeField] Transform cam;
+    [SerializeField] Vector3 camStandingPos;
+    [SerializeField] Vector3 camSlidingPos;
+    [SerializeField] Transform playerModel;
+    [SerializeField] Vector3 playerModelStandingPos;
+    [SerializeField] Vector3 playerModelSlidingPos;
 
     private void Start()
     {
@@ -208,7 +215,7 @@ public class RBPlayerMovement : MonoBehaviour
         {
             canMove = false;
             canSlide = true;
-            cam.localPosition = new Vector3(0, 0.5f, 0.25f);
+            cam.localPosition = camSlidingPos;
             StartCoroutine(SlideCoroutine());
         }
     }
@@ -220,6 +227,9 @@ public class RBPlayerMovement : MonoBehaviour
         while (Time.time < startTime + slideTime)
         {
             isSliding = true;
+            playerCollider.height = playerColliderHeight/2;
+            playerCollider.center = new Vector3(0, -0.5f, 0.1f);
+            playerModel.localPosition = playerModelSlidingPos;
 
             if (slideSpeed > moveSpeed)
             {
@@ -239,6 +249,10 @@ public class RBPlayerMovement : MonoBehaviour
         isSliding = false;
         isDashing = false;
         slideSpeed = moveSpeed;
-        cam.localPosition = new Vector3(0, 1.5f, 0.25f);
+        cam.localPosition = camStandingPos;
+        playerCollider.height = playerColliderHeight;
+        playerCollider.center = new Vector3(0, 0, 0.1f);
+        playerModel.localPosition = playerModelStandingPos;
+
     }
 }
