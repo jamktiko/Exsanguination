@@ -2,28 +2,21 @@ using UnityEngine;
 
 public class PlayerMovementAnimations : MonoBehaviour
 {
-    public Animator animator;
-    public float moveSpeed = 5f;
+    [SerializeField] Animator animator;  // Reference to your Animator component
+    [SerializeField] RBInputManager inputManager;  // Reference to your RBInputManager script
 
-    private Vector3 moveDirection;
-    private Vector2 horizontalInput; // To store input from RBInputManager
+    // Parameters for Blend Tree control
+    private static readonly int XParam = Animator.StringToHash("X");
+    private static readonly int ZParam = Animator.StringToHash("Z");
 
-    [SerializeField] private RBInputManager inputManager;
+    private void Update()
+    {
+        // Get the horizontal input from the RBInputManager
+        Vector2 horizontalInput = inputManager.GetHorizontalInput();  // Create a getter for this in RBInputManager
 
-        public void ReceiveInput(Vector2 input)
-        {
-            // This function is called by RBInputManager to update movement input
-            horizontalInput = input;
-        }
+        // Set the animator parameters based on movement input
+        animator.SetFloat(XParam, horizontalInput.x);
+        animator.SetFloat(ZParam, horizontalInput.y);
+    }
 
-        void Update()
-        {
-            // Use the horizontalInput from RBInputManager to calculate move direction
-            moveDirection = new Vector3(horizontalInput.x, 0, horizontalInput.y).normalized;
-
-            // Update Animator parameters for the blend tree
-            animator.SetFloat("X", moveDirection.x);
-            animator.SetFloat("Z", moveDirection.z);
-        }
-       
 }

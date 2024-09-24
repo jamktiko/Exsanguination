@@ -74,6 +74,33 @@ Shader "DawnShaderURP/ClothingShaderURP_V2"
 
 	SubShader
 	{
+Tags { "Queue" = "Overlay" }
+
+        Pass
+        {
+            // Ignore depth buffer checks
+            ZTest Always
+
+            // Optionally disable writing to depth buffer
+            ZWrite Off
+
+            CGPROGRAM
+            // Standard shader code here (vertex and fragment functions)
+            ENDCG
+        }Tags { "Queue" = "Overlay" }
+
+        Pass
+        {
+            // Ignore depth buffer checks
+            ZTest Always
+
+            // Optionally disable writing to depth buffer
+            ZWrite Off
+
+            CGPROGRAM
+            // Standard shader code here (vertex and fragment functions)
+            ENDCG
+        }
 		LOD 0
 
 		
