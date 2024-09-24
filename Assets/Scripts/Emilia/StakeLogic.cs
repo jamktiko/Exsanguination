@@ -26,6 +26,7 @@ public class StakeLogic : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         player = GameObject.FindWithTag("Player").transform;
         playerCamera = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
+        Physics.IgnoreCollision(player.GetComponent<Collider>(), gameObject.GetComponent<Collider>());
     }
 
     void Update()
