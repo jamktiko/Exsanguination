@@ -98,6 +98,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Stake"",
+                    ""type"": ""Button"",
+                    ""id"": ""8d9c4235-d2f3-4844-9d4c-48ce6c49315f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -232,6 +241,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""GrapplingHook"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""10c562b4-e82c-4b79-92a8-39f78215179d"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Stake"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -248,6 +268,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Movement_Slide = m_Movement.FindAction("Slide", throwIfNotFound: true);
         m_Movement_Attack = m_Movement.FindAction("Attack", throwIfNotFound: true);
         m_Movement_GrapplingHook = m_Movement.FindAction("GrapplingHook", throwIfNotFound: true);
+        m_Movement_Stake = m_Movement.FindAction("Stake", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -317,6 +338,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Movement_Slide;
     private readonly InputAction m_Movement_Attack;
     private readonly InputAction m_Movement_GrapplingHook;
+    private readonly InputAction m_Movement_Stake;
     public struct MovementActions
     {
         private @PlayerControls m_Wrapper;
@@ -329,6 +351,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Slide => m_Wrapper.m_Movement_Slide;
         public InputAction @Attack => m_Wrapper.m_Movement_Attack;
         public InputAction @GrapplingHook => m_Wrapper.m_Movement_GrapplingHook;
+        public InputAction @Stake => m_Wrapper.m_Movement_Stake;
         public InputActionMap Get() { return m_Wrapper.m_Movement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -362,6 +385,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @GrapplingHook.started += instance.OnGrapplingHook;
             @GrapplingHook.performed += instance.OnGrapplingHook;
             @GrapplingHook.canceled += instance.OnGrapplingHook;
+            @Stake.started += instance.OnStake;
+            @Stake.performed += instance.OnStake;
+            @Stake.canceled += instance.OnStake;
         }
 
         private void UnregisterCallbacks(IMovementActions instance)
@@ -390,6 +416,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @GrapplingHook.started -= instance.OnGrapplingHook;
             @GrapplingHook.performed -= instance.OnGrapplingHook;
             @GrapplingHook.canceled -= instance.OnGrapplingHook;
+            @Stake.started -= instance.OnStake;
+            @Stake.performed -= instance.OnStake;
+            @Stake.canceled -= instance.OnStake;
         }
 
         public void RemoveCallbacks(IMovementActions instance)
@@ -417,5 +446,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnSlide(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
         void OnGrapplingHook(InputAction.CallbackContext context);
+        void OnStake(InputAction.CallbackContext context);
     }
 }
