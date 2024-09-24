@@ -16,6 +16,7 @@ public class AapoEnemyAI : MonoBehaviour
 
 
     [SerializeField] private float moveSpeed = 2f;         // Movement speed of the enemy
+    [SerializeField] private float originalSpeed = 2f;         // Movement speed of the enemy
     [SerializeField] private float detectionRange = 10f;   // How close the player has to be for the enemy to detect
     [SerializeField] private float stoppingDistance = 1.5f; // Distance from the player to stop moving
     [SerializeField] private float jumpForce = 5f;         // Force applied when jumping
@@ -32,7 +33,10 @@ public class AapoEnemyAI : MonoBehaviour
     [SerializeField] private float separationDistance = 2f; // Distance to maintain from other enemies
     [SerializeField] private float stopSeparationDistance = 1.5f; // Distance from the player to stop moving
 
-
+    [SerializeField] int maxHealth = 100;
+    [SerializeField] int health = 100;
+    [SerializeField] HealthBarScript healthBar;
+    [SerializeField] StakeLogic stakeLogic;
 
 
     private Transform player;
@@ -60,6 +64,9 @@ public class AapoEnemyAI : MonoBehaviour
         storedSeparationDistance = separationDistance;
         rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
         rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+        healthBar = GetComponentInChildren<HealthBarScript>();
+        healthBar.UpdateHealthBar(health, maxHealth);
+        health = maxHealth;
     }
 
     void Update()
@@ -69,6 +76,47 @@ public class AapoEnemyAI : MonoBehaviour
         AvoidOtherEnemies();
 
     }
+
+    public void TakeDamage(int changeAmount)
+    {
+        health = Mathf.Clamp(health - changeAmount, 0, maxHealth);
+        healthBar.UpdateHealthBar(health, maxHealth);
+    }
+
+    // Slow the enemy by reducing their movement speed
+    public void ApplySlow(float slowAmount)
+    {
+        moveSpeed = originalSpeed * (1f - slowAmount);
+        // Apply movement speed change to AI/movement logic here
+    }
+
+    // Remove the slow effect (return to normal speed)
+    public void RemoveSlow()
+    {
+        moveSpeed = originalSpeed;
+        // Reset movement speed logic here
+    }
+
+    // Get the enemy's current health
+    public int GetHealth()
+    {
+        return health;
+    }
+
+    public void Finish()
+    {
+        // Trigger death animation or effects here
+        stakeLogic.UnstickFromEnemy();
+        Die();
+    }
+
+    // Die and destroy the enemy
+    private void Die()
+    {
+        // Handle enemy death logic here
+        Destroy(gameObject);
+    }
+
     void AvoidOtherEnemies()
     {
 

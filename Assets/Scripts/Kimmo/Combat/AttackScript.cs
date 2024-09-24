@@ -27,7 +27,7 @@ public class AttackScript : MonoBehaviour
             if (healthScript != null)
             {
                 Debug.Log(healthScript);
-                healthScript.ChangeHealth(damage);
+                healthScript.ChangeEnemyHealth(damage);
             }
             
         }

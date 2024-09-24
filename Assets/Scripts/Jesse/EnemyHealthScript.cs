@@ -25,7 +25,7 @@ public class EnemyHealthScript : MonoBehaviour
         }
     }
     
-    public void ChangeHealth(int changeAmount)
+    public void ChangeEnemyHealth(int changeAmount)
     {
         health = Mathf.Clamp(health - changeAmount, 0, maxHealth);
         healthBar.UpdateHealthBar(health, maxHealth);

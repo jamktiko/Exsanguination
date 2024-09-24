@@ -107,6 +107,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Use"",
+                    ""type"": ""Button"",
+                    ""id"": ""47fc3ac2-def0-4a66-b999-2e3cce220b03"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -252,6 +261,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Stake"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""45e8b786-c3c5-40c2-98b0-2577d4059279"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Use"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -269,6 +289,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Movement_Attack = m_Movement.FindAction("Attack", throwIfNotFound: true);
         m_Movement_GrapplingHook = m_Movement.FindAction("GrapplingHook", throwIfNotFound: true);
         m_Movement_Stake = m_Movement.FindAction("Stake", throwIfNotFound: true);
+        m_Movement_Use = m_Movement.FindAction("Use", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -339,6 +360,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Movement_Attack;
     private readonly InputAction m_Movement_GrapplingHook;
     private readonly InputAction m_Movement_Stake;
+    private readonly InputAction m_Movement_Use;
     public struct MovementActions
     {
         private @PlayerControls m_Wrapper;
@@ -352,6 +374,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Attack => m_Wrapper.m_Movement_Attack;
         public InputAction @GrapplingHook => m_Wrapper.m_Movement_GrapplingHook;
         public InputAction @Stake => m_Wrapper.m_Movement_Stake;
+        public InputAction @Use => m_Wrapper.m_Movement_Use;
         public InputActionMap Get() { return m_Wrapper.m_Movement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -388,6 +411,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Stake.started += instance.OnStake;
             @Stake.performed += instance.OnStake;
             @Stake.canceled += instance.OnStake;
+            @Use.started += instance.OnUse;
+            @Use.performed += instance.OnUse;
+            @Use.canceled += instance.OnUse;
         }
 
         private void UnregisterCallbacks(IMovementActions instance)
@@ -419,6 +445,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Stake.started -= instance.OnStake;
             @Stake.performed -= instance.OnStake;
             @Stake.canceled -= instance.OnStake;
+            @Use.started -= instance.OnUse;
+            @Use.performed -= instance.OnUse;
+            @Use.canceled -= instance.OnUse;
         }
 
         public void RemoveCallbacks(IMovementActions instance)
@@ -447,5 +476,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnAttack(InputAction.CallbackContext context);
         void OnGrapplingHook(InputAction.CallbackContext context);
         void OnStake(InputAction.CallbackContext context);
+        void OnUse(InputAction.CallbackContext context);
     }
 }

@@ -10,6 +10,8 @@ public class RBInputManager : MonoBehaviour
     public AapoSwordSwing aapoSwordSwing;
     [SerializeField] MouseLook mouseLook;
 
+    [SerializeField] StakeLogic stakeLogic;
+
     PlayerControls controls;
     PlayerControls.MovementActions movement;
 
@@ -39,6 +41,9 @@ public class RBInputManager : MonoBehaviour
         movement.Attack.canceled += ctx => aapoSwordSwing.StopCombo();
 
         movement.GrapplingHook.performed += ctx => grappling.StartGrapple();
+
+        movement.Stake.performed += ctx => stakeLogic.ThrowStake();
+        movement.Use.performed += ctx => stakeLogic.RetrieveStake();
 
     }
 
