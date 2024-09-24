@@ -9,12 +9,14 @@ public class EnemyHealthScript : MonoBehaviour
 
     
     [SerializeField] HealthBarScript healthBar;
+    [SerializeField] StakeLogic stakeLogic;
 
     void Start()
     {
         healthBar = GetComponentInChildren<HealthBarScript>();
         healthBar.UpdateHealthBar(health, maxHealth);
         health = maxHealth;
+        stakeLogic = GameObject.FindGameObjectWithTag("Stake").GetComponent<StakeLogic>();
     }
     
     void Update()
@@ -25,9 +27,33 @@ public class EnemyHealthScript : MonoBehaviour
         }
     }
     
-    public void ChangeHealth(int changeAmount)
+    public void ChangeEnemyHealth(int changeAmount)
     {
         health = Mathf.Clamp(health - changeAmount, 0, maxHealth);
         healthBar.UpdateHealthBar(health, maxHealth);
+    }
+
+    // Get the enemy's current health
+    public int GetEnemyHealth()
+    {
+        return health;
+    }
+    public int GetEnemyMaxHealth()
+    {
+        return maxHealth;
+    }
+
+    public void Finish()
+    {
+        // Trigger death animation or effects here
+        stakeLogic.UnstickFromEnemy();
+        Die();
+    }
+
+    // Die and destroy the enemy
+    private void Die()
+    {
+        // Handle enemy death logic here
+        Destroy(gameObject);
     }
 }

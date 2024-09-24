@@ -16,6 +16,7 @@ public class AapoEnemyAI : MonoBehaviour
 
 
     [SerializeField] private float moveSpeed = 2f;         // Movement speed of the enemy
+    [SerializeField] private float originalSpeed = 2f;         // Movement speed of the enemy
     [SerializeField] private float detectionRange = 10f;   // How close the player has to be for the enemy to detect
     [SerializeField] private float stoppingDistance = 1.5f; // Distance from the player to stop moving
     [SerializeField] private float jumpForce = 5f;         // Force applied when jumping
@@ -31,9 +32,6 @@ public class AapoEnemyAI : MonoBehaviour
     [SerializeField] private float attackCooldown = 1.0f; // Time in seconds between attacks
     [SerializeField] private float separationDistance = 2f; // Distance to maintain from other enemies
     [SerializeField] private float stopSeparationDistance = 1.5f; // Distance from the player to stop moving
-
-
-
 
     private Transform player;
     private Rigidbody rb;
@@ -52,7 +50,6 @@ public class AapoEnemyAI : MonoBehaviour
             // Add a Rigidbody component if it doesn't exist
             rb = gameObject.AddComponent<Rigidbody>();
         }
-
     }
 
     private void Start()
@@ -60,6 +57,7 @@ public class AapoEnemyAI : MonoBehaviour
         storedSeparationDistance = separationDistance;
         rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
         rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+        ;
     }
 
     void Update()
@@ -69,6 +67,20 @@ public class AapoEnemyAI : MonoBehaviour
         AvoidOtherEnemies();
 
     }
+    // Slow the enemy by reducing their movement speed
+    public void ApplySlow(float slowAmount)
+    {
+        moveSpeed = originalSpeed * (1f - slowAmount);
+        // Apply movement speed change to AI/movement logic here
+    }
+
+    // Remove the slow effect (return to normal speed)
+    public void RemoveSlow()
+    {
+        moveSpeed = originalSpeed;
+        // Reset movement speed logic here
+    }
+
     void AvoidOtherEnemies()
     {
 

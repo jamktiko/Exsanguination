@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class InputManager : MonoBehaviour
 {
     [SerializeField] PlayerMovement playerMovement;
+    [SerializeField] StakeLogic stakeLogic;
     public AapoSwordSwing aapoSwordSwing;
     [SerializeField] MouseLook mouseLook;
 
@@ -34,6 +35,9 @@ public class InputManager : MonoBehaviour
         movement.Slide.performed += ctx => playerMovement.OnSlidePressed();
 
         movement.Attack.performed += ctx => aapoSwordSwing.SwingSword();
+
+        movement.Stake.performed += ctx => stakeLogic.ThrowStake();
+        movement.Use.performed += ctx => stakeLogic.RetrieveStake();
     }
 
     private void Update()

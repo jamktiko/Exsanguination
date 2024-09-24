@@ -1,5 +1,49 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1423698812305545687
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7215694436841919738}
+  - component: {fileID: 4544250520443194705}
+  m_Layer: 9
+  m_Name: StakeSpot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7215694436841919738
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1423698812305545687}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.489}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1073898414553866235}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4544250520443194705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1423698812305545687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb23a46bb39a1284b8bada1fc4729ff6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5704904278551921758
 GameObject:
   m_ObjectHideFlags: 0
@@ -12,7 +56,7 @@ GameObject:
   - component: {fileID: 5122860295230841218}
   - component: {fileID: 8295844721728785060}
   - component: {fileID: 3574926230130226231}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +161,7 @@ GameObject:
   - component: {fileID: 5721011062732564551}
   - component: {fileID: 739166234634437768}
   - component: {fileID: 5382315569241246079}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -138,6 +182,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7809109906275058384}
+  - {fileID: 7215694436841919738}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2545872111158493567
@@ -228,6 +273,7 @@ MonoBehaviour:
   maxHealth: 100
   health: 100
   healthBar: {fileID: 162903094734836981}
+  stakeLogic: {fileID: 0}
 --- !u!54 &739166234634437768
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -268,6 +314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 8
+  originalSpeed: 2
   detectionRange: 30
   stoppingDistance: 1.5
   jumpForce: 160
@@ -306,6 +353,10 @@ PrefabInstance:
     - target: {fileID: 3031968330976769249, guid: d5cc8e4ee323a87458b2dc15e644502f, type: 3}
       propertyPath: m_Name
       value: HealthBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 3031968330976769249, guid: d5cc8e4ee323a87458b2dc15e644502f, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3339949522279933625, guid: d5cc8e4ee323a87458b2dc15e644502f, type: 3}
       propertyPath: m_Pivot.x
@@ -402,6 +453,10 @@ PrefabInstance:
     - target: {fileID: 8312802464235423346, guid: d5cc8e4ee323a87458b2dc15e644502f, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8599948982954699627, guid: d5cc8e4ee323a87458b2dc15e644502f, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
