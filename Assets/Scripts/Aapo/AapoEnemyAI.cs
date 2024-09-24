@@ -98,9 +98,13 @@ public class AapoEnemyAI : MonoBehaviour
     }
 
     // Get the enemy's current health
-    public int GetHealth()
+    public int GetEnemyHealth()
     {
         return health;
+    }
+    public int GetEnemyMaxHealth()
+    {
+        return maxHealth;
     }
 
     public void Finish()

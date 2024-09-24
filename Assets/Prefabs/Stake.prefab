@@ -124,11 +124,13 @@ MonoBehaviour:
   prefab: {fileID: 3301926140465873006}
   throwForce: 30
   stickDuration: 10
+  returnCooldown: 10
   damageAmount: 20
   slowAmount: 0.5
   finisherThreshold: 50
   retrievalRange: 2
   playerCamera: {fileID: 0}
+  stakeLocationOnPlayer: {fileID: 0}
 --- !u!54 &7202239158819626862
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -152,7 +154,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 32
   m_CollisionDetection: 0

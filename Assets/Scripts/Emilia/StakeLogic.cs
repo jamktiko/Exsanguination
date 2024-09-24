@@ -5,8 +5,9 @@ using UnityEngine;
 public class StakeLogic : MonoBehaviour
 {
     [SerializeField] private GameObject prefab;
-    public float throwForce = 30f;
+    public float throwForce = 50f;
     public float stickDuration = 10f;
+    public float returnCooldown = 10f;
     public int damageAmount = 20;
     public float slowAmount = 0.5f;
     public float finisherThreshold = 50f;
@@ -21,26 +22,19 @@ public class StakeLogic : MonoBehaviour
     private Transform player;
     public Camera playerCamera;
 
+    [SerializeField] private GameObject stakeLocationOnPlayer;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         player = GameObject.FindWithTag("Player").transform;
         playerCamera = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
         Physics.IgnoreCollision(player.GetComponent<Collider>(), gameObject.GetComponent<Collider>());
+        gameObject.SetActive(false);
     }
 
     void Update()
     {
-        if (isStuck && stuckEnemy != null)
-        {
-            stickTimer += Time.deltaTime;
-            if (stickTimer >= stickDuration)
-            {
-                // Return the stake to the player after 10 seconds
-                ReturnToPlayer();
-            }
-        }
-
         if (isReturning)
         {
             // Move stake back to player
@@ -53,19 +47,25 @@ public class StakeLogic : MonoBehaviour
                 isReturning = false;
                 isThrown = false;
                 rb.isKinematic = true; // Stop physics interaction
+                transform.SetParent(player); // Reattach stake to player
             }
         }
     }
 
     public void ThrowStake()
     {
+        gameObject.SetActive(true);
         if (!isThrown)
         {
+            // Detach from player and throw the stake
             transform.SetParent(null);
             isThrown = true;
             isReturning = false;
             rb.isKinematic = false; // Enable physics for throwing
-            rb.AddForce(playerCamera.transform.forward * throwForce, ForceMode.Impulse); // Throw in the looking direction
+            rb.AddForce(playerCamera.transform.forward * throwForce, ForceMode.Impulse); // Throw in the direction the player is looking
+
+            // Start the countdown immediately after throwing
+            Invoke(nameof(ReturnToPlayer), returnCooldown);
         }
     }
 
@@ -78,10 +78,6 @@ public class StakeLogic : MonoBehaviour
             // Stick to the enemy
             StickToEnemy(collision.gameObject.GetComponent<AapoEnemyAI>());
         }
-        else
-        {
-            Invoke(nameof(ReturnToPlayer), stickDuration);
-        }
     }
 
     private void StickToEnemy(AapoEnemyAI enemy)
@@ -90,47 +86,43 @@ public class StakeLogic : MonoBehaviour
         isThrown = false;
         stuckEnemy = enemy;
         rb.isKinematic = true; // Stop physics movement when stuck
-        transform.SetParent(enemy.transform);
+        GameObject go = enemy.gameObject.GetComponentInChildren(typeof(StakeSpot)).gameObject;
+        transform.SetParent(go.transform);
+        Physics.IgnoreCollision(enemy.GetComponent<Collider>(), gameObject.GetComponent<Collider>());
 
         // Apply damage and slowing effect
-        enemy.TakeDamage(damageAmount);
+        enemy.TakeDamage(stuckEnemy.GetEnemyMaxHealth() / 2);
         enemy.ApplySlow(slowAmount);
-
-        // Set timer to remove the stake after stickDuration
-        stickTimer = 0f;
     }
 
     public void UnstickFromEnemy()
     {
-        transform.SetParent(player.transform);
-        transform.position = player.transform.position;
+        transform.SetParent(player);
+        transform.position = stakeLocationOnPlayer.transform.position;
+        transform.rotation = Quaternion.identity;
     }
 
-    // Return the stake to the player after a delay if it's not stuck to an enemy
+    // Instantly return the stake to the player after the cooldown
     private void ReturnToPlayer()
     {
         if (!isStuck && !isReturning)
         {
             isReturning = true;
-            StartCoroutine(ReturningToPlayerCoroutine());
-        }
-    }
 
-    private IEnumerator ReturningToPlayerCoroutine()
-    {
-        float time = 0f;
-        Vector3 startPosition = transform.position;
-        while (time < 1f)
-        {
-            time += Time.deltaTime;
-            transform.position = Vector3.Lerp(startPosition, player.transform.position, time);
-            yield return null;
-        }
+            // Stop all physics interactions immediately
+            rb.isKinematic = true;
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
 
-        // Reset stake once it reaches player
-        isReturning = false;
-        transform.SetParent(player.transform);
-        transform.position = player.transform.position;
+            // Instantly teleport the stake back to the player's hand
+            transform.position = stakeLocationOnPlayer.transform.position;
+            transform.rotation = Quaternion.identity;
+            transform.SetParent(player);
+
+            // Reset state
+            isThrown = false;
+            isReturning = false;
+        }
     }
 
     public void RetrieveStake()
@@ -141,13 +133,13 @@ public class StakeLogic : MonoBehaviour
             if (Vector3.Distance(player.position, transform.position) <= retrievalRange)
             {
                 // If health < 50%, apply finisher
-                if (stuckEnemy.GetHealth() < finisherThreshold)
+                if (stuckEnemy.GetEnemyHealth() <= stuckEnemy.GetEnemyMaxHealth() / 2)
                 {
                     stuckEnemy.Finish();
                 }
                 else
                 {
-                    stuckEnemy.RemoveSlow(); // Just remove slow effect
+                    stuckEnemy.RemoveSlow(); // Just remove the slow effect
                 }
 
                 // Unstick the stake
