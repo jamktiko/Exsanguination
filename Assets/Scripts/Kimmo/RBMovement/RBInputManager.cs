@@ -34,8 +34,8 @@ public class RBInputManager : MonoBehaviour
 
         movement.Slide.performed += ctx => playerMovement.OnSlidePressed();
 
-        movement.Attack.started += ctx => aapoSwordSwing.SwingSword();
-        movement.Attack.performed += ctx => aapoSwordSwing.ContinueCombo();
+        movement.Attack.started += ctx => aapoSwordSwing.ContinueCombo();
+        //movement.Attack.performed += ctx => aapoSwordSwing.SwingSword();
         movement.Attack.canceled += ctx => aapoSwordSwing.StopCombo();
 
         movement.GrapplingHook.performed += ctx => grappling.StartGrapple();
