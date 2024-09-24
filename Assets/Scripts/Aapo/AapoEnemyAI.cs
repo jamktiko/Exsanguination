@@ -33,12 +33,6 @@ public class AapoEnemyAI : MonoBehaviour
     [SerializeField] private float separationDistance = 2f; // Distance to maintain from other enemies
     [SerializeField] private float stopSeparationDistance = 1.5f; // Distance from the player to stop moving
 
-    [SerializeField] int maxHealth = 100;
-    [SerializeField] int health = 100;
-    [SerializeField] HealthBarScript healthBar;
-    [SerializeField] StakeLogic stakeLogic;
-
-
     private Transform player;
     private Rigidbody rb;
     private bool isGrounded;
@@ -56,7 +50,6 @@ public class AapoEnemyAI : MonoBehaviour
             // Add a Rigidbody component if it doesn't exist
             rb = gameObject.AddComponent<Rigidbody>();
         }
-
     }
 
     private void Start()
@@ -64,9 +57,7 @@ public class AapoEnemyAI : MonoBehaviour
         storedSeparationDistance = separationDistance;
         rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
         rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
-        healthBar = GetComponentInChildren<HealthBarScript>();
-        healthBar.UpdateHealthBar(health, maxHealth);
-        health = maxHealth;
+        ;
     }
 
     void Update()
@@ -76,13 +67,6 @@ public class AapoEnemyAI : MonoBehaviour
         AvoidOtherEnemies();
 
     }
-
-    public void TakeDamage(int changeAmount)
-    {
-        health = Mathf.Clamp(health - changeAmount, 0, maxHealth);
-        healthBar.UpdateHealthBar(health, maxHealth);
-    }
-
     // Slow the enemy by reducing their movement speed
     public void ApplySlow(float slowAmount)
     {
@@ -95,30 +79,6 @@ public class AapoEnemyAI : MonoBehaviour
     {
         moveSpeed = originalSpeed;
         // Reset movement speed logic here
-    }
-
-    // Get the enemy's current health
-    public int GetEnemyHealth()
-    {
-        return health;
-    }
-    public int GetEnemyMaxHealth()
-    {
-        return maxHealth;
-    }
-
-    public void Finish()
-    {
-        // Trigger death animation or effects here
-        stakeLogic.UnstickFromEnemy();
-        Die();
-    }
-
-    // Die and destroy the enemy
-    private void Die()
-    {
-        // Handle enemy death logic here
-        Destroy(gameObject);
     }
 
     void AvoidOtherEnemies()

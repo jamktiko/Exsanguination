@@ -18,6 +18,7 @@ public class StakeLogic : MonoBehaviour
     private bool isStuck = false;
     private bool isReturning = false;
     private AapoEnemyAI stuckEnemy = null;
+    private EnemyHealthScript stuckEnemyHealth = null;
     private float stickTimer = 0f;
     private Transform player;
     public Camera playerCamera;
@@ -76,6 +77,7 @@ public class StakeLogic : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             // Stick to the enemy
+            stuckEnemyHealth = collision.gameObject.GetComponent<EnemyHealthScript>();
             StickToEnemy(collision.gameObject.GetComponent<AapoEnemyAI>());
         }
     }
@@ -91,7 +93,7 @@ public class StakeLogic : MonoBehaviour
         Physics.IgnoreCollision(enemy.GetComponent<Collider>(), gameObject.GetComponent<Collider>());
 
         // Apply damage and slowing effect
-        enemy.TakeDamage(stuckEnemy.GetEnemyMaxHealth() / 2);
+        stuckEnemyHealth.ChangeEnemyHealth(stuckEnemyHealth.GetEnemyMaxHealth() / 2);
         enemy.ApplySlow(slowAmount);
     }
 
@@ -133,9 +135,9 @@ public class StakeLogic : MonoBehaviour
             if (Vector3.Distance(player.position, transform.position) <= retrievalRange)
             {
                 // If health < 50%, apply finisher
-                if (stuckEnemy.GetEnemyHealth() <= stuckEnemy.GetEnemyMaxHealth() / 2)
+                if (stuckEnemyHealth.GetEnemyHealth() <= stuckEnemyHealth.GetEnemyMaxHealth() / 2)
                 {
-                    stuckEnemy.Finish();
+                    stuckEnemyHealth.Finish();
                 }
                 else
                 {

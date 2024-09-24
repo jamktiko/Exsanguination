@@ -46,7 +46,6 @@ public class RBPlayerMovement : MonoBehaviour
         canMove = true;
         canSlide = true;
         dashDirection = orientation.forward;
-        Physics.IgnoreCollision(gameObject.GetComponent<Collider>(), GameObject.FindWithTag("Stake").GetComponent<Collider>());
     }
 
     private void Update()
