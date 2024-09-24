@@ -8,13 +8,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] CharacterController controller;
     [SerializeField] float moveSpeed;
     [SerializeField] float gravity;
-    [SerializeField] float jumpForce;
     [SerializeField] LayerMask groundMask;
     [SerializeField] bool canMove;
     public bool isMoving;
     Vector2 horizontalInput;
-    
+
     // Jump
+    [SerializeField] float jumpForce;
     Vector3 verticalVelocity = Vector3.zero;
     public bool isGrounded;
     [SerializeField] bool isJumping;

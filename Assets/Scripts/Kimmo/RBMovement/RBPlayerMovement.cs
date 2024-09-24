@@ -9,7 +9,6 @@ public class RBPlayerMovement : MonoBehaviour
     [SerializeField] float moveSpeed;
     [SerializeField] float groundDrag;
     [SerializeField] float airDrag;
-    [SerializeField] float jumpForce;
     [SerializeField] LayerMask groundMask;
     [SerializeField] bool canMove;
     public bool isMoving;
@@ -17,6 +16,7 @@ public class RBPlayerMovement : MonoBehaviour
     public bool freeze;
 
     // Jump
+    [SerializeField] float jumpForce;
     [SerializeField] float airMultiplier;
     Vector3 verticalVelocity = Vector3.zero;
     public bool isGrounded;
