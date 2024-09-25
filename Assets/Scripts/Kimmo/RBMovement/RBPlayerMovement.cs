@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class RBPlayerMovement : MonoBehaviour
 {
-    // WASD Movement
-    [SerializeField] Rigidbody rb;
+    // Movement variables
+    Rigidbody rb;
     [SerializeField] float moveSpeed;
     [SerializeField] float groundDrag;
     [SerializeField] float airDrag;
@@ -13,16 +13,15 @@ public class RBPlayerMovement : MonoBehaviour
     [SerializeField] bool canMove;
     public bool isMoving;
     Vector2 horizontalInput;
-    public bool freeze;
 
-    // Jump
+    // Jump variables
     [SerializeField] float jumpForce;
     [SerializeField] float airMultiplier;
     Vector3 verticalVelocity = Vector3.zero;
     public bool isGrounded;
     [SerializeField] bool isJumping;
 
-    // Dash
+    // Dash variables
     Vector3 dashDirection;
     public Transform orientation;
     [SerializeField] Transform groundCheck;
@@ -34,7 +33,7 @@ public class RBPlayerMovement : MonoBehaviour
     [SerializeField] bool isDashing;
     Transform forwardT;
 
-    // Slide
+    // Slide variables
     [SerializeField] float slideSpeed;
     [SerializeField] float slideTime;
     float slideCooldownTimer;
@@ -49,12 +48,18 @@ public class RBPlayerMovement : MonoBehaviour
     [SerializeField] Vector3 playerModelStandingPos;
     [SerializeField] Vector3 playerModelSlidingPos;
 
+    // Grapple variables
+    public bool freeze;
+    public bool activeGrapple;
+
     private void Start()
     {
         canMove = true;
         canDash = true;
         canSlide = true;
         dashDirection = orientation.forward;
+
+        rb = GetComponent<Rigidbody>();
     }
 
     private void Update()
@@ -62,20 +67,17 @@ public class RBPlayerMovement : MonoBehaviour
         if (freeze)
         {
             rb.velocity = Vector3.zero;
-            canDash = false;
-            canSlide = false;
-            
         }
 
         isGrounded = Physics.CheckSphere(groundCheck.position, 0.1f, groundMask);
 
-        if (isGrounded)
+        if (isGrounded && !activeGrapple)
         {
             rb.drag = groundDrag;
             verticalVelocity.y = 0;
         }
 
-        if (!isGrounded && rb.velocity.y < 0)
+        if (!isGrounded && rb.velocity.y < 0 || activeGrapple)
         {
             rb.drag = airDrag;
         }
@@ -111,8 +113,11 @@ public class RBPlayerMovement : MonoBehaviour
         }
     }
 
+    // Movement methods
     private void Move()
     {
+        if (activeGrapple) return;
+
         Vector3 moveDirection = transform.right * horizontalInput.x + transform.forward * horizontalInput.y;
 
         if (isGrounded)
@@ -128,6 +133,8 @@ public class RBPlayerMovement : MonoBehaviour
 
     private void SpeedControl()
     {
+        if (activeGrapple) return;
+
         Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
         if (flatVel.magnitude > moveSpeed)
@@ -137,6 +144,12 @@ public class RBPlayerMovement : MonoBehaviour
         }
     }
 
+    public void ReceiveInput(Vector2 _horizontalInput)
+    {
+        horizontalInput = _horizontalInput;
+    }
+
+    // Jump methods
     private void Jump()
     {
         if (isGrounded)
@@ -148,25 +161,15 @@ public class RBPlayerMovement : MonoBehaviour
         isJumping = false;
     }
 
-    private void Dash()
-    {
-        rb.AddForce(dashDirection * dashSpeed, ForceMode.Impulse);
-    }
-
-    private void Slide()
-    {
-        slideSpeed = moveSpeed * 1.5f;
-        rb.AddForce(orientation.forward * slideSpeed * 10f, ForceMode.Force);
-    }
-
-    public void ReceiveInput(Vector2 _horizontalInput)
-    {
-        horizontalInput = _horizontalInput;
-    }
-
     public void OnJumpPressed()
     {
         isJumping = true;
+    }
+
+    // Dash methods
+    private void Dash()
+    {
+        rb.AddForce(dashDirection * dashSpeed, ForceMode.Impulse);
     }
 
     public void OnDashPressed()
@@ -215,6 +218,13 @@ public class RBPlayerMovement : MonoBehaviour
         OnCoroutineStopped();
     }
 
+    // Slide methods
+    private void Slide()
+    {
+        slideSpeed = moveSpeed * 1.5f;
+        rb.AddForce(orientation.forward * slideSpeed * 10f, ForceMode.Force);
+    }
+
     public void OnSlidePressed()
     {
         if (canSlide && isMoving)
@@ -249,6 +259,7 @@ public class RBPlayerMovement : MonoBehaviour
         OnCoroutineStopped();
     }
 
+    // End of coroutine method after dash and slide
     private void OnCoroutineStopped()
     {
         canMove = true;
@@ -261,6 +272,55 @@ public class RBPlayerMovement : MonoBehaviour
         playerCollider.height = playerColliderHeight;
         playerCollider.center = new Vector3(0, 0, 0.1f);
         playerModel.localPosition = playerModelStandingPos;
+    }
 
+    // Grapple methods
+    private bool enableMovementOnNextTouch;
+
+    public void JumpToPosition(Vector3 targetPosition, float trajectoryHeight)
+    {
+        activeGrapple = true;
+
+        velocityToSet = CalculateJumpVelocity(transform.position, targetPosition, trajectoryHeight);
+        Invoke(nameof(SetVelocity), 0.1f);
+
+        Invoke(nameof(ResetRestricitons), 3f);
+    }
+
+    private Vector3 velocityToSet;
+
+    private void SetVelocity()
+    {
+        enableMovementOnNextTouch = true;
+        rb.velocity = velocityToSet;
+    }
+
+    public void ResetRestricitons()
+    {
+        activeGrapple = false;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (enableMovementOnNextTouch)
+        {
+            enableMovementOnNextTouch = false;
+            ResetRestricitons();
+
+            GetComponent<Grappling>().StopGrapple();
+        }
+    }
+
+    public Vector3 CalculateJumpVelocity(Vector3 startPoint, Vector3 endPoint, float trajectoryHeight)
+    {
+        float gravity = Physics.gravity.y;
+        float displacementY = endPoint.y - startPoint.y;
+        Vector3 displacementXZ = new Vector3(endPoint.x - startPoint.x, 0f, endPoint.z - startPoint.z);
+
+        Vector3 velocityY = Vector3.up * Mathf.Sqrt(-2 * gravity * trajectoryHeight);
+        Vector3 velocityXZ = displacementXZ / (Mathf.Sqrt(-2 * trajectoryHeight / gravity)
+            + Mathf.Sqrt(2 * (displacementY - trajectoryHeight) / gravity));
+
+        return velocityXZ + velocityY;
     }
 }
