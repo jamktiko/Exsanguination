@@ -21,9 +21,6 @@ public class Grappling : MonoBehaviour
     public float grapplingCd;
     private float grapplingCdTimer;
 
-    [Header("Input")]
-    public KeyCode grappleKey = KeyCode.Mouse1;
-
     private bool isGrappling;
 
     // Start is called before the first frame update
