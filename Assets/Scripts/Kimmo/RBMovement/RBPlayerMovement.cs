@@ -30,6 +30,7 @@ public class RBPlayerMovement : MonoBehaviour
     [SerializeField] float dashTime;
     [SerializeField] float dashCooldown;
     float dashCooldownTimer;
+    [SerializeField] bool canDash;
     [SerializeField] bool isDashing;
     Transform forwardT;
 
@@ -51,6 +52,7 @@ public class RBPlayerMovement : MonoBehaviour
     private void Start()
     {
         canMove = true;
+        canDash = true;
         canSlide = true;
         dashDirection = orientation.forward;
     }
@@ -60,6 +62,7 @@ public class RBPlayerMovement : MonoBehaviour
         if (freeze)
         {
             rb.velocity = Vector3.zero;
+            canDash = false;
             canSlide = false;
             
         }
@@ -171,8 +174,11 @@ public class RBPlayerMovement : MonoBehaviour
         if (dashCooldownTimer > 0) return;
         else dashCooldownTimer = dashCooldown;
 
-        canMove = false;
-        StartCoroutine(DashCoroutine());
+        if (canDash)
+        {
+            canMove = false;
+            StartCoroutine(DashCoroutine());
+        }
     }
 
     public void GetDirection()
@@ -214,6 +220,7 @@ public class RBPlayerMovement : MonoBehaviour
         if (canSlide && isMoving)
         {
             canMove = false;
+            canDash = false;
             canSlide = true;
             cam.localPosition = camSlidingPos;
             StartCoroutine(SlideCoroutine());
@@ -245,6 +252,7 @@ public class RBPlayerMovement : MonoBehaviour
     private void OnCoroutineStopped()
     {
         canMove = true;
+        canDash = true;
         canSlide = true;
         isSliding = false;
         isDashing = false;
