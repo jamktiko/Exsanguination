@@ -20,6 +20,8 @@ public class AapoEnemyAI : MonoBehaviour
     [SerializeField] private float detectionRange = 10f;   // How close the player has to be for the enemy to detect
     [SerializeField] private float stoppingDistance = 1.5f; // Distance from the player to stop moving
     [SerializeField] private float jumpForce = 5f;         // Force applied when jumping
+    [SerializeField] private float pounceForce;
+    [SerializeField] private float pounceCooldown = 3.0f; // Time in seconds between attacks
     [SerializeField] private float obstacleCheckDistance = 1.5f; // Distance to check for obstacles
     [SerializeField] private float jumpHeightThreshold = 1.0f;   // How much higher the player has to be for the enemy to jump
     [SerializeField] private LayerMask groundLayer;        // Ground layer for jumping checks
@@ -30,6 +32,7 @@ public class AapoEnemyAI : MonoBehaviour
     [SerializeField] private RBPlayerMovement playerMovementScript; // Reference to the player's movement script
     [SerializeField] private float attackRange = 1.5f; // Range within which the enemy will attack the player
     [SerializeField] private float attackCooldown = 1.0f; // Time in seconds between attacks
+    [SerializeField] private float pounceRange = 5f;
     [SerializeField] private float separationDistance = 2f; // Distance to maintain from other enemies
     [SerializeField] private float stopSeparationDistance = 1.5f; // Distance from the player to stop moving
 
@@ -38,8 +41,9 @@ public class AapoEnemyAI : MonoBehaviour
     private bool isGrounded;
     private float lastJumpTime = -Mathf.Infinity;  // Stores the time of the last jump
     private float lastAttackTime = -Mathf.Infinity; // Stores the time of the last attack
+    private float lastPounceTime = -Mathf.Infinity;
     private float storedSeparationDistance;
-
+   [SerializeField] private Animator enemyAnimator;
 
     void Awake()
     {
@@ -50,6 +54,7 @@ public class AapoEnemyAI : MonoBehaviour
             // Add a Rigidbody component if it doesn't exist
             rb = gameObject.AddComponent<Rigidbody>();
         }
+
     }
 
     private void Start()
@@ -67,6 +72,8 @@ public class AapoEnemyAI : MonoBehaviour
         AvoidOtherEnemies();
 
     }
+
+
     // Slow the enemy by reducing their movement speed
     public void ApplySlow(float slowAmount)
     {
@@ -134,9 +141,16 @@ public class AapoEnemyAI : MonoBehaviour
         if (distance <= attackRange && CanAttack())
         {
             Attack();
+            lastAttackTime = Time.time;
+
+        }
+        if (distance <= pounceRange && CanPounce() && distance >attackRange)
+        {
+            Pounce();
+            lastPounceTime = Time.time;
         }
 
-        if(distance <= stopSeparationDistance)
+        if (distance <= stopSeparationDistance)
         {
             separationDistance = 0;
         }
@@ -149,11 +163,26 @@ public class AapoEnemyAI : MonoBehaviour
     }
     void Attack()
     {
-        // Placeholder for attack logic
-        // E.g., reduce player health, play attack animation, etc.
-        Debug.Log("Enemy is attacking!");
+        Debug.Log("enemy is attacking");
+        enemyAnimator.SetBool("isAttacking", true);
 
-        lastAttackTime = Time.time;  // Record the time of the attack
+    }
+
+    void Pounce()
+    {
+
+        Debug.Log("enemy pounced");
+        enemyAnimator.SetBool("isAttacking", false);
+        enemyAnimator.SetTrigger("pounce");
+        Vector3 direction = (player.position - transform.position).normalized;
+        rb.AddForce(Vector3.up * jumpForce + direction * pounceForce, ForceMode.Impulse);
+
+    }
+
+    bool CanPounce()
+    {
+        return Time.time >= lastPounceTime + pounceCooldown;
+
     }
 
     bool CanAttack()
@@ -165,6 +194,7 @@ public class AapoEnemyAI : MonoBehaviour
 
     void MoveTowardsPlayer(Vector3 direction)
     {
+        enemyAnimator.SetBool("isAttacking", false);
         // Jump if the player is higher than the enemy, but only if the player is grounded
         if (player.position.y > transform.position.y + jumpHeightThreshold && isGrounded && CanJump() && playerMovementScript.isGrounded)
         {
@@ -197,6 +227,8 @@ public class AapoEnemyAI : MonoBehaviour
 
     void Jump()
     {
+        enemyAnimator.SetTrigger("jump");
+        enemyAnimator.SetBool("isAttacking", false);
         rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         lastJumpTime = Time.time;  // Record the time of the jump
     }
@@ -238,6 +270,9 @@ public class AapoEnemyAI : MonoBehaviour
 
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, stopSeparationDistance);
+
+        Gizmos.color = Color.white;
+        Gizmos.DrawWireSphere(transform.position, pounceRange);
 
         // Draw attack range in the editor
         Gizmos.color = Color.green;

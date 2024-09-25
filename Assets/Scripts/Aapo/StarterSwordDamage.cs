@@ -10,7 +10,7 @@ public class StarterSwordDamage : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
-        if (swordSwing.canDamage)
+        if (swordSwing.canDamage && other.tag == "Enemy")
         {
             EnemyHealthScript enemyHealthScript = other.GetComponent<EnemyHealthScript>();
 
