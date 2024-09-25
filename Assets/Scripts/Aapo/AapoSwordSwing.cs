@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class AapoSwordSwing : MonoBehaviour
@@ -7,6 +8,10 @@ public class AapoSwordSwing : MonoBehaviour
     [SerializeField] private bool canCombo;
     public bool thirdAttackDamage;
     public bool isBlocking;
+    private bool blockOnCooldown;
+    [SerializeField] private float blockCooldownTime;
+
+  
 
     public void ContinueCombo()
     {
@@ -34,9 +39,17 @@ public class AapoSwordSwing : MonoBehaviour
 
     public void BlockAction()
     {
+        if(!blockOnCooldown)
         animator.SetTrigger("block");
-        animator.ResetTrigger("block");
+        StartCoroutine(BlockingCooldown());
 
+    }
+
+    private IEnumerator BlockingCooldown()
+    {
+        blockOnCooldown = true;
+        yield return new WaitForSeconds(blockCooldownTime);
+        blockOnCooldown = false;
     }
 
     public void StopCombo()
