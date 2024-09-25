@@ -2,14 +2,11 @@ using UnityEngine;
 
 public class AapoSwordSwing : MonoBehaviour
 {
-    [SerializeField] private Animator animator;
+    public Animator animator;
     public bool canDamage;
     [SerializeField] private bool canCombo;
     public bool thirdAttackDamage;
- 
-
-    
-
+    public bool isBlocking;
 
     public void ContinueCombo()
     {
@@ -33,6 +30,13 @@ public class AapoSwordSwing : MonoBehaviour
             animator.SetBool("failedCombo", true);
             animator.SetBool("isAttacking", false);  // Stop attacking if failedCombo
         }
+    }
+
+    public void BlockAction()
+    {
+        animator.SetTrigger("block");
+        animator.ResetTrigger("block");
+
     }
 
     public void StopCombo()
@@ -81,4 +85,13 @@ public class AapoSwordSwing : MonoBehaviour
         thirdAttackDamage = false;
     }
 
+    public void Blocking()
+    {
+        isBlocking = true;
+    }
+
+    public void NotBlocking()
+    {
+        isBlocking = false;
+    }
 }

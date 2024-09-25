@@ -18,24 +18,24 @@ MonoBehaviour:
     m_Value: 0
   noiseWeight:
     m_OverrideState: 1
-    m_Value: 0.1
+    m_Value: 0.5
   screenBendX:
     m_OverrideState: 1
-    m_Value: 3
+    m_Value: -8.1
   screenBendY:
     m_OverrideState: 1
-    m_Value: 3
+    m_Value: 3.37
   vignetteAmount:
-    m_OverrideState: 1
-    m_Value: 0.63
+    m_OverrideState: 0
+    m_Value: -0.85
   vignetteSize:
-    m_OverrideState: 1
-    m_Value: 1.82
+    m_OverrideState: 0
+    m_Value: -4.89
   vignetteRounding:
-    m_OverrideState: 1
-    m_Value: 8.01
+    m_OverrideState: 0
+    m_Value: 7.15
   vignetteSmoothing:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0.2
   scanlinesDensity:
     m_OverrideState: 1
@@ -48,19 +48,19 @@ MonoBehaviour:
     m_Value: 250
   chromaticRed:
     m_OverrideState: 1
-    m_Value: {x: 0.002, y: 0.001}
+    m_Value: {x: 0, y: 0}
   chromaticGreen:
     m_OverrideState: 1
-    m_Value: {x: 0.001, y: 0.001}
+    m_Value: {x: 0.01, y: 0.03}
   chromaticBlue:
     m_OverrideState: 1
-    m_Value: {x: 0, y: 0}
+    m_Value: {x: 0.01, y: 0.03}
   grilleOpacity:
     m_OverrideState: 1
-    m_Value: 0.4
+    m_Value: 0
   grilleCounterOpacity:
     m_OverrideState: 1
-    m_Value: 0.2
+    m_Value: 0
   grilleResolution:
     m_OverrideState: 1
     m_Value: 360
@@ -94,13 +94,13 @@ MonoBehaviour:
   active: 1
   widthPixelation:
     m_OverrideState: 1
-    m_Value: 1080
+    m_Value: 512
   heightPixelation:
     m_OverrideState: 1
-    m_Value: 1080
+    m_Value: 256
   colorPrecision:
     m_OverrideState: 1
-    m_Value: 16
+    m_Value: 32
 --- !u!114 &-758010384845797820
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -119,13 +119,13 @@ MonoBehaviour:
     m_Value: 1
   ditherThreshold:
     m_OverrideState: 1
-    m_Value: 3.53
+    m_Value: 3.18
   ditherStrength:
-    m_OverrideState: 0
-    m_Value: 1.37
+    m_OverrideState: 1
+    m_Value: 4
   ditherScale:
     m_OverrideState: 1
-    m_Value: 4.67
+    m_Value: 0.59
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
-  m_Name: URP-PSX Volume Profile
+  m_Name: Volume_25_9
   m_EditorClassIdentifier: 
   components:
   - {fileID: 169896938054019971}
@@ -158,31 +158,31 @@ MonoBehaviour:
   active: 1
   fogDensity:
     m_OverrideState: 1
-    m_Value: 10
+    m_Value: 0.65
   fogDistance:
     m_OverrideState: 1
-    m_Value: 4.7
+    m_Value: 42.3
   fogColor:
     m_OverrideState: 1
-    m_Value: {r: 0, g: 0, b: 0, a: 0}
+    m_Value: {r: 1, g: 0.781337, b: 0.6179246, a: 0}
   ambientColor:
     m_OverrideState: 1
-    m_Value: {r: 0, g: 0, b: 0, a: 0}
+    m_Value: {r: 0.7169812, g: 0.26711065, b: 0, a: 0}
   fogNear:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 0.58
   fogFar:
     m_OverrideState: 1
-    m_Value: 81.3
+    m_Value: 12.3
   fogAltScale:
     m_OverrideState: 1
     m_Value: 10
   fogThinning:
     m_OverrideState: 1
-    m_Value: 458
+    m_Value: 10
   noiseScale:
     m_OverrideState: 0
-    m_Value: 843
+    m_Value: 0.1
   noiseStrength:
     m_OverrideState: 0
-    m_Value: 0.029
+    m_Value: 0.3

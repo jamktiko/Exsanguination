@@ -38,6 +38,8 @@ public class RBInputManager : MonoBehaviour
 
         movement.Attack.performed += ctx => aapoSwordSwing.ContinueCombo();
 
+        movement.Block.performed += ctx => aapoSwordSwing.BlockAction();
+
         movement.GrapplingHook.performed += ctx => grappling.StartGrapple();
 
         movement.Stake.performed += ctx => stakeLogic.ThrowStake();

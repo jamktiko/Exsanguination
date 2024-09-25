@@ -116,6 +116,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Block"",
+                    ""type"": ""Button"",
+                    ""id"": ""a070930c-92bd-4a8d-a295-65d534edb052"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -272,6 +281,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Use"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""71e62512-e492-4dbc-b18a-b2f0f6f7db6c"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Block"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -290,6 +310,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Movement_GrapplingHook = m_Movement.FindAction("GrapplingHook", throwIfNotFound: true);
         m_Movement_Stake = m_Movement.FindAction("Stake", throwIfNotFound: true);
         m_Movement_Use = m_Movement.FindAction("Use", throwIfNotFound: true);
+        m_Movement_Block = m_Movement.FindAction("Block", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -361,6 +382,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Movement_GrapplingHook;
     private readonly InputAction m_Movement_Stake;
     private readonly InputAction m_Movement_Use;
+    private readonly InputAction m_Movement_Block;
     public struct MovementActions
     {
         private @PlayerControls m_Wrapper;
@@ -375,6 +397,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @GrapplingHook => m_Wrapper.m_Movement_GrapplingHook;
         public InputAction @Stake => m_Wrapper.m_Movement_Stake;
         public InputAction @Use => m_Wrapper.m_Movement_Use;
+        public InputAction @Block => m_Wrapper.m_Movement_Block;
         public InputActionMap Get() { return m_Wrapper.m_Movement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -414,6 +437,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Use.started += instance.OnUse;
             @Use.performed += instance.OnUse;
             @Use.canceled += instance.OnUse;
+            @Block.started += instance.OnBlock;
+            @Block.performed += instance.OnBlock;
+            @Block.canceled += instance.OnBlock;
         }
 
         private void UnregisterCallbacks(IMovementActions instance)
@@ -448,6 +474,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Use.started -= instance.OnUse;
             @Use.performed -= instance.OnUse;
             @Use.canceled -= instance.OnUse;
+            @Block.started -= instance.OnBlock;
+            @Block.performed -= instance.OnBlock;
+            @Block.canceled -= instance.OnBlock;
         }
 
         public void RemoveCallbacks(IMovementActions instance)
@@ -477,5 +506,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnGrapplingHook(InputAction.CallbackContext context);
         void OnStake(InputAction.CallbackContext context);
         void OnUse(InputAction.CallbackContext context);
+        void OnBlock(InputAction.CallbackContext context);
     }
 }
