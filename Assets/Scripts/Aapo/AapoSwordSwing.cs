@@ -3,21 +3,12 @@ using UnityEngine;
 public class AapoSwordSwing : MonoBehaviour
 {
     [SerializeField] private Animator animator;
-    private bool canDamage;
-    [SerializeField] private int damage;
+    public bool canDamage;
     [SerializeField] private bool canCombo;
+    public bool thirdAttackDamage;
  
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (canDamage)
-        {
-            EnemyHealthScript enemyHealthScript = other.GetComponent<EnemyHealthScript>();
-
-            enemyHealthScript.ChangeEnemyHealth(damage);
-        }
-    }
-
+    
 
 
     public void ContinueCombo()
@@ -78,6 +69,16 @@ public class AapoSwordSwing : MonoBehaviour
         animator.SetBool("isAttacking", false);
 
 
+    }
+
+    public void ThirdAttackDamage()
+    {
+        thirdAttackDamage = true;
+    }
+
+    public void NormalAttackDamage()
+    {
+        thirdAttackDamage = false;
     }
 
 }
