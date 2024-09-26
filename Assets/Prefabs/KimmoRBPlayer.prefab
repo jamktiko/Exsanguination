@@ -387,11 +387,13 @@ MonoBehaviour:
   airMultiplier: 0.4
   isGrounded: 0
   isJumping: 0
+  dashDirection: {x: 0, y: 0, z: 0}
   orientation: {fileID: 180926005491204132}
   groundCheck: {fileID: 8009028760712341826}
   dashSpeed: 15
   dashTime: 0.5
   dashCooldown: 2
+  dashCooldownTimer: 0
   canDash: 0
   isDashing: 0
   slideSpeed: 10
@@ -423,6 +425,7 @@ MonoBehaviour:
   sensitivityX: 20
   sensitivityY: 0.2
   playerCamera: {fileID: 2804979888572498233}
+  cameraDirection: {x: 0, y: 0, z: 0}
   xClamp: 80
 --- !u!114 &290419899242959540
 MonoBehaviour:
@@ -458,8 +461,8 @@ MonoBehaviour:
     m_Bits: 256
   lr: {fileID: 8301637241319504566}
   maxGrappleDistance: 25
-  grappleDelayTime: 0.25
-  overShootYAxis: 2
+  grappleDelayTime: 0
+  overShootYAxis: -1
   grapplingCd: 1
 --- !u!120 &8301637241319504566
 LineRenderer:
