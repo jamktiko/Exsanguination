@@ -9,6 +9,7 @@ public class MouseLook : MonoBehaviour
     float mouseX, mouseY;
 
     [SerializeField] Transform playerCamera;
+    [SerializeField] Vector3 cameraDirection;
     [SerializeField] float xClamp = 85f;
     float xRotation = 0f;
 
@@ -27,6 +28,7 @@ public class MouseLook : MonoBehaviour
         Vector3 targetRotation = transform.eulerAngles;
         targetRotation.x = xRotation;
         playerCamera.eulerAngles = targetRotation;
+        cameraDirection = targetRotation;
     }
 
     public void ReceiveInput (Vector2 mouseInput)

@@ -22,7 +22,7 @@ public class RBPlayerMovement : MonoBehaviour
     [SerializeField] bool isJumping;
 
     // Dash variables
-    Vector3 dashDirection;
+    [SerializeField] Vector3 dashDirection;
     public Transform orientation;
     [SerializeField] Transform groundCheck;
     [SerializeField] float dashSpeed;
@@ -88,6 +88,7 @@ public class RBPlayerMovement : MonoBehaviour
         }
 
         SpeedControl();
+        GetDirection();
     }
 
     private void FixedUpdate()
@@ -280,6 +281,7 @@ public class RBPlayerMovement : MonoBehaviour
     public void JumpToPosition(Vector3 targetPosition, float trajectoryHeight)
     {
         activeGrapple = true;
+        canDash = false;
 
         velocityToSet = CalculateJumpVelocity(transform.position, targetPosition, trajectoryHeight);
         Invoke(nameof(SetVelocity), 0.1f);
@@ -298,6 +300,7 @@ public class RBPlayerMovement : MonoBehaviour
     public void ResetRestricitons()
     {
         activeGrapple = false;
+        canDash = true;
     }
 
     private void OnCollisionEnter(Collision collision)
