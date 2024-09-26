@@ -20,21 +20,23 @@ public class AapoEnemyAI : MonoBehaviour
     [SerializeField] private float detectionRange = 10f;   // How close the player has to be for the enemy to detect
     [SerializeField] private float stoppingDistance = 1.5f; // Distance from the player to stop moving
     [SerializeField] private float jumpForce = 5f;         // Force applied when jumping
-    [SerializeField] private float pounceForce;
+    [SerializeField] private float pounceForceUp;
+    [SerializeField] private float pounceForceForward;
     [SerializeField] private float pounceCooldown = 3.0f; // Time in seconds between attacks
     [SerializeField] private float obstacleCheckDistance = 1.5f; // Distance to check for obstacles
     [SerializeField] private float jumpHeightThreshold = 1.0f;   // How much higher the player has to be for the enemy to jump
     [SerializeField] private LayerMask groundLayer;        // Ground layer for jumping checks
     [SerializeField] private LayerMask playerLayer;
     [SerializeField] private LayerMask enemyLayer;
-    [SerializeField] private LayerMask ignoreLayers; // LayerMask to specify which layers to ignore when jumping
+    [SerializeField] private LayerMask ignoreLayers; // LayerMask to specify which layers to ignore when triggering jumping over obstacle
     [SerializeField] private float jumpCooldown = 2f;      // Time in seconds between jumps
     [SerializeField] private RBPlayerMovement playerMovementScript; // Reference to the player's movement script
     [SerializeField] private float attackRange = 1.5f; // Range within which the enemy will attack the player
     [SerializeField] private float attackCooldown = 1.0f; // Time in seconds between attacks
-    [SerializeField] private float pounceRange = 5f;
-    [SerializeField] private float separationDistance = 2f; // Distance to maintain from other enemies
-    [SerializeField] private float stopSeparationDistance = 1.5f; // Distance from the player to stop moving
+    [SerializeField] private float pounceRangeMax = 5f;
+    [SerializeField] private float pounceRangeMin;
+    [SerializeField] private float separationDistance = 2f; // Distance to separate from other enemies
+    [SerializeField] private float stopSeparationDistance = 1.5f; // Distance from the player to stop separating
 
     private Transform player;
     private Rigidbody rb;
@@ -62,7 +64,6 @@ public class AapoEnemyAI : MonoBehaviour
         storedSeparationDistance = separationDistance;
         rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
         rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
-        
     }
 
     void Update()
@@ -144,7 +145,7 @@ public class AapoEnemyAI : MonoBehaviour
             lastAttackTime = Time.time;
 
         }
-        if (distance <= pounceRange && CanPounce() && distance >attackRange)
+        if (distance <= pounceRangeMax && distance >= pounceRangeMin && CanPounce())
         {
             Pounce();
             lastPounceTime = Time.time;
@@ -175,7 +176,7 @@ public class AapoEnemyAI : MonoBehaviour
         enemyAnimator.SetBool("isAttacking", false);
         enemyAnimator.SetTrigger("pounce");
         Vector3 direction = (player.position - transform.position).normalized;
-        rb.AddForce(Vector3.up * jumpForce + direction * pounceForce, ForceMode.Impulse);
+        rb.AddForce(Vector3.up * pounceForceUp + direction * pounceForceForward, ForceMode.Impulse);
 
     }
 
@@ -272,7 +273,7 @@ public class AapoEnemyAI : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, stopSeparationDistance);
 
         Gizmos.color = Color.white;
-        Gizmos.DrawWireSphere(transform.position, pounceRange);
+        Gizmos.DrawWireSphere(transform.position, pounceRangeMax);
 
         // Draw attack range in the editor
         Gizmos.color = Color.green;
