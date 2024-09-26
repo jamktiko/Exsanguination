@@ -28,7 +28,7 @@ public class RBPlayerMovement : MonoBehaviour
     [SerializeField] float dashSpeed;
     [SerializeField] float dashTime;
     [SerializeField] float dashCooldown;
-    float dashCooldownTimer;
+    [SerializeField] float dashCooldownTimer;
     [SerializeField] bool canDash;
     [SerializeField] bool isDashing;
     Transform forwardT;
@@ -175,7 +175,7 @@ public class RBPlayerMovement : MonoBehaviour
 
     public void OnDashPressed()
     {
-        if (dashCooldownTimer > 0) return;
+        if (dashCooldownTimer > 0 || !isMoving) return;
         else dashCooldownTimer = dashCooldown;
 
         if (canDash)
