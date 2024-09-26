@@ -2322,7 +2322,7 @@ GameObject:
   - component: {fileID: 7564956125084932846}
   - component: {fileID: 8821715397770911955}
   - component: {fileID: 4121534045823455618}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: AapoRBPlayer
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -2434,7 +2434,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7f097787f5721e45be5a5db3f6f7cdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 5819690693021770815}
   moveSpeed: 7
   groundDrag: 5
   airDrag: 0
@@ -2443,7 +2442,6 @@ MonoBehaviour:
     m_Bits: 256
   canMove: 0
   isMoving: 0
-  freeze: 0
   jumpForce: 12
   airMultiplier: 0.4
   isGrounded: 0
@@ -2467,6 +2465,8 @@ MonoBehaviour:
   playerModel: {fileID: 6381728265022681371}
   playerModelStandingPos: {x: 0, y: -0.8, z: 0}
   playerModelSlidingPos: {x: 0, y: -1.6, z: 0}
+  freeze: 0
+  activeGrapple: 0
 --- !u!114 &2630660443210654800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2514,11 +2514,12 @@ MonoBehaviour:
   gunTip: {fileID: 2320696486665994449}
   whatIsGrappleable:
     serializedVersion: 2
-    m_Bits: 4294967295
-  lr: {fileID: 4121534045823455618}
-  maxGrappleDistance: 0
-  grappleDelayTime: 0
-  grapplingCd: 0
+    m_Bits: 256
+  lr: {fileID: 0}
+  maxGrappleDistance: 25
+  grappleDelayTime: 0.25
+  overShootYAxis: 2
+  grapplingCd: 1
 --- !u!120 &4121534045823455618
 LineRenderer:
   serializedVersion: 2
@@ -2540,7 +2541,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 9e913b7c66797874a9b52e0c5e6bca82, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2566,7 +2567,7 @@ LineRenderer:
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.2
+    widthMultiplier: 0.1
     widthCurve:
       serializedVersion: 2
       m_Curve:
