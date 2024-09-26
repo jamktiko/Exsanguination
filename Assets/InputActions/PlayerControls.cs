@@ -125,6 +125,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SilverBomb"",
+                    ""type"": ""Button"",
+                    ""id"": ""ccad1d33-754a-4907-80e1-f549bee05606"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -292,6 +301,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Block"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d2ece636-4b7f-4315-acc5-5c1f9bad0fb9"",
+                    ""path"": ""<Keyboard>/g"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SilverBomb"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -311,6 +331,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Movement_Stake = m_Movement.FindAction("Stake", throwIfNotFound: true);
         m_Movement_Use = m_Movement.FindAction("Use", throwIfNotFound: true);
         m_Movement_Block = m_Movement.FindAction("Block", throwIfNotFound: true);
+        m_Movement_SilverBomb = m_Movement.FindAction("SilverBomb", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -383,6 +404,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Movement_Stake;
     private readonly InputAction m_Movement_Use;
     private readonly InputAction m_Movement_Block;
+    private readonly InputAction m_Movement_SilverBomb;
     public struct MovementActions
     {
         private @PlayerControls m_Wrapper;
@@ -398,6 +420,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Stake => m_Wrapper.m_Movement_Stake;
         public InputAction @Use => m_Wrapper.m_Movement_Use;
         public InputAction @Block => m_Wrapper.m_Movement_Block;
+        public InputAction @SilverBomb => m_Wrapper.m_Movement_SilverBomb;
         public InputActionMap Get() { return m_Wrapper.m_Movement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -440,6 +463,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Block.started += instance.OnBlock;
             @Block.performed += instance.OnBlock;
             @Block.canceled += instance.OnBlock;
+            @SilverBomb.started += instance.OnSilverBomb;
+            @SilverBomb.performed += instance.OnSilverBomb;
+            @SilverBomb.canceled += instance.OnSilverBomb;
         }
 
         private void UnregisterCallbacks(IMovementActions instance)
@@ -477,6 +503,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Block.started -= instance.OnBlock;
             @Block.performed -= instance.OnBlock;
             @Block.canceled -= instance.OnBlock;
+            @SilverBomb.started -= instance.OnSilverBomb;
+            @SilverBomb.performed -= instance.OnSilverBomb;
+            @SilverBomb.canceled -= instance.OnSilverBomb;
         }
 
         public void RemoveCallbacks(IMovementActions instance)
@@ -507,5 +536,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnStake(InputAction.CallbackContext context);
         void OnUse(InputAction.CallbackContext context);
         void OnBlock(InputAction.CallbackContext context);
+        void OnSilverBomb(InputAction.CallbackContext context);
     }
 }

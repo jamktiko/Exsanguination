@@ -3,9 +3,9 @@ using UnityEngine.UI;
 
 public class TabHandler : MonoBehaviour
 {
-    [SerializeField] Button[] tabButtons = new Button[3];
+    [SerializeField] Button[] tabButtons = new Button[4];
 
-    [SerializeField] GameObject[] tabs = new GameObject[3];
+    [SerializeField] GameObject[] tabs = new GameObject[4];
 
     private GameObject activeTab;
 
@@ -20,6 +20,7 @@ public class TabHandler : MonoBehaviour
         tabButtons[0].onClick.AddListener(() => ChangeTab(0));
         tabButtons[1].onClick.AddListener(() => ChangeTab(1));
         tabButtons[2].onClick.AddListener(() => ChangeTab(2));
+        tabButtons[3].onClick.AddListener(() => ChangeTab(3));
 
         activeTab = tabs[0];
         activeTab.SetActive(true);

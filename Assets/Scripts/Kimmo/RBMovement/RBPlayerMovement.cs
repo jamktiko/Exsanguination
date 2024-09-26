@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class RBPlayerMovement : MonoBehaviour
 {
-    // Movement variables
-    Rigidbody rb;
+    [Header("Movement")]
     [SerializeField] float moveSpeed;
     [SerializeField] float groundDrag;
     [SerializeField] float airDrag;
@@ -13,17 +12,17 @@ public class RBPlayerMovement : MonoBehaviour
     [SerializeField] bool canMove;
     public bool isMoving;
     Vector2 horizontalInput;
+    Rigidbody rb;
 
-    // Jump variables
+    [Header("Jump")]
     [SerializeField] float jumpForce;
     [SerializeField] float airMultiplier;
-    Vector3 verticalVelocity = Vector3.zero;
     public bool isGrounded;
     [SerializeField] bool isJumping;
+    Vector3 verticalVelocity = Vector3.zero;
 
-    // Dash variables
+    [Header("Dash")]
     [SerializeField] Vector3 dashDirection;
-    public Transform orientation;
     [SerializeField] Transform groundCheck;
     [SerializeField] float dashSpeed;
     [SerializeField] float dashTime;
@@ -31,9 +30,10 @@ public class RBPlayerMovement : MonoBehaviour
     [SerializeField] float dashCooldownTimer;
     [SerializeField] bool canDash;
     [SerializeField] bool isDashing;
+    Transform orientation;
     Transform forwardT;
 
-    // Slide variables
+    [Header("Slide")]
     [SerializeField] float slideSpeed;
     [SerializeField] float slideTime;
     float slideCooldownTimer;
@@ -48,7 +48,7 @@ public class RBPlayerMovement : MonoBehaviour
     [SerializeField] Vector3 playerModelStandingPos;
     [SerializeField] Vector3 playerModelSlidingPos;
 
-    // Grapple variables
+    [Header("Grapple")]
     public bool freeze;
     public bool activeGrapple;
 

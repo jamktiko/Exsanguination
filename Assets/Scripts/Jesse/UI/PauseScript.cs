@@ -11,7 +11,7 @@ public class PauseScript : MonoBehaviour
 
     [SerializeField] SettingsMenu settingsMenu;
 
-    private bool paused;
+    [SerializeField] private bool paused;
     void Awake()
     {
         continueButton.onClick.AddListener(UnPauseGame);

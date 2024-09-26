@@ -7,10 +7,10 @@ public class RBInputManager : MonoBehaviour
 {
     [SerializeField] RBPlayerMovement playerMovement;
     [SerializeField] Grappling grappling;
-    public AapoSwordSwing aapoSwordSwing;
+    [SerializeField] AapoSwordSwing aapoSwordSwing;
     [SerializeField] MouseLook mouseLook;
-
     [SerializeField] StakeLogic stakeLogic;
+    [SerializeField] ThrowBomb throwBomb;
 
     PlayerControls controls;
     PlayerControls.MovementActions movement;
@@ -44,6 +44,8 @@ public class RBInputManager : MonoBehaviour
 
         movement.Stake.performed += ctx => stakeLogic.ThrowStake();
         movement.Use.performed += ctx => stakeLogic.RetrieveStake();
+
+        movement.SilverBomb.performed += ctx => throwBomb.Throw();
 
     }
 
