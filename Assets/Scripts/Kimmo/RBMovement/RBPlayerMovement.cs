@@ -52,6 +52,11 @@ public class RBPlayerMovement : MonoBehaviour
     public bool freeze;
     public bool activeGrapple;
 
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
+
     private void Start()
     {
         canMove = true;
@@ -59,7 +64,6 @@ public class RBPlayerMovement : MonoBehaviour
         canSlide = true;
         dashDirection = orientation.forward;
 
-        rb = GetComponent<Rigidbody>();
     }
 
     private void Update()
