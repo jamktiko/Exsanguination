@@ -36,8 +36,8 @@ public class InputManager : MonoBehaviour
 
         movement.Attack.performed += ctx => aapoSwordSwing.ContinueCombo();
 
-        movement.Stake.performed += ctx => stakeLogic.ThrowStake();
-        movement.Use.performed += ctx => stakeLogic.RetrieveStake();
+        //movement.Stake.performed += ctx => stakeLogic.ThrowStake();
+        //movement.Use.performed += ctx => stakeLogic.RetrieveStake();
     }
 
     private void Update()
