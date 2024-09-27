@@ -10,23 +10,34 @@ public class AapoSwordSwing : MonoBehaviour
     public bool isBlocking;
     private bool blockOnCooldown;
     [SerializeField] private float blockCooldownTime;
+    [SerializeField] AudioManager audioManager;
 
-  
+    private void Update()
+    {
+        Debug.Log("current anim clip " + animator.GetCurrentAnimatorClipInfo(0));
+    }
 
     public void ContinueCombo()
     {
         // Check if the attack just started
         if (!animator.GetBool("startedAttack"))
         {
+            audioManager.PlaySwordSwingClips1();
             animator.SetBool("startedAttack", true);
             // Reset any combo-related states
             animator.SetBool("failedCombo", false);
             return;  // Exit to ensure we only set startedAttack on the first click
         }
-
+        if (canCombo && animator.GetBool("startedAttack"))
+        {
+            audioManager.PlaySwordSwingClips2();
+            animator.SetBool("isAttacking", true);
+            animator.SetBool("failedCombo", false);  // Ensure failedCombo is reset
+        }
         // Now handle the combo continuation after the first attack has started
         if (canCombo && animator.GetBool("startedAttack"))
         {
+            audioManager.PlaySwordSwingClips2();
             animator.SetBool("isAttacking", true);
             animator.SetBool("failedCombo", false);  // Ensure failedCombo is reset
         }
@@ -35,6 +46,7 @@ public class AapoSwordSwing : MonoBehaviour
             animator.SetBool("failedCombo", true);
             animator.SetBool("isAttacking", false);  // Stop attacking if failedCombo
         }
+        
     }
 
     public void BlockAction()
