@@ -38,10 +38,6 @@ public class StakeLogic : MonoBehaviour
     {
         if (isReturning)
         {
-            // Move stake back to player
-            Vector3 direction = (player.position - transform.position).normalized;
-            rb.MovePosition(transform.position + direction * throwForce * Time.deltaTime);
-
             // If close enough to player, stop returning
             if (Vector3.Distance(transform.position, player.position) < 0.5f)
             {
