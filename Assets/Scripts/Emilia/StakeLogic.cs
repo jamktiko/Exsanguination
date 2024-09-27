@@ -1,3 +1,4 @@
+using EmiliaScripts;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,32 +6,27 @@ using UnityEngine;
 public class StakeLogic : MonoBehaviour
 {
     [SerializeField] private GameObject prefab;
-    public float throwForce = 50f;
-    public float stickDuration = 10f;
-    public float returnCooldown = 10f;
-    public int damageAmount = 20;
-    public float slowAmount = 0.5f;
-    public float finisherThreshold = 50f;
-    public float retrievalRange = 2f;
+    [SerializeField] private float throwForce = 50f, stickDuration = 10f, returnCooldown = 10f, slowAmount = 0.5f, finisherThreshold = 50f, retrievalRange = 2f, stickTimer = 0f;
+    private bool isThrown = false, isStuck = false, isReturning = false;
 
     private Rigidbody rb;
-    private bool isThrown = false;
-    private bool isStuck = false;
-    private bool isReturning = false;
-    private AapoEnemyAI stuckEnemy = null;
-    private EnemyHealthScript stuckEnemyHealth = null;
-    private float stickTimer = 0f;
-    private Transform player;
+    private AapoEnemyAI stuckEnemy;
+    private EnemyHealthScript stuckEnemyHealth;
+    private PlayerHealthManager playerHealth;
+    private Transform playerTransform;
     public Camera playerCamera;
+
+    private Quaternion stakeRotation = Quaternion.Euler(90f, 0f, 0f);
 
     [SerializeField] private GameObject stakeLocationOnPlayer;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        player = GameObject.FindWithTag("Player").transform;
+        playerTransform = GameObject.FindWithTag("Player").transform;
         playerCamera = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
-        Physics.IgnoreCollision(player.GetComponent<Collider>(), gameObject.GetComponent<Collider>());
+        playerHealth = GameObject.FindWithTag("HealthManager").GetComponent<PlayerHealthManager>();
+        Physics.IgnoreCollision(playerTransform.GetComponent<Collider>(), gameObject.GetComponent<Collider>());
         gameObject.SetActive(false);
     }
 
@@ -39,17 +35,17 @@ public class StakeLogic : MonoBehaviour
         if (isReturning)
         {
             // If close enough to player, stop returning
-            if (Vector3.Distance(transform.position, player.position) < 0.5f)
+            if (Vector3.Distance(transform.position, playerTransform.position) < 0.5f)
             {
                 isReturning = false;
                 isThrown = false;
                 rb.isKinematic = true; // Stop physics interaction
-                transform.SetParent(player); // Reattach stake to player
+                transform.SetParent(playerTransform, true); // Reattach stake to player
             }
         }
     }
 
-    public void ThrowStake()
+    public void ThrowStake(float timer)
     {
         gameObject.SetActive(true);
         if (!isThrown)
@@ -59,7 +55,23 @@ public class StakeLogic : MonoBehaviour
             isThrown = true;
             isReturning = false;
             rb.isKinematic = false; // Enable physics for throwing
-            rb.AddForce(playerCamera.transform.forward * throwForce, ForceMode.Impulse); // Throw in the direction the player is looking
+            throwForce = 0f;
+
+            switch (timer)
+            {
+                case 0f:
+                    throwForce = 10f;
+                    break;
+                case float t when t > 0f && t <= 0.99f:
+                    throwForce = Mathf.Lerp(10f, 50f, t);
+                    break;
+                default:
+                    throwForce = 50f; //Max power
+                    break;
+            }
+
+            Ray ray = playerCamera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0)); //Get middle of screen
+            rb.AddForce(ray.direction * throwForce, ForceMode.Impulse);
 
             // Start the countdown immediately after throwing
             Invoke(nameof(ReturnToPlayer), returnCooldown);
@@ -95,9 +107,9 @@ public class StakeLogic : MonoBehaviour
 
     public void UnstickFromEnemy()
     {
-        transform.SetParent(player);
-        transform.position = stakeLocationOnPlayer.transform.position;
-        transform.rotation = Quaternion.identity;
+        transform.SetParent(playerTransform, true);
+        transform.SetPositionAndRotation(stakeLocationOnPlayer.transform.position, stakeRotation);
+        playerHealth.UpdatePlayerHealth(playerHealth.MaxPlayerHealth() / 2);
     }
 
     // Instantly return the stake to the player after the cooldown
@@ -114,8 +126,8 @@ public class StakeLogic : MonoBehaviour
 
             // Instantly teleport the stake back to the player's hand
             transform.position = stakeLocationOnPlayer.transform.position;
-            transform.rotation = Quaternion.identity;
-            transform.SetParent(player);
+            transform.rotation = stakeRotation;
+            transform.SetParent(playerTransform, true);
 
             // Reset state
             isThrown = false;
@@ -128,7 +140,7 @@ public class StakeLogic : MonoBehaviour
         if (isStuck && stuckEnemy != null)
         {
             // Check if within retrieval range
-            if (Vector3.Distance(player.position, transform.position) <= retrievalRange)
+            if (Vector3.Distance(playerTransform.position, transform.position) <= retrievalRange)
             {
                 // If health < 50%, apply finisher
                 if (stuckEnemyHealth.GetEnemyHealth() <= stuckEnemyHealth.GetEnemyMaxHealth() / 2)

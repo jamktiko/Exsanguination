@@ -18,6 +18,9 @@ public class RBInputManager : MonoBehaviour
     Vector2 horizontalInput;
     Vector2 mouseInput;
 
+    private bool stakeHoldDown;
+    private float stakeButtonDownTimer = 0f;
+
     private void Awake()
     {
         controls = new PlayerControls();
@@ -42,7 +45,12 @@ public class RBInputManager : MonoBehaviour
 
         movement.GrapplingHook.performed += ctx => grappling.StartGrapple();
 
-        movement.Stake.performed += ctx => stakeLogic.ThrowStake();
+        movement.Stake.performed += ctx => stakeHoldDown = true;
+        movement.Stake.canceled += ctx => {
+            stakeHoldDown = false;
+            stakeLogic.ThrowStake(stakeButtonDownTimer);
+            stakeButtonDownTimer = 0f;
+        };
         movement.Use.performed += ctx => stakeLogic.RetrieveStake();
 
         movement.SilverBomb.performed += ctx => throwBomb.Throw();
@@ -53,6 +61,11 @@ public class RBInputManager : MonoBehaviour
     {
         playerMovement.ReceiveInput(horizontalInput);
         mouseLook.ReceiveInput(mouseInput);
+
+        if (stakeHoldDown)
+        {
+            stakeButtonDownTimer += Time.deltaTime;
+        }
     }
 
     private void OnEnable()
@@ -83,4 +96,5 @@ public class RBInputManager : MonoBehaviour
     {
         return horizontalInput;
     }
+
 }
