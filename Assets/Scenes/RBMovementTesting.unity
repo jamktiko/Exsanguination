@@ -982,10 +982,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 398377474871768626, guid: 5654b142d3a6bfd46a8e91bedd1bdb98, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 486339454385324937, guid: 5654b142d3a6bfd46a8e91bedd1bdb98, type: 3}
       propertyPath: m_Name
       value: KimmoRBPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 2426148750277136504, guid: 5654b142d3a6bfd46a8e91bedd1bdb98, type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 2039283912}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2424,6 +2432,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!54 &2039283912 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 3804617837820053939, guid: 5654b142d3a6bfd46a8e91bedd1bdb98, type: 3}
+  m_PrefabInstance: {fileID: 894228651}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2055433282
 GameObject:
   m_ObjectHideFlags: 0

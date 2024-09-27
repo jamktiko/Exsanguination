@@ -30,7 +30,7 @@ public class RBPlayerMovement : MonoBehaviour
     [SerializeField] float dashCooldownTimer;
     [SerializeField] bool canDash;
     [SerializeField] bool isDashing;
-    Transform orientation;
+    [SerializeField] Transform orientation;
     Transform forwardT;
 
     [Header("Slide")]
@@ -55,6 +55,7 @@ public class RBPlayerMovement : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        dashDirection = orientation.forward;
     }
 
     private void Start()
@@ -62,7 +63,7 @@ public class RBPlayerMovement : MonoBehaviour
         canMove = true;
         canDash = true;
         canSlide = true;
-        dashDirection = orientation.forward;
+        
 
     }
 
