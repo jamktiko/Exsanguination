@@ -55,6 +55,7 @@ public class AapoEnemyAI : MonoBehaviour
         {
             // Add a Rigidbody component if it doesn't exist
             rb = gameObject.AddComponent<Rigidbody>();
+            rb = GetComponent<Rigidbody>();
         }
 
     }
@@ -68,10 +69,14 @@ public class AapoEnemyAI : MonoBehaviour
 
     void Update()
     {
-        DetectPlayer();
         CheckGroundedStatus();
         AvoidOtherEnemies();
 
+    }
+
+    private void FixedUpdate()
+    {
+        DetectPlayer();
     }
 
 
@@ -101,7 +106,7 @@ public class AapoEnemyAI : MonoBehaviour
                 if (hitCollider.transform != transform) // Ignore self
                 {
                     Vector3 directionToAvoid = transform.position - hitCollider.transform.position;
-                    rb.AddForce(directionToAvoid.normalized * moveSpeed * Time.deltaTime, ForceMode.VelocityChange);
+                    rb.AddForce(directionToAvoid.normalized * moveSpeed * Time.fixedDeltaTime, ForceMode.VelocityChange);
                 }
             }
         
@@ -212,7 +217,7 @@ public class AapoEnemyAI : MonoBehaviour
             {
                 // Move the enemy forward
                 Vector3 move = new Vector3(direction.x, 0, direction.z);
-                rb.MovePosition(transform.position + move * moveSpeed * Time.deltaTime);
+                rb.MovePosition(transform.position + move * moveSpeed * Time.fixedDeltaTime);
             }
         }
     }

@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 
-public class AapoEnemyAttack : MonoBehaviour
+public class AapoEnemyGhoulAttack : MonoBehaviour
 {
     private AapoSwordSwing swordSwing;
     private Animator playerAnimator;
     [SerializeField] int damage;
     private PlayerHealthManager playerHealthManager;
-
+    [SerializeField] private Animator enemyAnimator;
 
 
     private void Awake()
@@ -28,6 +28,7 @@ public class AapoEnemyAttack : MonoBehaviour
         {
             if (swordSwing.isBlocking)
             {
+                enemyAnimator.SetTrigger("stun");
                 playerAnimator.SetTrigger("parry");
             }
 

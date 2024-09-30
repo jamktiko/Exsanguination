@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,31 +7,36 @@ public class EnemyHealthScript : MonoBehaviour
 {
     [SerializeField] int maxHealth = 100;
     [SerializeField] int health = 100;
-
+    [SerializeField] float finisherTime; //seconds how long does the finisher take until enemy dies
     
     [SerializeField] HealthBarScript healthBar;
     [SerializeField] StakeLogic stakeLogic;
+    private EnemyRagdoll enemyRagdoll;
+    [SerializeField] Animator playerAnimator;
 
-    void Start()
+    void Awake()
     {
+        enemyRagdoll = GetComponent<EnemyRagdoll>();
         healthBar = GetComponentInChildren<HealthBarScript>();
-        healthBar.UpdateHealthBar(health, maxHealth);
-        health = maxHealth;
         stakeLogic = GameObject.FindGameObjectWithTag("Stake").GetComponent<StakeLogic>();
     }
-    
-    void Update()
+
+    private void Start()
     {
-        if (health <= 0)
-        {
-            Destroy(gameObject);
-        }
+        healthBar.UpdateHealthBar(health, maxHealth);
+        health = maxHealth;
     }
+
+   
     
     public void ChangeEnemyHealth(int changeAmount)
     {
         health = Mathf.Clamp(health - changeAmount, 0, maxHealth);
         healthBar.UpdateHealthBar(health, maxHealth);
+        if (health <= 0)
+        {
+            Die();        
+        }
     }
 
     // Get the enemy's current health
@@ -46,7 +52,15 @@ public class EnemyHealthScript : MonoBehaviour
     public void Finish()
     {
         // Trigger death animation or effects here
-        stakeLogic.UnstickFromEnemy();
+        //stakeLogic.UnstickFromEnemy();
+        playerAnimator.SetTrigger("finisher");
+        enemyRagdoll.ActivateRagdoll();
+        StartCoroutine(FinisherTimer());
+    }
+
+    private IEnumerator FinisherTimer()
+    {
+        yield return new WaitForSeconds(finisherTime);
         Die();
     }
 
