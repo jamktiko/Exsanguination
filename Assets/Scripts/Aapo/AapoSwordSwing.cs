@@ -12,10 +12,6 @@ public class AapoSwordSwing : MonoBehaviour
     [SerializeField] private float blockCooldownTime;
     [SerializeField] AudioManager audioManager;
 
-    private void Update()
-    {
-        Debug.Log("current anim clip " + animator.GetCurrentAnimatorClipInfo(0));
-    }
 
     public void ContinueCombo()
     {

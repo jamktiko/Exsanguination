@@ -101,7 +101,7 @@ public class StakeLogic : MonoBehaviour
         Physics.IgnoreCollision(enemy.GetComponent<Collider>(), gameObject.GetComponent<Collider>());
 
         // Apply damage and slowing effect
-        stuckEnemyHealth.ChangeEnemyHealth(stuckEnemyHealth.GetEnemyMaxHealth() / 2);
+        //stuckEnemyHealth.ChangeEnemyHealth(stuckEnemyHealth.GetEnemyMaxHealth() / 2);
         enemy.ApplySlow(slowAmount);
     }
 
@@ -153,9 +153,9 @@ public class StakeLogic : MonoBehaviour
                 }
 
                 // Unstick the stake
-                stuckEnemy = null;
-                isStuck = false;
-                ReturnToPlayer();
+                //stuckEnemy = null;
+                //isStuck = false;
+                //ReturnToPlayer();
             }
         }
     }

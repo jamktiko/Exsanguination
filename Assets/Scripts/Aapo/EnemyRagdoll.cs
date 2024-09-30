@@ -6,6 +6,12 @@ public class EnemyRagdoll : MonoBehaviour
     [SerializeField] Collider[] ragdollColliders;     // Array of enemy's body part colliders
     [SerializeField] Animator enemyAnimator;          // Enemy's Animator
     [SerializeField] Collider mainCollider;           // Main collider for the enemy (for normal movement)
+    Rigidbody rbody;
+
+    private void Awake()
+    {
+        rbody = GetComponent<Rigidbody>();
+    }
 
     void Start()
     {
@@ -35,7 +41,10 @@ public class EnemyRagdoll : MonoBehaviour
     // Call this method when the enemy should ragdoll, e.g., during a finisher
     public void ActivateRagdoll()
     {
+        rbody.isKinematic = true;
         ToggleRagdoll(true);
+        
+        
     }
 
     // Example usage: Deactivate ragdoll (back to animated state)

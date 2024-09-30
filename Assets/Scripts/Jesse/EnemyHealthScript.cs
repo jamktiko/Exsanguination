@@ -10,16 +10,20 @@ public class EnemyHealthScript : MonoBehaviour
     [SerializeField] float finisherTime = 1f; //seconds how long does the finisher take until enemy dies
     
     [SerializeField] HealthBarScript healthBar;
-    [SerializeField] StakeLogic stakeLogic;
+   //SerializeField] StakeLogic stakeLogic;
+    [SerializeField] private GameObject stake;
+    [SerializeField] private GameObject playerEnemyFinisherSlot;
     private EnemyRagdoll enemyRagdoll;
     [SerializeField] Animator playerAnimator;
     public bool isBeingFinished;
     [SerializeField] RBInputManager rbInputManager;
+    [SerializeField] Camera playercamera;
+    public GameObject thisgameObject;
     void Awake()
     {
         enemyRagdoll = GetComponent<EnemyRagdoll>();
         healthBar = GetComponentInChildren<HealthBarScript>();
-        stakeLogic = GameObject.FindGameObjectWithTag("Stake").GetComponent<StakeLogic>();
+       // stakeLogic = GameObject.FindGameObjectWithTag("Stake").GetComponent<StakeLogic>();
     }
 
     private void Start()
@@ -56,8 +60,13 @@ public class EnemyHealthScript : MonoBehaviour
         //stakeLogic.UnstickFromEnemy();
         Debug.Log("finisher started");
         isBeingFinished = true;
-        playerAnimator.SetTrigger("finisher");
+        playerAnimator.SetTrigger("finish");
         enemyRagdoll.ActivateRagdoll();
+        thisgameObject.transform.SetParent(playerEnemyFinisherSlot.transform);
+        thisgameObject.transform.localPosition = Vector3.zero;
+        thisgameObject.transform.localRotation = Quaternion.Euler(Vector3.zero);
+        stake.transform.localPosition = Vector3.zero;
+        stake.transform.localRotation = Quaternion.Euler(90f, 0f, 0f);
         //player visual effects
         StartCoroutine(FinisherTimer());
     }
