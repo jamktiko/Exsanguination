@@ -52,6 +52,12 @@ public class RBPlayerMovement : MonoBehaviour
     public bool freeze;
     public bool activeGrapple;
 
+    [Header("Audio")]
+    [SerializeField] AudioManager audioManager;
+    [SerializeField] float footstepTimer;
+    [SerializeField] float footStepAudioCooldown;
+    bool firstStepPlayed;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -63,8 +69,6 @@ public class RBPlayerMovement : MonoBehaviour
         canMove = true;
         canDash = true;
         canSlide = true;
-        
-
     }
 
     private void Update()
@@ -90,6 +94,32 @@ public class RBPlayerMovement : MonoBehaviour
         if (dashCooldownTimer > 0)
         {
             dashCooldownTimer -= Time.deltaTime;
+        }
+
+        if (isMoving && isGrounded)
+        {
+            if (!firstStepPlayed)
+            {
+                audioManager.PlayPlayerFootstepsAudioClips();
+                
+                firstStepPlayed = true;
+                footstepTimer = 0f;
+            }
+            else
+            {
+                footstepTimer += Time.deltaTime;
+
+                if (footstepTimer >= footStepAudioCooldown)
+                {
+                    audioManager.PlayPlayerFootstepsAudioClips();
+                    footstepTimer = 0f;
+                }
+            }
+        }
+        else
+        {
+            firstStepPlayed = false;
+            footstepTimer = 0f;
         }
 
         SpeedControl();
@@ -158,18 +188,17 @@ public class RBPlayerMovement : MonoBehaviour
     // Jump methods
     private void Jump()
     {
-        if (isGrounded)
-        {
-            rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-            rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
-        }
+        if (!isGrounded) return;
 
+        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
         isJumping = false;
     }
 
     public void OnJumpPressed()
     {
         isJumping = true;
+        audioManager.PlayPlayerJumpAudioClip();
     }
 
     // Dash methods
@@ -185,6 +214,7 @@ public class RBPlayerMovement : MonoBehaviour
 
         if (canDash)
         {
+            //audioManager.PlayDashAudioClip();
             canMove = false;
             StartCoroutine(DashCoroutine());
         }
@@ -239,6 +269,7 @@ public class RBPlayerMovement : MonoBehaviour
             canDash = false;
             canSlide = true;
             cam.localPosition = camSlidingPos;
+            //audioManager.PlaySlideAudioClip();
             StartCoroutine(SlideCoroutine());
         }
     }
@@ -330,5 +361,13 @@ public class RBPlayerMovement : MonoBehaviour
             + Mathf.Sqrt(2 * (displacementY - trajectoryHeight) / gravity));
 
         return velocityXZ + velocityY;
+    }
+
+    // Audio methods
+    IEnumerator WaitBeforeAudioClip()
+    {
+        audioManager.PlayPlayerFootstepsAudioClips();
+        yield return new WaitForSeconds(1);
+        Debug.Log("Footstep audio is playing.");
     }
 }
