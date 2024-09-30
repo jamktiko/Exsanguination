@@ -78,6 +78,22 @@ public class RBInputManager : MonoBehaviour
         controls.Disable();
     }
 
+   public void ControlsEnabled(bool enabledControls)
+    {
+        if (enabledControls)
+        {
+            Debug.Log("controls enabled");
+            controls.Enable();
+        }
+        else
+        {
+            Debug.Log("controls disabled");
+            controls.Disable();
+        }
+    }
+
+
+
     private void HorizontalInputCheck(InputAction.CallbackContext ctx)
     {
         Vector2 movementInput = ctx.ReadValue < Vector2>();

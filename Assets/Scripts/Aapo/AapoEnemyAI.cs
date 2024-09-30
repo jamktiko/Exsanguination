@@ -46,6 +46,7 @@ public class AapoEnemyAI : MonoBehaviour
     private float lastPounceTime = -Mathf.Infinity;
     private float storedSeparationDistance;
    [SerializeField] private Animator enemyAnimator;
+    private EnemyHealthScript enemyHealthScript;
 
     void Awake()
     {
@@ -57,7 +58,7 @@ public class AapoEnemyAI : MonoBehaviour
             rb = gameObject.AddComponent<Rigidbody>();
             rb = GetComponent<Rigidbody>();
         }
-
+        enemyHealthScript = GetComponent<EnemyHealthScript>();
     }
 
     private void Start()
@@ -69,14 +70,21 @@ public class AapoEnemyAI : MonoBehaviour
 
     void Update()
     {
-        CheckGroundedStatus();
-        AvoidOtherEnemies();
+        if (!enemyHealthScript.isBeingFinished)
+        {
+            CheckGroundedStatus();
+            AvoidOtherEnemies();
+        }
+        
 
     }
 
     private void FixedUpdate()
     {
-        DetectPlayer();
+        if (!enemyHealthScript.isBeingFinished)
+        {
+            DetectPlayer();
+        }
     }
 
 

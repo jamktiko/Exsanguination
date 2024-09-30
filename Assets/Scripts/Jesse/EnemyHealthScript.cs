@@ -7,13 +7,14 @@ public class EnemyHealthScript : MonoBehaviour
 {
     [SerializeField] int maxHealth = 100;
     [SerializeField] int health = 100;
-    [SerializeField] float finisherTime; //seconds how long does the finisher take until enemy dies
+    [SerializeField] float finisherTime = 1f; //seconds how long does the finisher take until enemy dies
     
     [SerializeField] HealthBarScript healthBar;
     [SerializeField] StakeLogic stakeLogic;
     private EnemyRagdoll enemyRagdoll;
     [SerializeField] Animator playerAnimator;
-
+    public bool isBeingFinished;
+    [SerializeField] RBInputManager rbInputManager;
     void Awake()
     {
         enemyRagdoll = GetComponent<EnemyRagdoll>();
@@ -53,14 +54,19 @@ public class EnemyHealthScript : MonoBehaviour
     {
         // Trigger death animation or effects here
         //stakeLogic.UnstickFromEnemy();
+        Debug.Log("finisher started");
+        isBeingFinished = true;
         playerAnimator.SetTrigger("finisher");
         enemyRagdoll.ActivateRagdoll();
+        //player visual effects
         StartCoroutine(FinisherTimer());
     }
 
     private IEnumerator FinisherTimer()
     {
+        rbInputManager.ControlsEnabled(false);
         yield return new WaitForSeconds(finisherTime);
+        rbInputManager.ControlsEnabled(true);
         Die();
     }
 
@@ -68,6 +74,7 @@ public class EnemyHealthScript : MonoBehaviour
     private void Die()
     {
         // Handle enemy death logic here
-        Destroy(gameObject);
+        // Destroy(gameObject);
+        Debug.Log("enemy died");
     }
 }
