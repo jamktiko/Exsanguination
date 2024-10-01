@@ -26,7 +26,7 @@ public class StakeLogic : MonoBehaviour
         playerTransform = GameObject.FindWithTag("Player").transform;
         playerCamera = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
         playerHealth = GameObject.FindWithTag("HealthManager").GetComponent<PlayerHealthManager>();
-        Physics.IgnoreCollision(playerTransform.GetComponent<Collider>(), gameObject.GetComponent<Collider>());
+        Physics.IgnoreCollision(playerTransform.GetComponent<Collider>(), gameObject.GetComponent<Collider>()); //avoid pushing player
         gameObject.SetActive(false);
     }
 
@@ -98,7 +98,7 @@ public class StakeLogic : MonoBehaviour
         rb.isKinematic = true; // Stop physics movement when stuck
         GameObject go = enemy.gameObject.GetComponentInChildren(typeof(StakeSpot)).gameObject;
         transform.SetParent(go.transform);
-        Physics.IgnoreCollision(enemy.GetComponent<Collider>(), gameObject.GetComponent<Collider>());
+        Physics.IgnoreCollision(enemy.GetComponent<Collider>(), gameObject.GetComponent<Collider>()); // avoid pushing enemy
 
         // Apply damage and slowing effect
         //stuckEnemyHealth.ChangeEnemyHealth(stuckEnemyHealth.GetEnemyMaxHealth() / 2);
@@ -125,13 +125,13 @@ public class StakeLogic : MonoBehaviour
             rb.angularVelocity = Vector3.zero;
 
             // Instantly teleport the stake back to the player's hand
-            transform.position = stakeLocationOnPlayer.transform.position;
-            transform.rotation = stakeRotation;
+            transform.SetPositionAndRotation(stakeLocationOnPlayer.transform.position, stakeRotation);
             transform.SetParent(playerTransform, true);
 
             // Reset state
             isThrown = false;
             isReturning = false;
+            gameObject.SetActive(false);
         }
     }
 
@@ -153,9 +153,9 @@ public class StakeLogic : MonoBehaviour
                 }
 
                 // Unstick the stake
-                //stuckEnemy = null;
-                //isStuck = false;
-                //ReturnToPlayer();
+                stuckEnemy = null;
+                isStuck = false;
+                ReturnToPlayer();
             }
         }
     }
