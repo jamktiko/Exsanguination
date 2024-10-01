@@ -26,8 +26,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioSource playerDieAudioSource;
     [SerializeField] AudioSource playerHealAudioSource;
     [SerializeField] AudioSource enemyAlertAudioSource;
-    [SerializeField] AudioSource enemyMeleeAudioSource;
     [SerializeField] AudioSource enemyFootstepsAudioSource;
+    [SerializeField] AudioSource enemyMeleeAudioSource;
     [SerializeField] AudioSource enemyTakeDamageAudioSource;
     [SerializeField] AudioSource enemyDieAudioSource;
 

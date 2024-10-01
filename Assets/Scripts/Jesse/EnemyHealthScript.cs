@@ -8,7 +8,8 @@ public class EnemyHealthScript : MonoBehaviour
     [SerializeField] int maxHealth = 100;
     [SerializeField] int health = 100;
     [SerializeField] float finisherTime = 1f; //seconds how long does the finisher take until enemy dies
-    
+
+    [SerializeField] AudioManager audioManager;
     [SerializeField] HealthBarScript healthBar;
    //SerializeField] StakeLogic stakeLogic;
     [SerializeField] private GameObject stake;
@@ -36,6 +37,7 @@ public class EnemyHealthScript : MonoBehaviour
     
     public void ChangeEnemyHealth(int changeAmount)
     {
+        audioManager.PlayEnemyTakeDamageAudioClip();
         health = Mathf.Clamp(health - changeAmount, 0, maxHealth);
         healthBar.UpdateHealthBar(health, maxHealth);
         if (health <= 0)
