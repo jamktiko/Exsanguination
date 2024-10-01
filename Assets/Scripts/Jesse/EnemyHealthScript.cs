@@ -85,6 +85,7 @@ public class EnemyHealthScript : MonoBehaviour
     private void Die()
     {
         // Handle enemy death logic here
+        //audioManager.PlayEnemyDieAudioClip();
         // Destroy(gameObject);
         Debug.Log("enemy died");
     }
