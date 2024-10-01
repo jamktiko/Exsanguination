@@ -57,6 +57,7 @@ public class RBPlayerMovement : MonoBehaviour
     [SerializeField] float footstepTimer;
     [SerializeField] float footStepAudioCooldown;
     bool firstStepPlayed;
+    bool isLanded;
 
     private void Awake()
     {
@@ -69,6 +70,7 @@ public class RBPlayerMovement : MonoBehaviour
         canMove = true;
         canDash = true;
         canSlide = true;
+        isLanded = true;
     }
 
     private void Update()
@@ -80,15 +82,26 @@ public class RBPlayerMovement : MonoBehaviour
 
         isGrounded = Physics.CheckSphere(groundCheck.position, 0.1f, groundMask);
 
+        if (isGrounded && !isLanded) 
+        {
+            audioManager.PlayPlayerLandAudioClip();
+            isLanded = true;
+        }
+
         if (isGrounded && !activeGrapple)
         {
             rb.drag = groundDrag;
             verticalVelocity.y = 0;
         }
 
-        if (!isGrounded && rb.velocity.y < 0 || activeGrapple)
+        if (!isGrounded)
         {
-            rb.drag = airDrag;
+            isLanded = false;
+
+            if(rb.velocity.y < 0 || activeGrapple)
+            {
+                rb.drag = airDrag;
+            }
         }
 
         if (dashCooldownTimer > 0)
@@ -192,13 +205,13 @@ public class RBPlayerMovement : MonoBehaviour
 
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+        audioManager.PlayPlayerJumpAudioClip();
         isJumping = false;
     }
 
     public void OnJumpPressed()
     {
         isJumping = true;
-        audioManager.PlayPlayerJumpAudioClip();
     }
 
     // Dash methods
@@ -241,6 +254,7 @@ public class RBPlayerMovement : MonoBehaviour
 
     IEnumerator DashCoroutine()
     {
+        audioManager.PlayDashAudioClip();
         float startTime = Time.time;
 
         while (Time.time < startTime + dashTime)
@@ -276,6 +290,7 @@ public class RBPlayerMovement : MonoBehaviour
 
     IEnumerator SlideCoroutine()
     {
+        audioManager.PlaySlideAudioClip();
         float startTime = Time.time;
 
         while (Time.time < startTime + slideTime)
