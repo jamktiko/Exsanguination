@@ -113,7 +113,7 @@ public class StakeLogic : MonoBehaviour
     }
 
     // Instantly return the stake to the player after the cooldown
-    private void ReturnToPlayer()
+    public void ReturnToPlayer()
     {
         if (!isStuck && !isReturning)
         {
@@ -153,9 +153,10 @@ public class StakeLogic : MonoBehaviour
                 }
 
                 // Unstick the stake
+                ReturnToPlayer();
                 stuckEnemy = null;
                 isStuck = false;
-                ReturnToPlayer();
+                
             }
         }
     }
