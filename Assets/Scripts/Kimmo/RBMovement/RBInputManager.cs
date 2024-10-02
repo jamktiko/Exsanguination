@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class RBInputManager : MonoBehaviour
 {
     [SerializeField] RBPlayerMovement playerMovement;
-    [SerializeField] Grappling grappling;
+    [SerializeField] GrapplingHookShoot grapplingHookShoot;
     [SerializeField] AapoSwordSwing aapoSwordSwing;
     [SerializeField] MouseLook mouseLook;
     [SerializeField] StakeLogic stakeLogic;
@@ -28,7 +28,6 @@ public class RBInputManager : MonoBehaviour
         
         movement.HorizontalMovement.performed += ctx => horizontalInput = ctx.ReadValue<Vector2>();
         movement.HorizontalMovement.performed += HorizontalInputCheck;
-        //movement.HorizontalMovement.performed += ctx => playerMovement.GetDirection();
 
         movement.Jump.performed += ctx => playerMovement.OnJumpPressed();
 
@@ -43,7 +42,7 @@ public class RBInputManager : MonoBehaviour
 
         movement.Block.performed += ctx => aapoSwordSwing.BlockAction();
 
-        movement.GrapplingHook.performed += ctx => grappling.StartGrapple();
+        movement.GrapplingHook.performed += ctx => grapplingHookShoot.StartGrapple();
 
         movement.Stake.performed += ctx => stakeHoldDown = true;
         movement.Stake.canceled += ctx => {

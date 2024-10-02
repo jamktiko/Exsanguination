@@ -361,7 +361,7 @@ public class RBPlayerMovement : MonoBehaviour
             enableMovementOnNextTouch = false;
             ResetRestricitons();
 
-            GetComponent<Grappling>().StopGrapple();
+            GetComponent<GrapplingHookShoot>().StopGrapple();
         }
     }
 

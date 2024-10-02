@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class Grappling : MonoBehaviour
+public class GrapplingHookShoot : MonoBehaviour
 {
     [Header("References")]
     private RBPlayerMovement playerMovement;

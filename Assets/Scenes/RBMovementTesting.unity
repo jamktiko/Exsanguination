@@ -2042,6 +2042,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 913878261883224690}
     - target: {fileID: 3292711167524596713, guid: fe9ded5cf3194bb4a8ac70147461b0e2, type: 3}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 6216960653717276087}
+    - target: {fileID: 3292711167524596713, guid: fe9ded5cf3194bb4a8ac70147461b0e2, type: 3}
       propertyPath: playercamera
       value: 
       objectReference: {fileID: 6216960653717276086}
@@ -2796,6 +2800,10 @@ PrefabInstance:
       value: AudioManager
       objectReference: {fileID: 0}
     - target: {fileID: 574861468926011687, guid: 02814cf593a509b4c8e40f3cda522a0a, type: 3}
+      propertyPath: slideAudioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 01da3c68091a93341bd2e397d4e3b95f, type: 3}
+    - target: {fileID: 574861468926011687, guid: 02814cf593a509b4c8e40f3cda522a0a, type: 3}
       propertyPath: dashAudioSource
       value: 
       objectReference: {fileID: 1189152467}
@@ -2902,9 +2910,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f6e3a65f4ae28941aa9e83d3f214e6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4198707127218635995 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9027941002660447896, guid: 3d575a90cefccd241b3da583fb98c1ef, type: 3}
+  m_PrefabInstance: {fileID: 8041147731523536458}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49f266633e17cf84da438d0b85a0a81a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!20 &6216960653717276086 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 4480403830567957413, guid: 3d575a90cefccd241b3da583fb98c1ef, type: 3}
+  m_PrefabInstance: {fileID: 8041147731523536458}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6216960653717276087 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7295382229036048144, guid: 3d575a90cefccd241b3da583fb98c1ef, type: 3}
   m_PrefabInstance: {fileID: 8041147731523536458}
   m_PrefabAsset: {fileID: 0}
 --- !u!82 &6732282200063844848 stripped
@@ -2972,6 +2996,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4132768907188645735, guid: 3d575a90cefccd241b3da583fb98c1ef, type: 3}
+      propertyPath: grapplingHookShoot
+      value: 
+      objectReference: {fileID: 4198707127218635995}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
