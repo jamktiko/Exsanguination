@@ -17,6 +17,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioSource grapplingHookShootAudioSource;
     [SerializeField] AudioSource grapplingHookHitAudioSource;
     [SerializeField] AudioSource stakeThrowAudioSource;
+    [SerializeField] AudioSource stakeHitAudioSource;
     [SerializeField] AudioSource stakePickUpAudioSource;
     [SerializeField] AudioSource stakeFinisherAudioSource;
     [SerializeField] AudioSource bombIgniteAudioSource;
@@ -46,6 +47,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioClip grapplingHookShootAudioClip;
     [SerializeField] AudioClip grapplingHookHitAudioClip;
     [SerializeField] AudioClip stakeThrowAudioClip;
+    [SerializeField] AudioClip stakeHitAudioClip;
     [SerializeField] AudioClip stakePickUpAudioClip;
     [SerializeField] AudioClip stakeFinisherAudioClip;
     [SerializeField] AudioClip bombIgniteAudioClip;
@@ -74,6 +76,7 @@ public class AudioManager : MonoBehaviour
         grapplingHookShootAudioSource = GameObject.Find("GrapplingHookShootAudioSource").GetComponent<AudioSource>();
         grapplingHookHitAudioSource = GameObject.Find("GrapplingHookHitAudioSource").GetComponent<AudioSource>();
         stakeThrowAudioSource = GameObject.Find("StakeThrowAudioSource").GetComponent<AudioSource>();
+        stakeHitAudioSource = GameObject.Find("StakeHitAudioSource").GetComponent<AudioSource>();
         stakePickUpAudioSource = GameObject.Find("StakePickUpAudioSource").GetComponent<AudioSource>();
         stakeFinisherAudioSource = GameObject.Find("StakeFinisherAudioSource").GetComponent<AudioSource>();
         bombIgniteAudioSource = GameObject.Find("BombIgniteAudioSource").GetComponent<AudioSource>();
@@ -192,6 +195,13 @@ public class AudioManager : MonoBehaviour
     {
         stakeThrowAudioSource.clip = stakeThrowAudioClip;
         stakeThrowAudioSource.PlayOneShot(stakeThrowAudioClip);
+    }
+
+    // Stake hit
+    public void PlayStakeHitAudioClip()
+    {
+        stakeHitAudioSource.clip = stakeHitAudioClip;
+        stakeHitAudioSource.PlayOneShot(stakeHitAudioClip);
     }
 
     // Stake pick up

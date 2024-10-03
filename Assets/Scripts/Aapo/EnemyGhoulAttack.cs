@@ -10,6 +10,7 @@ public class EnemyGhoulAttack : MonoBehaviour
     private Animator playerAnimator;
     [SerializeField] int damage;
     private PlayerHealthManager playerHealthManager;
+    [SerializeField] AudioManager audioManager;
     [SerializeField] private Animator enemyAnimator;
 
 
@@ -28,6 +29,7 @@ public class EnemyGhoulAttack : MonoBehaviour
         {
             if (swordSwing.isBlocking)
             {
+                audioManager.PlayParryAudioClip();
                 enemyAnimator.SetTrigger("stun");
                 playerAnimator.SetTrigger("parry");
             }
