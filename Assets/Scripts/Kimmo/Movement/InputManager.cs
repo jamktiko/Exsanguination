@@ -7,7 +7,7 @@ public class InputManager : MonoBehaviour
 {
     [SerializeField] PlayerMovement playerMovement;
     [SerializeField] GrapplingHookShoot grapplingHookShoot;
-    [SerializeField] StarterSword aapoSwordSwing;
+    [SerializeField] StarterSword starterSword;
     [SerializeField] MouseLook mouseLook;
     [SerializeField] StakeLogic stakeLogic;
     [SerializeField] ThrowBomb throwBomb;
@@ -19,41 +19,107 @@ public class InputManager : MonoBehaviour
     Vector2 mouseInput;
 
     private bool stakeHoldDown;
+    public bool inputsEnabled;
     private float stakeButtonDownTimer = 0f;
 
     private void Awake()
     {
         controls = new PlayerControls();
         movement = controls.Movement;
-        
-        movement.HorizontalMovement.performed += ctx => horizontalInput = ctx.ReadValue<Vector2>();
+
+        movement.HorizontalMovement.performed += ctx =>
+        {
+            if (inputsEnabled)
+                horizontalInput = ctx.ReadValue<Vector2>();
+        };
         movement.HorizontalMovement.performed += HorizontalInputCheck;
 
-        movement.Jump.performed += ctx => playerMovement.OnJumpPressed();
+        movement.Jump.performed += ctx =>
+        {
+            if (inputsEnabled)
+                playerMovement.OnJumpPressed();
+        };
 
-        movement.MouseX.performed += ctx => mouseInput.x = ctx.ReadValue<float>();
-        movement.MouseY.performed += ctx => mouseInput.y = ctx.ReadValue<float>();
 
-        movement.Dash.performed += ctx => playerMovement.OnDashPressed();
+        movement.MouseX.performed += ctx =>
+        {
+            if (inputsEnabled)
+                mouseInput.x = ctx.ReadValue<float>();
+        };
 
-        movement.Slide.performed += ctx => playerMovement.OnSlidePressed();
 
-        movement.Attack.performed += ctx => aapoSwordSwing.ContinueCombo();
+        movement.MouseY.performed += ctx =>
 
-        movement.Block.performed += ctx => aapoSwordSwing.BlockAction();
+        {
+            if (inputsEnabled)
+                mouseInput.y = ctx.ReadValue<float>();
+        };
 
-        movement.GrapplingHook.performed += ctx => grapplingHookShoot.StartGrapple();
+        movement.Dash.performed += ctx =>
 
-        movement.Stake.performed += ctx => stakeHoldDown = true;
+        {
+            if (inputsEnabled)
+                playerMovement.OnDashPressed();
+        };
+
+
+
+        movement.Slide.performed += ctx =>
+
+        {
+            if (inputsEnabled)
+                playerMovement.OnSlidePressed();
+        };
+
+
+
+        movement.Attack.performed += ctx =>
+        {
+            if (inputsEnabled)
+                starterSword.ContinueCombo();
+        };
+
+        movement.Block.performed += ctx =>
+        {
+            if (inputsEnabled)
+                starterSword.BlockAction();
+        };
+
+
+
+        movement.GrapplingHook.performed += ctx =>
+        {
+            if (inputsEnabled)
+                grapplingHookShoot.StartGrapple();
+        };
+
+        movement.Stake.performed += ctx =>
+        {
+            if (inputsEnabled)
+                stakeHoldDown = true;
+        };
         movement.Stake.canceled += ctx => {
             stakeHoldDown = false;
             stakeLogic.ThrowStake(stakeButtonDownTimer);
             stakeButtonDownTimer = 0f;
         };
-        movement.Use.performed += ctx => stakeLogic.RetrieveStake();
+        movement.Use.performed += ctx =>
+        {
+            if (inputsEnabled)
+                stakeLogic.RetrieveStake();
+        };
 
-        movement.SilverBomb.performed += ctx => throwBomb.Throw();
+        movement.SilverBomb.performed += ctx =>
+        {
+            if (inputsEnabled)
+                throwBomb.Throw();
+        };
 
+    }
+
+    private void Start()
+    {
+        inputsEnabled = true;
     }
 
     private void Update()
@@ -77,25 +143,14 @@ public class InputManager : MonoBehaviour
         controls.Disable();
     }
 
-   public void ControlsEnabled(bool enabledControls)
-    {
-        if (enabledControls)
-        {
-            Debug.Log("controls enabled");
-            controls.Enable();
-        }
-        else
-        {
-            Debug.Log("controls disabled");
-            controls.Disable();
-        }
-    }
+
+
 
 
 
     private void HorizontalInputCheck(InputAction.CallbackContext ctx)
     {
-        Vector2 movementInput = ctx.ReadValue < Vector2>();
+        Vector2 movementInput = ctx.ReadValue<Vector2>();
         if (movementInput != Vector2.zero)
         {
             playerMovement.isMoving = true;
@@ -103,7 +158,7 @@ public class InputManager : MonoBehaviour
         else
         {
             playerMovement.isMoving = false;
-            
+
         }
     }
 
