@@ -7,6 +7,7 @@ public class GrapplingHookShoot : MonoBehaviour
 {
     [Header("References")]
     private PlayerMovement playerMovement;
+    [SerializeField] AudioManager audioManager;
     public Transform cam;
     public Transform gunTip;
     public LayerMask whatIsGrappleable;
@@ -49,6 +50,7 @@ public class GrapplingHookShoot : MonoBehaviour
 
     public void StartGrapple()
     {
+        audioManager.PlayGrapplingHookShootAudioClip();
         if (grapplingCdTimer > 0) return;
 
         isGrappling = true;
