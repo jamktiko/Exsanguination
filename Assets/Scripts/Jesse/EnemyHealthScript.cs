@@ -5,8 +5,14 @@ public class EnemyHealthScript : MonoBehaviour
     [SerializeField] int maxHealth = 100;
     [SerializeField] int health = 100;
     [SerializeField] AudioManager audioManager;
+    private GameObject finishedEnemyModel;
 
 
+    private void Awake()
+    {
+        finishedEnemyModel = GameObject.Find(gameObject.name + "Finish");
+
+    }
 
     private void Start()
     {
@@ -23,6 +29,13 @@ public class EnemyHealthScript : MonoBehaviour
             Debug.Log("Enemy health is zero");
             EnemyDie();
         }
+    }
+
+    public void FinishEnemy()
+    {
+        EnemyFinisher enemyFinisher = finishedEnemyModel.GetComponent<EnemyFinisher>();
+        enemyFinisher.Finish();
+        gameObject.SetActive(false);
     }
 
     public int GetEnemyHealth()

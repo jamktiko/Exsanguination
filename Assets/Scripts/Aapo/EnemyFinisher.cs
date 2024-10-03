@@ -7,35 +7,46 @@ public class EnemyFinisher : MonoBehaviour
     private Animator playerAnimator;
     private InputManager InputManager;
     private Transform playerCamera;
-   [SerializeField] private GameObject finishedEnemyModel;
+    private AudioSource audioSource;
+    private ParticleSystem ps;
+    private SkinnedMeshRenderer smr;
+    [SerializeField] MeshRenderer stickRenderer;
     [SerializeField] private float finisherTime = 1f;
     private Quaternion startRotation = Quaternion.Euler(-50f, 0, 0);
     private Quaternion endRotation = Quaternion.Euler(0, 0, 0);
-    [SerializeField] private float lerpToStartDuration = 0.5f;
-    [SerializeField] private float stayDuration = 0.8f;
-    [SerializeField] private float lerpToEndDuration = 0.2f;
+    [SerializeField] private float lerpToStartDuration = 1f;
+    [SerializeField] private float stayDuration = 3f;
+    [SerializeField] private float lerpToEndDuration = 1f;
 
 
 
     private void Awake()
     {
-        finishedEnemyModel = GameObject.Find(gameObject.name + "Finish");
         stakeLogic = GameObject.Find("Stake").GetComponent<StakeLogic>();
         playerAnimator = GameObject.Find("PlayerModel").GetComponent<Animator>();
         InputManager = GameObject.FindGameObjectWithTag("Player").GetComponent<InputManager>();
         playerCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Transform>();
+        audioSource = GetComponent<AudioSource>();
+        ps = GetComponent<ParticleSystem>();
+        smr = GetComponent<SkinnedMeshRenderer>();
+
     }
 
     private void Start()
     {
-        finishedEnemyModel.SetActive(false);
+        stickRenderer.enabled = false;
+        smr.enabled = false;
+        ps.Stop();
+
     }
+
+
 
     public void Finish()
     {
         // Trigger the finishing sequence
-        stakeLogic.UnstickFromEnemy();
-        stakeLogic.ReturnToPlayer();
+        smr.enabled = true;
+        stickRenderer.enabled = true;
         playerAnimator.SetTrigger("finish");
         StartCoroutine(ShowEnemyFinisher());
         StartCoroutine(RotateCamera());
@@ -47,23 +58,15 @@ public class EnemyFinisher : MonoBehaviour
     {
         playerCamera.transform.localRotation = startRotation;
         InputManager.inputsEnabled = false;
-        finishedEnemyModel.SetActive(true);
-        yield return new WaitForSeconds(finisherTime);
-
-        ParticleSystem ps = finishedEnemyModel.GetComponent<ParticleSystem>();
+        yield return new WaitForSeconds(finisherTime); 
         ps.Play();
-
-        SkinnedMeshRenderer smr = finishedEnemyModel.GetComponent<SkinnedMeshRenderer>();
         smr.enabled = false;
-
-        yield return new WaitForSeconds(0.5f);
-
+        audioSource.PlayOneShot(audioSource.clip);
+        yield return new WaitForSeconds(2.3f);
         ps.Stop();
-        smr.enabled = true;
-        finishedEnemyModel.SetActive(false);
+        stickRenderer.enabled = false;
         InputManager.inputsEnabled = true;
 
-        // Call Die method on the EnemyHealthScript if needed here
     }
 
     private IEnumerator RotateCamera()

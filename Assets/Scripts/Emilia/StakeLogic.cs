@@ -147,8 +147,8 @@ public class StakeLogic : MonoBehaviour
                 // If health < 50%, apply finisher
                 if (stuckEnemyHealth.GetEnemyHealth() <= stuckEnemyHealth.GetEnemyMaxHealth() / 2)
                 {
-                    stuckEnemyFinisher.Finish();
-                    stuckEnemyHealth.EnemyDie();
+                    UnstickFromEnemy();
+                    stuckEnemyHealth.FinishEnemy();
                 }
                 else
                 {
