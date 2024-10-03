@@ -50,8 +50,8 @@ public class GrapplingHookShoot : MonoBehaviour
 
     public void StartGrapple()
     {
-        audioManager.PlayGrapplingHookShootAudioClip();
         if (grapplingCdTimer > 0) return;
+        audioManager.PlayGrapplingHookShootAudioClip();
 
         isGrappling = true;
 
@@ -60,6 +60,7 @@ public class GrapplingHookShoot : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(cam.position, cam.forward, out hit, maxGrappleDistance, whatIsGrappleable))
         {
+            audioManager.PlayGrapplingHookHitAudioClip();
             grapplePoint = hit.point;
 
             Invoke(nameof(ExecuteGrapple), grappleDelayTime);
