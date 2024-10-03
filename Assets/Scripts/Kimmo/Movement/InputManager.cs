@@ -7,7 +7,7 @@ public class InputManager : MonoBehaviour
 {
     [SerializeField] PlayerMovement playerMovement;
     [SerializeField] GrapplingHookShoot grapplingHookShoot;
-    [SerializeField] StarterSword starterSword;
+    [SerializeField] StarterSword aapoSwordSwing;
     [SerializeField] MouseLook mouseLook;
     [SerializeField] StakeLogic stakeLogic;
     [SerializeField] ThrowBomb throwBomb;
@@ -38,9 +38,9 @@ public class InputManager : MonoBehaviour
 
         movement.Slide.performed += ctx => playerMovement.OnSlidePressed();
 
-        movement.Attack.performed += ctx => starterSword.ContinueCombo();
+        movement.Attack.performed += ctx => aapoSwordSwing.ContinueCombo();
 
-        movement.Block.performed += ctx => starterSword.BlockAction();
+        movement.Block.performed += ctx => aapoSwordSwing.BlockAction();
 
         movement.GrapplingHook.performed += ctx => grapplingHookShoot.StartGrapple();
 
@@ -73,16 +73,6 @@ public class InputManager : MonoBehaviour
     }
 
     private void OnDestroy()
-    {
-        controls.Disable();
-    }
-
-    public void EnableAllInputs()
-    {
-        controls.Enable();
-    }
-
-    public void DisableAllInputs()
     {
         controls.Disable();
     }

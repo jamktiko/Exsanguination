@@ -87,7 +87,6 @@ public class AudioManager : MonoBehaviour
         enemyMeleeAudioSource = GameObject.Find("EnemyMeleeAudioSource").GetComponent<AudioSource>();
         enemyTakeDamageAudioSource = GameObject.Find("EnemyTakeDamageAudioSource").GetComponent<AudioSource>();
         enemyDieAudioSource = GameObject.Find("EnemyDieAudioSource").GetComponent<AudioSource>();
-        
     }
 
     // Player SFX methods
