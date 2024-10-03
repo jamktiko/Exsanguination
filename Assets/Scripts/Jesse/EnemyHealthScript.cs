@@ -21,7 +21,7 @@ public class EnemyHealthScript : MonoBehaviour
         if (health <= 0)
         {
             Debug.Log("Enemy health is zero");
-            Die();
+            EnemyDie();
         }
     }
 
@@ -34,9 +34,10 @@ public class EnemyHealthScript : MonoBehaviour
         return maxHealth;
     }
 
-    private void Die()
+    public void EnemyDie()
     {
         audioManager.PlayEnemyDieAudioClip();
+        gameObject.SetActive(false);
         Debug.Log("enemy died");
     }
 }

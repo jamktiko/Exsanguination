@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class SettingsValueHandler : MonoBehaviour
 {
-    [SerializeField] Crosshair crosshair;
+    Crosshair crosshair;
 
     [Header("General settings")]
 
@@ -20,6 +20,11 @@ public class SettingsValueHandler : MonoBehaviour
     [Header("Graphics settings")]
 
     [SerializeField] TMP_Dropdown graphicsDropdown;
+
+    private void Awake()
+    {
+        crosshair = GameObject.Find("Crosshair").GetComponent<Crosshair>();
+    }
 
     void OnEnable()
     {

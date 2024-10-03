@@ -19,41 +19,107 @@ public class InputManager : MonoBehaviour
     Vector2 mouseInput;
 
     private bool stakeHoldDown;
+    public bool inputsEnabled;
     private float stakeButtonDownTimer = 0f;
 
     private void Awake()
     {
         controls = new PlayerControls();
         movement = controls.Movement;
-        
-        movement.HorizontalMovement.performed += ctx => horizontalInput = ctx.ReadValue<Vector2>();
+
+        movement.HorizontalMovement.performed += ctx =>
+        {
+            if (inputsEnabled)
+                horizontalInput = ctx.ReadValue<Vector2>();
+        };
         movement.HorizontalMovement.performed += HorizontalInputCheck;
 
-        movement.Jump.performed += ctx => playerMovement.OnJumpPressed();
+        movement.Jump.performed += ctx =>
+        {
+            if (inputsEnabled)
+                playerMovement.OnJumpPressed();
+        };
+        
 
-        movement.MouseX.performed += ctx => mouseInput.x = ctx.ReadValue<float>();
-        movement.MouseY.performed += ctx => mouseInput.y = ctx.ReadValue<float>();
+        movement.MouseX.performed += ctx =>
+        {
+            if (inputsEnabled)
+                mouseInput.x = ctx.ReadValue<float>();
+        };
 
-        movement.Dash.performed += ctx => playerMovement.OnDashPressed();
+        
+        movement.MouseY.performed += ctx =>
 
-        movement.Slide.performed += ctx => playerMovement.OnSlidePressed();
+        {
+            if (inputsEnabled)
+                mouseInput.y = ctx.ReadValue<float>();
+        };
 
-        movement.Attack.performed += ctx => starterSword.ContinueCombo();
+        movement.Dash.performed += ctx =>
 
-        movement.Block.performed += ctx => starterSword.BlockAction();
+        {
+            if (inputsEnabled)
+                playerMovement.OnDashPressed();
+        };
 
-        movement.GrapplingHook.performed += ctx => grapplingHookShoot.StartGrapple();
+       
 
-        movement.Stake.performed += ctx => stakeHoldDown = true;
+        movement.Slide.performed += ctx =>
+
+        {
+            if (inputsEnabled)
+                playerMovement.OnSlidePressed();
+        };
+
+       
+
+        movement.Attack.performed += ctx =>
+        {
+            if (inputsEnabled)
+                starterSword.ContinueCombo();
+        };
+
+        movement.Block.performed += ctx =>
+        {
+            if (inputsEnabled)
+                starterSword.BlockAction();
+        };
+
+       
+
+        movement.GrapplingHook.performed += ctx =>
+        {
+            if (inputsEnabled)
+                grapplingHookShoot.StartGrapple();
+        };
+
+        movement.Stake.performed += ctx =>
+        {
+            if (inputsEnabled)
+                stakeHoldDown = true;
+        };
         movement.Stake.canceled += ctx => {
             stakeHoldDown = false;
             stakeLogic.ThrowStake(stakeButtonDownTimer);
             stakeButtonDownTimer = 0f;
         };
-        movement.Use.performed += ctx => stakeLogic.RetrieveStake();
+        movement.Use.performed += ctx =>
+        {
+            if (inputsEnabled)
+                stakeLogic.RetrieveStake();
+        };
 
-        movement.SilverBomb.performed += ctx => throwBomb.Throw();
+        movement.SilverBomb.performed += ctx =>
+        {
+            if (inputsEnabled)
+                throwBomb.Throw();
+        };
 
+    }
+
+    private void Start()
+    {
+        inputsEnabled = true;
     }
 
     private void Update()
@@ -77,29 +143,8 @@ public class InputManager : MonoBehaviour
         controls.Disable();
     }
 
-    public void EnableAllInputs()
-    {
-        controls.Enable();
-    }
+   
 
-    public void DisableAllInputs()
-    {
-        controls.Disable();
-    }
-
-   public void ControlsEnabled(bool enabledControls)
-    {
-        if (enabledControls)
-        {
-            Debug.Log("controls enabled");
-            controls.Enable();
-        }
-        else
-        {
-            Debug.Log("controls disabled");
-            controls.Disable();
-        }
-    }
 
 
 

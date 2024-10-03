@@ -7,7 +7,7 @@ public class EnemyFinisher : MonoBehaviour
     private Animator playerAnimator;
     private InputManager InputManager;
     private Transform playerCamera;
-    private GameObject finishedEnemyModel;
+   [SerializeField] private GameObject finishedEnemyModel;
     [SerializeField] private float finisherTime = 1f;
     private Quaternion startRotation = Quaternion.Euler(-50f, 0, 0);
     private Quaternion endRotation = Quaternion.Euler(0, 0, 0);
@@ -46,7 +46,7 @@ public class EnemyFinisher : MonoBehaviour
     private IEnumerator ShowEnemyFinisher()
     {
         playerCamera.transform.localRotation = startRotation;
-        InputManager.ControlsEnabled(false);
+        InputManager.inputsEnabled = false;
         finishedEnemyModel.SetActive(true);
         yield return new WaitForSeconds(finisherTime);
 
@@ -61,7 +61,7 @@ public class EnemyFinisher : MonoBehaviour
         ps.Stop();
         smr.enabled = true;
         finishedEnemyModel.SetActive(false);
-        InputManager.ControlsEnabled(true);
+        InputManager.inputsEnabled = true;
 
         // Call Die method on the EnemyHealthScript if needed here
     }
