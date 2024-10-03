@@ -19,7 +19,7 @@ public class DeathScript : MonoBehaviour
 
     void Start()
     {
-        pauseScript = GetComponent<PauseScript>();
+        pauseScript = GameObject.Find("PauseManager").GetComponent<PauseScript>();
     }
     public void Die()
     {

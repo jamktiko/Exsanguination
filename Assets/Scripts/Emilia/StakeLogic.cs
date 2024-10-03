@@ -12,6 +12,7 @@ public class StakeLogic : MonoBehaviour
     private Rigidbody rb;
     private EnemyAI stuckEnemy;
     private EnemyHealthScript stuckEnemyHealth;
+    private EnemyFinisher stuckEnemyFinisher;
     private PlayerHealthManager playerHealth;
     private Transform playerTransform;
     public Camera playerCamera;
@@ -87,6 +88,7 @@ public class StakeLogic : MonoBehaviour
             // Stick to the enemy
             stuckEnemyHealth = collision.gameObject.GetComponent<EnemyHealthScript>();
             StickToEnemy(collision.gameObject.GetComponent<EnemyAI>());
+            stuckEnemyFinisher = collision.gameObject.GetComponent<EnemyFinisher>();
         }
     }
 
@@ -143,20 +145,21 @@ public class StakeLogic : MonoBehaviour
             if (Vector3.Distance(playerTransform.position, transform.position) <= retrievalRange)
             {
                 // If health < 50%, apply finisher
-                //if (stuckEnemyHealth.GetEnemyHealth() <= stuckEnemyHealth.GetEnemyMaxHealth() / 2)
-                //{
-                //    stuckEnemyHealth.Finish();
-                //}
-                //else
-                //{
-                //    stuckEnemy.RemoveSlow(); // Just remove the slow effect
-                //}
+                if (stuckEnemyHealth.GetEnemyHealth() <= stuckEnemyHealth.GetEnemyMaxHealth() / 2)
+                {
+                    stuckEnemyFinisher.Finish();
+                    stuckEnemyHealth.EnemyDie();
+                }
+                else
+                {
+                    stuckEnemy.RemoveSlow(); // Just remove the slow effect
+                }
 
                 // Unstick the stake
                 ReturnToPlayer();
                 stuckEnemy = null;
                 isStuck = false;
-                
+
             }
         }
     }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace EmiliaScripts
@@ -7,8 +5,8 @@ namespace EmiliaScripts
     public class PlayerHealthManager : MonoBehaviour
     {
 
-        private int currentHealth;
-        private int maxHealth = 100;
+        [SerializeField] int currentHealth;
+        [SerializeField] int maxHealth;
 
         public delegate void DeathInvokerEvent();
         /// <summary>
@@ -22,7 +20,7 @@ namespace EmiliaScripts
         /// </summary>
         public event HealthUpdate OnHealthUpdate;
 
-        void Awake()
+        void Start()
         {
             currentHealth = maxHealth;
             Debug.Log("Updated Player Health to MAX: " + currentHealth);

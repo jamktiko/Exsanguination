@@ -5,24 +5,17 @@ using UnityEngine;
 public class StarterSwordDamage : MonoBehaviour
 {
     [SerializeField] private StarterSword swordSwing;
-    [SerializeField] private Collider mainSwordCollider;
-    [SerializeField] private Collider closeRangeCollider;
     [SerializeField] private int damage;
     [SerializeField] private int thirdAttackDamage;
 
     public bool hasDamagedEnemy = false;
 
-    private void Start()
-    {
-        // Ensure the colliders trigger OnTriggerEnter
-        mainSwordCollider.isTrigger = true;
-        closeRangeCollider.isTrigger = true;
-    }
+   
 
     private void OnTriggerEnter(Collider other)
     {
-        Collider second = closeRangeCollider;
-        if (swordSwing.canDamage && other.CompareTag("Enemy") || second.CompareTag("Enemy") && !hasDamagedEnemy)
+       
+        if (swordSwing.canDamage && other.CompareTag("Enemy"))
         {
             Debug.Log("hit enemy");
             EnemyHealthScript enemyHealthScript = other.GetComponent<EnemyHealthScript>();
@@ -43,8 +36,5 @@ public class StarterSwordDamage : MonoBehaviour
     }
 
 
-    private void OnEnable()
-    {
-        hasDamagedEnemy = false;
-    }
+   
 }
