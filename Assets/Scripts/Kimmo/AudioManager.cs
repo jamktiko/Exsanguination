@@ -60,6 +60,35 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioClip enemyTakeDamageAudioClip;
     [SerializeField] AudioClip enemyDieAudioClip;
 
+    private void Awake()
+    {
+        playerFootstepsAudioSource = GameObject.Find("PlayerFootstepsAudioSource").GetComponent<AudioSource>();
+        playerJumpAudioSource = GameObject.Find("PlayerJumpAudioSource").GetComponent<AudioSource>();
+        playerLandAudioSource = GameObject.Find("PlayerLandAudioSource").GetComponent<AudioSource>();
+        dashAudioSource = GameObject.Find("DashAudioSource").GetComponent<AudioSource>();
+        slideAudioSource = GameObject.Find("SlideAudioSource").GetComponent<AudioSource>();
+        swordEquipAudioSource = GameObject.Find("SwordEquipAudioSource").GetComponent<AudioSource>();
+        swordSwingAudioSource = GameObject.Find("SwordSwingAudioSource").GetComponent<AudioSource>();
+        parryAudioSource = GameObject.Find("ParryAudioSource").GetComponent<AudioSource>();
+        grapplingHookReadyAudioSource = GameObject.Find("GrapplingHookReadyAudioSource").GetComponent<AudioSource>();
+        grapplingHookShootAudioSource = GameObject.Find("GrapplingHookShootAudioSource").GetComponent<AudioSource>();
+        grapplingHookHitAudioSource = GameObject.Find("GrapplingHookHitAudioSource").GetComponent<AudioSource>();
+        stakeThrowAudioSource = GameObject.Find("StakeThrowAudioSource").GetComponent<AudioSource>();
+        stakePickUpAudioSource = GameObject.Find("StakePickUpAudioSource").GetComponent<AudioSource>();
+        stakeFinisherAudioSource = GameObject.Find("StakeFinisherAudioSource").GetComponent<AudioSource>();
+        bombIgniteAudioSource = GameObject.Find("BombIgniteAudioSource").GetComponent<AudioSource>();
+        bombSizzleAudioSource = GameObject.Find("BombSizzleAudioSource").GetComponent<AudioSource>();
+        bombExplosionAudioSource = GameObject.Find("BombExplosionAudioSource").GetComponent<AudioSource>();
+        playerTakeDamageAudioSource = GameObject.Find("PlayerTakeDamageAudioSource").GetComponent<AudioSource>();
+        playerDieAudioSource = GameObject.Find("PlayerDieAudioSource").GetComponent<AudioSource>();
+        playerHealAudioSource = GameObject.Find("PlayerHealAudioSource").GetComponent<AudioSource>();
+        enemyAlertAudioSource = GameObject.Find("EnemyAlertAudioSource").GetComponent<AudioSource>();
+        enemyFootstepsAudioSource = GameObject.Find("EnemyFootstepsAudioSource").GetComponent<AudioSource>();
+        enemyMeleeAudioSource = GameObject.Find("EnemyMeleeAudioSource").GetComponent<AudioSource>();
+        enemyTakeDamageAudioSource = GameObject.Find("EnemyTakeDamageAudioSource").GetComponent<AudioSource>();
+        enemyDieAudioSource = GameObject.Find("EnemyDieAudioSource").GetComponent<AudioSource>();
+        
+    }
 
     // Player SFX methods
 
