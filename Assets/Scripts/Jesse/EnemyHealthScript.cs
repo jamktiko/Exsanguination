@@ -5,9 +5,8 @@ public class EnemyHealthScript : MonoBehaviour
     [SerializeField] int maxHealth = 100;
     [SerializeField] int health = 100;
     [SerializeField] AudioManager audioManager;
-    [SerializeField] private EnemyFinisher enemyFinisher;
 
-   
+
 
     private void Start()
     {
@@ -26,9 +25,13 @@ public class EnemyHealthScript : MonoBehaviour
         }
     }
 
-    public void FinishEnemy()
+    public int GetEnemyHealth()
     {
-        enemyFinisher.Finish();
+        return health;
+    }
+    public int GetEnemyMaxHealth()
+    {
+        return maxHealth;
     }
 
     private void Die()

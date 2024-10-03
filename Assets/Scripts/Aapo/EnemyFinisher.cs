@@ -3,21 +3,32 @@ using UnityEngine;
 
 public class EnemyFinisher : MonoBehaviour
 {
-    [SerializeField] private StakeLogic stakeLogic;
-    [SerializeField] private Animator playerAnimator;
-    [SerializeField] private InputManager InputManager;
-    [SerializeField] private Transform playerCamera;
-    [SerializeField] private GameObject ghoulFinishedEnemy;
+    private StakeLogic stakeLogic;
+    private Animator playerAnimator;
+    private InputManager InputManager;
+    private Transform playerCamera;
+    private GameObject finishedEnemyModel;
     [SerializeField] private float finisherTime = 1f;
-    [SerializeField] private Quaternion startRotation = Quaternion.Euler(-50f, 0, 0);
-    [SerializeField] private Quaternion endRotation = Quaternion.Euler(0, 0, 0);
-    [SerializeField] private float lerpToEndDuration = 0.2f;
-    [SerializeField] private float stayDuration = 0.8f;
+    private Quaternion startRotation = Quaternion.Euler(-50f, 0, 0);
+    private Quaternion endRotation = Quaternion.Euler(0, 0, 0);
     [SerializeField] private float lerpToStartDuration = 0.5f;
+    [SerializeField] private float stayDuration = 0.8f;
+    [SerializeField] private float lerpToEndDuration = 0.2f;
+
+
+
+    private void Awake()
+    {
+        finishedEnemyModel = GameObject.Find(gameObject.name + "Finish");
+        stakeLogic = GameObject.Find("Stake").GetComponent<StakeLogic>();
+        playerAnimator = GameObject.Find("PlayerModel").GetComponent<Animator>();
+        InputManager = GameObject.FindGameObjectWithTag("Player").GetComponent<InputManager>();
+        playerCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Transform>();
+    }
 
     private void Start()
     {
-        ghoulFinishedEnemy.SetActive(false);
+        finishedEnemyModel.SetActive(false);
     }
 
     public void Finish()
@@ -30,26 +41,26 @@ public class EnemyFinisher : MonoBehaviour
         StartCoroutine(RotateCamera());
     }
 
-   
+
 
     private IEnumerator ShowEnemyFinisher()
     {
         playerCamera.transform.localRotation = startRotation;
         InputManager.ControlsEnabled(false);
-        ghoulFinishedEnemy.SetActive(true);
+        finishedEnemyModel.SetActive(true);
         yield return new WaitForSeconds(finisherTime);
 
-        ParticleSystem ps = ghoulFinishedEnemy.GetComponent<ParticleSystem>();
+        ParticleSystem ps = finishedEnemyModel.GetComponent<ParticleSystem>();
         ps.Play();
 
-        SkinnedMeshRenderer smr = ghoulFinishedEnemy.GetComponent<SkinnedMeshRenderer>();
+        SkinnedMeshRenderer smr = finishedEnemyModel.GetComponent<SkinnedMeshRenderer>();
         smr.enabled = false;
 
         yield return new WaitForSeconds(0.5f);
 
         ps.Stop();
         smr.enabled = true;
-        ghoulFinishedEnemy.SetActive(false);
+        finishedEnemyModel.SetActive(false);
         InputManager.ControlsEnabled(true);
 
         // Call Die method on the EnemyHealthScript if needed here
