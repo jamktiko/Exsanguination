@@ -70,21 +70,19 @@ public class EnemyAI : MonoBehaviour
 
     void Update()
     {
-        if (!enemyHealthScript.isBeingFinished)
-        {
+      
             CheckGroundedStatus();
             AvoidOtherEnemies();
-        }
+        
         
 
     }
 
     private void FixedUpdate()
     {
-        if (!enemyHealthScript.isBeingFinished)
-        {
+       
             DetectPlayer();
-        }
+        
     }
 
 
