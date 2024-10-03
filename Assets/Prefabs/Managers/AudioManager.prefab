@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &99049590842790862
+--- !u!1 &6969786509364181957
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6694229352788476965}
-  - component: {fileID: 574861468926011687}
+  - component: {fileID: 1832352174401492077}
+  - component: {fileID: 555781438997635942}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -17,13 +17,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6694229352788476965
+--- !u!4 &1832352174401492077
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 99049590842790862}
+  m_GameObject: {fileID: 6969786509364181957}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -32,13 +32,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &574861468926011687
+--- !u!114 &555781438997635942
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 99049590842790862}
+  m_GameObject: {fileID: 6969786509364181957}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 44ea880a587d76948acefb76167a577e, type: 3}
@@ -76,7 +76,7 @@ MonoBehaviour:
   playerJumpAudioClip: {fileID: 8300000, guid: 03b1a4212c660a94eb1e13669ec57dfa, type: 3}
   playerLandAudioClip: {fileID: 8300000, guid: 7437dbf027368c74497f2aeee60811d6, type: 3}
   dashAudioClip: {fileID: 8300000, guid: 7a84eefc8b0565149af6ac655904587a, type: 3}
-  slideAudioClip: {fileID: 8300000, guid: 90e242f34bf7fce4fbab1fc6eb0f3ce6, type: 3}
+  slideAudioClip: {fileID: 8300000, guid: 01da3c68091a93341bd2e397d4e3b95f, type: 3}
   swordEquipAudioClips:
   - {fileID: 8300000, guid: bac810f1ff39948468c2dd3d05b130e1, type: 3}
   - {fileID: 8300000, guid: 0fe753bde5897904680a1616c14674f0, type: 3}
@@ -94,8 +94,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b99f5f9d19da49380b531e1d6649a8de, type: 3}
   parryAudioClip: {fileID: 0}
   grapplingHookReadyAudioClip: {fileID: 0}
-  grapplingHookShootAudioClip: {fileID: 0}
-  grapplingHookHitAudioClip: {fileID: 0}
+  grapplingHookShootAudioClip: {fileID: 8300000, guid: 204c2564397866a45b614739447f6608, type: 3}
+  grapplingHookHitAudioClip: {fileID: 8300000, guid: 9666bbe96120c3743812db6b90795505, type: 3}
   stakeThrowAudioClip: {fileID: 0}
   stakePickUpAudioClip: {fileID: 0}
   stakeFinisherAudioClip: {fileID: 0}
@@ -113,4 +113,4 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 96e98ee4f525eeb4f973f62c459d7df6, type: 3}
   enemyMeleeAudioClips: []
   enemyTakeDamageAudioClip: {fileID: 8300000, guid: 3df9bbbc130ccb344af5f3fc793a630f, type: 3}
-  enemyDieAudioClip: {fileID: 0}
+  enemyDieAudioClip: {fileID: 8300000, guid: aa4cea0908892094193e76ed944b011b, type: 3}
