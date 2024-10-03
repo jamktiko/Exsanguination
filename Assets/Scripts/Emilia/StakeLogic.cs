@@ -10,7 +10,7 @@ public class StakeLogic : MonoBehaviour
     private bool isThrown = false, isStuck = false, isReturning = false;
 
     private Rigidbody rb;
-    private AapoEnemyAI stuckEnemy;
+    private EnemyAI stuckEnemy;
     private EnemyHealthScript stuckEnemyHealth;
     private PlayerHealthManager playerHealth;
     private Transform playerTransform;
@@ -86,11 +86,11 @@ public class StakeLogic : MonoBehaviour
         {
             // Stick to the enemy
             stuckEnemyHealth = collision.gameObject.GetComponent<EnemyHealthScript>();
-            StickToEnemy(collision.gameObject.GetComponent<AapoEnemyAI>());
+            StickToEnemy(collision.gameObject.GetComponent<EnemyAI>());
         }
     }
 
-    private void StickToEnemy(AapoEnemyAI enemy)
+    private void StickToEnemy(EnemyAI enemy)
     {
         isStuck = true;
         isThrown = false;

@@ -3,8 +3,8 @@ using UnityEngine;
 public class PlayerMovementAnimations : MonoBehaviour
 {
     [SerializeField] Animator animator;  // Reference to your Animator component
-    [SerializeField] RBInputManager inputManager;  // Reference to your RBInputManager script
-    [SerializeField] RBPlayerMovement RBPlayerMovement;
+    [SerializeField] InputManager inputManager;  // Reference to your RBInputManager script
+    [SerializeField] PlayerMovement RBPlayerMovement;
 
     // Parameters for Blend Tree control
     private static readonly int XParam = Animator.StringToHash("X");

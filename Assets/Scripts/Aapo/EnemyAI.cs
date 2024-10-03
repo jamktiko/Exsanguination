@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AapoEnemyAI : MonoBehaviour
+public class EnemyAI : MonoBehaviour
 {
     /// <summary>
     /// Assign Layers, make sure that the Player game object has layer Player in correct game object (usually in the one where the movement script is too)
@@ -30,7 +30,7 @@ public class AapoEnemyAI : MonoBehaviour
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private LayerMask ignoreLayers; // LayerMask to specify which layers to ignore when triggering jumping over obstacle
     [SerializeField] private float jumpCooldown = 2f;      // Time in seconds between jumps
-    [SerializeField] private RBPlayerMovement playerMovementScript; // Reference to the player's movement script
+    [SerializeField] private PlayerMovement playerMovementScript; // Reference to the player's movement script
     [SerializeField] private float attackRange = 1.5f; // Range within which the enemy will attack the player
     [SerializeField] private float attackCooldown = 1.0f; // Time in seconds between attacks
     [SerializeField] private float pounceRangeMax = 5f;

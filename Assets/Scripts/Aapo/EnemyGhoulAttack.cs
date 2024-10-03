@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 
-public class AapoEnemyGhoulAttack : MonoBehaviour
+public class EnemyGhoulAttack : MonoBehaviour
 {
-    private AapoSwordSwing swordSwing;
+    private StarterSword swordSwing;
     private Animator playerAnimator;
     [SerializeField] int damage;
     private PlayerHealthManager playerHealthManager;
@@ -15,7 +15,7 @@ public class AapoEnemyGhoulAttack : MonoBehaviour
 
     private void Awake()
     {
-        swordSwing = GameObject.FindGameObjectWithTag("PlayerModel").GetComponent<AapoSwordSwing>();
+        swordSwing = GameObject.FindGameObjectWithTag("PlayerModel").GetComponent<StarterSword>();
         playerAnimator = GameObject.FindGameObjectWithTag("PlayerModel").GetComponent<Animator>();
         playerHealthManager = GameObject.FindGameObjectWithTag("HealthManager").GetComponent<PlayerHealthManager>();
     }

@@ -6,7 +6,7 @@ using UnityEngine.Rendering;
 public class GrapplingHookShoot : MonoBehaviour
 {
     [Header("References")]
-    private RBPlayerMovement playerMovement;
+    private PlayerMovement playerMovement;
     public Transform cam;
     public Transform gunTip;
     public LayerMask whatIsGrappleable;
@@ -28,7 +28,7 @@ public class GrapplingHookShoot : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerMovement = GetComponent<RBPlayerMovement>();
+        playerMovement = GetComponent<PlayerMovement>();
     }
 
     private void Update()

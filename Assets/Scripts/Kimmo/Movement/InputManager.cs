@@ -6,15 +6,20 @@ using UnityEngine.InputSystem;
 public class InputManager : MonoBehaviour
 {
     [SerializeField] PlayerMovement playerMovement;
-    [SerializeField] StakeLogic stakeLogic;
-    public AapoSwordSwing aapoSwordSwing;
+    [SerializeField] GrapplingHookShoot grapplingHookShoot;
+    [SerializeField] StarterSword aapoSwordSwing;
     [SerializeField] MouseLook mouseLook;
+    [SerializeField] StakeLogic stakeLogic;
+    [SerializeField] ThrowBomb throwBomb;
 
     PlayerControls controls;
     PlayerControls.MovementActions movement;
 
     Vector2 horizontalInput;
     Vector2 mouseInput;
+
+    private bool stakeHoldDown;
+    private float stakeButtonDownTimer = 0f;
 
     private void Awake()
     {
@@ -23,7 +28,6 @@ public class InputManager : MonoBehaviour
         
         movement.HorizontalMovement.performed += ctx => horizontalInput = ctx.ReadValue<Vector2>();
         movement.HorizontalMovement.performed += HorizontalInputCheck;
-        movement.HorizontalMovement.performed += ctx => playerMovement.GetDirection();
 
         movement.Jump.performed += ctx => playerMovement.OnJumpPressed();
 
@@ -36,14 +40,31 @@ public class InputManager : MonoBehaviour
 
         movement.Attack.performed += ctx => aapoSwordSwing.ContinueCombo();
 
-        //movement.Stake.performed += ctx => stakeLogic.ThrowStake();
-        //movement.Use.performed += ctx => stakeLogic.RetrieveStake();
+        movement.Block.performed += ctx => aapoSwordSwing.BlockAction();
+
+        movement.GrapplingHook.performed += ctx => grapplingHookShoot.StartGrapple();
+
+        movement.Stake.performed += ctx => stakeHoldDown = true;
+        movement.Stake.canceled += ctx => {
+            stakeHoldDown = false;
+            stakeLogic.ThrowStake(stakeButtonDownTimer);
+            stakeButtonDownTimer = 0f;
+        };
+        movement.Use.performed += ctx => stakeLogic.RetrieveStake();
+
+        movement.SilverBomb.performed += ctx => throwBomb.Throw();
+
     }
 
     private void Update()
     {
         playerMovement.ReceiveInput(horizontalInput);
         mouseLook.ReceiveInput(mouseInput);
+
+        if (stakeHoldDown)
+        {
+            stakeButtonDownTimer += Time.deltaTime;
+        }
     }
 
     private void OnEnable()
@@ -56,6 +77,22 @@ public class InputManager : MonoBehaviour
         controls.Disable();
     }
 
+   public void ControlsEnabled(bool enabledControls)
+    {
+        if (enabledControls)
+        {
+            Debug.Log("controls enabled");
+            controls.Enable();
+        }
+        else
+        {
+            Debug.Log("controls disabled");
+            controls.Disable();
+        }
+    }
+
+
+
     private void HorizontalInputCheck(InputAction.CallbackContext ctx)
     {
         Vector2 movementInput = ctx.ReadValue < Vector2>();
@@ -63,9 +100,16 @@ public class InputManager : MonoBehaviour
         {
             playerMovement.isMoving = true;
         }
-        else 
+        else
         {
             playerMovement.isMoving = false;
+            
         }
     }
+
+    public Vector2 GetHorizontalInput()
+    {
+        return horizontalInput;
+    }
+
 }

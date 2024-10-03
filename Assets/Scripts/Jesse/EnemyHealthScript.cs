@@ -16,7 +16,7 @@ public class EnemyHealthScript : MonoBehaviour
     [SerializeField] private GameObject playerEnemyFinisherSlot;
     [SerializeField] Animator playerAnimator;
     public bool isBeingFinished;
-    [SerializeField] RBInputManager rbInputManager;
+    [SerializeField] InputManager rbInputManager;
     [SerializeField] Transform playerCamera;
     public GameObject thisgameObject;
     private Quaternion startRotation = Quaternion.Euler(-50f, 0, 0);

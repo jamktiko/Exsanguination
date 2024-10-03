@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StarterSwordDamage : MonoBehaviour
 {
-    [SerializeField] private AapoSwordSwing swordSwing;
+    [SerializeField] private StarterSword swordSwing;
     [SerializeField] private Collider mainSwordCollider;
     [SerializeField] private Collider closeRangeCollider;
     [SerializeField] private int damage;

@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class AapoSwordSwing : MonoBehaviour
+public class StarterSword : MonoBehaviour
 {
     public Animator animator;
     public bool canDamage;
