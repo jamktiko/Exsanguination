@@ -40,16 +40,21 @@ public class EnemyHealthScript : MonoBehaviour
         health = maxHealth;
     }
 
-   
-    
+    private void Update()
+    {
+        
+    }
+
     public void ChangeEnemyHealth(int changeAmount)
     {
         audioManager.PlayEnemyTakeDamageAudioClip();
         health = Mathf.Clamp(health - changeAmount, 0, maxHealth);
-        healthBar.UpdateHealthBar(health, maxHealth);
+        //healthBar.UpdateHealthBar(health, maxHealth);
+        Debug.Log("Enemy health = " + health);
         if (health <= 0)
         {
-            Die();        
+            Debug.Log("Enemy health is zero");
+            Die();
         }
     }
 
@@ -136,8 +141,8 @@ private IEnumerator ShowEnemyFinisher()
 private void Die()
     {
         // Handle enemy death logic here
-        //audioManager.PlayEnemyDieAudioClip();
-        Destroy(thisgameObject);
+        audioManager.PlayEnemyDieAudioClip();
+        //Destroy(thisgameObject);
         Debug.Log("enemy died");
     }
 }
