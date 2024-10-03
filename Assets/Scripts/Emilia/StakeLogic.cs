@@ -143,14 +143,14 @@ public class StakeLogic : MonoBehaviour
             if (Vector3.Distance(playerTransform.position, transform.position) <= retrievalRange)
             {
                 // If health < 50%, apply finisher
-                if (stuckEnemyHealth.GetEnemyHealth() <= stuckEnemyHealth.GetEnemyMaxHealth() / 2)
-                {
-                    stuckEnemyHealth.Finish();
-                }
-                else
-                {
-                    stuckEnemy.RemoveSlow(); // Just remove the slow effect
-                }
+                //if (stuckEnemyHealth.GetEnemyHealth() <= stuckEnemyHealth.GetEnemyMaxHealth() / 2)
+                //{
+                //    stuckEnemyHealth.Finish();
+                //}
+                //else
+                //{
+                //    stuckEnemy.RemoveSlow(); // Just remove the slow effect
+                //}
 
                 // Unstick the stake
                 ReturnToPlayer();
