@@ -5,12 +5,15 @@ public class EnemyHealthScript : MonoBehaviour
     [SerializeField] int maxHealth = 100;
     [SerializeField] int health = 100;
     [SerializeField] AudioManager audioManager;
-    private GameObject finishedEnemyModel;
+    private EnemyFinisher stuckEnemyFinisher;
+    private Animator playerAnimator;
+
 
 
     private void Awake()
     {
-        finishedEnemyModel = GameObject.Find(gameObject.name + "Finish");
+        stuckEnemyFinisher = GameObject.Find("PlayerModel").GetComponent<EnemyFinisher>();
+        playerAnimator = GameObject.Find("PlayerModel").GetComponent<Animator>();
 
     }
 
@@ -33,8 +36,7 @@ public class EnemyHealthScript : MonoBehaviour
 
     public void FinishEnemy()
     {
-        EnemyFinisher enemyFinisher = finishedEnemyModel.GetComponent<EnemyFinisher>();
-        enemyFinisher.Finish();
+        stuckEnemyFinisher.Finish();
         gameObject.SetActive(false);
     }
 

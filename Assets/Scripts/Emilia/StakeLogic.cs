@@ -21,12 +21,17 @@ public class StakeLogic : MonoBehaviour
 
     [SerializeField] private GameObject stakeLocationOnPlayer;
 
-    void Start()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         playerTransform = GameObject.FindWithTag("Player").transform;
         playerCamera = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
         playerHealth = GameObject.FindWithTag("HealthManager").GetComponent<PlayerHealthManager>();
+    }
+
+    void Start()
+    {
+       
         Physics.IgnoreCollision(playerTransform.GetComponent<Collider>(), gameObject.GetComponent<Collider>()); //avoid pushing player
         gameObject.SetActive(false);
     }
@@ -87,8 +92,10 @@ public class StakeLogic : MonoBehaviour
         {
             // Stick to the enemy
             stuckEnemyHealth = collision.gameObject.GetComponent<EnemyHealthScript>();
-            StickToEnemy(collision.gameObject.GetComponent<EnemyAI>());
-            stuckEnemyFinisher = collision.gameObject.GetComponent<EnemyFinisher>();
+            StickToEnemy(collision.gameObject.GetComponent<EnemyAI>()); 
+            stuckEnemyFinisher = GameObject.FindGameObjectWithTag("PlayerModel").GetComponent<EnemyFinisher>();
+            stuckEnemyFinisher.SetEnemyType(stuckEnemy.gameObject.name);
+
         }
     }
 
