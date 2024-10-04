@@ -5,6 +5,8 @@ public class EnemyHealthScript : MonoBehaviour
     [SerializeField] int maxHealth = 100;
     [SerializeField] int health = 100;
     [SerializeField] AudioManager audioManager;
+    [SerializeField] AudioSource enemyTakeDamageAudioSource;
+    [SerializeField] AudioSource enemyDieAudioSource;
     private EnemyFinisher stuckEnemyFinisher;
     private Animator playerAnimator;
 
@@ -24,7 +26,7 @@ public class EnemyHealthScript : MonoBehaviour
 
     public void ChangeEnemyHealth(int changeAmount)
     {
-        audioManager.PlayEnemyTakeDamageAudioClip();
+        audioManager.PlayEnemyTakeDamageAudioClip(enemyTakeDamageAudioSource);
         health = Mathf.Clamp(health - changeAmount, 0, maxHealth);
         Debug.Log("Enemy health = " + health);
         if (health <= 0)
@@ -51,7 +53,7 @@ public class EnemyHealthScript : MonoBehaviour
 
     public void EnemyDie()
     {
-        audioManager.PlayEnemyDieAudioClip();
+        audioManager.PlayEnemyDieAudioClip(enemyDieAudioSource);
         gameObject.SetActive(false);
         Debug.Log("enemy died");
     }

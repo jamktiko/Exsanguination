@@ -45,10 +45,12 @@ public class EnemyAI : MonoBehaviour
     private float lastAttackTime = -Mathf.Infinity; // Stores the time of the last attack
     private float lastPounceTime = -Mathf.Infinity;
     private float storedSeparationDistance;
-   [SerializeField] private Animator enemyAnimator;
+    [SerializeField] private Animator enemyAnimator;
     private EnemyHealthScript enemyHealthScript;
 
     [SerializeField] AudioManager audioManager;
+    [SerializeField] AudioSource enemyAlertAudioSource;
+    [SerializeField] AudioSource enemyFootstepAudioSource;
     bool hasAlerted;
 
     void Awake()
@@ -133,7 +135,7 @@ public class EnemyAI : MonoBehaviour
 
             if (!hasAlerted)
             {
-                audioManager.PlayEnemyAlertAudioClip();
+                audioManager.PlayEnemyAlertAudioClip(enemyAlertAudioSource);
                 hasAlerted = true;
             }
 

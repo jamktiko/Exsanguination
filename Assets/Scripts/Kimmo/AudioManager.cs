@@ -27,11 +27,6 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioSource playerDieAudioSource;
     [SerializeField] AudioSource playerHealAudioSource;
     [SerializeField] AudioSource playerFallAudioSource;
-    [SerializeField] AudioSource enemyAlertAudioSource;
-    [SerializeField] AudioSource enemyFootstepsAudioSource;
-    [SerializeField] AudioSource enemyMeleeAudioSource;
-    [SerializeField] AudioSource enemyTakeDamageAudioSource;
-    [SerializeField] AudioSource enemyDieAudioSource;
 
     [Header("SFX clips")]
     [SerializeField] AudioClip[] playerFootstepsAudioClips; 
@@ -88,11 +83,6 @@ public class AudioManager : MonoBehaviour
         playerDieAudioSource = GameObject.Find("PlayerDieAudioSource").GetComponent<AudioSource>();
         playerHealAudioSource = GameObject.Find("PlayerHealAudioSource").GetComponent<AudioSource>();
         playerFallAudioSource = GameObject.Find("PlayerFallAudioSource").GetComponent<AudioSource>();
-        enemyAlertAudioSource = GameObject.Find("EnemyAlertAudioSource").GetComponent<AudioSource>();
-        enemyFootstepsAudioSource = GameObject.Find("EnemyFootstepsAudioSource").GetComponent<AudioSource>();
-        enemyMeleeAudioSource = GameObject.Find("EnemyMeleeAudioSource").GetComponent<AudioSource>();
-        enemyTakeDamageAudioSource = GameObject.Find("EnemyTakeDamageAudioSource").GetComponent<AudioSource>();
-        enemyDieAudioSource = GameObject.Find("EnemyDieAudioSource").GetComponent<AudioSource>();
     }
 
     // Player SFX methods
@@ -273,39 +263,39 @@ public class AudioManager : MonoBehaviour
     // Enemy SFX methods
 
     // Enemy alert
-    public void PlayEnemyAlertAudioClip()
+    public void PlayEnemyAlertAudioClip(AudioSource audioSource)
     {
-        enemyAlertAudioSource.clip = enemyAlertAudioClip;
-        enemyAlertAudioSource.PlayOneShot(enemyAlertAudioClip);
+        audioSource.clip = enemyAlertAudioClip;
+        audioSource.PlayOneShot(enemyAlertAudioClip);
     }
 
     // Enemy footsteps
-    public void PlayEnemyFootstepsAudioClips()
+    public void PlayEnemyFootstepsAudioClips(AudioSource audioSource)
     {
         AudioClip clip = enemyFootstepsAudioClips[Random.Range(0, enemyFootstepsAudioClips.Length)];
-        enemyFootstepsAudioSource.clip = clip;
-        enemyFootstepsAudioSource.PlayOneShot(clip);
+        audioSource.clip = clip;
+        audioSource.PlayOneShot(clip);
     }
 
     // Melee swing
-    public void PlayEnemyMeleeAudioClips()
+    public void PlayEnemyMeleeAudioClips(AudioSource audioSource)
     {
         AudioClip clip = enemyMeleeAudioClips[Random.Range(0, enemyMeleeAudioClips.Length)];
-        enemyMeleeAudioSource.clip = clip;
-        enemyMeleeAudioSource.PlayOneShot(clip);
+        audioSource.clip = clip;
+        audioSource.PlayOneShot(clip);
     }
 
     //  Enemy take damage
-    public void PlayEnemyTakeDamageAudioClip()
+    public void PlayEnemyTakeDamageAudioClip(AudioSource audioSource)
     {
-        enemyTakeDamageAudioSource.clip = enemyTakeDamageAudioClip;
-        enemyTakeDamageAudioSource.PlayOneShot(enemyTakeDamageAudioClip);
+        audioSource.clip = enemyTakeDamageAudioClip;
+        audioSource.PlayOneShot(enemyTakeDamageAudioClip);
     }
 
     // Enemy die
-    public void PlayEnemyDieAudioClip()
+    public void PlayEnemyDieAudioClip(AudioSource audioSource)
     {
-        enemyDieAudioSource.clip = enemyDieAudioClip;
-        enemyDieAudioSource.PlayOneShot(enemyDieAudioClip);
+        audioSource.clip = enemyDieAudioClip;
+        audioSource.PlayOneShot(enemyDieAudioClip);
     }
 }
