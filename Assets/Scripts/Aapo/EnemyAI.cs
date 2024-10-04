@@ -48,6 +48,9 @@ public class EnemyAI : MonoBehaviour
    [SerializeField] private Animator enemyAnimator;
     private EnemyHealthScript enemyHealthScript;
 
+    [SerializeField] AudioManager audioManager;
+    bool hasAlerted;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -128,7 +131,17 @@ public class EnemyAI : MonoBehaviour
         {
             player = hitColliders[0].transform;  // Assumes there is only one player in the game
 
+            if (!hasAlerted)
+            {
+                audioManager.PlayEnemyAlertAudioClip();
+                hasAlerted = true;
+            }
+
             FollowPlayer();
+        }
+        else
+        {
+            hasAlerted = false;
         }
     }
 
