@@ -10,31 +10,36 @@ public class StarterSwordDamage : MonoBehaviour
 
     public bool hasDamagedEnemy = false;
 
-   
-
     private void OnTriggerEnter(Collider other)
     {
-       
         if (swordSwing.canDamage && other.CompareTag("Enemy"))
         {
-            Debug.Log("hit enemy");
-            EnemyHealthScript enemyHealthScript = other.GetComponent<EnemyHealthScript>();
-
-            if (swordSwing.thirdAttackDamage)
+            // Check if we've already damaged this enemy to avoid multiple damage triggers
+            if (!hasDamagedEnemy)
             {
-                enemyHealthScript.ChangeEnemyHealth(thirdAttackDamage);
-                Debug.Log("Dealt " + thirdAttackDamage + " damage");
-            }
-            else
-            {
-                enemyHealthScript.ChangeEnemyHealth(damage);
-                Debug.Log("Dealt " + damage + " damage");
-            }
+                EnemyHealthScript enemyHealthScript = other.GetComponent<EnemyHealthScript>();
 
-            hasDamagedEnemy = true;
+                if (swordSwing.thirdAttackDamage)
+                {
+                    enemyHealthScript.ChangeEnemyHealth(thirdAttackDamage);
+                    Debug.Log("Dealt " + thirdAttackDamage + " damage");
+                }
+                else
+                {
+                    enemyHealthScript.ChangeEnemyHealth(damage);
+                    Debug.Log("Dealt " + damage + " damage");
+                }
+
+                hasDamagedEnemy = true;
+            }
         }
     }
 
-
-   
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            hasDamagedEnemy = false;
+        }
+    }
 }

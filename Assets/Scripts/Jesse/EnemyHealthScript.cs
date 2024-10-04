@@ -6,17 +6,14 @@ public class EnemyHealthScript : MonoBehaviour
     [SerializeField] int health = 100;
     [SerializeField] AudioManager audioManager;
     [SerializeField] AudioSource enemyTakeDamageAudioSource;
-    [SerializeField] AudioSource enemyDieAudioSource;
     private EnemyFinisher stuckEnemyFinisher;
-    private Animator playerAnimator;
-
+    private EnemyDeathScript enemyDeathScript;
 
 
     private void Awake()
     {
         stuckEnemyFinisher = GameObject.Find("PlayerModel").GetComponent<EnemyFinisher>();
-        playerAnimator = GameObject.Find("PlayerModel").GetComponent<Animator>();
-
+        enemyDeathScript = GetComponentInChildren<EnemyDeathScript>();
     }
 
     private void Start()
@@ -53,8 +50,7 @@ public class EnemyHealthScript : MonoBehaviour
 
     public void EnemyDie()
     {
-        audioManager.PlayEnemyDieAudioClip(enemyDieAudioSource);
+        enemyDeathScript.EnemyDie();
         gameObject.SetActive(false);
-        Debug.Log("enemy died");
     }
 }
