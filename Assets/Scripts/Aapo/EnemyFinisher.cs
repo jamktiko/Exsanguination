@@ -6,6 +6,7 @@ public class EnemyFinisher : MonoBehaviour
     private Animator playerAnimator;
     private InputManager InputManager;
    [SerializeField] private Transform playerCamera;
+    private MouseLook mLook;
     [SerializeField] private AudioSource finisherGhoulAudioSource;
     [SerializeField] private ParticleSystem finisherGhoulParticleSystem;
     [SerializeField] private SkinnedMeshRenderer finisherGhoulRenderer;
@@ -27,7 +28,8 @@ public class EnemyFinisher : MonoBehaviour
         playerAnimator = GetComponent<Animator>();
         InputManager = GetComponentInParent<InputManager>();
         playerCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Transform>();
-
+        mLook = GetComponentInParent<MouseLook>();
+          
     }
 
     private void Start()
@@ -83,6 +85,7 @@ public class EnemyFinisher : MonoBehaviour
         finisherstickRenderer.enabled = true;
         playerAnimator.SetTrigger("finish");
         InputManager.inputsEnabled = false;
+        mLook.enabled = false;
     }
 
     public void EnemyExplode()
@@ -100,6 +103,8 @@ public class EnemyFinisher : MonoBehaviour
 
         finisherstickRenderer.enabled = false;
         InputManager.inputsEnabled = true;
+        mLook.enabled = true;
+
     }
 
     public void RotateToTarget()
