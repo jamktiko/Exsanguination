@@ -1,69 +1,67 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI; // Include NavMesh
 
 public class EnemyAI : MonoBehaviour
 {
-    /// <summary>
-    /// Assign Layers, make sure that the Player game object has layer Player in correct game object (usually in the one where the movement script is too)
-    /// Replace PlayerMovementScript to current player movement script
-    /// Enemy uses Rigidbody, adjust its' mass to correspond the creatures weight
-    /// Jumpforce is calulated as follows: Rigidbody's mass * 8
-    /// Obstacle check distance: if you want the enemy to jump earlier from the wall then increase the value, if you want it to jump closer to the wall then decrease the value
-    /// IgnoreLayers: add Layers you want the enemy to avoid when trying to jump over such as Player, otherwise it will try to jump over player
-    /// </summary>
-    /// 
-
-
-    [SerializeField] private float moveSpeed = 2f;         // Movement speed of the enemy
-    [SerializeField] private float originalSpeed = 2f;         // Movement speed of the enemy
-    [SerializeField] private float detectionRange = 10f;   // How close the player has to be for the enemy to detect
-    [SerializeField] private float stoppingDistance = 1.5f; // Distance from the player to stop moving
-    [SerializeField] private float jumpForce = 5f;         // Force applied when jumping
+    [SerializeField] private float moveSpeed = 2f;
+    [SerializeField] private float originalSpeed = 2f;
+    [SerializeField] private float stoppingDistance = 1.5f;
+    [SerializeField] private float jumpForce = 5f;
     [SerializeField] private float pounceForceUp;
     [SerializeField] private float pounceForceForward;
-    [SerializeField] private float pounceCooldown = 3.0f; // Time in seconds between attacks
-    [SerializeField] private float obstacleCheckDistance = 1.5f; // Distance to check for obstacles
-    [SerializeField] private float jumpHeightThreshold = 1.0f;   // How much higher the player has to be for the enemy to jump
-    [SerializeField] private LayerMask groundLayer;        // Ground layer for jumping checks
+    [SerializeField] private float pounceCooldown = 3.0f;
+    [SerializeField] private float obstacleCheckDistance = 1.5f;
+    [SerializeField] private float jumpHeightThreshold = 1.0f;
+    [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask playerLayer;
     [SerializeField] private LayerMask enemyLayer;
-    [SerializeField] private LayerMask ignoreLayers; // LayerMask to specify which layers to ignore when triggering jumping over obstacle
-    [SerializeField] private float jumpCooldown = 2f;      // Time in seconds between jumps
-    [SerializeField] private PlayerMovement playerMovementScript; // Reference to the player's movement script
-    [SerializeField] private float attackRange = 1.5f; // Range within which the enemy will attack the player
-    [SerializeField] private float attackCooldown = 1.0f; // Time in seconds between attacks
+    [SerializeField] private LayerMask ignoreLayers;
+    [SerializeField] private float jumpCooldown = 2f;
+    [SerializeField] private float maxJumpPathLength;
+    [SerializeField] private PlayerMovement playerMovementScript;
+    [SerializeField] private float attackRange = 1.5f;
+    [SerializeField] private float attackCooldown = 1.0f;
     [SerializeField] private float pounceRangeMax = 5f;
     [SerializeField] private float pounceRangeMin;
-    [SerializeField] private float separationDistance = 2f; // Distance to separate from other enemies
-    [SerializeField] private float stopSeparationDistance = 1.5f; // Distance from the player to stop separating
-
+    [SerializeField] private float separationDistance = 2f;
+    [SerializeField] private float stopSeparationDistance = 1.5f;
+    [SerializeField] private Animator enemyAnimator;
+    [SerializeField] private AudioManager audioManager;
+    [SerializeField] private AudioSource enemyAlertAudioSource;
+    [SerializeField] private AudioSource enemyFootstepAudioSource;
+    
+    private NavMeshAgent navMeshAgent;  // NavMeshAgent reference
     private Transform player;
     private Rigidbody rb;
-    private bool isGrounded;
-    private float lastJumpTime = -Mathf.Infinity;  // Stores the time of the last jump
-    private float lastAttackTime = -Mathf.Infinity; // Stores the time of the last attack
+    public bool isGrounded;
+    private float lastJumpTime = -Mathf.Infinity;
+    private float lastAttackTime = -Mathf.Infinity;
     private float lastPounceTime = -Mathf.Infinity;
     private float storedSeparationDistance;
-    [SerializeField] private Animator enemyAnimator;
-    private EnemyHealthScript enemyHealthScript;
-
-    [SerializeField] AudioManager audioManager;
-    [SerializeField] AudioSource enemyAlertAudioSource;
-    [SerializeField] AudioSource enemyFootstepAudioSource;
-    bool hasAlerted;
+    private bool hasAlerted;
+    private EnemyStates enemyStates;
+    public bool enemyIsTriggered;
+    private bool isPouncing;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        // Check if the Rigidbody component exists
         if (rb == null)
         {
-            // Add a Rigidbody component if it doesn't exist
             rb = gameObject.AddComponent<Rigidbody>();
-            rb = GetComponent<Rigidbody>();
         }
-        enemyHealthScript = GetComponent<EnemyHealthScript>();
+
+        navMeshAgent = GetComponent<NavMeshAgent>(); // Initialize NavMeshAgent
+        enemyStates = GetComponentInChildren<EnemyStates>();
+        if (player == null)
+        {
+            // Search for the player
+            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+            if (playerObj != null)
+                player = playerObj.transform;
+        }
     }
 
     private void Start()
@@ -71,23 +69,21 @@ public class EnemyAI : MonoBehaviour
         storedSeparationDistance = separationDistance;
         rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
         rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+        navMeshAgent.speed = moveSpeed;  // Sync NavMeshAgent speed
+        navMeshAgent.stoppingDistance = stoppingDistance;
     }
 
-    void Update()
-    {
-      
-            CheckGroundedStatus();
-            AvoidOtherEnemies();
-        
-        
 
-    }
 
     private void FixedUpdate()
     {
-       
+        if (enemyIsTriggered)
+        {
+            CheckGroundedStatus();
+            AvoidOtherEnemies();
             DetectPlayer();
-        
+        }
+
     }
 
 
@@ -95,84 +91,69 @@ public class EnemyAI : MonoBehaviour
     public void ApplySlow(float slowAmount)
     {
         moveSpeed = originalSpeed * (1f - slowAmount);
-        // Apply movement speed change to AI/movement logic here
+        navMeshAgent.speed = moveSpeed; // Apply slow to NavMeshAgent
     }
 
-    // Remove the slow effect (return to normal speed)
+    // Remove the slow effect
     public void RemoveSlow()
     {
         moveSpeed = originalSpeed;
-        // Reset movement speed logic here
+        navMeshAgent.speed = moveSpeed; // Reset speed in NavMeshAgent
     }
 
     void AvoidOtherEnemies()
     {
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, separationDistance, enemyLayer);
 
-        
-            // Use a Physics overlap sphere to detect nearby enemies
-            Collider[] hitColliders = Physics.OverlapSphere(transform.position, separationDistance, enemyLayer);
-
-            foreach (var hitCollider in hitColliders)
+        foreach (var hitCollider in hitColliders)
+        {
+            if (hitCollider.transform != transform) // Ignore self
             {
-                if (hitCollider.transform != transform) // Ignore self
-                {
-                    Vector3 directionToAvoid = transform.position - hitCollider.transform.position;
-                    rb.AddForce(directionToAvoid.normalized * moveSpeed * Time.fixedDeltaTime, ForceMode.VelocityChange);
-                }
+                Vector3 directionToAvoid = transform.position - hitCollider.transform.position;
+                rb.AddForce(directionToAvoid.normalized * moveSpeed * Time.fixedDeltaTime, ForceMode.VelocityChange);
             }
-        
-
+        }
     }
+
+   
 
     void DetectPlayer()
     {
-        // Use a Physics overlap sphere to detect player in a certain range
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, detectionRange, playerLayer);
+        
 
-        if (hitColliders.Length > 0)
+        if (player != null && !enemyStates.isStunned)
         {
-            player = hitColliders[0].transform;  // Assumes there is only one player in the game
-
+            FollowPlayer();
             if (!hasAlerted)
             {
                 audioManager.PlayEnemyAlertAudioClip(enemyAlertAudioSource);
                 hasAlerted = true;
             }
-
-            FollowPlayer();
-        }
-        else
-        {
-            hasAlerted = false;
         }
     }
 
     void FollowPlayer()
     {
-        // Calculate the direction to the player
-        Vector3 direction = (player.position - transform.position).normalized;
-
-        // Calculate the distance to the player
         float distance = Vector3.Distance(transform.position, player.position);
+        Vector3 direction = (player.position - transform.position).normalized;
+        RotateTowardsPlayer(direction); // Always rotate towards the player
 
-        // Move towards the player if outside stopping distance
-        if (distance > stoppingDistance)
+        if (!isPouncing)
         {
-            MoveTowardsPlayer(direction);
+            navMeshAgent.SetDestination(player.position);  // Use NavMesh to move towards player
+            enemyAnimator.SetBool("isAttacking", false);
         }
+        
 
-        // Face the player
-        RotateTowardsPlayer(direction);
-
-        // Check if the player is within attack range and attack if possible
-        if (distance <= attackRange && CanAttack())
+        // Check if the player is within attack or pounce range
+        if (distance <= attackRange && CanAttack() && !enemyStates.isStunned)
         {
             Attack();
             lastAttackTime = Time.time;
-
         }
-        if (distance <= pounceRangeMax && distance >= pounceRangeMin && CanPounce())
+        if (distance <= pounceRangeMax && distance >= pounceRangeMin && CanPounce() && !enemyStates.isStunned)
         {
+            Debug.Log("CanPounce");
             Pounce();
             lastPounceTime = Time.time;
         }
@@ -181,66 +162,40 @@ public class EnemyAI : MonoBehaviour
         {
             separationDistance = 0;
         }
-
         else
+        {
             separationDistance = storedSeparationDistance;
-
-
-
+        }
     }
+
     void Attack()
     {
-        Debug.Log("enemy is attacking");
+        Debug.Log("Enemy is attacking");
         enemyAnimator.SetBool("isAttacking", true);
-
     }
 
     void Pounce()
     {
-
-        Debug.Log("enemy pounced");
-        enemyAnimator.SetBool("isAttacking", false);
-        enemyAnimator.SetTrigger("pounce");
+        isPouncing = true;
+        Debug.Log("Enemy pounced");
         Vector3 direction = (player.position - transform.position).normalized;
-        rb.AddForce(Vector3.up * pounceForceUp + direction * pounceForceForward, ForceMode.Impulse);
-
+        enemyAnimator.SetTrigger("pounce");
+        navMeshAgent.enabled = false;
+        Vector3 pounceForce = Vector3.up * pounceForceUp + direction * pounceForceForward;
+        rb.AddForce(pounceForce, ForceMode.Impulse);
+        StartCoroutine(ReEnableNavMeshAfterJump());
     }
+
 
     bool CanPounce()
     {
         return Time.time >= lastPounceTime + pounceCooldown;
-
+        
     }
 
     bool CanAttack()
     {
-        // Return true if enough time has passed since the last attack
         return Time.time >= lastAttackTime + attackCooldown;
-    }
-
-
-    void MoveTowardsPlayer(Vector3 direction)
-    {
-        enemyAnimator.SetBool("isAttacking", false);
-        // Jump if the player is higher than the enemy, but only if the player is grounded
-        if (player.position.y > transform.position.y + jumpHeightThreshold && isGrounded && CanJump() && playerMovementScript.isGrounded)
-        {
-            Jump();
-        }
-        else
-        {
-            // Check for obstacles in front and jump if necessary, only if the player is grounded
-            if (IsObstacleInFront() && isGrounded && CanJump() && playerMovementScript.isGrounded)
-            {
-                Jump();
-            }
-            else
-            {
-                // Move the enemy forward
-                Vector3 move = new Vector3(direction.x, 0, direction.z);
-                rb.MovePosition(transform.position + move * moveSpeed * Time.fixedDeltaTime);
-            }
-        }
     }
 
     void RotateTowardsPlayer(Vector3 direction)
@@ -252,46 +207,24 @@ public class EnemyAI : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
     }
 
-    void Jump()
+   
+    IEnumerator ReEnableNavMeshAfterJump()
     {
-        enemyAnimator.SetTrigger("jump");
-        enemyAnimator.SetBool("isAttacking", false);
-        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-        lastJumpTime = Time.time;  // Record the time of the jump
+        yield return new WaitForSeconds(2); // Wait for the jump to complete
+        navMeshAgent.enabled = true;  // Re-enable NavMeshAgent
+        isPouncing = false;
     }
-
-    bool IsObstacleInFront()
-    {
-        // Raycast in front of the enemy to detect obstacles
-        Ray ray = new Ray(transform.position, transform.forward);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, obstacleCheckDistance, ~ignoreLayers))  // Invert LayerMask to ignore specified layers
-        {
-            return true;
-        }
-        return false;
-    }
+   
 
 
     void CheckGroundedStatus()
     {
-        // Raycast down to check if the enemy is grounded
         isGrounded = Physics.Raycast(transform.position, Vector3.down, 1.1f, groundLayer);
     }
 
-    bool CanJump()
-    {
-        // Return true if enough time has passed since the last jump
-        return Time.time >= lastJumpTime + jumpCooldown;
-    }
-
+  
     void OnDrawGizmosSelected()
     {
-        // Draw detection range in the editor
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, detectionRange);
-
-        // Draw obstacle check ray
         Gizmos.color = Color.blue;
         Gizmos.DrawLine(transform.position, transform.position + transform.forward * obstacleCheckDistance);
 
@@ -301,8 +234,7 @@ public class EnemyAI : MonoBehaviour
         Gizmos.color = Color.white;
         Gizmos.DrawWireSphere(transform.position, pounceRangeMax);
 
-        // Draw attack range in the editor
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, attackRange);  // Draw attack range sphere
+        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 }
