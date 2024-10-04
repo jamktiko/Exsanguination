@@ -26,6 +26,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioSource playerTakeDamageAudioSource;
     [SerializeField] AudioSource playerDieAudioSource;
     [SerializeField] AudioSource playerHealAudioSource;
+    [SerializeField] AudioSource playerFallAudioSource;
     [SerializeField] AudioSource enemyAlertAudioSource;
     [SerializeField] AudioSource enemyFootstepsAudioSource;
     [SerializeField] AudioSource enemyMeleeAudioSource;
@@ -56,6 +57,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioClip playerTakeDamageAudioClip;
     [SerializeField] AudioClip playerDieAudioClip;
     [SerializeField] AudioClip playerHealAudioClip;
+    [SerializeField] AudioClip playerFallAudioClip;
     [SerializeField] AudioClip enemyAlertAudioClip;
     [SerializeField] AudioClip[] enemyFootstepsAudioClips;
     [SerializeField] AudioClip[] enemyMeleeAudioClips;
@@ -85,6 +87,7 @@ public class AudioManager : MonoBehaviour
         playerTakeDamageAudioSource = GameObject.Find("PlayerTakeDamageAudioSource").GetComponent<AudioSource>();
         playerDieAudioSource = GameObject.Find("PlayerDieAudioSource").GetComponent<AudioSource>();
         playerHealAudioSource = GameObject.Find("PlayerHealAudioSource").GetComponent<AudioSource>();
+        playerFallAudioSource = GameObject.Find("PlayerFallAudioSource").GetComponent<AudioSource>();
         enemyAlertAudioSource = GameObject.Find("EnemyAlertAudioSource").GetComponent<AudioSource>();
         enemyFootstepsAudioSource = GameObject.Find("EnemyFootstepsAudioSource").GetComponent<AudioSource>();
         enemyMeleeAudioSource = GameObject.Find("EnemyMeleeAudioSource").GetComponent<AudioSource>();
@@ -253,6 +256,19 @@ public class AudioManager : MonoBehaviour
         playerDieAudioSource.PlayOneShot(playerDieAudioClip);
     }
 
+    // Player heal
+    public void PlayPlayerHealAudioClip()
+    {
+        playerHealAudioSource.clip = playerHealAudioClip;
+        playerHealAudioSource.PlayOneShot(playerHealAudioClip);
+    }
+
+    // Player fall
+    public void PlayPlayerFallAudioClip()
+    {
+        playerFallAudioSource.clip = playerFallAudioClip;
+        playerFallAudioSource.PlayOneShot(playerFallAudioClip);
+    }
 
     // Enemy SFX methods
 
