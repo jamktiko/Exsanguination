@@ -8,18 +8,12 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private float moveSpeed = 2f;
     [SerializeField] private float originalSpeed = 2f;
     [SerializeField] private float stoppingDistance = 1.5f;
-    [SerializeField] private float jumpForce = 5f;
     [SerializeField] private float pounceForceUp;
     [SerializeField] private float pounceForceForward;
     [SerializeField] private float pounceCooldown = 3.0f;
-    [SerializeField] private float obstacleCheckDistance = 1.5f;
-    [SerializeField] private float jumpHeightThreshold = 1.0f;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask playerLayer;
     [SerializeField] private LayerMask enemyLayer;
-    [SerializeField] private LayerMask ignoreLayers;
-    [SerializeField] private float jumpCooldown = 2f;
-    [SerializeField] private float maxJumpPathLength;
     [SerializeField] private PlayerMovement playerMovementScript;
     [SerializeField] private float attackRange = 1.5f;
     [SerializeField] private float attackCooldown = 1.0f;
@@ -36,7 +30,6 @@ public class EnemyAI : MonoBehaviour
     private Transform player;
     private Rigidbody rb;
     public bool isGrounded;
-    private float lastJumpTime = -Mathf.Infinity;
     private float lastAttackTime = -Mathf.Infinity;
     private float lastPounceTime = -Mathf.Infinity;
     private float storedSeparationDistance;
@@ -115,11 +108,15 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-   
-
-    void DetectPlayer()
+   public void ActivateEnemy()
     {
-        
+        enemyIsTriggered = true;
+        enemyAnimator.SetTrigger("detect");
+        enemyAnimator.ResetTrigger("detect");
+    }
+
+    private void DetectPlayer()
+    {
 
         if (player != null && !enemyStates.isStunned)
         {
@@ -225,8 +222,6 @@ public class EnemyAI : MonoBehaviour
   
     void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawLine(transform.position, transform.position + transform.forward * obstacleCheckDistance);
 
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, stopSeparationDistance);
