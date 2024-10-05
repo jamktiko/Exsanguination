@@ -388,6 +388,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3706606521577662181, guid: 607241fc019739a44b320e48be37d371, type: 3}
+      propertyPath: m_NavMeshData
+      value: 
+      objectReference: {fileID: 23800000, guid: a45a6e151badb274bb3f19e1e646bb6e, type: 2}
+    - target: {fileID: 3706606521577662181, guid: 607241fc019739a44b320e48be37d371, type: 3}
+      propertyPath: m_LayerMask.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
     - target: {fileID: 4195301651310897938, guid: 607241fc019739a44b320e48be37d371, type: 3}
       propertyPath: deathScreen
       value: 
@@ -1039,7 +1047,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!65 &2949986755516178671
 BoxCollider:
@@ -1165,7 +1173,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!23 &3598653131604738297
 MeshRenderer:
@@ -1249,12 +1257,13 @@ GameObject:
   - component: {fileID: 3713757774297603300}
   - component: {fileID: 7674429370150776192}
   - component: {fileID: 1155851017014814819}
+  - component: {fileID: 7674429370150776193}
   m_Layer: 8
   m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!64 &3924151537887654754
 MeshCollider:
@@ -2267,6 +2276,26 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7674429370150776193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3887486784493451371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eeb5dc026fdf4b488bc7ae0138ab719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_StartPoint: {x: 0, y: 1, z: 0}
+  m_EndPoint: {x: -2.91, y: 0, z: 0}
+  m_Width: 0.5225992
+  m_CostModifier: -1
+  m_Bidirectional: 1
+  m_AutoUpdatePosition: 0
+  m_Area: 0
 --- !u!4 &7771476539694708574
 Transform:
   m_ObjectHideFlags: 0

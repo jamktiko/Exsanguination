@@ -140,7 +140,7 @@ public class EnemyAI : MonoBehaviour
             navMeshAgent.SetDestination(player.position);  // Use NavMesh to move towards player
             enemyAnimator.SetBool("isAttacking", false);
         }
-        
+
 
         // Check if the player is within attack or pounce range
         if (distance <= attackRange && CanAttack() && !enemyStates.isStunned)
@@ -164,6 +164,8 @@ public class EnemyAI : MonoBehaviour
             separationDistance = storedSeparationDistance;
         }
     }
+
+    
 
     void Attack()
     {
@@ -210,6 +212,7 @@ public class EnemyAI : MonoBehaviour
         yield return new WaitForSeconds(2); // Wait for the jump to complete
         navMeshAgent.enabled = true;  // Re-enable NavMeshAgent
         isPouncing = false;
+        navMeshAgent.isStopped = false;
     }
    
 
