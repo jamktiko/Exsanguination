@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI; // Include NavMesh
 
@@ -25,7 +26,11 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private AudioManager audioManager;
     [SerializeField] private AudioSource enemyAlertAudioSource;
     [SerializeField] private AudioSource enemyFootstepAudioSource;
-    
+    [SerializeField] private float jumpForceUp = 5f; // Upward force for jumping
+    [SerializeField] private float jumpForceForward = 5f; // Forward force for jumping
+    [SerializeField] private float jumpDistance = 1f; // Distance to jump away from the wall
+    [SerializeField] private float jumpHeightThreshold = 0.5f; // Height difference required to jump
+
     private NavMeshAgent navMeshAgent;  // NavMeshAgent reference
     private Transform player;
     private Rigidbody rb;
@@ -33,10 +38,12 @@ public class EnemyAI : MonoBehaviour
     private float lastAttackTime = -Mathf.Infinity;
     private float lastPounceTime = -Mathf.Infinity;
     private float storedSeparationDistance;
-    private bool hasAlerted;
     private EnemyStates enemyStates;
     public bool enemyIsTriggered;
     private bool isPouncing;
+    private Vector3 pounceDirection;
+    private bool isJumping; // Check if the enemy is currently jumping
+    private bool canMoveAfterPounce;
 
     void Awake()
     {
@@ -60,7 +67,7 @@ public class EnemyAI : MonoBehaviour
     private void Start()
     {
         storedSeparationDistance = separationDistance;
-        rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+        rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
         rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
         navMeshAgent.speed = moveSpeed;  // Sync NavMeshAgent speed
         navMeshAgent.stoppingDistance = stoppingDistance;
@@ -71,12 +78,23 @@ public class EnemyAI : MonoBehaviour
     private void FixedUpdate()
     {
         if (enemyIsTriggered)
-        {
+        { 
             CheckGroundedStatus();
             AvoidOtherEnemies();
             DetectPlayer();
+
+            if (isPouncing)
+            {
+                navMeshAgent.enabled = false;
+                rb.AddForce(pounceDirection * pounceForceForward, ForceMode.Impulse);
+                Debug.Log("Enemy pounced with force " + pounceForceUp + " up and " + pounceDirection + " forward");
+                isPouncing = false;
+            }
+
+
         }
 
+        
     }
 
 
@@ -93,6 +111,13 @@ public class EnemyAI : MonoBehaviour
         moveSpeed = originalSpeed;
         navMeshAgent.speed = moveSpeed; // Reset speed in NavMeshAgent
     }
+
+    
+
+ 
+
+
+
 
     void AvoidOtherEnemies()
     {
@@ -113,19 +138,17 @@ public class EnemyAI : MonoBehaviour
         enemyIsTriggered = true;
         enemyAnimator.SetTrigger("detect");
         enemyAnimator.ResetTrigger("detect");
+        audioManager.PlayEnemyAlertAudioClip(enemyAlertAudioSource);
+
     }
 
     private void DetectPlayer()
     {
-
+        
         if (player != null && !enemyStates.isStunned)
         {
             FollowPlayer();
-            if (!hasAlerted)
-            {
-                audioManager.PlayEnemyAlertAudioClip(enemyAlertAudioSource);
-                hasAlerted = true;
-            }
+            
         }
     }
 
@@ -133,24 +156,29 @@ public class EnemyAI : MonoBehaviour
     {
         float distance = Vector3.Distance(transform.position, player.position);
         Vector3 direction = (player.position - transform.position).normalized;
-        RotateTowardsPlayer(direction); // Always rotate towards the player
 
-        if (!isPouncing)
+        if(!enemyStates.isStunned && !enemyAnimator.GetBool("isAttacking") && distance > attackRange && navMeshAgent.enabled && isGrounded)
         {
+            RotateTowardsPlayer(direction); // Always rotate towards the player
             navMeshAgent.SetDestination(player.position);  // Use NavMesh to move towards player
-            enemyAnimator.SetBool("isAttacking", false);
         }
+
 
 
         // Check if the player is within attack or pounce range
-        if (distance <= attackRange && CanAttack() && !enemyStates.isStunned)
+        if (distance <= attackRange)
         {
-            Attack();
-            lastAttackTime = Time.time;
+            if (CanAttack() && !enemyStates.isStunned)
+            {
+                RotateTowardsPlayer(direction);  // Rotate towards the player right before attacking
+                Attack();  // Trigger the attack
+            }
         }
-        if (distance <= pounceRangeMax && distance >= pounceRangeMin && CanPounce() && !enemyStates.isStunned)
+
+
+        if (distance <= pounceRangeMax && distance >= pounceRangeMin && CanPounce() && !enemyStates.isStunned && !enemyAnimator.GetBool("isAttacking"))
         {
-            Debug.Log("CanPounce");
+            SnapRotationTowardsPlayer(direction);
             Pounce();
             lastPounceTime = Time.time;
         }
@@ -165,26 +193,55 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    
+
 
     void Attack()
     {
+        // Check if the enemy is already attacking
+        if (enemyAnimator.GetBool("isAttacking"))
+            return;  // If attacking, do nothing (don't reset or start another attack)
         Debug.Log("Enemy is attacking");
-        enemyAnimator.SetBool("isAttacking", true);
+        lastAttackTime = Time.time;  // Record the last time an attack was initiated
+        enemyAnimator.SetBool("isAttacking", true);  // Start attack animation
+        StartCoroutine(ResetAttackAfterCooldown());  // Reset attack state after the animation
+    }
+    IEnumerator ResetAttackAfterCooldown()
+    {
+        yield return new WaitForSeconds(attackCooldown);  // Wait for attackCooldown duration
+        enemyAnimator.SetBool("isAttacking", false);  // Reset attacking state
     }
 
     void Pounce()
     {
-        isPouncing = true;
-        Debug.Log("Enemy pounced");
-        Vector3 direction = (player.position - transform.position).normalized;
+        pounceDirection = (player.position - transform.position).normalized;
+        pounceDirection.y = pounceForceUp;
         enemyAnimator.SetTrigger("pounce");
-        navMeshAgent.enabled = false;
-        Vector3 pounceForce = Vector3.up * pounceForceUp + direction * pounceForceForward;
-        rb.AddForce(pounceForce, ForceMode.Impulse);
-        StartCoroutine(ReEnableNavMeshAfterJump());
+        isPouncing = true;
+        StartCoroutine(PounceWait());
     }
 
+    IEnumerator PounceWait()
+    {
+        //after 2 seconds of pounce if enemy is on ground turn ai movement logic back on
+        yield return new WaitForSeconds(2);
+        if (isGrounded)
+        {
+            navMeshAgent.enabled = true;
+        }
+        else
+        {
+            //if the enemy is still in the air, start new timer
+            StartCoroutine(ForceNavMesh());  
+        }
+
+    }
+
+    IEnumerator ForceNavMesh()
+    {
+        //force enemy on surface after 5 seconds if its floating in air
+        yield return new WaitForSeconds(5);
+        navMeshAgent.enabled = true;
+    }
 
     bool CanPounce()
     {
@@ -203,18 +260,18 @@ public class EnemyAI : MonoBehaviour
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
 
         // Smooth rotation
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.fixedDeltaTime * 5f);
     }
 
-   
-    IEnumerator ReEnableNavMeshAfterJump()
+    void SnapRotationTowardsPlayer(Vector3 direction)
     {
-        yield return new WaitForSeconds(2); // Wait for the jump to complete
-        navMeshAgent.enabled = true;  // Re-enable NavMeshAgent
-        isPouncing = false;
-        navMeshAgent.isStopped = false;
+        // Calculate the rotation needed to face the player
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+
+        // Instant rotation
+        transform.rotation = lookRotation; // Snap to the player's direction
     }
-   
+
 
 
     void CheckGroundedStatus()
@@ -225,6 +282,10 @@ public class EnemyAI : MonoBehaviour
   
     void OnDrawGizmosSelected()
     {
+        Vector3 jumpDirectionLine = new Vector3(0, 0, jumpDistance);
+        
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(transform.position, jumpDirectionLine);
 
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, stopSeparationDistance);

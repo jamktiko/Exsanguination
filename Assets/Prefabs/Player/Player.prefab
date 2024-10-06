@@ -3504,76 +3504,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1 &2816828717954046511
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5191857985129040528}
-  - component: {fileID: 8356847598081082543}
-  - component: {fileID: 929423510832972292}
-  m_Layer: 7
-  m_Name: SecondCollider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5191857985129040528
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2816828717954046511}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 366780380891979400}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &8356847598081082543
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2816828717954046511}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 0.47536, y: 0.33116618, z: 1}
-  m_Center: {x: -0.26232576, y: 0.10047484, z: -0.00000002085431}
---- !u!114 &929423510832972292
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2816828717954046511}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f0f5934a8ac5cd48a80980446432b51, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  swordSwing: {fileID: 967361114286456892}
-  damage: 10
-  thirdAttackDamage: 30
-  hasDamagedEnemy: 0
 --- !u!1 &2883063880813762584
 GameObject:
   m_ObjectHideFlags: 0
@@ -8080,7 +8010,6 @@ Transform:
   - {fileID: 8445655066640423121}
   - {fileID: 7944879909637709686}
   - {fileID: 7448946492614605311}
-  - {fileID: 5191857985129040528}
   m_Father: {fileID: 4174737774412749673}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!33 &2698180403316220880
@@ -8167,8 +8096,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swordSwing: {fileID: 967361114286456892}
-  damage: 10
-  thirdAttackDamage: 30
+  damage: 0
+  thirdAttackDamage: 0
   hasDamagedEnemy: 0
 --- !u!82 &3867301685577711462
 AudioSource:

@@ -14,9 +14,7 @@ public class StarterSwordDamage : MonoBehaviour
     {
         if (swordSwing.canDamage && other.CompareTag("Enemy"))
         {
-            // Check if we've already damaged this enemy to avoid multiple damage triggers
-            if (!hasDamagedEnemy)
-            {
+            
                 EnemyHealthScript enemyHealthScript = other.GetComponent<EnemyHealthScript>();
 
                 if (swordSwing.thirdAttackDamage)
@@ -32,14 +30,8 @@ public class StarterSwordDamage : MonoBehaviour
 
                 hasDamagedEnemy = true;
             }
-        }
+        
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Enemy"))
-        {
-            hasDamagedEnemy = false;
-        }
-    }
+   
 }
