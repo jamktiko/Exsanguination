@@ -4,7 +4,6 @@ namespace EmiliaScripts
 {
     public class PlayerHealthManager : MonoBehaviour
     {
-
         [SerializeField] int currentHealth;
         [SerializeField] int maxHealth;
 

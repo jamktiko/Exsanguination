@@ -11,6 +11,13 @@ public class StarterSword : MonoBehaviour
     private bool blockOnCooldown;
     [SerializeField] private float blockCooldownTime;
     [SerializeField] AudioManager audioManager;
+    //[SerializeField] private ParticleSystem starterSwordSwing1;
+    //[SerializeField] private ParticleSystem starterSwordSwing2;
+    //[SerializeField] private ParticleSystem starterSwordSwing3;
+    //[SerializeField] private ParticleSystem failedComboVFX;
+    //[SerializeField] private ParticleSystem playerIsBlockingVFX;
+
+
 
 
     public void ContinueCombo()
@@ -19,6 +26,7 @@ public class StarterSword : MonoBehaviour
         if (!animator.GetBool("startedAttack"))
         {
             audioManager.PlaySwordSwingClips1();
+            //starterSwordSwing1.Play();
             animator.SetBool("startedAttack", true);
             // Reset any combo-related states
             animator.SetBool("failedCombo", false);
@@ -27,18 +35,21 @@ public class StarterSword : MonoBehaviour
         if (canCombo && animator.GetBool("startedAttack"))
         {
             audioManager.PlaySwordSwingClips2();
+            //starterSwordSwing2.Play();
             animator.SetBool("isAttacking", true);
             animator.SetBool("failedCombo", false);  // Ensure failedCombo is reset
         }
         // Now handle the combo continuation after the first attack has started
         if (canCombo && animator.GetBool("startedAttack"))
         {
+            //starterSwordSwing3.Play();
             audioManager.PlaySwordSwingClips2();
             animator.SetBool("isAttacking", true);
             animator.SetBool("failedCombo", false);  // Ensure failedCombo is reset
         }
         else if (!canCombo && animator.GetBool("startedAttack"))
         {
+            //failedComboVFX.Play();
             animator.SetBool("failedCombo", true);
             animator.SetBool("isAttacking", false);  // Stop attacking if failedCombo
         }
@@ -47,9 +58,13 @@ public class StarterSword : MonoBehaviour
 
     public void BlockAction()
     {
-        if(!blockOnCooldown)
-        animator.SetTrigger("block");
-        StartCoroutine(BlockingCooldown());
+        if (!blockOnCooldown)
+        {
+            //playerIsBlockingVFX.Play();
+                animator.SetTrigger("block");
+            StartCoroutine(BlockingCooldown());
+        }
+        
 
     }
 

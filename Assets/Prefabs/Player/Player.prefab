@@ -1096,10 +1096,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.15
+  m_Radius: 0.2
   m_Height: 1.7
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &8480041427010655584
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8096,8 +8096,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swordSwing: {fileID: 967361114286456892}
-  damage: 0
-  thirdAttackDamage: 0
+  damage: 10
+  thirdAttackDamage: 30
   hasDamagedEnemy: 0
 --- !u!82 &3867301685577711462
 AudioSource:
