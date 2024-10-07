@@ -168,8 +168,8 @@ public class StakeLogic : MonoBehaviour
             {
                 if (stuckEnemyHealth.GetEnemyHealth() <= (int)(stuckEnemyHealth.GetEnemyMaxHealth() * 0.25f))
                 {
-                    UnstickFromEnemy();
                     stuckEnemyHealth.FinishEnemy();
+                    UnstickFromEnemy();
                 }
                 else
                 {

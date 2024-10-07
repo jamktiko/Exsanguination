@@ -11,6 +11,7 @@ public class InputManager : MonoBehaviour
     [SerializeField] MouseLook mouseLook;
     [SerializeField] StakeLogic stakeLogic;
     [SerializeField] ThrowBomb throwBomb;
+    [SerializeField] DoorFunctions doorFunctions;
 
     PlayerControls controls;
     PlayerControls.MovementActions movement;
@@ -111,6 +112,7 @@ public class InputManager : MonoBehaviour
         {
             if (inputsEnabled)
                 stakeLogic.RetrieveStake();
+            doorFunctions.OnOpenDoorPressed();
         };
 
         movement.SilverBomb.performed += ctx =>

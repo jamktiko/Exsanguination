@@ -11,6 +11,7 @@ public class EnemyFinisher : MonoBehaviour
     [SerializeField] private ParticleSystem finisherGhoulParticleSystem;
     [SerializeField] private SkinnedMeshRenderer finisherGhoulRenderer;
     [SerializeField] MeshRenderer finisherstickRenderer;
+    private AudioManager audioManager;
     public float duration; // Time to complete the rotation
 
     private Quaternion targetRotation; // Desired target rotation
@@ -19,7 +20,8 @@ public class EnemyFinisher : MonoBehaviour
     private bool isRotating = false;   // Flag to track if a rotation is happening
    [SerializeField] private string enemyType;
     private SkinnedMeshRenderer enemyMesh;
-    private AudioSource enemyFinishAudio;
+    private AudioSource finisherAudio;
+    private AudioSource enemyDeathAudio;
     private ParticleSystem enemyParticleSystem;
 
 
@@ -29,7 +31,9 @@ public class EnemyFinisher : MonoBehaviour
         InputManager = GetComponentInParent<InputManager>();
         playerCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Transform>();
         mLook = GetComponentInParent<MouseLook>();
-          
+        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+
+
     }
 
     private void Start()
@@ -73,14 +77,14 @@ public class EnemyFinisher : MonoBehaviour
         {
             enemyParticleSystem = finisherGhoulParticleSystem;
             enemyMesh = finisherGhoulRenderer;
-            enemyFinishAudio = finisherGhoulAudioSource;
+            enemyDeathAudio = finisherGhoulAudioSource;
 
         }
     }
 
     public void Finish()
     {
-
+        audioManager.PlayStakeFinisherAudioClip();
         enemyMesh.enabled = true;          
         finisherstickRenderer.enabled = true;
         playerAnimator.SetTrigger("finish");
@@ -93,7 +97,7 @@ public class EnemyFinisher : MonoBehaviour
 
             enemyParticleSystem.Play();
             enemyMesh.enabled = false;
-            enemyFinishAudio.PlayOneShot(finisherGhoulAudioSource.clip);
+            enemyDeathAudio.PlayOneShot(finisherGhoulAudioSource.clip);
 
     }
 

@@ -35,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Slide")]
     [SerializeField] float slideSpeed;
+    [SerializeField] float slideSpeedMultiplier;
     [SerializeField] float slideTime;
     float slideCooldownTimer;
     [SerializeField] CapsuleCollider playerCollider;
@@ -271,7 +272,7 @@ public class PlayerMovement : MonoBehaviour
     // Slide methods
     private void Slide()
     {
-        slideSpeed = moveSpeed * 1.5f;
+        slideSpeed = moveSpeed * slideSpeedMultiplier;
         rb.AddForce(orientation.forward * slideSpeed * 10f, ForceMode.Force);
     }
 
