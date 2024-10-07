@@ -6,7 +6,13 @@ using EmiliaScripts;
 public class HealthPotion : MonoBehaviour
 {
     [SerializeField] int healValue;
+    [SerializeField] GameObject thisPotion;
     //[SerializeField] ParticleSystem healthpotionGlow;
+
+    private void Awake()
+    {
+        thisPotion = this.gameObject;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -16,7 +22,7 @@ public class HealthPotion : MonoBehaviour
             PlayerHealthManager playerHealthManager;
             playerHealthManager = other.GetComponent<PlayerHealthManager>();
             playerHealthManager.UpdatePlayerHealth(healValue);
-            Destroy(gameObject);
+            thisPotion.SetActive(false);
         }
     }
 }
