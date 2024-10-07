@@ -1,16 +1,14 @@
 using EmiliaScripts;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class StakeLogic : MonoBehaviour
 {
     [SerializeField] private GameObject prefab;
     [SerializeField] private float throwForce = 50f, stickDuration = 10f, returnCooldown = 10f, slowAmount = 0.5f, finisherThreshold = 50f, retrievalRange = 2f, stickTimer = 0f;
-    private bool isThrown = false, isStuck = false, isReturning = false;
+    [SerializeField] private bool isThrown = false, isStuck = false, isReturning = false;
 
     private Rigidbody rb;
-    private EnemyAI stuckEnemy;
+    [SerializeField] private EnemyAI stuckEnemy;
     private EnemyHealthScript stuckEnemyHealth;
     private EnemyFinisher stuckEnemyFinisher;
     private PlayerHealthManager playerHealth;
@@ -27,6 +25,7 @@ public class StakeLogic : MonoBehaviour
         playerTransform = GameObject.FindWithTag("Player").transform;
         playerCamera = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
         playerHealth = GameObject.FindWithTag("HealthManager").GetComponent<PlayerHealthManager>();
+        stuckEnemyFinisher = GameObject.FindGameObjectWithTag("PlayerModel").GetComponent<EnemyFinisher>();
     }
 
     void Start()
@@ -54,7 +53,7 @@ public class StakeLogic : MonoBehaviour
     public void ThrowStake(float timer)
     {
         gameObject.SetActive(true);
-        if (!isThrown)
+        if (!isThrown && !stuckEnemy)
         {
             // Detach from player and throw the stake
             transform.SetParent(null);
@@ -93,7 +92,6 @@ public class StakeLogic : MonoBehaviour
             // Stick to the enemy
             stuckEnemyHealth = collision.gameObject.GetComponent<EnemyHealthScript>();
             StickToEnemy(collision.gameObject.GetComponent<EnemyAI>()); 
-            stuckEnemyFinisher = GameObject.FindGameObjectWithTag("PlayerModel").GetComponent<EnemyFinisher>();
             stuckEnemyFinisher.SetEnemyType(stuckEnemy.gameObject.name);
 
         }
@@ -140,6 +138,7 @@ public class StakeLogic : MonoBehaviour
             // Reset state
             isThrown = false;
             isReturning = false;
+            stuckEnemy = null;
             gameObject.SetActive(false);
         }
     }
@@ -152,7 +151,7 @@ public class StakeLogic : MonoBehaviour
             if (Vector3.Distance(playerTransform.position, transform.position) <= retrievalRange)
             {
                 // If health < 50%, apply finisher
-                if (stuckEnemyHealth.GetEnemyHealth() <= stuckEnemyHealth.GetEnemyMaxHealth() / 2)
+                if (stuckEnemyHealth.GetEnemyHealth() <= (int)(stuckEnemyHealth.GetEnemyMaxHealth() * 0.25f))
                 {
                     UnstickFromEnemy();
                     stuckEnemyHealth.FinishEnemy();
@@ -161,12 +160,10 @@ public class StakeLogic : MonoBehaviour
                 {
                     stuckEnemy.RemoveSlow(); // Just remove the slow effect
                 }
-
+                
                 // Unstick the stake
-                ReturnToPlayer();
-                stuckEnemy = null;
                 isStuck = false;
-
+                ReturnToPlayer();
             }
         }
     }
