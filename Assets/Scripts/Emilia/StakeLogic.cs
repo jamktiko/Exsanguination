@@ -53,7 +53,7 @@ public class StakeLogic : MonoBehaviour
     public void ThrowStake(float timer)
     {
         gameObject.SetActive(true);
-        if (!isThrown && !stuckEnemy)
+        if (!isThrown && !stuckEnemy && !isReturning)
         {
             // Detach from player and throw the stake
             transform.SetParent(null);
@@ -117,6 +117,13 @@ public class StakeLogic : MonoBehaviour
         transform.SetParent(playerTransform, true);
         transform.SetPositionAndRotation(stakeLocationOnPlayer.transform.position, stakeRotation);
         playerHealth.UpdatePlayerHealth(playerHealth.MaxPlayerHealth() / 2);
+
+        // Re-enable collision between stake and enemy
+        Physics.IgnoreCollision(stuckEnemy.GetComponent<Collider>(), gameObject.GetComponent<Collider>(), false);
+
+        isStuck = false;
+        stuckEnemy = null;
+        stuckEnemyHealth = null;
     }
 
     // Instantly return the stake to the player after the cooldown
@@ -138,7 +145,11 @@ public class StakeLogic : MonoBehaviour
             // Reset state
             isThrown = false;
             isReturning = false;
+            isStuck = false;
+
             stuckEnemy = null;
+            stuckEnemyHealth = null;
+
             gameObject.SetActive(false);
         }
     }
@@ -150,7 +161,6 @@ public class StakeLogic : MonoBehaviour
             // Check if within retrieval range
             if (Vector3.Distance(playerTransform.position, transform.position) <= retrievalRange)
             {
-                // If health < 50%, apply finisher
                 if (stuckEnemyHealth.GetEnemyHealth() <= (int)(stuckEnemyHealth.GetEnemyMaxHealth() * 0.25f))
                 {
                     UnstickFromEnemy();
@@ -158,12 +168,14 @@ public class StakeLogic : MonoBehaviour
                 }
                 else
                 {
-                    stuckEnemy.RemoveSlow(); // Just remove the slow effect
+                    stuckEnemy.RemoveSlow();
                 }
-                
-                // Unstick the stake
+
                 isStuck = false;
-                ReturnToPlayer();
+
+                // Cancel previous invoke in case it's still active
+                CancelInvoke(nameof(ReturnToPlayer));
+                ReturnToPlayer();  // Return immediately after retrieval
             }
         }
     }

@@ -97,12 +97,16 @@ public class InputManager : MonoBehaviour
         {
             if (inputsEnabled)
                 stakeHoldDown = true;
+
+            //enable stake and start visual
         };
+
         movement.Stake.canceled += ctx => {
             stakeHoldDown = false;
             stakeLogic.ThrowStake(stakeButtonDownTimer);
             stakeButtonDownTimer = 0f;
         };
+
         movement.Use.performed += ctx =>
         {
             if (inputsEnabled)
