@@ -2,26 +2,54 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySpawnerSystem : MonoBehaviour
+public class EnemyGroup // Information of each enemy group
 {
     [SerializeField] GameObject[] enemies;
+    [SerializeField] GameObject spawnTriggerPoint;
+    public int groupNumber;
 
-    private void Awake()
+    public void ActivateEnemies()
     {
-        foreach (var enemy in enemies)
+        foreach (GameObject enemy in enemies)
         {
-            enemy.SetActive(false);
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            foreach (var enemy in enemies)
+            if (enemy != null)
             {
                 enemy.SetActive(true);
             }
+        }
+    }
+
+    public void DeActivateEnemies()
+    {
+        foreach (GameObject enemy in enemies)
+        {
+            if (enemy != null)
+            {
+                enemy.SetActive(false);
+            }
+        }
+    }
+}
+
+public class EnemySpawnerSystem : MonoBehaviour // Manages the enemy groups
+{
+    [SerializeField] EnemyGroup[] enemyGroup;
+    private EnemyGroup currentEnemyGroup;
+    [SerializeField] GameObject[] spawnTriggerPoints;
+
+    private void Awake()
+    {
+        foreach (EnemyGroup group in enemyGroup)
+        {
+            group.DeActivateEnemies();
+        }
+    }
+
+    private void Update()
+    {
+        foreach (GameObject spawnTrigger in spawnTriggerPoints)
+        {
+
         }
     }
 }
