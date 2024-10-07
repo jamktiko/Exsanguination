@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+[System.Serializable]
 
 public class EnemyGroup // Information of each enemy group
 {
     [SerializeField] GameObject[] enemies;
-    [SerializeField] GameObject spawnTriggerPoint;
+    public GameObject spawnTriggerPoint;
     public int groupNumber;
 
     public void ActivateEnemies()
@@ -33,23 +34,15 @@ public class EnemyGroup // Information of each enemy group
 
 public class EnemySpawnerSystem : MonoBehaviour // Manages the enemy groups
 {
-    [SerializeField] EnemyGroup[] enemyGroup;
+    public EnemyGroup[] enemyGroup;
     private EnemyGroup currentEnemyGroup;
-    [SerializeField] GameObject[] spawnTriggerPoints;
 
     private void Awake()
     {
         foreach (EnemyGroup group in enemyGroup)
         {
             group.DeActivateEnemies();
-        }
-    }
-
-    private void Update()
-    {
-        foreach (GameObject spawnTrigger in spawnTriggerPoints)
-        {
-
+            group.spawnTriggerPoint.GetComponent<SpawnTriggerDetector>().SetGroupIndex(group.groupNumber);
         }
     }
 }
