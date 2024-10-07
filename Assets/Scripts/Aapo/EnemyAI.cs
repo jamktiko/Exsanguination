@@ -44,7 +44,7 @@ public class EnemyAI : MonoBehaviour
     private Vector3 pounceDirection;
     private bool isJumping; // Check if the enemy is currently jumping
     private bool canMoveAfterPounce;
-
+    private bool isStuckOnStake;
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -103,6 +103,7 @@ public class EnemyAI : MonoBehaviour
     {
         moveSpeed = originalSpeed * (1f - slowAmount);
         navMeshAgent.speed = moveSpeed; // Apply slow to NavMeshAgent
+        isStuckOnStake = true;
     }
 
     // Remove the slow effect
@@ -110,6 +111,7 @@ public class EnemyAI : MonoBehaviour
     {
         moveSpeed = originalSpeed;
         navMeshAgent.speed = moveSpeed; // Reset speed in NavMeshAgent
+        isStuckOnStake = false;
     }
 
     
@@ -176,7 +178,7 @@ public class EnemyAI : MonoBehaviour
         }
 
 
-        if (distance <= pounceRangeMax && distance >= pounceRangeMin && CanPounce() && !enemyStates.isStunned && !enemyAnimator.GetBool("isAttacking"))
+        if (distance <= pounceRangeMax && distance >= pounceRangeMin && CanPounce() && !enemyStates.isStunned && !enemyAnimator.GetBool("isAttacking") && !isStuckOnStake)
         {
             SnapRotationTowardsPlayer(direction);
             Pounce();
