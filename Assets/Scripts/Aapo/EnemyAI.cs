@@ -172,7 +172,7 @@ public class EnemyAI : MonoBehaviour
         {
             if (CanAttack() && !enemyStates.isStunned)
             {
-                RotateTowardsPlayer(direction);  // Rotate towards the player right before attacking
+                SnapRotationTowardsPlayer(direction);
                 Attack();  // Trigger the attack
             }
         }
