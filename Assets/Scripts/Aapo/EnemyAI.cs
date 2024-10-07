@@ -222,11 +222,18 @@ public class EnemyAI : MonoBehaviour
 
     IEnumerator PounceWait()
     {
+        if (!isGrounded)
+        {
+            rb.drag = 0;
+        }
         //after 2 seconds of pounce if enemy is on ground turn ai movement logic back on
         yield return new WaitForSeconds(2);
+       
         if (isGrounded)
         {
+            
             navMeshAgent.enabled = true;
+            rb.drag = 2;
         }
         else
         {
@@ -241,6 +248,7 @@ public class EnemyAI : MonoBehaviour
         //force enemy on surface after 5 seconds if its floating in air
         yield return new WaitForSeconds(5);
         navMeshAgent.enabled = true;
+        rb.drag = 2;
     }
 
     bool CanPounce()
