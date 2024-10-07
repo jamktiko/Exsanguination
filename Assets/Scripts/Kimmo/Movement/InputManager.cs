@@ -7,7 +7,7 @@ public class InputManager : MonoBehaviour
 {
     [SerializeField] PlayerMovement playerMovement;
     [SerializeField] GrapplingHookShoot grapplingHookShoot;
-    [SerializeField] StarterSword starterSword;
+    [SerializeField] PlayerCombat playerCombat;
     [SerializeField] MouseLook mouseLook;
     [SerializeField] StakeLogic stakeLogic;
     [SerializeField] ThrowBomb throwBomb;
@@ -77,13 +77,13 @@ public class InputManager : MonoBehaviour
         movement.Attack.performed += ctx =>
         {
             if (inputsEnabled)
-                starterSword.ContinueCombo();
+                playerCombat.Attack();
         };
 
         movement.Block.performed += ctx =>
         {
             if (inputsEnabled)
-                starterSword.BlockAction();
+                playerCombat.BlockAction();
         };
 
 
