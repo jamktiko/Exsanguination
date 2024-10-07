@@ -30,7 +30,6 @@ public class StakeLogic : MonoBehaviour
 
     void Start()
     {
-       
         Physics.IgnoreCollision(playerTransform.GetComponent<Collider>(), gameObject.GetComponent<Collider>()); //avoid pushing player
         gameObject.SetActive(false);
     }
@@ -42,10 +41,7 @@ public class StakeLogic : MonoBehaviour
             // If close enough to player, stop returning
             if (Vector3.Distance(transform.position, playerTransform.position) < 0.5f)
             {
-                isReturning = false;
-                isThrown = false;
-                rb.isKinematic = true; // Stop physics interaction
-                transform.SetParent(playerTransform, true); // Reattach stake to player
+                CompleteReturnToPlayer();
             }
         }
     }
@@ -91,9 +87,8 @@ public class StakeLogic : MonoBehaviour
         {
             // Stick to the enemy
             stuckEnemyHealth = collision.gameObject.GetComponent<EnemyHealthScript>();
-            StickToEnemy(collision.gameObject.GetComponent<EnemyAI>()); 
+            StickToEnemy(collision.gameObject.GetComponent<EnemyAI>());
             stuckEnemyFinisher.SetEnemyType(stuckEnemy.gameObject.name);
-
         }
     }
 
@@ -108,19 +103,23 @@ public class StakeLogic : MonoBehaviour
         Physics.IgnoreCollision(enemy.GetComponent<Collider>(), gameObject.GetComponent<Collider>()); // avoid pushing enemy
 
         // Apply damage and slowing effect
-        //stuckEnemyHealth.ChangeEnemyHealth(stuckEnemyHealth.GetEnemyMaxHealth() / 2);
         enemy.ApplySlow(slowAmount);
     }
 
     public void UnstickFromEnemy()
     {
+        // Reset stake to player's position
         transform.SetParent(playerTransform, true);
         transform.SetPositionAndRotation(stakeLocationOnPlayer.transform.position, stakeRotation);
         playerHealth.UpdatePlayerHealth(playerHealth.MaxPlayerHealth() / 2);
 
         // Re-enable collision between stake and enemy
-        Physics.IgnoreCollision(stuckEnemy.GetComponent<Collider>(), gameObject.GetComponent<Collider>(), false);
+        if (stuckEnemy != null)
+        {
+            Physics.IgnoreCollision(stuckEnemy.GetComponent<Collider>(), gameObject.GetComponent<Collider>(), false);
+        }
 
+        // Clear stuck state and enemy references
         isStuck = false;
         stuckEnemy = null;
         stuckEnemyHealth = null;
@@ -138,20 +137,26 @@ public class StakeLogic : MonoBehaviour
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
 
-            // Instantly teleport the stake back to the player's hand
-            transform.SetPositionAndRotation(stakeLocationOnPlayer.transform.position, stakeRotation);
-            transform.SetParent(playerTransform, true);
-
-            // Reset state
-            isThrown = false;
-            isReturning = false;
-            isStuck = false;
-
-            stuckEnemy = null;
-            stuckEnemyHealth = null;
-
-            gameObject.SetActive(false);
+            CompleteReturnToPlayer();
         }
+    }
+
+    private void CompleteReturnToPlayer()
+    {
+        // Instantly teleport the stake back to the player's hand
+        transform.SetPositionAndRotation(stakeLocationOnPlayer.transform.position, stakeRotation);
+        transform.SetParent(playerTransform, true);
+
+        // Reset state
+        isThrown = false;
+        isReturning = false;
+
+        // Reset references for future throws
+        isStuck = false;
+        stuckEnemy = null;
+        stuckEnemyHealth = null;
+
+        gameObject.SetActive(false);
     }
 
     public void RetrieveStake()
@@ -169,13 +174,14 @@ public class StakeLogic : MonoBehaviour
                 else
                 {
                     stuckEnemy.RemoveSlow();
+                    UnstickFromEnemy();
                 }
-
-                isStuck = false;
 
                 // Cancel previous invoke in case it's still active
                 CancelInvoke(nameof(ReturnToPlayer));
-                ReturnToPlayer();  // Return immediately after retrieval
+
+                // Ensure stake returns to player
+                ReturnToPlayer();
             }
         }
     }
