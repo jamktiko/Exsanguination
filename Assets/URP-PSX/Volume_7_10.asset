@@ -1,0 +1,188 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8571497271954831705
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ea62842ddb6960488930897ba9ce398, type: 3}
+  m_Name: Dithering
+  m_EditorClassIdentifier: 
+  active: 1
+  patternIndex:
+    m_OverrideState: 1
+    m_Value: 3
+  ditherThreshold:
+    m_OverrideState: 1
+    m_Value: 4.11
+  ditherStrength:
+    m_OverrideState: 1
+    m_Value: 4
+  ditherScale:
+    m_OverrideState: 1
+    m_Value: 1.97
+--- !u!114 &-8411861091202746939
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35a1bd58dd7548198609eabd8ae2bb7d, type: 3}
+  m_Name: Pixelation
+  m_EditorClassIdentifier: 
+  active: 1
+  widthPixelation:
+    m_OverrideState: 1
+    m_Value: 1280
+  heightPixelation:
+    m_OverrideState: 1
+    m_Value: 720
+  colorPrecision:
+    m_OverrideState: 1
+    m_Value: 64
+--- !u!114 &-2166666004255888595
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4265a041954897941afec871c608473b, type: 3}
+  m_Name: Crt
+  m_EditorClassIdentifier: 
+  active: 1
+  scanlinesWeight:
+    m_OverrideState: 1
+    m_Value: 0
+  noiseWeight:
+    m_OverrideState: 1
+    m_Value: 0
+  screenBendX:
+    m_OverrideState: 0
+    m_Value: -8.1
+  screenBendY:
+    m_OverrideState: 0
+    m_Value: 3.37
+  vignetteAmount:
+    m_OverrideState: 0
+    m_Value: -0.85
+  vignetteSize:
+    m_OverrideState: 0
+    m_Value: -4.89
+  vignetteRounding:
+    m_OverrideState: 0
+    m_Value: 7.15
+  vignetteSmoothing:
+    m_OverrideState: 0
+    m_Value: 0.2
+  scanlinesDensity:
+    m_OverrideState: 1
+    m_Value: 200
+  scanlinesSpeed:
+    m_OverrideState: 1
+    m_Value: 200
+  noiseAmount:
+    m_OverrideState: 1
+    m_Value: 250
+  chromaticRed:
+    m_OverrideState: 1
+    m_Value: {x: 0, y: 0}
+  chromaticGreen:
+    m_OverrideState: 1
+    m_Value: {x: 0, y: 0}
+  chromaticBlue:
+    m_OverrideState: 1
+    m_Value: {x: 0.001, y: -0.002}
+  grilleOpacity:
+    m_OverrideState: 0
+    m_Value: 0.45
+  grilleCounterOpacity:
+    m_OverrideState: 0
+    m_Value: -0.47
+  grilleResolution:
+    m_OverrideState: 0
+    m_Value: 360
+  grilleCounterResolution:
+    m_OverrideState: 0
+    m_Value: 540
+  grilleUvRotation:
+    m_OverrideState: 0
+    m_Value: 1.618034
+  grilleBrightness:
+    m_OverrideState: 0
+    m_Value: 15
+  grilleUvMidPoint:
+    m_OverrideState: 0
+    m_Value: 0.5
+  grilleShift:
+    m_OverrideState: 0
+    m_Value: {x: 1, y: 1, z: 1}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
+  m_Name: Volume_7_10
+  m_EditorClassIdentifier: 
+  components:
+  - {fileID: 6396290404580436553}
+  - {fileID: -8411861091202746939}
+  - {fileID: -8571497271954831705}
+  - {fileID: -2166666004255888595}
+--- !u!114 &6396290404580436553
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32eb3b8fb939d9b41b04b5621e6d36dd, type: 3}
+  m_Name: Fog
+  m_EditorClassIdentifier: 
+  active: 1
+  fogDensity:
+    m_OverrideState: 1
+    m_Value: 26.1
+  fogDistance:
+    m_OverrideState: 1
+    m_Value: 105.4
+  fogColor:
+    m_OverrideState: 1
+    m_Value: {r: 0.16068885, g: 0.20451947, b: 0.21698111, a: 0}
+  ambientColor:
+    m_OverrideState: 1
+    m_Value: {r: 0.8284087, g: 0.8375797, b: 0.9811321, a: 0}
+  fogNear:
+    m_OverrideState: 1
+    m_Value: 23.1
+  fogFar:
+    m_OverrideState: 1
+    m_Value: 59.6
+  fogAltScale:
+    m_OverrideState: 1
+    m_Value: 10
+  fogThinning:
+    m_OverrideState: 1
+    m_Value: 10
+  noiseScale:
+    m_OverrideState: 1
+    m_Value: 0.1
+  noiseStrength:
+    m_OverrideState: 1
+    m_Value: 0.3
