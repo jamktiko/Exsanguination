@@ -492,6 +492,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: InputWaitPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 8341691366682109051, guid: 7a0921eabb785a94ea9b9b86d841873d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -505,6 +509,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6361692524683652955, guid: af4fbbe6bc3349945b5fd4b8479a48b1, type: 3}
+      propertyPath: m_fontSize
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 6361692524683652955, guid: af4fbbe6bc3349945b5fd4b8479a48b1, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6883338003072562116, guid: af4fbbe6bc3349945b5fd4b8479a48b1, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -528,6 +540,22 @@ PrefabInstance:
     - target: {fileID: 7731993782830059250, guid: af4fbbe6bc3349945b5fd4b8479a48b1, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7746477228616322425, guid: af4fbbe6bc3349945b5fd4b8479a48b1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 984178596}
+    - target: {fileID: 7746477228616322425, guid: af4fbbe6bc3349945b5fd4b8479a48b1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ResetBindings
+      objectReference: {fileID: 0}
+    - target: {fileID: 7746477228616322425, guid: af4fbbe6bc3349945b5fd4b8479a48b1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: RebindingSystem, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7746477228616322425, guid: af4fbbe6bc3349945b5fd4b8479a48b1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7834419310883339860, guid: af4fbbe6bc3349945b5fd4b8479a48b1, type: 3}
       propertyPath: m_Pivot.x
@@ -610,7 +638,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5276665211477225822, guid: af4fbbe6bc3349945b5fd4b8479a48b1, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 7834419310883339860, guid: af4fbbe6bc3349945b5fd4b8479a48b1, type: 3}
       insertIndex: -1

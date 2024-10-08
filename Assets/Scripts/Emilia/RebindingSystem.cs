@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -70,12 +71,12 @@ public class RebindingSystem : MonoBehaviour
                 string bindingDisplayName = InputControlPath.ToHumanReadableString(binding.effectivePath, InputControlPath.HumanReadableStringOptions.OmitDevice);
 
                 // Create a button in the UI for rebinding this action
-                GameObject rebindButtonObj = Instantiate(rebindUIPrefab, rebindUIParent);
-                Button rebindButton = rebindButtonObj.GetComponent<Button>();
-                Text buttonText = rebindButtonObj.GetComponentInChildren<Text>();
+                GameObject rebindUIObject = Instantiate(rebindUIPrefab, rebindUIParent);
+                Button rebindButton = rebindUIObject.GetComponentInChildren<Button>();
+                TMP_Text bindingText = rebindUIObject.GetComponent<TMP_Text>();
 
                 // Display the current binding in the button
-                buttonText.text = $"{action.name}: {bindingDisplayName}";
+                bindingText.text = $"{action.name}: {bindingDisplayName}";
 
                 // Store original binding (can use the binding ID to reference later)
                 originalBindings[binding.id.ToString()] = binding;
