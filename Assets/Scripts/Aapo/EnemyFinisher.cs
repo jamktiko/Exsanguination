@@ -56,7 +56,7 @@ public class EnemyFinisher : MonoBehaviour
             float t = Mathf.Clamp01(elapsedTime / duration);
 
             // Smoothly rotate the camera using Slerp (spherical interpolation)
-            playerCamera.rotation = Quaternion.Slerp(startRotation, targetRotation, t);
+            playerCamera.localRotation = Quaternion.Slerp(startRotation, targetRotation, t);
 
             // Stop rotating once the duration has passed
             if (t >= 1.0f)
@@ -119,7 +119,7 @@ public class EnemyFinisher : MonoBehaviour
     {
         if (!isRotating)
         {
-            startRotation = playerCamera.rotation;               // Record the current rotation
+            startRotation =  playerCamera.rotation;               // Record the current rotation
             targetRotation = Quaternion.Euler(-50, 0, 0);     // Set target rotation
             elapsedTime = 0f;                                 // Reset elapsed time
             isRotating = true;                                // Set rotation flag
@@ -131,9 +131,9 @@ public class EnemyFinisher : MonoBehaviour
     {
         if (!isRotating)
         {
-            
-            startRotation = playerCamera.rotation;               // Record the current rotation
-            targetRotation = Quaternion.Euler(0, 0, 0);       // Set target rotation back to (0,0,0)
+
+            startRotation = targetRotation;               // Record the current rotation
+            targetRotation = Quaternion.Euler(playerCamera.position.x, 0, 0);       // Set target rotation back to (0,0,0)
             elapsedTime = 0f;                                 // Reset elapsed time
             isRotating = true;                                // Set rotation flag
         }
