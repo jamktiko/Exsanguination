@@ -8,7 +8,7 @@ public class EnemyFinisher : MonoBehaviour
    [SerializeField] private Transform playerCamera;
     private MouseLook mLook;
     [SerializeField] private AudioSource finisherGhoulAudioSource;
-    [SerializeField] private ParticleSystem finisherGhoulParticleSystem;
+    [SerializeField] private GameObject finisherGhoulParticleSystem;
     [SerializeField] private SkinnedMeshRenderer finisherGhoulRenderer;
     [SerializeField] MeshRenderer finisherstickRenderer;
     private AudioManager audioManager;
@@ -22,7 +22,9 @@ public class EnemyFinisher : MonoBehaviour
     private SkinnedMeshRenderer enemyMesh;
     private AudioSource finisherAudio;
     private AudioSource enemyDeathAudio;
-    private ParticleSystem enemyParticleSystem;
+    private GameObject enemyParticleSystem;
+    private GameObject tmpParticle;
+    [SerializeField] private GameObject particleInstantiateSpot;
 
 
     private void Awake()
@@ -40,7 +42,7 @@ public class EnemyFinisher : MonoBehaviour
     {
         finisherstickRenderer.enabled = false;
         finisherGhoulRenderer.enabled = false;
-        finisherGhoulParticleSystem.Stop();
+        //finisherGhoulParticleSystem.Stop();
     }
 
     void Update()
@@ -95,20 +97,22 @@ public class EnemyFinisher : MonoBehaviour
     public void EnemyExplode()
     {
 
-            enemyParticleSystem.Play();
-            enemyMesh.enabled = false;
-            enemyDeathAudio.PlayOneShot(finisherGhoulAudioSource.clip);
+        //enemyParticleSystem.Play();
+        tmpParticle = Instantiate(enemyParticleSystem, particleInstantiateSpot.transform);
+        enemyMesh.enabled = false;
+        enemyDeathAudio.PlayOneShot(finisherGhoulAudioSource.clip);
 
     }
 
     public void FinishFinisherAnimation()
     {
-        enemyParticleSystem.Stop();
+        //enemyParticleSystem.Stop();
 
         finisherstickRenderer.enabled = false;
         InputManager.inputsEnabled = true;
         mLook.enabled = true;
-
+        Destroy(tmpParticle);
+        tmpParticle = null;
     }
 
     public void RotateToTarget()
@@ -127,6 +131,7 @@ public class EnemyFinisher : MonoBehaviour
     {
         if (!isRotating)
         {
+            
             startRotation = playerCamera.rotation;               // Record the current rotation
             targetRotation = Quaternion.Euler(0, 0, 0);       // Set target rotation back to (0,0,0)
             elapsedTime = 0f;                                 // Reset elapsed time

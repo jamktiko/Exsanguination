@@ -5,26 +5,25 @@ using UnityEngine;
 public class EnemyDeathScript : MonoBehaviour
 {
     private AudioSource audioSource;
-    private ParticleSystem particleSystem;
+    [SerializeField] private GameObject particleSystem;
     private AudioManager audioManager;
 
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
-        particleSystem = GetComponent<ParticleSystem>();
         audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
     }
 
     private void Start()
     {
-        particleSystem.Stop();
+        
     }
 
     public void EnemyDie()
     {
         transform.SetParent(null);
         audioManager.PlayEnemyDieAudioClip(audioSource);
-        particleSystem.Play();
+        Instantiate(particleSystem, gameObject.transform);
         StartCoroutine(DisableComponent());
 
     }

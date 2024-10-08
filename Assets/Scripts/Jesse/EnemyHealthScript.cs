@@ -1,3 +1,4 @@
+using KnowerCoder.BloodFX;
 using UnityEngine;
 
 public class EnemyHealthScript : MonoBehaviour
@@ -8,7 +9,7 @@ public class EnemyHealthScript : MonoBehaviour
     [SerializeField] AudioSource enemyTakeDamageAudioSource;
     private EnemyFinisher stuckEnemyFinisher;
     private EnemyDeathScript enemyDeathScript;
-   // [SerializeField] private ParticleSystem takeDamageVFX;
+    [SerializeField] private BloodFXController bloodController;
 
     private void Awake()
     {
@@ -24,7 +25,7 @@ public class EnemyHealthScript : MonoBehaviour
     public void ChangeEnemyHealth(int changeAmount)
     {
         audioManager.PlayEnemyTakeDamageAudioClip(enemyTakeDamageAudioSource);
-       // takeDamageVFX.Play();
+        bloodController.Shoot();
         health = Mathf.Clamp(health - changeAmount, 0, maxHealth);
         Debug.Log("Enemy health = " + health);
         if (health <= 0)
