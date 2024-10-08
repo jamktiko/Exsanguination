@@ -16,7 +16,7 @@ public class GrapplingHookShoot : MonoBehaviour
     [Header("Grappling")]
     public float maxGrappleDistance;
     public float grappleDelayTime;
-    public float overShootYAxis;
+    float overShootYAxis = 1;
 
     private Vector3 grapplePoint;
 
