@@ -1816,6 +1816,7 @@ GameObject:
   - component: {fileID: 6138562787838184655}
   - component: {fileID: 2973974297268387390}
   - component: {fileID: 486811761154442260}
+  - component: {fileID: -5272548372710602540}
   - component: {fileID: 3762964810839066425}
   m_Layer: 3
   m_Name: Player
@@ -2044,6 +2045,21 @@ MonoBehaviour:
   grappleDelayTime: 0
   overShootYAxis: -1
   grapplingCd: 1
+--- !u!114 &-5272548372710602540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1454188574208328123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b239bf85ce56be24fbd3467183bf9d54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 8192
 --- !u!120 &3762964810839066425
 LineRenderer:
   serializedVersion: 2
@@ -5409,6 +5425,7 @@ MonoBehaviour:
   finisherstickRenderer: {fileID: 2292285481074195654}
   duration: 1
   enemyType: 
+  particleInstantiateSpot: {fileID: 0}
 --- !u!1 &4144531346931834670
 GameObject:
   m_ObjectHideFlags: 0
