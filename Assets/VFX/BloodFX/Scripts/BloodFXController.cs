@@ -58,7 +58,7 @@ namespace KnowerCoder.BloodFX
 
         void EnableDecal()
         {
-            Instantiate(DecalObject, gameObject.transform.position, Quaternion.identity);
+            Instantiate(DecalObject, gameObject.transform.position, Quaternion.Euler(90f, 0f, 0f));
         }
 
 
