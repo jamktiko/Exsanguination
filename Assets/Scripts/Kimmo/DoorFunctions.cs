@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class DoorFunctions : MonoBehaviour
 {
-    [SerializeField] InputManager inputManager;
+    InputManager inputManager;
     bool doorIsOpening;
     bool isOpen;
     bool isRotatingDoor;
