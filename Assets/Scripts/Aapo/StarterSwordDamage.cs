@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StarterSwordDamage : MonoBehaviour
 {
-    [SerializeField] private StarterSword swordSwing;
+    [SerializeField] private PlayerCombat playerCombat;
     [SerializeField] private int damage;
     [SerializeField] private int thirdAttackDamage;
 
@@ -12,12 +12,12 @@ public class StarterSwordDamage : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (swordSwing.canDamage && other.CompareTag("Enemy"))
+        if (playerCombat.canDamage && other.CompareTag("Enemy"))
         {
             
                 EnemyHealthScript enemyHealthScript = other.GetComponent<EnemyHealthScript>();
 
-                if (swordSwing.thirdAttackDamage)
+                if (playerCombat.thirdAttackDamage)
                 {
                     enemyHealthScript.ChangeEnemyHealth(thirdAttackDamage);
                     Debug.Log("Dealt " + thirdAttackDamage + " damage");

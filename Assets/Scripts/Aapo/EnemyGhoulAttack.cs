@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class EnemyGhoulAttack : MonoBehaviour
 {
-    private StarterSword swordSwing;
+    private PlayerCombat playerCombat;
     private Animator playerAnimator;
     [SerializeField] int damage;
     private PlayerHealthManager playerHealthManager;
@@ -16,7 +16,7 @@ public class EnemyGhoulAttack : MonoBehaviour
 
     private void Awake()
     {
-        swordSwing = GameObject.FindGameObjectWithTag("PlayerModel").GetComponent<StarterSword>();
+        playerCombat = GameObject.FindGameObjectWithTag("PlayerModel").GetComponent<PlayerCombat>();
         playerAnimator = GameObject.FindGameObjectWithTag("PlayerModel").GetComponent<Animator>();
         playerHealthManager = GameObject.FindGameObjectWithTag("HealthManager").GetComponent<PlayerHealthManager>();
     }
@@ -27,12 +27,16 @@ public class EnemyGhoulAttack : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            if (swordSwing.isBlocking)
+            if(playerCombat.currentWeaponNumber == 0)
             {
-                audioManager.PlayParryAudioClip();
-                enemyAnimator.SetTrigger("stun");
-                playerAnimator.SetTrigger("parry");
+                if (playerCombat.isBlocking)
+                {
+                    audioManager.PlayParryAudioClip();
+                    enemyAnimator.SetTrigger("stun");
+                    playerAnimator.SetTrigger("parry");
+                }
             }
+            
 
             else
             {
