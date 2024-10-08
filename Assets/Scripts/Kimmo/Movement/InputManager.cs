@@ -11,7 +11,6 @@ public class InputManager : MonoBehaviour
     [SerializeField] MouseLook mouseLook;
     [SerializeField] StakeLogic stakeLogic;
     [SerializeField] ThrowBomb throwBomb;
-    [SerializeField] DoorFunctions doorFunctions;
 
     PlayerControls controls;
     PlayerControls.MovementActions movement;
@@ -22,6 +21,7 @@ public class InputManager : MonoBehaviour
     private bool stakeHoldDown;
     public bool inputsEnabled;
     private float stakeButtonDownTimer = 0f;
+    public bool openDoor;
 
     private void Awake()
     {
@@ -112,7 +112,13 @@ public class InputManager : MonoBehaviour
         {
             if (inputsEnabled)
                 stakeLogic.RetrieveStake();
-            doorFunctions.OnOpenDoorPressed();
+                openDoor = true;
+        };
+
+        movement.Use.canceled += ctx =>
+        {
+            if (inputsEnabled)
+                openDoor = false;
         };
 
         movement.SilverBomb.performed += ctx =>
@@ -148,11 +154,6 @@ public class InputManager : MonoBehaviour
     {
         controls.Disable();
     }
-
-
-
-
-
 
     private void HorizontalInputCheck(InputAction.CallbackContext ctx)
     {
