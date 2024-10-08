@@ -1,63 +1,101 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 
 public class DoorFunctions : MonoBehaviour
 {
-    bool canOpenDoor;
+    [SerializeField] InputManager inputManager;
     bool doorIsOpening;
-    [SerializeField] Vector3 rotation;
+    bool isOpen;
+    bool isRotatingDoor;
+    Vector3 rotation;
     [SerializeField] float rotationSpeed;
     Transform doorTransform;
     float RotationAmount = 90f;
-    Vector3 StartRotation;
+    float forwardDirection;
+
+    Vector3 startRotation;
+    Vector3 forward;
 
     private void Awake()
     {
+        inputManager = FindAnyObjectByType<InputManager>();
         doorTransform = GetComponent<Transform>();
-        StartRotation = transform.rotation.eulerAngles;
+        startRotation = transform.rotation.eulerAngles;
+        forward = transform.right;
     }
 
     private void Update()
     {
-        if (doorIsOpening)
+        //if (doorIsOpening)
+        //{
+        //    /StartCoroutine(DoorRotation());
+        //}
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player") && inputManager.openDoor)
         {
-            StartCoroutine(DoorRoation());
+            Open(other.transform.position);
         }
     }
 
-    public void OnOpenDoorPressed()
+    public void Open(Vector3 UserPosition)
     {
-        if (!canOpenDoor) return;
-
-        doorIsOpening = true;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
+        if (!isOpen)
         {
-            canOpenDoor = true;
+            float dot = Vector3.Dot(forward, (UserPosition - transform.position).normalized);
+            Debug.Log($"Dot: {dot.ToString("N3")}");
+            StartCoroutine(OpenDoorRotation(dot));
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    IEnumerator OpenDoorRotation(float forwardAmount)
     {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            canOpenDoor = false;
-        }
-    }
+        Quaternion StartRotation = doorTransform.rotation;
+        Quaternion EndRotation;
 
-    IEnumerator DoorRoation()
-    {
-        Quaternion startRotation = doorTransform.rotation;
-        Quaternion endRotation = Quaternion.Euler(new Vector3(0, StartRotation.y + RotationAmount, 0));
+        if (forwardAmount >= forwardDirection)
+        {
+            EndRotation = Quaternion.Euler(new Vector3(0, startRotation.y - RotationAmount, 0));
+        }
+        else
+        {
+            EndRotation = Quaternion.Euler(new Vector3(0, startRotation.y + RotationAmount, 0));
+        }
+
+        isOpen = true;
 
         float time = 0;
         while (time < 1)
         {
-            transform.rotation = Quaternion.Slerp(startRotation, endRotation, time);
+            transform.rotation = Quaternion.Slerp(StartRotation, EndRotation, time);
+            yield return null;
+            time += Time.deltaTime * rotationSpeed;
+        }
+    }
+
+    public void Close()
+    {
+        if (isOpen)
+        {
+            StartCoroutine(CloseDoorRotation()); 
+        }
+    }
+
+    private IEnumerator CloseDoorRotation()
+    {
+        Quaternion StartRotation = transform.rotation;
+        Quaternion EndRotation = Quaternion.Euler(startRotation);
+
+        isOpen = false;
+
+        float time = 0;
+        while (time < 1)
+        {
+            transform.rotation = Quaternion.Slerp(StartRotation, EndRotation, time);
             yield return null;
             time += Time.deltaTime * rotationSpeed;
         }
