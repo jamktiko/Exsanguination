@@ -16,6 +16,7 @@ public class EnemyHealthScript : MonoBehaviour
     {
         stuckEnemyFinisher = GameObject.Find("PlayerModel").GetComponent<EnemyFinisher>();
         enemyDeathScript = GetComponentInChildren<EnemyDeathScript>();
+        bloodController = GetComponentInChildren<BloodFXController>();
         bloodSplatterParticle = GetComponentInChildren<ParticleSystem>();
     }
 
@@ -28,6 +29,7 @@ public class EnemyHealthScript : MonoBehaviour
     {
         audioManager.PlayEnemyTakeDamageAudioClip(enemyTakeDamageAudioSource);
         bloodController.Shoot();
+        bloodSplatterParticle.Play(true);
         health = Mathf.Clamp(health - changeAmount, 0, maxHealth);
         Debug.Log("Enemy health = " + health);
         if (health <= 0)
