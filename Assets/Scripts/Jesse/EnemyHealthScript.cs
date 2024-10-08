@@ -10,11 +10,13 @@ public class EnemyHealthScript : MonoBehaviour
     private EnemyFinisher stuckEnemyFinisher;
     private EnemyDeathScript enemyDeathScript;
     [SerializeField] private BloodFXController bloodController;
+    [SerializeField] private ParticleSystem bloodSplatterParticle;
 
     private void Awake()
     {
         stuckEnemyFinisher = GameObject.Find("PlayerModel").GetComponent<EnemyFinisher>();
         enemyDeathScript = GetComponentInChildren<EnemyDeathScript>();
+        bloodSplatterParticle = GetComponentInChildren<ParticleSystem>();
     }
 
     private void Start()
