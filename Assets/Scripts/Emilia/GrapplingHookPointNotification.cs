@@ -19,9 +19,7 @@ public class GrapplingHookPointNotification : MonoBehaviour
 
         if (hit.collider != null)
         {
-            Debug.DrawRay(gameObject.transform.position, ray.direction, Color.yellow);
-            Debug.Log("ray hit: " + hit.collider.name);
-
+            
             if (hit.collider.CompareTag("HookHitPoint"))
             {
                 hookPointLight = hit.collider.GetComponentInChildren<Light>();
