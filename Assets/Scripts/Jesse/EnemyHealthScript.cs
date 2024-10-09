@@ -18,6 +18,7 @@ public class EnemyHealthScript : MonoBehaviour
         enemyDeathScript = GetComponentInChildren<EnemyDeathScript>();
         bloodController = GetComponentInChildren<BloodFXController>();
         bloodSplatterParticle = GetComponentInChildren<ParticleSystem>();
+        audioManager = FindObjectOfType<AudioManager>();
     }
 
     private void Start()
