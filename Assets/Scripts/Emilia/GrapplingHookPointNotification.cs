@@ -7,6 +7,10 @@ public class GrapplingHookPointNotification : MonoBehaviour
     private Light hookPointLight;
     private Light lastHookPointLight;
     private Ray ray;
+    private float lightEnabledTimer = 2f;
+    private float defaultLightAmount = 0.5f;
+    private float highlightedLightAmount = 5f;
+
 
     private bool isCoroutineRunning = false; // Flag to track coroutine state
 
@@ -29,13 +33,13 @@ public class GrapplingHookPointNotification : MonoBehaviour
                 }
                 else if (lastHookPointLight != hookPointLight)
                 {
-                    lastHookPointLight.enabled = false;
+                    lastHookPointLight.intensity = defaultLightAmount;
                     lastHookPointLight = hookPointLight;
                 }
 
                 if (hookPointLight != null)
                 {
-                    hookPointLight.enabled = true;
+                    hookPointLight.intensity = highlightedLightAmount;
                 }
             }
             else if (lastHookPointLight != null && !isCoroutineRunning)
@@ -48,8 +52,8 @@ public class GrapplingHookPointNotification : MonoBehaviour
     IEnumerator HookPointLightLoop()
     {
         isCoroutineRunning = true; // Set flag to indicate coroutine is running
-        yield return new WaitForSeconds(2f);
-        lastHookPointLight.enabled = false;
+        yield return new WaitForSeconds(lightEnabledTimer);
+        lastHookPointLight.intensity = defaultLightAmount;
         lastHookPointLight = null; // Reset last hook point light to avoid issues
         isCoroutineRunning = false; // Reset flag
     }
