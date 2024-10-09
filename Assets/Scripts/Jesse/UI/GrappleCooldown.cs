@@ -1,29 +1,48 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GrappleCooldown : MonoBehaviour
 {
     Image image;
+    float grappleCooldownTime;
+    private bool isFinished;
 
     void Awake()
     {
         image = GetComponent<Image>();
+        
+    }
+
+    private void Start()
+    {
+        image.fillAmount = 0;
     }
 
     void Update()
     {
-        if (image.fillAmount == 1)
+        if (image.fillAmount == 0 && !isFinished)
         {
-            image.color = new Color(image.color.r, image.color.g, image.color.b, 0f);
+            image.fillAmount = Mathf.Lerp(0, 1, grappleCooldownTime);
         }
-        else
+        if(image.fillAmount >= 1)
         {
-            image.color = new Color(image.color.r, image.color.g, image.color.b, 1f);
+            isFinished = true;
+            StartCoroutine(ShowImageForSecond());
         }
+       
+
     }
 
-    public void UpdateCooldown(float fillAmount)
+    IEnumerator ShowImageForSecond()
     {
-        image.fillAmount = fillAmount;
+        yield return new WaitForSeconds(1);
+        image.fillAmount = 0;
+    }
+
+    public void SetGrappleCooldownTime(float fillAmount)
+    {
+        isFinished = false;
+        grappleCooldownTime = fillAmount;
     }
 }
