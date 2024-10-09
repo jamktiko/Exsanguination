@@ -119,7 +119,7 @@ public class EnemyFinisher : MonoBehaviour
     {
         if (!isRotating)
         {
-            startRotation =  playerCamera.rotation;               // Record the current rotation
+            startRotation =  Quaternion.Euler(playerCamera.rotation.x, 0,0);               // Record the current rotation
             targetRotation = Quaternion.Euler(-50, 0, 0);     // Set target rotation
             elapsedTime = 0f;                                 // Reset elapsed time
             isRotating = true;                                // Set rotation flag
@@ -132,8 +132,8 @@ public class EnemyFinisher : MonoBehaviour
         if (!isRotating)
         {
 
-            startRotation = targetRotation;               // Record the current rotation
-            targetRotation = Quaternion.Euler(playerCamera.position.x, 0, 0);       // Set target rotation back to (0,0,0)
+            startRotation = Quaternion.Euler(-50, 0, 0);               // Record the current rotation
+            targetRotation = Quaternion.Euler(0, 0, 0);       // Set target rotation back to (0,0,0)
             elapsedTime = 0f;                                 // Reset elapsed time
             isRotating = true;                                // Set rotation flag
         }

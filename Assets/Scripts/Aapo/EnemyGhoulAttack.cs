@@ -19,6 +19,7 @@ public class EnemyGhoulAttack : MonoBehaviour
         playerCombat = GameObject.FindGameObjectWithTag("PlayerModel").GetComponent<PlayerCombat>();
         playerAnimator = GameObject.FindGameObjectWithTag("PlayerModel").GetComponent<Animator>();
         playerHealthManager = GameObject.FindGameObjectWithTag("HealthManager").GetComponent<PlayerHealthManager>();
+        audioManager = FindObjectOfType<AudioManager>();
     }
 
 
@@ -27,20 +28,20 @@ public class EnemyGhoulAttack : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            if(playerCombat.currentWeaponNumber == 0)
-            {
+            //if(playerCombat.currentWeaponNumber == 0)
+            //{
                 if (playerCombat.isBlocking)
                 {
                     audioManager.PlayParryAudioClip();
                     enemyAnimator.SetTrigger("stun");
                     playerAnimator.SetTrigger("parry");
                 }
-            }
+            //}
             
 
             else
             {
-                
+                audioManager.PlayPlayerTakeDamageAudioClip();
                 playerHealthManager.UpdatePlayerHealth(-damage);
             }
         }

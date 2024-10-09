@@ -41,6 +41,7 @@ public class EnemyAI : MonoBehaviour
     private Vector3 pounceDirection;
     private bool canMoveAfterPounce;
     private bool isStuckOnStake;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -51,6 +52,8 @@ public class EnemyAI : MonoBehaviour
 
         navMeshAgent = GetComponent<NavMeshAgent>(); // Initialize NavMeshAgent
         enemyStates = GetComponentInChildren<EnemyStates>();
+        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        playerMovementScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         if (player == null)
         {
             // Search for the player
@@ -63,10 +66,11 @@ public class EnemyAI : MonoBehaviour
     private void Start()
     {
         storedSeparationDistance = separationDistance;
-        rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+        rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
         rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
         navMeshAgent.speed = moveSpeed;  // Sync NavMeshAgent speed
         navMeshAgent.stoppingDistance = stoppingDistance;
+
     }
 
 
@@ -157,8 +161,7 @@ public class EnemyAI : MonoBehaviour
 
         if(!enemyStates.isStunned && !enemyAnimator.GetBool("isAttacking") && distance > attackRange && navMeshAgent.enabled && isGrounded)
         {
-            navMeshAgent.updateRotation = true;
-            //RotateTowardsPlayer(direction); // Always rotate towards the player
+            RotateTowardsPlayer(direction); // Always rotate towards the player
             navMeshAgent.SetDestination(player.position);  // Use NavMesh to move towards player
         }
 
@@ -169,7 +172,6 @@ public class EnemyAI : MonoBehaviour
         {
             if (CanAttack() && !enemyStates.isStunned)
             {
-                navMeshAgent.updateRotation = false; // Let NavMeshAgent handle rotation
                 SnapRotationTowardsPlayer(direction);
                 Attack();  // Trigger the attack
             }
@@ -178,7 +180,6 @@ public class EnemyAI : MonoBehaviour
 
         if (distance <= pounceRangeMax && distance >= pounceRangeMin && CanPounce() && !enemyStates.isStunned && !enemyAnimator.GetBool("isAttacking") && !isStuckOnStake)
         {
-            navMeshAgent.updateRotation = false; // Let NavMeshAgent handle rotation
             SnapRotationTowardsPlayer(direction);
             Pounce();
             lastPounceTime = Time.time;
@@ -210,7 +211,6 @@ public class EnemyAI : MonoBehaviour
     {
         yield return new WaitForSeconds(attackCooldown);  // Wait for attackCooldown duration
         enemyAnimator.SetBool("isAttacking", false);  // Reset attacking state
-        navMeshAgent.updateRotation = true;
     }
 
     void Pounce()
