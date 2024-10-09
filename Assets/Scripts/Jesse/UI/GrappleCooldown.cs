@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class GrappleCooldown : MonoBehaviour
 {
     Image image;
-    float grappleCooldownTime;
+   public float grappleCooldownTime;
     private bool isFinished;
 
     void Awake()
@@ -23,7 +23,7 @@ public class GrappleCooldown : MonoBehaviour
     {
         if (image.fillAmount == 0 && !isFinished)
         {
-            image.fillAmount = Mathf.Lerp(0, 1, grappleCooldownTime);
+            image.fillAmount = Mathf.PingPong(1, grappleCooldownTime);
         }
         if(image.fillAmount >= 1)
         {
