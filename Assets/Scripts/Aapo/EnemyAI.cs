@@ -26,10 +26,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private AudioManager audioManager;
     [SerializeField] private AudioSource enemyAlertAudioSource;
     [SerializeField] private AudioSource enemyFootstepAudioSource;
-    [SerializeField] private float jumpForceUp = 5f; // Upward force for jumping
-    [SerializeField] private float jumpForceForward = 5f; // Forward force for jumping
-    [SerializeField] private float jumpDistance = 1f; // Distance to jump away from the wall
-    [SerializeField] private float jumpHeightThreshold = 0.5f; // Height difference required to jump
+
 
     private NavMeshAgent navMeshAgent;  // NavMeshAgent reference
     private Transform player;
@@ -42,7 +39,6 @@ public class EnemyAI : MonoBehaviour
     public bool enemyIsTriggered;
     private bool isPouncing;
     private Vector3 pounceDirection;
-    private bool isJumping; // Check if the enemy is currently jumping
     private bool canMoveAfterPounce;
     private bool isStuckOnStake;
     void Awake()
@@ -161,7 +157,7 @@ public class EnemyAI : MonoBehaviour
 
         if(!enemyStates.isStunned && !enemyAnimator.GetBool("isAttacking") && distance > attackRange && navMeshAgent.enabled && isGrounded)
         {
-            RotateTowardsPlayer(direction); // Always rotate towards the player
+            //RotateTowardsPlayer(direction); // Always rotate towards the player
             navMeshAgent.SetDestination(player.position);  // Use NavMesh to move towards player
         }
 
@@ -172,7 +168,7 @@ public class EnemyAI : MonoBehaviour
         {
             if (CanAttack() && !enemyStates.isStunned)
             {
-                SnapRotationTowardsPlayer(direction);
+                //SnapRotationTowardsPlayer(direction);
                 Attack();  // Trigger the attack
             }
         }
@@ -180,7 +176,7 @@ public class EnemyAI : MonoBehaviour
 
         if (distance <= pounceRangeMax && distance >= pounceRangeMin && CanPounce() && !enemyStates.isStunned && !enemyAnimator.GetBool("isAttacking") && !isStuckOnStake)
         {
-            SnapRotationTowardsPlayer(direction);
+            //SnapRotationTowardsPlayer(direction);
             Pounce();
             lastPounceTime = Time.time;
         }
@@ -292,10 +288,8 @@ public class EnemyAI : MonoBehaviour
   
     void OnDrawGizmosSelected()
     {
-        Vector3 jumpDirectionLine = new Vector3(0, 0, jumpDistance);
         
-        Gizmos.color = Color.blue;
-        Gizmos.DrawLine(transform.position, jumpDirectionLine);
+       
 
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, stopSeparationDistance);
