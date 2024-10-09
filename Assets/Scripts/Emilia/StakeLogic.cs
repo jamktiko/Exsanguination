@@ -43,6 +43,7 @@ public class StakeLogic : MonoBehaviour
             {
                 CompleteReturnToPlayer();
             }
+
         }
     }
 
@@ -110,7 +111,9 @@ public class StakeLogic : MonoBehaviour
     {
         // Reset stake to player's position
         transform.SetParent(playerTransform, true);
-        transform.SetPositionAndRotation(stakeLocationOnPlayer.transform.position, stakeRotation);
+        transform.position = stakeLocationOnPlayer.transform.position;
+        transform.localRotation = stakeRotation;
+
         playerHealth.UpdatePlayerHealth(playerHealth.MaxPlayerHealth() / 2);
 
         // Re-enable collision between stake and enemy
@@ -144,8 +147,9 @@ public class StakeLogic : MonoBehaviour
     private void CompleteReturnToPlayer()
     {
         // Instantly teleport the stake back to the player's hand
-        transform.SetPositionAndRotation(stakeLocationOnPlayer.transform.position, stakeRotation);
         transform.SetParent(playerTransform, true);
+        transform.position = stakeLocationOnPlayer.transform.position;
+        transform.localRotation = stakeRotation;
 
         // Reset state
         isThrown = false;
