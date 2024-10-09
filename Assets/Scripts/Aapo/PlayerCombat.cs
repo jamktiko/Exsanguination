@@ -1,11 +1,10 @@
 using System.Collections;
-using UnityEditor.Animations;
 using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
     private Animator animator;
-    [SerializeField] AnimatorController[] weaponAnimators;
+    [SerializeField] RuntimeAnimatorController[] weaponAnimators;
     public bool canDamage;
     [SerializeField] private bool canCombo;
     public bool thirdAttackDamage;
