@@ -28,15 +28,15 @@ public class EnemyGhoulAttack : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            if(playerCombat.currentWeaponNumber == 0)
-            {
+            //if(playerCombat.currentWeaponNumber == 0)
+            //{
                 if (playerCombat.isBlocking)
                 {
                     audioManager.PlayParryAudioClip();
                     enemyAnimator.SetTrigger("stun");
                     playerAnimator.SetTrigger("parry");
                 }
-            }
+            //}
             
 
             else

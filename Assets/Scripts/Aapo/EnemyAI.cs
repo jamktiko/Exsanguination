@@ -66,10 +66,11 @@ public class EnemyAI : MonoBehaviour
     private void Start()
     {
         storedSeparationDistance = separationDistance;
-        rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+        rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
         rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
         navMeshAgent.speed = moveSpeed;  // Sync NavMeshAgent speed
         navMeshAgent.stoppingDistance = stoppingDistance;
+
     }
 
 
@@ -160,7 +161,6 @@ public class EnemyAI : MonoBehaviour
 
         if(!enemyStates.isStunned && !enemyAnimator.GetBool("isAttacking") && distance > attackRange && navMeshAgent.enabled && isGrounded)
         {
-            navMeshAgent.updateRotation = true;
             RotateTowardsPlayer(direction); // Always rotate towards the player
             navMeshAgent.SetDestination(player.position);  // Use NavMesh to move towards player
         }
@@ -180,7 +180,6 @@ public class EnemyAI : MonoBehaviour
 
         if (distance <= pounceRangeMax && distance >= pounceRangeMin && CanPounce() && !enemyStates.isStunned && !enemyAnimator.GetBool("isAttacking") && !isStuckOnStake)
         {
-            navMeshAgent.updateRotation = false; // Let NavMeshAgent handle rotation
             SnapRotationTowardsPlayer(direction);
             Pounce();
             lastPounceTime = Time.time;
@@ -205,7 +204,6 @@ public class EnemyAI : MonoBehaviour
             return;  // If attacking, do nothing (don't reset or start another attack)
         Debug.Log("Enemy is attacking");
         lastAttackTime = Time.time;  // Record the last time an attack was initiated
-        navMeshAgent.updateRotation = false; // Let NavMeshAgent handle rotation
         enemyAnimator.SetBool("isAttacking", true);  // Start attack animation
         StartCoroutine(ResetAttackAfterCooldown());  // Reset attack state after the animation
     }
@@ -213,7 +211,6 @@ public class EnemyAI : MonoBehaviour
     {
         yield return new WaitForSeconds(attackCooldown);  // Wait for attackCooldown duration
         enemyAnimator.SetBool("isAttacking", false);  // Reset attacking state
-        navMeshAgent.updateRotation = true;
     }
 
     void Pounce()
