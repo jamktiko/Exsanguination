@@ -222,10 +222,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 870503549766738656, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8268175840407969443, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1761475796}
   m_SourcePrefab: {fileID: 100100000, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
 --- !u!43 &24762649
 Mesh:
@@ -24855,6 +24859,24 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7149229392581079108, guid: 616ca48bfb38ac54482d8bab10922087, type: 3}
   m_PrefabInstance: {fileID: 1732268765}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1761475792 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8268175840407969443, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
+  m_PrefabInstance: {fileID: 602026}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1761475796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1761475792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07e1d2ee6c4c2b343b50286300ed1670, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grappleCooldownTime: 0
 --- !u!114 &1779308890 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 693925893164656524, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
@@ -27065,7 +27087,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2007057630572557001, guid: 1b62a4bb8cc8efb4aae4dc9174a7bd6b, type: 3}
       propertyPath: m_RenderPostProcessing
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2303243253875908596, guid: 1b62a4bb8cc8efb4aae4dc9174a7bd6b, type: 3}
       propertyPath: audioManager
@@ -27225,7 +27247,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9057154534892489859, guid: 1b62a4bb8cc8efb4aae4dc9174a7bd6b, type: 3}
       propertyPath: m_RendererIndex
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 9057154534892489859, guid: 1b62a4bb8cc8efb4aae4dc9174a7bd6b, type: 3}
       propertyPath: m_RenderPostProcessing

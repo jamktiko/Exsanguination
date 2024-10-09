@@ -31,8 +31,9 @@ public class GrapplingHookShoot : MonoBehaviour
     void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();
-        grappleCooldown = GameObject.Find("GrappleCooldown").GetComponent<GrappleCooldown>();
-        audioManager = FindObjectOfType<AudioManager>();
+        //grappleCooldown = GameObject.Find("GrappleCooldown").GetComponent<GrappleCooldown>();
+        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+
     }
 
     private void Update()
@@ -81,7 +82,7 @@ public class GrapplingHookShoot : MonoBehaviour
 
     private void ExecuteGrapple()
     {
-        grappleCooldown.SetGrappleCooldownTime(grapplingCd);
+        //grappleCooldown.SetGrappleCooldownTime(grapplingCd);
         playerMovement.freeze = false;
 
         Vector3 lowestPoint = new Vector3 (transform.position.x, transform.position.y - 1f, transform.position.z);
