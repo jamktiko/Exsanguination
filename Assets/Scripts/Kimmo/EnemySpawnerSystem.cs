@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class EnemyGroup // Information of each enemy group
 {
-    [Header("Enemy name must be 'EnemyGhoul' without numbers")]
     [SerializeField] GameObject[] enemies;
 
     public GameObject spawnTriggerPoint;
