@@ -41,7 +41,7 @@ public class EnemyGhoulAttack : MonoBehaviour
 
             else
             {
-                
+                audioManager.PlayPlayerTakeDamageAudioClip();
                 playerHealthManager.UpdatePlayerHealth(-damage);
             }
         }
