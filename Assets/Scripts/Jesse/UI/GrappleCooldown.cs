@@ -21,13 +21,13 @@ public class GrappleCooldown : MonoBehaviour
 
     void Update()
     {
-        if (image.fillAmount == 0 && !isFinished)
+        if (image.fillAmount == 0 && isFinished)
         {
-            image.fillAmount = Mathf.PingPong(1, grappleCooldownTime);
+            image.fillAmount = Mathf.Lerp(0,1, grappleCooldownTime);
         }
         if(image.fillAmount >= 1)
         {
-            isFinished = true;
+            isFinished = false;
             StartCoroutine(ShowImageForSecond());
         }
        
@@ -42,7 +42,7 @@ public class GrappleCooldown : MonoBehaviour
 
     public void SetGrappleCooldownTime(float fillAmount)
     {
-        isFinished = false;
+        isFinished = true;
         grappleCooldownTime = fillAmount;
     }
 }
