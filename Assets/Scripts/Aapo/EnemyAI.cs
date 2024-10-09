@@ -157,6 +157,7 @@ public class EnemyAI : MonoBehaviour
 
         if(!enemyStates.isStunned && !enemyAnimator.GetBool("isAttacking") && distance > attackRange && navMeshAgent.enabled && isGrounded)
         {
+            navMeshAgent.updateRotation = true;
             //RotateTowardsPlayer(direction); // Always rotate towards the player
             navMeshAgent.SetDestination(player.position);  // Use NavMesh to move towards player
         }
@@ -168,7 +169,8 @@ public class EnemyAI : MonoBehaviour
         {
             if (CanAttack() && !enemyStates.isStunned)
             {
-                //SnapRotationTowardsPlayer(direction);
+                navMeshAgent.updateRotation = false; // Let NavMeshAgent handle rotation
+                SnapRotationTowardsPlayer(direction);
                 Attack();  // Trigger the attack
             }
         }
@@ -176,7 +178,8 @@ public class EnemyAI : MonoBehaviour
 
         if (distance <= pounceRangeMax && distance >= pounceRangeMin && CanPounce() && !enemyStates.isStunned && !enemyAnimator.GetBool("isAttacking") && !isStuckOnStake)
         {
-            //SnapRotationTowardsPlayer(direction);
+            navMeshAgent.updateRotation = false; // Let NavMeshAgent handle rotation
+            SnapRotationTowardsPlayer(direction);
             Pounce();
             lastPounceTime = Time.time;
         }
@@ -207,6 +210,7 @@ public class EnemyAI : MonoBehaviour
     {
         yield return new WaitForSeconds(attackCooldown);  // Wait for attackCooldown duration
         enemyAnimator.SetBool("isAttacking", false);  // Reset attacking state
+        navMeshAgent.updateRotation = true;
     }
 
     void Pounce()

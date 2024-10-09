@@ -6,7 +6,7 @@ public class SpawnTriggerDetector : MonoBehaviour
 {
     [SerializeField] int groupIndex;
     EnemySpawnerSystem enemySpawnerSystem;
-
+    private bool isSpawnedAlready;
     public void SetGroupIndex(int groupNumber)
     {
         groupIndex = groupNumber;
@@ -24,9 +24,10 @@ public class SpawnTriggerDetector : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") && !isSpawnedAlready)
         {
             enemySpawnerSystem.enemyGroup[groupIndex].ActivateEnemies();
+            isSpawnedAlready = true;
         }
     }
 }   
