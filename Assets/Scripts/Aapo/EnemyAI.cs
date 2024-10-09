@@ -41,6 +41,7 @@ public class EnemyAI : MonoBehaviour
     private Vector3 pounceDirection;
     private bool canMoveAfterPounce;
     private bool isStuckOnStake;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -51,6 +52,8 @@ public class EnemyAI : MonoBehaviour
 
         navMeshAgent = GetComponent<NavMeshAgent>(); // Initialize NavMeshAgent
         enemyStates = GetComponentInChildren<EnemyStates>();
+        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        playerMovementScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         if (player == null)
         {
             // Search for the player
