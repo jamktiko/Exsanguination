@@ -55,7 +55,102 @@ public class BulletHellPattern : ScriptableObject
         }
     }
 
-    private IEnumerator<WaitForSeconds> ShootBullets(BulletPattern pattern, Transform origin)
+    
+
+    public void ExecuteFractalExpansionPattern(Transform origin)
+    {
+        foreach (var pattern in patterns)
+        {
+            origin.GetComponent<MonoBehaviour>().StartCoroutine(FractalExpansion(pattern, origin));
+        }
+    }
+
+    public void ExecuteOscillatingSpiralPattern(Transform origin)
+    {
+        foreach (var pattern in patterns)
+        {
+            origin.GetComponent<MonoBehaviour>().StartCoroutine(OscillatingSpiral(pattern, origin));
+        }
+    }
+
+    public void ExecuteTeleportingShotsPattern(Transform origin)
+    {
+        foreach (var pattern in patterns)
+        {
+            origin.GetComponent<MonoBehaviour>().StartCoroutine(TeleportingShots(pattern, origin));
+        }
+    }
+
+    public void ExecuteDelayedFragmentationPattern(Transform origin)
+    {
+        foreach (var pattern in patterns)
+        {
+            origin.GetComponent<MonoBehaviour>().StartCoroutine(DelayedFragmentation(pattern, origin));
+        }
+    }
+
+    private IEnumerator<WaitForSeconds> FractalExpansion(BulletPattern pattern, Transform origin)
+    {
+        for (int i = 0; i < pattern.numberOfBullets; i++)
+        {
+            float angle = Mathf.Pow(i, 0.5f) * pattern.angleBetweenBullets;
+            Quaternion rotation = Quaternion.Euler(new Vector3(0, angle, 0));
+            GameObject bullet = Instantiate(pattern.bulletPrefab, origin.position, rotation);
+            bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * pattern.speed;
+            yield return new WaitForSeconds(pattern.delayBetweenShots);
+        }
+    }
+
+    private IEnumerator<WaitForSeconds> OscillatingSpiral(BulletPattern pattern, Transform origin)
+    {
+        for (int i = 0; i < pattern.numberOfBullets; i++)
+        {
+            float angle = i * pattern.angleBetweenBullets;
+            float yOffset = Mathf.Sin(i * 0.1f) * 10;
+            Quaternion rotation = Quaternion.Euler(new Vector3(0, angle, 0));
+            Vector3 position = origin.position + new Vector3(0, yOffset, 0);
+            GameObject bullet = Instantiate(pattern.bulletPrefab, position, rotation);
+            bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * pattern.speed;
+            yield return new WaitForSeconds(pattern.delayBetweenShots);
+        }
+    }
+
+    private IEnumerator<WaitForSeconds> TeleportingShots(BulletPattern pattern, Transform origin)
+    {
+        for (int i = 0; i < pattern.numberOfBullets; i++)
+        {
+            float angle = i * pattern.angleBetweenBullets;
+            Quaternion rotation = Quaternion.Euler(new Vector3(0, angle, 0));
+            Vector3 initialPosition = origin.position + Random.insideUnitSphere * 2;
+            GameObject bullet = Instantiate(pattern.bulletPrefab, initialPosition, rotation);
+            yield return new WaitForSeconds(0.1f);
+            bullet.transform.position = origin.position;
+            bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * pattern.speed;
+            yield return new WaitForSeconds(pattern.delayBetweenShots);
+        }
+    }
+
+    private IEnumerator<WaitForSeconds> DelayedFragmentation(BulletPattern pattern, Transform origin)
+    {
+        for (int i = 0; i < pattern.numberOfBullets; i++)
+        {
+            float angle = i * pattern.angleBetweenBullets;
+            Quaternion rotation = Quaternion.Euler(new Vector3(0, angle, 0));
+            GameObject bullet = Instantiate(pattern.bulletPrefab, origin.position, rotation);
+            Rigidbody rb = bullet.GetComponent<Rigidbody>();
+            rb.velocity = bullet.transform.forward * pattern.speed;
+            yield return new WaitForSeconds(1.0f);
+            for (int j = 0; j < 3; j++)
+            {
+                GameObject fragment = Instantiate(pattern.bulletPrefab, bullet.transform.position, Quaternion.Euler(0, angle + (j * 120), 0));
+                fragment.GetComponent<Rigidbody>().velocity = fragment.transform.forward * pattern.speed / 2;
+            }
+            Destroy(bullet);
+            yield return new WaitForSeconds(pattern.delayBetweenShots);
+        }
+    }
+
+        private IEnumerator<WaitForSeconds> ShootBullets(BulletPattern pattern, Transform origin)
     {
         for (int i = 0; i < pattern.numberOfBullets; i++)
         {
@@ -67,7 +162,7 @@ public class BulletHellPattern : ScriptableObject
         }
     }
 
-    public IEnumerator<WaitForSeconds> WavePattern(BulletPattern pattern, Transform origin)
+    private IEnumerator<WaitForSeconds> WavePattern(BulletPattern pattern, Transform origin)
     {
         for (int i = 0; i < pattern.numberOfBullets; i++)
         {
@@ -78,7 +173,7 @@ public class BulletHellPattern : ScriptableObject
             yield return new WaitForSeconds(pattern.delayBetweenShots);
         }
     }
-    public IEnumerator<WaitForSeconds> RandomSpread(BulletPattern pattern, Transform origin)
+    private IEnumerator<WaitForSeconds> RandomSpread(BulletPattern pattern, Transform origin)
     {
         for (int i = 0; i < pattern.numberOfBullets; i++)
         {
@@ -90,7 +185,7 @@ public class BulletHellPattern : ScriptableObject
         }
     }
 
-    public IEnumerator<WaitForSeconds> ConvergingWaves(BulletPattern pattern, Transform origin)
+    private IEnumerator<WaitForSeconds> ConvergingWaves(BulletPattern pattern, Transform origin)
     {
         for (int i = 0; i < pattern.numberOfBullets / 2; i++)
         {
@@ -107,7 +202,7 @@ public class BulletHellPattern : ScriptableObject
             yield return new WaitForSeconds(pattern.delayBetweenShots);
         }
     }
-    public IEnumerator<WaitForSeconds> SpiralWithVariance(BulletPattern pattern, Transform origin)
+    private IEnumerator<WaitForSeconds> SpiralWithVariance(BulletPattern pattern, Transform origin)
     {
         for (int i = 0; i < pattern.numberOfBullets; i++)
         {

@@ -9,6 +9,10 @@ public class TestBulletPatterns : MonoBehaviour
 /// extraPatterns 2 = ConvergingWaves pattern
 /// extraPatterns 3 = RandomSpread pattern
 /// extraPatterns 4 = SpiralWithVariance pattern
+/// extraPatterns 5 = FractalExpansio pattern
+/// extraPatterns 6 = TeleportingShots pattern
+/// extraPatterns 7 = DelayedFragmentation pattern
+/// extraPatterns 8 = OscillatingSpiral pattern
 /// </summary>
     public BulletHellPattern bulletHellPattern;
     public int extraPatterns;
@@ -37,6 +41,27 @@ public class TestBulletPatterns : MonoBehaviour
         {
             bulletHellPattern.ExecuteSpiralWithVariancePattern(transform);
         }
+
+        if (extraPatterns == 5)
+        {
+            bulletHellPattern.ExecuteFractalExpansionPattern(transform);
+        }
+
+        if (extraPatterns == 6)
+        {
+            bulletHellPattern.ExecuteTeleportingShotsPattern(transform);
+        }
+
+        if (extraPatterns == 7)
+        {
+            bulletHellPattern.ExecuteDelayedFragmentationPattern(transform);
+        }
+
+        if (extraPatterns == 8)
+        {
+            bulletHellPattern.ExecuteOscillatingSpiralPattern(transform);
+        }
+
     }
 
     // Update is called once per frame
