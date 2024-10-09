@@ -9,11 +9,13 @@ public class HealthPotion : MonoBehaviour
     [SerializeField] GameObject thisPotion;
     //[SerializeField] ParticleSystem healthpotionGlow;
     AudioManager audioManager;
+    PlayerHealthManager playerHealthManager;
 
     private void Awake()
     {
         thisPotion = this.gameObject;
         audioManager = FindObjectOfType<AudioManager>();
+        playerHealthManager = FindObjectOfType<PlayerHealthManager>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -21,8 +23,6 @@ public class HealthPotion : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("Player drank a health potion.");
-            PlayerHealthManager playerHealthManager;
-            playerHealthManager = other.GetComponent<PlayerHealthManager>();
             playerHealthManager.UpdatePlayerHealth(healValue);
             audioManager.PlayPlayerHealAudioClip();
             thisPotion.SetActive(false);
