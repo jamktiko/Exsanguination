@@ -64,6 +64,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         dashDirection = orientation.forward;
+        audioManager = FindObjectOfType<AudioManager>();
     }
 
     private void Start()
