@@ -2844,8 +2844,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cda1e67c6c7aec24f8a82b0d00591f26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 50
-  health: 50
+  maxHealth: 20
+  health: 20
   audioManager: {fileID: 0}
   enemyTakeDamageAudioSource: {fileID: 2463057039683506548}
   bloodController: {fileID: 4323281299790090424}
@@ -2862,10 +2862,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6553e910a41a3fe4db9a53618ddd7d02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 6
+  moveSpeed: 4
   originalSpeed: 2
   stoppingDistance: 1
-  pounceForceUp: 1.5
+  pounceForceUp: 1
   pounceForceForward: 300
   pounceCooldown: 10
   groundLayer:
@@ -2888,10 +2888,6 @@ MonoBehaviour:
   audioManager: {fileID: 0}
   enemyAlertAudioSource: {fileID: 6701046629129589312}
   enemyFootstepAudioSource: {fileID: 4555619591960417357}
-  jumpForceUp: 5
-  jumpForceForward: 5
-  jumpDistance: 1
-  jumpHeightThreshold: 0.5
   isGrounded: 1
   enemyIsTriggered: 1
 --- !u!82 &8042239175878887669

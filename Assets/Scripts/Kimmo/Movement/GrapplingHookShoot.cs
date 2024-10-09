@@ -32,6 +32,7 @@ public class GrapplingHookShoot : MonoBehaviour
     {
         playerMovement = GetComponent<PlayerMovement>();
         grappleCooldown = GameObject.Find("GrappleCooldown").GetComponent<GrappleCooldown>();
+        audioManager = FindObjectOfType<AudioManager>();
     }
 
     private void Update()

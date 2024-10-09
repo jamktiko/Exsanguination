@@ -24,6 +24,7 @@ public class PlayerCombat : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        audioManager = FindObjectOfType<AudioManager>();
     }
     private void Start()
     {

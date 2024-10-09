@@ -19,6 +19,7 @@ public class EnemyGhoulAttack : MonoBehaviour
         playerCombat = GameObject.FindGameObjectWithTag("PlayerModel").GetComponent<PlayerCombat>();
         playerAnimator = GameObject.FindGameObjectWithTag("PlayerModel").GetComponent<Animator>();
         playerHealthManager = GameObject.FindGameObjectWithTag("HealthManager").GetComponent<PlayerHealthManager>();
+        audioManager = FindObjectOfType<AudioManager>();
     }
 
 

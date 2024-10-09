@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 [System.Serializable]
 
-public class EnemyGroup // Information of each enemy group
+public class EnemyGroup // Information and methods of individual enemy groups
 {
     [SerializeField] GameObject[] enemies;
 
@@ -33,7 +33,7 @@ public class EnemyGroup // Information of each enemy group
     }
 }
 
-public class EnemySpawnerSystem : MonoBehaviour // Manages the enemy groups
+public class EnemySpawnerSystem : MonoBehaviour // Manages all enemy groups
 {
     public EnemyGroup[] enemyGroup;
     private EnemyGroup currentEnemyGroup;
