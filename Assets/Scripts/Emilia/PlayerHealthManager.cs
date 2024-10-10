@@ -60,6 +60,10 @@ namespace EmiliaScripts
                 if (currentHealth >= maxHealth) {
                     currentHealth = maxHealth;
                 }
+                else if (currentHealth <= 0)
+                {
+                    OnDeath?.Invoke();
+                }
                 OnHealthUpdate?.Invoke();
                 Debug.Log("Updating player health with modifier: " + healthNumber);
             }

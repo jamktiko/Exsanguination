@@ -22,6 +22,7 @@ public class InputManager : MonoBehaviour
     public bool inputsEnabled;
     private float stakeButtonDownTimer = 0f;
     public bool openDoor;
+    private bool canAttack = true;
 
     private void Awake()
     {
@@ -76,7 +77,7 @@ public class InputManager : MonoBehaviour
 
         movement.Attack.performed += ctx =>
         {
-            if (inputsEnabled)
+            if (inputsEnabled && canAttack)
                 playerCombat.Attack();
         };
 
@@ -97,15 +98,20 @@ public class InputManager : MonoBehaviour
         movement.Stake.performed += ctx =>
         {
             if (inputsEnabled)
+            {
                 stakeHoldDown = true;
 
-            //enable stake and start visual
+                canAttack = false;
+                stakeLogic.StartThrowingChargingVisual();
+            }
         };
 
         movement.Stake.canceled += ctx => {
             stakeHoldDown = false;
+            stakeLogic.StartThrowVisual();
             stakeLogic.ThrowStake(stakeButtonDownTimer);
             stakeButtonDownTimer = 0f;
+            canAttack = true;
         };
 
         movement.Use.performed += ctx =>
