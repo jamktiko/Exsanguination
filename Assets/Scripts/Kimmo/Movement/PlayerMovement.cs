@@ -213,7 +213,10 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnJumpPressed()
     {
-        isJumping = true;
+        if (isGrounded)
+        {
+            isJumping = true;
+        }
     }
 
     // Dash methods
