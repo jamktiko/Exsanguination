@@ -193,4 +193,14 @@ public class StakeLogic : MonoBehaviour
         }
     }
 
+    public void StartThrowingChargingVisual()
+    {
+        //Charge backwards animation
+    }
+
+    public void StartThrowVisual()
+    {
+        // Throw Stake
+    }
+
 }
