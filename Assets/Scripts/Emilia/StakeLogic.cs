@@ -101,6 +101,7 @@ public class StakeLogic : MonoBehaviour
         rb.isKinematic = true; // Stop physics movement when stuck
         GameObject go = enemy.gameObject.GetComponentInChildren(typeof(StakeSpot)).gameObject;
         transform.SetParent(go.transform);
+        transform.position = Vector3.zero;
         Physics.IgnoreCollision(enemy.GetComponent<Collider>(), gameObject.GetComponent<Collider>()); // avoid pushing enemy
 
         // Apply damage and slowing effect
