@@ -107,14 +107,17 @@ public class StakeLogic : MonoBehaviour
         enemy.ApplySlow(slowAmount);
     }
 
-    public void UnstickFromEnemy()
+    public void UnstickFromEnemy(bool isFinished)
     {
         // Reset stake to player's position
         transform.SetParent(playerTransform, true);
         transform.position = stakeLocationOnPlayer.transform.position;
         transform.localRotation = stakeRotation;
 
-        playerHealth.UpdatePlayerHealth(playerHealth.MaxPlayerHealth() / 2);
+        if (isFinished)
+        {
+            playerHealth.UpdatePlayerHealth(playerHealth.MaxPlayerHealth() / 2);
+        }
 
         // Re-enable collision between stake and enemy
         if (stuckEnemy != null)
@@ -173,12 +176,12 @@ public class StakeLogic : MonoBehaviour
                 if (stuckEnemyHealth.GetEnemyHealth() <= (int)(stuckEnemyHealth.GetEnemyMaxHealth() * 0.25f))
                 {
                     stuckEnemyHealth.FinishEnemy();
-                    UnstickFromEnemy();
+                    UnstickFromEnemy(true);
                 }
                 else
                 {
                     stuckEnemy.RemoveSlow();
-                    UnstickFromEnemy();
+                    UnstickFromEnemy(false);
                 }
 
                 // Cancel previous invoke in case it's still active
