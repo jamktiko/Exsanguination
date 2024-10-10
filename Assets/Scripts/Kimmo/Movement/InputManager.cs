@@ -113,12 +113,14 @@ public class InputManager : MonoBehaviour
             if (inputsEnabled)
                 stakeLogic.RetrieveStake();
                 openDoor = true;
+            Debug.Log("Open door = true");
         };
 
         movement.Use.canceled += ctx =>
         {
             if (inputsEnabled)
                 openDoor = false;
+            Debug.Log("Open door = false");
         };
 
         movement.SilverBomb.performed += ctx =>
