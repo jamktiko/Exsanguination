@@ -101,20 +101,24 @@ public class StakeLogic : MonoBehaviour
         rb.isKinematic = true; // Stop physics movement when stuck
         GameObject go = enemy.gameObject.GetComponentInChildren(typeof(StakeSpot)).gameObject;
         transform.SetParent(go.transform);
+        transform.localPosition = Vector3.zero;
         Physics.IgnoreCollision(enemy.GetComponent<Collider>(), gameObject.GetComponent<Collider>()); // avoid pushing enemy
 
         // Apply damage and slowing effect
         enemy.ApplySlow(slowAmount);
     }
 
-    public void UnstickFromEnemy()
+    public void UnstickFromEnemy(bool isFinished)
     {
         // Reset stake to player's position
         transform.SetParent(playerTransform, true);
         transform.position = stakeLocationOnPlayer.transform.position;
         transform.localRotation = stakeRotation;
 
-        playerHealth.UpdatePlayerHealth(playerHealth.MaxPlayerHealth() / 2);
+        if (isFinished)
+        {
+            playerHealth.UpdatePlayerHealth(playerHealth.MaxPlayerHealth() / 2);
+        }
 
         // Re-enable collision between stake and enemy
         if (stuckEnemy != null)
@@ -173,12 +177,12 @@ public class StakeLogic : MonoBehaviour
                 if (stuckEnemyHealth.GetEnemyHealth() <= (int)(stuckEnemyHealth.GetEnemyMaxHealth() * 0.25f))
                 {
                     stuckEnemyHealth.FinishEnemy();
-                    UnstickFromEnemy();
+                    UnstickFromEnemy(true);
                 }
                 else
                 {
                     stuckEnemy.RemoveSlow();
-                    UnstickFromEnemy();
+                    UnstickFromEnemy(false);
                 }
 
                 // Cancel previous invoke in case it's still active
@@ -188,6 +192,16 @@ public class StakeLogic : MonoBehaviour
                 ReturnToPlayer();
             }
         }
+    }
+
+    public void StartThrowingChargingVisual()
+    {
+        //Charge backwards animation
+    }
+
+    public void StartThrowVisual()
+    {
+        // Throw Stake
     }
 
 }

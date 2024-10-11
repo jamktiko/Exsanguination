@@ -25,15 +25,12 @@ public class GrapplingHookShoot : MonoBehaviour
     private float grapplingCdTimer;
 
     private bool isGrappling;
-    private GrappleCooldown grappleCooldown;
-
     // Start is called before the first frame update
     void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();
         //grappleCooldown = GameObject.Find("GrappleCooldown").GetComponent<GrappleCooldown>();
         audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
-
     }
 
     private void Update()
@@ -82,7 +79,6 @@ public class GrapplingHookShoot : MonoBehaviour
 
     private void ExecuteGrapple()
     {
-        //grappleCooldown.SetGrappleCooldownTime(grapplingCd);
         playerMovement.freeze = false;
 
         Vector3 lowestPoint = new Vector3 (transform.position.x, transform.position.y - 1f, transform.position.z);

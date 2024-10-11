@@ -26,24 +26,18 @@ public class DoorFunctions : MonoBehaviour
         forward = transform.right;
     }
 
-    private void Update()
-    {
-        //if (doorIsOpening)
-        //{
-        //    /StartCoroutine(DoorRotation());
-        //}
-    }
-
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Player") && inputManager.openDoor)
         {
+            Debug.Log("Try open door");
             Open(other.transform.position);
         }
     }
 
     public void Open(Vector3 UserPosition)
     {
+        Debug.Log("Open the door!");
         if (!isOpen)
         {
             float dot = Vector3.Dot(forward, (UserPosition - transform.position).normalized);
@@ -59,11 +53,11 @@ public class DoorFunctions : MonoBehaviour
 
         if (forwardAmount >= forwardDirection)
         {
-            EndRotation = Quaternion.Euler(new Vector3(0, startRotation.y - RotationAmount, 0));
+            EndRotation = Quaternion.Euler(new Vector3(0, startRotation.y + RotationAmount, 0));
         }
         else
         {
-            EndRotation = Quaternion.Euler(new Vector3(0, startRotation.y + RotationAmount, 0));
+            EndRotation = Quaternion.Euler(new Vector3(0, startRotation.y - RotationAmount, 0));
         }
 
         isOpen = true;

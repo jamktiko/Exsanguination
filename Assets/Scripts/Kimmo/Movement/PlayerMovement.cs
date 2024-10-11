@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -60,11 +61,16 @@ public class PlayerMovement : MonoBehaviour
     bool firstStepPlayed;
     bool isLanded;
 
+    [Header("Controller")]
+    private ControllerHandler controllerHandler;
+    private Vector2 movementInput; // Changed from Vector3 to Vector2
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         dashDirection = orientation.forward;
         audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        controllerHandler = GameObject.FindGameObjectWithTag("GameManager").GetComponent<ControllerHandler>();
     }
 
     private void Start()
@@ -145,7 +151,15 @@ public class PlayerMovement : MonoBehaviour
     {
         if (canMove)
         {
+            if (controllerHandler.controllerIsConnected) 
+            {
+                ControllerMovement();
+            }
+            else
+            {
             Move();
+            }
+
         }
 
         if (isJumping)
@@ -162,6 +176,38 @@ public class PlayerMovement : MonoBehaviour
         {
             Slide();
         }
+    }
+    private void ControllerMovement()
+    {
+        
+            // Read left stick input from the gamepad
+            movementInput = Gamepad.current.leftStick.ReadValue();
+
+        Vector3 moveDirection = new Vector3(movementInput.x, 0f, movementInput.y);
+        moveDirection = transform.TransformDirection(moveDirection); // Convert to world space
+        moveDirection.y = 0; // Keep movement strictly horizontal
+
+        // Directly set the velocity of the Rigidbody
+        rb.velocity = new Vector3(moveDirection.x * moveSpeed, rb.velocity.y, moveDirection.z * moveSpeed);
+
+        // Optional: Clamp horizontal speed to ensure max speed is maintained
+        Vector3 flatVelocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        if (flatVelocity.magnitude > moveSpeed)
+        {
+            isMoving = true;
+            Vector3 limitedVelocity = flatVelocity.normalized * moveSpeed;
+            rb.velocity = new Vector3(limitedVelocity.x, rb.velocity.y, limitedVelocity.z);
+        }
+
+        //if (isGrounded)
+        //{
+        //    rb.AddForce(moveDirection * moveSpeed * 10f, ForceMode.Force);
+        //}
+        //else if (!isJumping)
+        //{
+        //    rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
+        //}
+
     }
 
     // Movement methods
@@ -213,7 +259,10 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnJumpPressed()
     {
-        isJumping = true;
+        if (isGrounded)
+        {
+            isJumping = true;
+        }
     }
 
     // Dash methods
