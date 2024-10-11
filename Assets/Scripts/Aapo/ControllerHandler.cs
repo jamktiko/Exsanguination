@@ -6,26 +6,37 @@ using UnityEngine.InputSystem;
 public class ControllerHandler : MonoBehaviour
 {
     public bool controllerIsConnected;
+    private ControllerAim controllerAim;
+    private ControllerInputs controllerInputs;
+    private MouseLook mouselook;
     void Awake()
     {
         InputSystem.onDeviceChange += OnDeviceChange;
+        controllerAim = GameObject.FindGameObjectWithTag("Player").GetComponent<ControllerAim>();
+        controllerInputs = GameObject.FindGameObjectWithTag("Player").GetComponent<ControllerInputs>();
+        mouselook = GameObject.FindGameObjectWithTag("Player").GetComponent<MouseLook>();
+
     }
 
-    private void ControllerEnabled()
+    public void ControllerEnabled()
     {
+        
+        controllerInputs.enabled = true;
         controllerIsConnected = true;
-        Cursor.visible = false;
+        controllerAim.enabled = true;
+        mouselook.enabled = false;
     }
 
-    private void ControllerDisabled()
+    public void ControllerDisabled()
     {
-
-        Cursor.visible = true;
+        mouselook.enabled = true;
         controllerIsConnected = false;
+        controllerAim.enabled = false;
+        controllerInputs.enabled = false;
     }
 
 
-    private void Update()
+    private void Start()
     {
         if (Gamepad.all.Count > 0)
         {

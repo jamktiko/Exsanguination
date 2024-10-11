@@ -1585,8 +1585,11 @@ MonoBehaviour:
   mouseLook: {fileID: 6138562787838184655}
   stakeLogic: {fileID: 6413329364949692448}
   throwBomb: {fileID: 0}
+  pauseScript: {fileID: 0}
+  controllerHandler: {fileID: 0}
   inputsEnabled: 0
   openDoor: 0
+  eventSystem: {fileID: 0}
 --- !u!114 &2303243253875908596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1650,7 +1653,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87ad2894667258947a2e39e49d7f297d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensitivityX: 20
+  sensitivityX: 18
   sensitivityY: 0.2
   playerCamera: {fileID: 108411606681717390}
   cameraDirection: {x: 0, y: 0, z: 0}
@@ -1832,9 +1835,73 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: eca0b2ac-f241-4320-b2fe-f73329c501f4
+    m_ActionName: Movement/HorizontalMovement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7750c7f1-b3c9-40bc-8ddb-42348338689c
+    m_ActionName: Movement/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 39e5284b-545d-4732-9620-51dc181c451e
+    m_ActionName: Movement/Dash[/Keyboard/shift]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4a31ff43-0378-427f-8064-384c89b2b288
+    m_ActionName: Movement/MouseX[/Mouse/delta/x]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d215696d-018f-4192-b613-2efb441cd34b
+    m_ActionName: Movement/MouseY[/Mouse/delta/y]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: eb407ea9-5693-4af4-8948-ecaadef8bf30
+    m_ActionName: Movement/Slide[/Keyboard/ctrl]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0843e12d-9141-4938-a427-b875f4ffbed0
+    m_ActionName: Movement/Attack[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4b653e1c-fd8c-4906-a9d9-089e0bdf9a94
+    m_ActionName: Movement/GrapplingHook[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8d9c4235-d2f3-4844-9d4c-48ce6c49315f
+    m_ActionName: Movement/Stake[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 47fc3ac2-def0-4a66-b999-2e3cce220b03
+    m_ActionName: Movement/Use[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a070930c-92bd-4a8d-a295-65d534edb052
+    m_ActionName: Movement/Block[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ccad1d33-754a-4907-80e1-f549bee05606
+    m_ActionName: Movement/SilverBomb[/Keyboard/g]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1336fb94-7288-4ac5-9499-e1cabe365d63
+    m_ActionName: Movement/Point[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1cc5d607-8942-4e34-bcad-dbc3dce28de9
+    m_ActionName: Movement/MenuInteraction[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: febb6429-a8db-4a82-9bc0-0354668cbf62
+    m_ActionName: Movement/MenuNavigate
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1adc1f9b-8d80-4b0b-a9bd-4e25301e2053
+    m_ActionName: Movement/PauseMenu[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
+  m_DefaultControlScheme: Keyboard and Mouse
   m_DefaultActionMap: Movement
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 8944920751175303245}

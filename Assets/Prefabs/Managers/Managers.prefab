@@ -74,6 +74,7 @@ GameObject:
   - component: {fileID: 8866807537326566684}
   - component: {fileID: 5299683435000209853}
   - component: {fileID: 5150323068438133173}
+  - component: {fileID: 4575723510935872365}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -129,8 +130,8 @@ MonoBehaviour:
   m_XRTrackingOrigin: {fileID: 0}
   m_ActionsAsset: {fileID: -944628639613478452, guid: 00d8693135ebdc04b8021371282768ef, type: 3}
   m_PointAction: {fileID: 0}
-  m_MoveAction: {fileID: 917256850887262366, guid: 00d8693135ebdc04b8021371282768ef, type: 3}
-  m_SubmitAction: {fileID: 879532531036392080, guid: 00d8693135ebdc04b8021371282768ef, type: 3}
+  m_MoveAction: {fileID: -2412085637789726613, guid: 00d8693135ebdc04b8021371282768ef, type: 3}
+  m_SubmitAction: {fileID: 7448991347710890010, guid: 00d8693135ebdc04b8021371282768ef, type: 3}
   m_CancelAction: {fileID: 0}
   m_LeftClickAction: {fileID: 0}
   m_MiddleClickAction: {fileID: 0}
@@ -141,6 +142,20 @@ MonoBehaviour:
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 2
   m_CursorLockBehavior: 0
+--- !u!114 &4575723510935872365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4684686992474857410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cd77daaed7de044a82adf6f002addd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseScript: {fileID: 8522696815420899350}
+  controllerHandler: {fileID: 8596195330272645028}
 --- !u!1 &6058205348950911047
 GameObject:
   m_ObjectHideFlags: 0
@@ -271,7 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e87b88a322d3384c8461d944a376f83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetFramerate: 60
+  targetFramerate: 120
 --- !u!1 &7791862713702245012
 GameObject:
   m_ObjectHideFlags: 0
@@ -653,6 +668,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6557771048396707904, guid: cfbd31869d483d645b216ecc74db34b9, type: 3}
+      propertyPath: controllerHandler
+      value: 
+      objectReference: {fileID: 8596195330272645028}
     - target: {fileID: 7784394003616958313, guid: cfbd31869d483d645b216ecc74db34b9, type: 3}
       propertyPath: m_Name
       value: PauseManager
@@ -667,3 +686,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4538314654201365798, guid: cfbd31869d483d645b216ecc74db34b9, type: 3}
   m_PrefabInstance: {fileID: 3262666198688651350}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8522696815420899350 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6557771048396707904, guid: cfbd31869d483d645b216ecc74db34b9, type: 3}
+  m_PrefabInstance: {fileID: 3262666198688651350}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cd86f97982e5d84585ac830e0a41ac4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

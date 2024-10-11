@@ -7,9 +7,9 @@
             "actions": [
                 {
                     "name": "HorizontalMovement",
-                    "type": "Value",
+                    "type": "PassThrough",
                     "id": "eca0b2ac-f241-4320-b2fe-f73329c501f4",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -39,7 +39,7 @@
                     "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "MouseY",
@@ -48,7 +48,7 @@
                     "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Slide",
@@ -108,6 +108,42 @@
                     "name": "SilverBomb",
                     "type": "Button",
                     "id": "ccad1d33-754a-4907-80e1-f549bee05606",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Point",
+                    "type": "Value",
+                    "id": "1336fb94-7288-4ac5-9499-e1cabe365d63",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "MenuInteraction",
+                    "type": "Button",
+                    "id": "1cc5d607-8942-4e34-bcad-dbc3dce28de9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MenuNavigate",
+                    "type": "PassThrough",
+                    "id": "febb6429-a8db-4a82-9bc0-0354668cbf62",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "PauseMenu",
+                    "type": "Button",
+                    "id": "1adc1f9b-8d80-4b0b-a9bd-4e25301e2053",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -241,7 +277,7 @@
                     "id": "7d0a6d8e-08de-48b2-ba05-b9eb4602d62b",
                     "path": "<Gamepad>/rightStick/x",
                     "interactions": "",
-                    "processors": "AxisDeadzone",
+                    "processors": "StickDeadzone",
                     "groups": "Gamepad",
                     "action": "MouseX",
                     "isComposite": false,
@@ -285,7 +321,7 @@
                     "id": "28ef2b9c-61ba-40ef-9bf8-57d0ac0edd28",
                     "path": "<Gamepad>/rightStick/y",
                     "interactions": "",
-                    "processors": "AxisDeadzone",
+                    "processors": "StickDeadzone",
                     "groups": "Gamepad",
                     "action": "MouseY",
                     "isComposite": false,
@@ -415,11 +451,77 @@
                 {
                     "name": "",
                     "id": "dd887773-f590-40f7-a743-f4ef3cfca57c",
-                    "path": "<Gamepad>/dpad/up",
+                    "path": "<Gamepad>/select",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "SilverBomb",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1c0c4230-6d73-4b67-90a8-32466a469907",
+                    "path": "<Pointer>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "Point",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dd774702-8625-4489-a35a-b66ce9cac405",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "MenuInteraction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "88622b7c-e727-4230-9fd1-8e3cd74a3bd6",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "MenuInteraction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "629dcc3b-51d9-4fdd-98ca-fef0cdd3e612",
+                    "path": "<Gamepad>/dpad",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "MenuNavigate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "608304d6-161a-4cdd-814a-7a432fefcffc",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "PauseMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "02307d4f-3e3e-430a-8a61-8be2b33a8eef",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "PauseMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
