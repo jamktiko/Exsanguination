@@ -71,7 +71,6 @@ public class PlayerMovement : MonoBehaviour
         dashDirection = orientation.forward;
         audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         controllerHandler = GameObject.FindGameObjectWithTag("GameManager").GetComponent<ControllerHandler>();
-
     }
 
     private void Start()
