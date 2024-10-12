@@ -20,7 +20,7 @@ public class ControllerInputs : MonoBehaviour
 
     private void Awake()
     {
-        controllerHandler = GameObject.FindGameObjectWithTag("GameManager").GetComponent<ControllerHandler>();
+        controllerHandler = GameObject.FindGameObjectWithTag("InputManager").GetComponent<ControllerHandler>();
         playerMovement = GetComponent<PlayerMovement>();
         grapplingHookShoot = GetComponent<GrapplingHookShoot>();
         playerCombat = GetComponentInChildren<PlayerCombat>();

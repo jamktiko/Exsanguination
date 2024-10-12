@@ -3,12 +3,18 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class HoverSelect : MonoBehaviour
+public class MouseMenuNavigation : MonoBehaviour
 {
     private EventSystem eventSystem;
     private Selectable previousSelectable; // To track the previously selected button
     [SerializeField] private PauseScript pauseScript;
-    [SerializeField] private ControllerHandler controllerHandler;
+    [SerializeField] DeathScript deathScript;
+    private ControllerHandler controllerHandler;
+
+    private void Awake()
+    {
+        controllerHandler = GetComponent<ControllerHandler>();
+    }
 
     void Start()
     {
@@ -17,7 +23,7 @@ public class HoverSelect : MonoBehaviour
 
     void Update()
     {
-        if (Time.timeScale == 0 && !controllerHandler.controllerIsConnected)
+        if (pauseScript.paused || deathScript.isDead)
         {
             // Check if the pointer is over a UI element
             PointerEventData pointerData = new PointerEventData(eventSystem)

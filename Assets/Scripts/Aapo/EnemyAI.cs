@@ -15,7 +15,6 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask playerLayer;
     [SerializeField] private LayerMask enemyLayer;
-    private PlayerMovement playerMovementScript;
     [SerializeField] private float attackRange = 1.5f;
     [SerializeField] private float attackCooldown = 1.0f;
     [SerializeField] private float pounceRangeMax = 5f;
@@ -53,7 +52,6 @@ public class EnemyAI : MonoBehaviour
         navMeshAgent = GetComponent<NavMeshAgent>(); // Initialize NavMeshAgent
         enemyStates = GetComponentInChildren<EnemyStates>();
         audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
-        playerMovementScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         if (player == null)
         {
             // Search for the player

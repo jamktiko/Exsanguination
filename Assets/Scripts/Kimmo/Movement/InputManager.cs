@@ -14,7 +14,7 @@ public class InputManager : MonoBehaviour
     [SerializeField] private StakeLogic stakeLogic;
     [SerializeField] private ThrowBomb throwBomb;
     [SerializeField] private PauseScript pauseScript;
-    [SerializeField] private ControllerHandler controllerHandler;
+    [SerializeField] private ControllerMenuNavigation menuNavigation;
     private PlayerControls controls;
     private PlayerControls.MovementActions movement;
     private Vector2 horizontalInput;
@@ -25,10 +25,7 @@ public class InputManager : MonoBehaviour
     private float stakeButtonDownTimer = 0f;
     public bool openDoor;
     private bool canAttack = true;
-    public EventSystem eventSystem;
-    private Selectable previousSelectable; // To track the previously selected button
-    [SerializeField] GameObject ContinueButton;
-    private Selectable firstSelectable;
+    
 
     private void Awake()
     {
@@ -41,6 +38,7 @@ public class InputManager : MonoBehaviour
                 if (!pauseScript.paused)
                 {
                     pauseScript.PauseGame();
+                   
                 }
                 else
                 {
@@ -50,20 +48,28 @@ public class InputManager : MonoBehaviour
         };
 
         movement.MenuNavigate.performed += ctx =>
+
         {
-            if (inputsEnabled)
+            if (pauseScript.paused)
             {
                 Vector2 navigationInput = ctx.ReadValue<Vector2>();
-                Navigate(navigationInput);
-
+                menuNavigation.Navigate(navigationInput);
             }
         };
+        
+
         movement.HorizontalMovement.performed += ctx =>
         {
             if (inputsEnabled)
+            {
                 horizontalInput = ctx.ReadValue<Vector2>();
-            HorizontalInputCheck(ctx);
+                HorizontalInputCheck(ctx);
+                
+            }
+                
         };
+
+       
 
         movement.Jump.performed += ctx =>
         {
@@ -160,15 +166,10 @@ public class InputManager : MonoBehaviour
 
     private void Start()
     {
-        inputsEnabled = true; 
-        if (!controllerHandler.controllerIsConnected)
-        {
-            firstSelectable = ContinueButton.GetComponent<Selectable>();
-            HighlightButton(firstSelectable);
-        }
+        inputsEnabled = true;
     }
 
-    private void Update()
+        private void Update()
     {
         playerMovement.ReceiveInput(horizontalInput);
         mouseLook.ReceiveInput(mouseInput);
@@ -200,72 +201,7 @@ public class InputManager : MonoBehaviour
         return horizontalInput;
     }
 
-    private void Navigate(Vector2 input)
-    {
-        // Get the currently selected GameObject
-        GameObject currentlySelected = EventSystem.current.currentSelectedGameObject;
-
-        Selectable newSelectable = null;
-
-
-        if (input.y > 0) // Up input
-        {
-            // Move the selection to the previous button
-            newSelectable = currentlySelected?.GetComponent<Selectable>()?.FindSelectableOnUp();
-        }
-        else if (input.y < 0) // Down input
-        {
-            // Move the selection to the next button
-            newSelectable = currentlySelected?.GetComponent<Selectable>()?.FindSelectableOnDown();
-        }
-
-        if (newSelectable != null)
-        {
-            EventSystem.current.SetSelectedGameObject(newSelectable.gameObject);
-            HighlightButton(newSelectable);
-        }
-
-
-
-    }
-    private void HighlightButton(Selectable selectable)
-    {
-        // Reset the previous highlight
-        if (previousSelectable != null)
-        {
-            ResetButtonHighlight(previousSelectable);
-        }
-
-        // Highlight the current button
-        selectable.Select(); // This also sets it as the selected button
-
-        var button = selectable.GetComponent<Button>();
-        if (button != null)
-        {
-            ColorBlock colors = button.colors;
-            colors.selectedColor = Color.yellow; // Change to your desired highlight color
-            button.colors = colors;
-
-            // Ensure the button visually reflects the new highlighted state
-            button.OnSelect(null); // This forces the button to visually update to selected
-        }
-
-        previousSelectable = selectable; // Update the previously selected
-    }
-
-    // Reset the button highlight
-    private void ResetButtonHighlight(Selectable selectable)
-    {
-        var button = selectable.GetComponent<Button>();
-        if (button != null)
-        {
-            ColorBlock colors = button.colors;
-            colors.selectedColor = Color.white; // Reset to default color
-            button.colors = colors;
-
-            button.OnDeselect(null); // Force button to visually update to deselected
-        }
-    }
+   
 
    
 }

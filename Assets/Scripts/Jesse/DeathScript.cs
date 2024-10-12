@@ -10,6 +10,7 @@ public class DeathScript : MonoBehaviour
     PauseScript pauseScript;
     [SerializeField] Button mainMenuButton;
     [SerializeField] Button retryButton;
+    public bool isDead;
 
     private void Awake()
     {
@@ -23,6 +24,7 @@ public class DeathScript : MonoBehaviour
     }
     public void Die()
     {
+        isDead = true;
         pauseScript.UnPauseGame();
         Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.None;
@@ -32,12 +34,14 @@ public class DeathScript : MonoBehaviour
 
     public void ExitToMainMenu()
     {
+        isDead=false;
         Debug.Log("pressed main menu");
         SceneManager.LoadScene(0);
     }
 
     public void Retry()
     {
+        isDead = false;
         Debug.Log("pressed retry");
         SceneManager.LoadScene(1);
     }

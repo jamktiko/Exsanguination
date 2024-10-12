@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isMoving;
     Vector2 horizontalInput;
     Rigidbody rb;
+    private Animator animator;
 
     [Header("Jump")]
     [SerializeField] float jumpForce;
@@ -70,7 +72,8 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         dashDirection = orientation.forward;
         audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
-        controllerHandler = GameObject.FindGameObjectWithTag("GameManager").GetComponent<ControllerHandler>();
+        controllerHandler = GameObject.FindGameObjectWithTag("InputManager").GetComponent<ControllerHandler>();
+        animator = GameObject.FindGameObjectWithTag("PlayerModel").GetComponent<Animator>();
     }
 
     private void Start()
@@ -179,9 +182,10 @@ public class PlayerMovement : MonoBehaviour
     }
     private void ControllerMovement()
     {
-        
-            // Read left stick input from the gamepad
-            movementInput = Gamepad.current.leftStick.ReadValue();
+        if (activeGrapple) return;
+
+        // Read left stick input from the gamepad
+        movementInput = Gamepad.current.leftStick.ReadValue();
 
         Vector3 moveDirection = new Vector3(movementInput.x, 0f, movementInput.y);
         moveDirection = transform.TransformDirection(moveDirection); // Convert to world space
@@ -343,7 +347,7 @@ public class PlayerMovement : MonoBehaviour
     {
         audioManager.PlaySlideAudioClip();
         float startTime = Time.time;
-
+        animator.SetTrigger("slide");
         while (Time.time < startTime + slideTime)
         {
             isSliding = true;
