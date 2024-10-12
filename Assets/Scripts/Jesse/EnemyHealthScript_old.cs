@@ -9,7 +9,7 @@
 //    [SerializeField] int health = 100;
 //    [SerializeField] float finisherTime = 1f; //seconds how long does the finisher take until enemy dies
 //    private StakeLogic stakeLogic;
-//    [SerializeField] AudioManager audioManager;
+//    AudioManager audioManager;
 //    [SerializeField] HealthBarScript healthBar;
 //   //SerializeField] StakeLogic stakeLogic;
 //    [SerializeField] private GameObject stake;

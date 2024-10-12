@@ -11,7 +11,7 @@ public class PlayerCombat : MonoBehaviour
     public bool isBlocking;
     private bool blockOnCooldown;
     [SerializeField] private float blockCooldownTime;
-    [SerializeField] AudioManager audioManager;
+    AudioManager audioManager;
     public int currentWeaponNumber;
     [SerializeField] GameObject starterSword;
     [SerializeField] GameObject slayMore;
@@ -24,7 +24,7 @@ public class PlayerCombat : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
-        audioManager = FindObjectOfType<AudioManager>();
+        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
     }
     private void Start()
     {

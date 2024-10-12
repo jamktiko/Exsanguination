@@ -16,21 +16,22 @@ public class EnemyGroup // Information and methods of individual enemy groups
         {
             if (enemy != null)
             {
-                enemy.SetActive(true);
+               EnemyAI enemyAI = enemy.GetComponent<EnemyAI>();
+                enemyAI.ActivateEnemy();
             }
         }
     }
 
-    public void DeActivateEnemies()
-    {
-        foreach (GameObject enemy in enemies)
-        {
-            if (enemy != null)
-            {
-                enemy.SetActive(false);
-            }
-        }
-    }
+    //public void DeActivateEnemies()
+    //{
+    //    foreach (GameObject enemy in enemies)
+    //    {
+    //        if (enemy != null)
+    //        {
+    //            enemy.SetActive(false);
+    //        }
+    //    }
+    //}
 }
 
 public class EnemySpawnerSystem : MonoBehaviour // Manages all enemy groups
@@ -42,7 +43,7 @@ public class EnemySpawnerSystem : MonoBehaviour // Manages all enemy groups
     {
         foreach (EnemyGroup group in enemyGroup)
         {
-            group.DeActivateEnemies();
+            //group.DeActivateEnemies();
             group.spawnTriggerPoint.GetComponent<SpawnTriggerDetector>().SetGroupIndex(group.groupNumber);
         }
     }

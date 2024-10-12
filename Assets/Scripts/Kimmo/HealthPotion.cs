@@ -14,8 +14,8 @@ public class HealthPotion : MonoBehaviour
     private void Awake()
     {
         thisPotion = this.gameObject;
-        audioManager = FindObjectOfType<AudioManager>();
-        playerHealthManager = FindObjectOfType<PlayerHealthManager>();
+        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        playerHealthManager = GameObject.FindGameObjectWithTag("HealthManager").GetComponent<PlayerHealthManager>();
     }
 
     private void OnTriggerEnter(Collider other)

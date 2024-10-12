@@ -15,7 +15,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask playerLayer;
     [SerializeField] private LayerMask enemyLayer;
-    [SerializeField] private PlayerMovement playerMovementScript;
+    private PlayerMovement playerMovementScript;
     [SerializeField] private float attackRange = 1.5f;
     [SerializeField] private float attackCooldown = 1.0f;
     [SerializeField] private float pounceRangeMax = 5f;
@@ -23,7 +23,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private float separationDistance = 2f;
     [SerializeField] private float stopSeparationDistance = 1.5f;
     [SerializeField] private Animator enemyAnimator;
-    [SerializeField] private AudioManager audioManager;
+    private AudioManager audioManager;
     [SerializeField] private AudioSource enemyAlertAudioSource;
     [SerializeField] private AudioSource enemyFootstepAudioSource;
 
@@ -139,7 +139,6 @@ public class EnemyAI : MonoBehaviour
     {
         enemyIsTriggered = true;
         enemyAnimator.SetTrigger("detect");
-        enemyAnimator.ResetTrigger("detect");
         audioManager.PlayEnemyAlertAudioClip(enemyAlertAudioSource);
 
     }

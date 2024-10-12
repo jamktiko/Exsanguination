@@ -17,7 +17,7 @@ public class HoverSelect : MonoBehaviour
 
     void Update()
     {
-        if (pauseScript.paused && !controllerHandler.controllerIsConnected)
+        if (Time.timeScale == 0 && !controllerHandler.controllerIsConnected)
         {
             // Check if the pointer is over a UI element
             PointerEventData pointerData = new PointerEventData(eventSystem)

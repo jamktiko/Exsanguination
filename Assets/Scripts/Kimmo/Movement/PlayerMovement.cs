@@ -55,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
     public bool activeGrapple;
 
     [Header("Audio")]
-    [SerializeField] AudioManager audioManager;
+    AudioManager audioManager;
     [SerializeField] float footstepTimer;
     [SerializeField] float footStepAudioCooldown;
     bool firstStepPlayed;

@@ -7,7 +7,7 @@ public class GrapplingHookShoot : MonoBehaviour
 {
     [Header("References")]
     private PlayerMovement playerMovement;
-    [SerializeField] AudioManager audioManager;
+    AudioManager audioManager;
     public Transform cam;
     public Transform gunTip;
     public LayerMask whatIsGrappleable;

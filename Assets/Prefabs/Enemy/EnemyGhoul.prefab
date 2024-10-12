@@ -1903,7 +1903,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  audioManager: {fileID: 0}
   enemyAnimator: {fileID: 9016512344435087899}
 --- !u!65 &3664278475161299756
 BoxCollider:
@@ -2846,7 +2845,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 20
   health: 20
-  audioManager: {fileID: 0}
   enemyTakeDamageAudioSource: {fileID: 2463057039683506548}
   bloodController: {fileID: 4323281299790090424}
   bloodSplatterParticle: {fileID: 7178517801240974941}
@@ -2865,7 +2863,7 @@ MonoBehaviour:
   moveSpeed: 4
   originalSpeed: 2
   stoppingDistance: 1
-  pounceForceUp: 0.5
+  pounceForceUp: 1
   pounceForceForward: 300
   pounceCooldown: 10
   groundLayer:
@@ -2877,19 +2875,17 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 512
-  playerMovementScript: {fileID: 0}
   attackRange: 1.5
-  attackCooldown: 2.4
+  attackCooldown: 1.4
   pounceRangeMax: 5
   pounceRangeMin: 4
   separationDistance: 1
   stopSeparationDistance: 1
   enemyAnimator: {fileID: 9016512344435087899}
-  audioManager: {fileID: 0}
   enemyAlertAudioSource: {fileID: 6701046629129589312}
   enemyFootstepAudioSource: {fileID: 4555619591960417357}
   isGrounded: 1
-  enemyIsTriggered: 1
+  enemyIsTriggered: 0
 --- !u!82 &8042239175878887669
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3001,12 +2997,12 @@ NavMeshAgent:
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0.1
-  m_AutoTraverseOffMeshLink: 1
+  m_AutoTraverseOffMeshLink: 0
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 0
-  m_WalkableMask: 4294967295
+  m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
 --- !u!1 &7225120535187991994
 GameObject:

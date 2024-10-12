@@ -30,13 +30,15 @@ public class DeathScript : MonoBehaviour
         deathScreen.SetActive(true);
     }
 
-    private void ExitToMainMenu()
+    public void ExitToMainMenu()
     {
+        Debug.Log("pressed main menu");
         SceneManager.LoadScene(0);
     }
 
-    private void Retry()
+    public void Retry()
     {
+        Debug.Log("pressed retry");
         SceneManager.LoadScene(1);
     }
 

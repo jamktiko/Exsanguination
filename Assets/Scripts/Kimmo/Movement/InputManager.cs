@@ -27,6 +27,7 @@ public class InputManager : MonoBehaviour
     private bool canAttack = true;
     public EventSystem eventSystem;
     private Selectable previousSelectable; // To track the previously selected button
+    [SerializeField] GameObject ContinueButton;
     private Selectable firstSelectable;
 
     private void Awake()
@@ -162,7 +163,7 @@ public class InputManager : MonoBehaviour
         inputsEnabled = true; 
         if (!controllerHandler.controllerIsConnected)
         {
-            firstSelectable = eventSystem.firstSelectedGameObject.GetComponent<Selectable>();
+            firstSelectable = ContinueButton.GetComponent<Selectable>();
             HighlightButton(firstSelectable);
         }
     }
