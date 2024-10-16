@@ -14,6 +14,7 @@ public class PauseScript : MonoBehaviour
 
     [SerializeField] public bool paused;
     [SerializeField] ControllerHandler controllerHandler;
+    [SerializeField] InputManager inputManager;
     void Awake()
     {
         continueButton.onClick.AddListener(UnPauseGame);
@@ -26,7 +27,10 @@ public class PauseScript : MonoBehaviour
         UnPauseGame();
     }
 
-
+    public void DisableButtons()
+    {
+        inputManager.inputsEnabled = false;
+    }
 
     public void PauseGame()
     {
@@ -43,6 +47,7 @@ public class PauseScript : MonoBehaviour
         {
             Cursor.visible = false;
         }
+        inputManager.inputsEnabled = false;
     }
 
     public void UnPauseGame()
@@ -53,6 +58,7 @@ public class PauseScript : MonoBehaviour
         pauseMenu.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        inputManager.inputsEnabled = true;
     }
 
     public void OpenSettings()
@@ -64,6 +70,7 @@ public class PauseScript : MonoBehaviour
     public void ExitToMainMenu()
     {
         Debug.Log("exited");
+        inputManager.inputsEnabled = true;
         SceneManager.LoadScene(0);
     }
 }

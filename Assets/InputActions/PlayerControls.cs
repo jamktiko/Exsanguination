@@ -31,7 +31,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""name"": ""HorizontalMovement"",
                     ""type"": ""PassThrough"",
                     ""id"": ""eca0b2ac-f241-4320-b2fe-f73329c501f4"",
-                    ""expectedControlType"": ""Axis"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -530,8 +530,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""id"": ""eeec6d5e-8c3e-4052-9287-ab5f066ca89d"",
                     ""path"": ""<Gamepad>/dpad/up"",
                     ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
+                    ""processors"": ""AxisDeadzone"",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""MenuNavigate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -541,8 +541,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""id"": ""302aed8e-fde7-4879-a0dd-c93af7aac68a"",
                     ""path"": ""<Gamepad>/dpad/down"",
                     ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
+                    ""processors"": ""AxisDeadzone"",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""MenuNavigate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true

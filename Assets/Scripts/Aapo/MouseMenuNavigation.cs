@@ -46,7 +46,6 @@ public class MouseMenuNavigation : MonoBehaviour
                 {
                     // Set the hovered button as the selected game object
                     eventSystem.SetSelectedGameObject(hoveredObject);
-                    HighlightButton(hoveredSelectable); // Call to highlight the button
                 }
             }
             else
@@ -55,44 +54,9 @@ public class MouseMenuNavigation : MonoBehaviour
                 eventSystem.SetSelectedGameObject(null);
                 if (previousSelectable != null)
                 {
-                    ResetButtonHighlight(previousSelectable);
                     previousSelectable = null; // Clear the previous reference
                 }
             }
         }
-    }
-
-    private void HighlightButton(Selectable selectable)
-    {
-        // Reset previous button highlight if any
-        if (previousSelectable != null && previousSelectable != selectable)
-        {
-            ResetButtonHighlight(previousSelectable);
-        }
-
-        // Highlight the current selectable
-        selectable.Select(); // This will also set it as the selected button
-
-        var button = selectable.GetComponent<Button>();
-        if (button != null)
-        {
-            ColorBlock colors = button.colors;
-            colors.selectedColor = Color.yellow; // Change the highlighted color
-            button.colors = colors;
-        }
-
-        previousSelectable = selectable; // Update the previous selectable
-    }
-
-    // Method to reset the button highlight
-    private void ResetButtonHighlight(Selectable selectable)
-    {
-        var button = selectable.GetComponent<Button>();
-        if (button != null)
-        {
-            ColorBlock colors = button.colors;
-            colors.selectedColor = Color.white; // Reset to default color
-            button.colors = colors;
-        }
-    }
+    }   
 }

@@ -1614,16 +1614,16 @@ MonoBehaviour:
   isJumping: 0
   dashDirection: {x: 0, y: 0, z: 0}
   groundCheck: {fileID: 3437024354319785378}
-  dashSpeed: 15
-  dashTime: 0.5
+  dashSpeed: 40
+  dashTime: 0.15
   dashCooldown: 2
   dashCooldownTimer: 0
   canDash: 0
   isDashing: 0
   orientation: {fileID: 8053767885582258442}
-  slideSpeed: 10
+  slideSpeed: 7
   slideSpeedMultiplier: 2
-  slideTime: 1
+  slideTime: 0.5
   playerCollider: {fileID: 4742555283636479446}
   playerColliderHeight: 1.7
   canSlide: 0
@@ -4343,7 +4343,7 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 9b61cb536285c1648b7aa4e6b705fdd8, type: 3}
   m_Controller: {fileID: 9100000, guid: e6ab23c00b12fad4fb7daa883d21ac91, type: 2}
-  m_CullingMode: 0
+  m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0

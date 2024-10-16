@@ -38,6 +38,7 @@ public class InputManager : MonoBehaviour
                 if (!pauseScript.paused)
                 {
                     pauseScript.PauseGame();
+                    menuNavigation.SelectFirstMenuButton();
                    
                 }
                 else
@@ -54,6 +55,7 @@ public class InputManager : MonoBehaviour
             {
                 Vector2 navigationInput = ctx.ReadValue<Vector2>();
                 menuNavigation.Navigate(navigationInput);
+                
             }
         };
         
@@ -131,11 +133,15 @@ public class InputManager : MonoBehaviour
 
         movement.Stake.canceled += ctx =>
         {
-            stakeHoldDown = false;
-            stakeLogic.StartThrowVisual();
-            stakeLogic.ThrowStake(stakeButtonDownTimer);
-            stakeButtonDownTimer = 0f;
-            canAttack = true;
+            if (inputsEnabled)
+            {
+                stakeHoldDown = false;
+                stakeLogic.StartThrowVisual();
+                stakeLogic.ThrowStake(stakeButtonDownTimer);
+                stakeButtonDownTimer = 0f;
+                canAttack = true;
+            }
+                
         };
 
         movement.Use.performed += ctx =>

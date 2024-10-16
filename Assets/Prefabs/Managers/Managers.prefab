@@ -61,7 +61,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.1
   m_MinRegionArea: 0
-  m_NavMeshData: {fileID: 23800000, guid: 1b10a5a6d499e29448b79059d24ff70f, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: ddc3a5e3f58493d4aad0119f92ffe9eb, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &4684686992474857410
 GameObject:
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_TrackedDeviceOrientationAction: {fileID: 0}
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 2
-  m_CursorLockBehavior: 0
+  m_CursorLockBehavior: 1
 --- !u!1 &6058205348950911047
 GameObject:
   m_ObjectHideFlags: 0
@@ -374,6 +374,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeathManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3819345958267663423, guid: 1776ded66cbc49546b6f16c524596ceb, type: 3}
+      propertyPath: controllerHandler
+      value: 
+      objectReference: {fileID: 8596195330272645028}
+    - target: {fileID: 3819345958267663423, guid: 1776ded66cbc49546b6f16c524596ceb, type: 3}
+      propertyPath: controllerMenuNavigation
+      value: 
+      objectReference: {fileID: 2384492927388417816}
     - target: {fileID: 3844975875791964034, guid: 1776ded66cbc49546b6f16c524596ceb, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.676645
@@ -660,6 +668,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 454619042838251833}
     m_Modifications:
+    - target: {fileID: 1205318647625075896, guid: 42c0d65e42040224884dc8f938c0ae5b, type: 3}
+      propertyPath: deathScript
+      value: 
+      objectReference: {fileID: 4195301651310897938}
+    - target: {fileID: 1205318647625075896, guid: 42c0d65e42040224884dc8f938c0ae5b, type: 3}
+      propertyPath: eventSystem
+      value: 
+      objectReference: {fileID: 5299683435000209853}
+    - target: {fileID: 1205318647625075896, guid: 42c0d65e42040224884dc8f938c0ae5b, type: 3}
+      propertyPath: pauseScript
+      value: 
+      objectReference: {fileID: 8522696815420899350}
+    - target: {fileID: 1205318647625075896, guid: 42c0d65e42040224884dc8f938c0ae5b, type: 3}
+      propertyPath: menuButtons.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1205318647625075896, guid: 42c0d65e42040224884dc8f938c0ae5b, type: 3}
+      propertyPath: deathButtons.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5810366001856597459, guid: 42c0d65e42040224884dc8f938c0ae5b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -705,6 +733,10 @@ PrefabInstance:
       value: InputManager
       objectReference: {fileID: 0}
     - target: {fileID: 8407719510930575932, guid: 42c0d65e42040224884dc8f938c0ae5b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8407719510930575932, guid: 42c0d65e42040224884dc8f938c0ae5b, type: 3}
       propertyPath: deathScript
       value: 
       objectReference: {fileID: 4195301651310897938}
@@ -717,6 +749,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42c0d65e42040224884dc8f938c0ae5b, type: 3}
+--- !u!114 &2384492927388417816 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1205318647625075896, guid: 42c0d65e42040224884dc8f938c0ae5b, type: 3}
+  m_PrefabInstance: {fileID: 3579602231582929824}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2d6e3fbfb755b04db21dde603a1698a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &6994051032029953651 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5810366001856597459, guid: 42c0d65e42040224884dc8f938c0ae5b, type: 3}
