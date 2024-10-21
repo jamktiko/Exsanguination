@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float groundDrag;
     [SerializeField] float airDrag;
     [SerializeField] LayerMask groundMask;
+    [SerializeField] LayerMask wallMask;
     [SerializeField] bool canMove;
     public bool isMoving;
     Vector2 horizontalInput;
@@ -45,6 +46,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float playerColliderHeight;
     [SerializeField] bool canSlide;
     public bool isSliding;
+    [SerializeField] bool isOnWall;
     [SerializeField] Transform cam;
     [SerializeField] Vector3 camStandingPos;
     [SerializeField] Vector3 camSlidingPos;
@@ -250,6 +252,22 @@ public class PlayerMovement : MonoBehaviour
         horizontalInput = _horizontalInput;
     }
 
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.layer == wallMask)
+        {
+            isOnWall = true;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.layer == wallMask)
+        {
+            isOnWall = false;
+        }
+    }
+
     // Jump methods
     private void Jump()
     {
@@ -334,12 +352,15 @@ public class PlayerMovement : MonoBehaviour
     {
         if (canSlide && isMoving)
         {
-            canMove = false;
-            canDash = false;
-            canSlide = true;
-            cam.localPosition = camSlidingPos;
-            //audioManager.PlaySlideAudioClip();
-            StartCoroutine(SlideCoroutine());
+            if (isGrounded || isOnWall)
+            {
+                canMove = false;
+                canDash = false;
+                canSlide = true;
+                cam.localPosition = camSlidingPos;
+                //audioManager.PlaySlideAudioClip();
+                StartCoroutine(SlideCoroutine());
+            }
         }
     }
 
