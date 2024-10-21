@@ -167,6 +167,17 @@ public class InputManager : MonoBehaviour
                 throwBomb.Throw();
         };
 
+        movement.SwapToStarterSword.performed += ctx =>
+        {
+            if (inputsEnabled)
+                playerCombat.SetWeaponLogics(0);
+        };
+
+        movement.SwapToSlayMore.performed += ctx =>
+        {
+            if (inputsEnabled)
+                playerCombat.SetWeaponLogics(1);
+        };
 
     }
 

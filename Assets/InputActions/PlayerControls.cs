@@ -170,6 +170,24 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwapToStarterSword"",
+                    ""type"": ""Button"",
+                    ""id"": ""9ab3412a-352f-44b8-8c19-676fd1369c94"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwapToSlayMore"",
+                    ""type"": ""Button"",
+                    ""id"": ""5347b329-2d5c-4178-a23b-8f09cdad5caa"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -590,6 +608,50 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""PauseMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a2102f0d-1275-4942-8841-c5ef393014cb"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""SwapToStarterSword"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""41c1e59e-0143-40ff-8f4a-fee78e5713c4"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""SwapToStarterSword"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1a083d2c-1c70-46f1-beee-e9d022e90e50"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""SwapToSlayMore"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e4bcd20a-e75c-404f-be06-54c628a6e45d"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""SwapToSlayMore"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -642,6 +704,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Movement_MenuInteraction = m_Movement.FindAction("MenuInteraction", throwIfNotFound: true);
         m_Movement_MenuNavigate = m_Movement.FindAction("MenuNavigate", throwIfNotFound: true);
         m_Movement_PauseMenu = m_Movement.FindAction("PauseMenu", throwIfNotFound: true);
+        m_Movement_SwapToStarterSword = m_Movement.FindAction("SwapToStarterSword", throwIfNotFound: true);
+        m_Movement_SwapToSlayMore = m_Movement.FindAction("SwapToSlayMore", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -719,6 +783,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Movement_MenuInteraction;
     private readonly InputAction m_Movement_MenuNavigate;
     private readonly InputAction m_Movement_PauseMenu;
+    private readonly InputAction m_Movement_SwapToStarterSword;
+    private readonly InputAction m_Movement_SwapToSlayMore;
     public struct MovementActions
     {
         private @PlayerControls m_Wrapper;
@@ -739,6 +805,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @MenuInteraction => m_Wrapper.m_Movement_MenuInteraction;
         public InputAction @MenuNavigate => m_Wrapper.m_Movement_MenuNavigate;
         public InputAction @PauseMenu => m_Wrapper.m_Movement_PauseMenu;
+        public InputAction @SwapToStarterSword => m_Wrapper.m_Movement_SwapToStarterSword;
+        public InputAction @SwapToSlayMore => m_Wrapper.m_Movement_SwapToSlayMore;
         public InputActionMap Get() { return m_Wrapper.m_Movement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -796,6 +864,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @PauseMenu.started += instance.OnPauseMenu;
             @PauseMenu.performed += instance.OnPauseMenu;
             @PauseMenu.canceled += instance.OnPauseMenu;
+            @SwapToStarterSword.started += instance.OnSwapToStarterSword;
+            @SwapToStarterSword.performed += instance.OnSwapToStarterSword;
+            @SwapToStarterSword.canceled += instance.OnSwapToStarterSword;
+            @SwapToSlayMore.started += instance.OnSwapToSlayMore;
+            @SwapToSlayMore.performed += instance.OnSwapToSlayMore;
+            @SwapToSlayMore.canceled += instance.OnSwapToSlayMore;
         }
 
         private void UnregisterCallbacks(IMovementActions instance)
@@ -848,6 +922,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @PauseMenu.started -= instance.OnPauseMenu;
             @PauseMenu.performed -= instance.OnPauseMenu;
             @PauseMenu.canceled -= instance.OnPauseMenu;
+            @SwapToStarterSword.started -= instance.OnSwapToStarterSword;
+            @SwapToStarterSword.performed -= instance.OnSwapToStarterSword;
+            @SwapToStarterSword.canceled -= instance.OnSwapToStarterSword;
+            @SwapToSlayMore.started -= instance.OnSwapToSlayMore;
+            @SwapToSlayMore.performed -= instance.OnSwapToSlayMore;
+            @SwapToSlayMore.canceled -= instance.OnSwapToSlayMore;
         }
 
         public void RemoveCallbacks(IMovementActions instance)
@@ -901,5 +981,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnMenuInteraction(InputAction.CallbackContext context);
         void OnMenuNavigate(InputAction.CallbackContext context);
         void OnPauseMenu(InputAction.CallbackContext context);
+        void OnSwapToStarterSword(InputAction.CallbackContext context);
+        void OnSwapToSlayMore(InputAction.CallbackContext context);
     }
 }

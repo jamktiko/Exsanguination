@@ -5,7 +5,7 @@ public class EnemyFinisher : MonoBehaviour
 {
     private Animator playerAnimator;
     private InputManager InputManager;
-   [SerializeField] private Transform playerCamera;
+    private Transform playerCamera;
     private MouseLook mLook;
     [SerializeField] private AudioSource finisherGhoulAudioSource;
     [SerializeField] private GameObject finisherGhoulParticleSystem;

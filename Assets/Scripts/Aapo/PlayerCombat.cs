@@ -32,7 +32,7 @@ public class PlayerCombat : MonoBehaviour
        slayMore.SetActive(false);
     }
    
-    private void SetWeaponLogics(int weaponIndex)
+    public void SetWeaponLogics(int weaponIndex)
     {
         currentWeaponNumber = weaponIndex;
         if (currentWeaponNumber == 0) 
@@ -52,7 +52,9 @@ public class PlayerCombat : MonoBehaviour
 
         }
     }
-   
+
+ 
+
     public void Attack()
     {
         //StarterSword
