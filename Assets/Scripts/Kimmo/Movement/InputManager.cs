@@ -19,6 +19,8 @@ public class InputManager : MonoBehaviour
     private PlayerControls.MovementActions movement;
     private Vector2 horizontalInput;
     private Vector2 mouseInput;
+    private Vector2 cursorPosition;
+
 
     private bool stakeHoldDown;
     public bool inputsEnabled;
@@ -71,7 +73,13 @@ public class InputManager : MonoBehaviour
                 
         };
 
-       
+        movement.Point.performed += ctx =>
+        {
+            if (inputsEnabled)
+            {
+                cursorPosition = ctx.ReadValue<Vector2>();
+            }
+        };
 
         movement.Jump.performed += ctx =>
         {

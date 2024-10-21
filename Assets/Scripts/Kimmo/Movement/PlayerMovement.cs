@@ -11,7 +11,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float groundDrag;
     [SerializeField] float airDrag;
     [SerializeField] LayerMask groundMask;
-    [SerializeField] LayerMask wallMask;
     [SerializeField] bool canMove;
     public bool isMoving;
     Vector2 horizontalInput;
@@ -254,7 +253,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.layer == wallMask)
+        if (collision.gameObject.layer == 10)
         {
             isOnWall = true;
         }
@@ -262,7 +261,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.layer == wallMask)
+        if (collision.gameObject.layer == 10)
         {
             isOnWall = false;
         }

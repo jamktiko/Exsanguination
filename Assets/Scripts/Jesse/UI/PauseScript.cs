@@ -64,7 +64,7 @@ public class PauseScript : MonoBehaviour
     public void OpenSettings()
     {
         Debug.Log("settings opened");
-        settingsMenu.OpenSettings(gameObject);
+        settingsMenu.OpenSettings(pauseMenu);
     }
 
     public void ExitToMainMenu()
