@@ -48,7 +48,7 @@ public class PauseScript : MonoBehaviour
         {
             Cursor.visible = false;
         }
-        inputManager.DisableInput();
+        inputManager.DisableInput(); //how to press buttons if input is disabled on pause? Maybe instead a bool to stop moving things?
     }
 
     public void UnPauseGame()
