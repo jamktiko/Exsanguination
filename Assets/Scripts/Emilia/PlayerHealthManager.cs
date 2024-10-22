@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace EmiliaScripts
 {
@@ -6,6 +7,7 @@ namespace EmiliaScripts
     {
         [SerializeField] int currentHealth;
         [SerializeField] int maxHealth;
+        [SerializeField] Image injuredVFXImage;
 
         public delegate void DeathInvokerEvent();
         /// <summary>
@@ -22,6 +24,7 @@ namespace EmiliaScripts
         void Start()
         {
             currentHealth = maxHealth;
+            injuredVFXImage.color = new(1, 1, 1, 0);
             Debug.Log("Updated Player Health to MAX: " + currentHealth);
         }
 
@@ -79,6 +82,18 @@ namespace EmiliaScripts
             }
 
             Debug.Log("Current Player Health: " + currentHealth);
+            UpdateInjuryVFX(currentHealth);
+        }
+
+        private void UpdateInjuryVFX(int health)
+        {
+            Color tmpColor = injuredVFXImage.color;
+            if (health <= 80) 
+                tmpColor.a = 1 - (health / 80f);
+            else
+                tmpColor.a = 0;
+
+            injuredVFXImage.color = tmpColor;
         }
 
     }
