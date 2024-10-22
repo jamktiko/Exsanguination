@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerMovementAnimations : MonoBehaviour
 {
     [SerializeField] Animator animator;  // Reference to your Animator component
-    InputManager inputManager;  // Reference to your RBInputManager script
+    InputHandler inputManager;  // Reference to your RBInputManager script
 
     // Parameters for Blend Tree control
     private static readonly int XParam = Animator.StringToHash("X");
@@ -11,7 +11,7 @@ public class PlayerMovementAnimations : MonoBehaviour
 
     private void Awake()
     {
-        inputManager = GetComponent<InputManager>();
+        inputManager = GetComponent<InputHandler>();
     }
 
     private void Update()

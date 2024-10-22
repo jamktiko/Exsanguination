@@ -1328,7 +1328,7 @@ GameObject:
   - component: {fileID: 5033570335300491220}
   - component: {fileID: 4742555283636479446}
   - component: {fileID: 5992082184702669433}
-  - component: {fileID: 2501663633755013895}
+  - component: {fileID: 4872557799192573021}
   - component: {fileID: 2303243253875908596}
   - component: {fileID: 6138562787838184655}
   - component: {fileID: 2973974297268387390}
@@ -1438,7 +1438,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 2
---- !u!114 &2501663633755013895
+--- !u!114 &4872557799192573021
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1447,7 +1447,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1454188574208328123}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f6e3a65f4ae28941aa9e83d3f214e6e, type: 3}
+  m_Script: {fileID: 11500000, guid: 7726584126eb43b46afdca7f9fa237be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerMovement: {fileID: 2303243253875908596}
@@ -1500,6 +1500,7 @@ MonoBehaviour:
   playerColliderHeight: 1.7
   canSlide: 0
   isSliding: 0
+  isOnWall: 0
   cam: {fileID: 108411606681717390}
   camStandingPos: {x: 0, y: 0.6, z: 0.1}
   camSlidingPos: {x: 0, y: -0.4, z: 0.1}

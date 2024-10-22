@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class DoorFunctions : MonoBehaviour
 {
-    InputManager inputManager;
+    InputHandler inputManager;
     bool doorIsOpening;
     bool isOpen;
     bool isRotatingDoor;
@@ -20,7 +20,7 @@ public class DoorFunctions : MonoBehaviour
 
     private void Awake()
     {
-        inputManager = FindAnyObjectByType<InputManager>();
+        inputManager = FindAnyObjectByType<InputHandler>();
         doorTransform = GetComponent<Transform>();
         startRotation = transform.rotation.eulerAngles;
         forward = transform.right;

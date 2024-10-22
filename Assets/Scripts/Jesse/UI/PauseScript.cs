@@ -14,9 +14,10 @@ public class PauseScript : MonoBehaviour
 
     [SerializeField] public bool paused;
     [SerializeField] ControllerHandler controllerHandler;
-    [SerializeField] InputManager inputManager;
+    [SerializeField] InputHandler inputManager;
     void Awake()
     {
+        inputManager = GameObject.FindGameObjectWithTag("Player").GetComponent<InputHandler>();
         continueButton.onClick.AddListener(UnPauseGame);
         settingsButton.onClick.AddListener(OpenSettings);
         mainMenuButton.onClick.AddListener(ExitToMainMenu);
@@ -29,7 +30,7 @@ public class PauseScript : MonoBehaviour
 
     public void DisableButtons()
     {
-        inputManager.inputsEnabled = false;
+        inputManager.DisableInput();
     }
 
     public void PauseGame()
@@ -47,7 +48,7 @@ public class PauseScript : MonoBehaviour
         {
             Cursor.visible = false;
         }
-        inputManager.inputsEnabled = false;
+        inputManager.DisableInput();
     }
 
     public void UnPauseGame()
@@ -58,7 +59,7 @@ public class PauseScript : MonoBehaviour
         pauseMenu.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        inputManager.inputsEnabled = true;
+        inputManager.EnableInput();
     }
 
     public void OpenSettings()
@@ -70,7 +71,7 @@ public class PauseScript : MonoBehaviour
     public void ExitToMainMenu()
     {
         Debug.Log("exited");
-        inputManager.inputsEnabled = true;
+        inputManager.EnableInput();
         SceneManager.LoadScene(0);
     }
 }

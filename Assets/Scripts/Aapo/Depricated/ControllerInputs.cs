@@ -10,7 +10,7 @@ public class ControllerInputs : MonoBehaviour
     private GrapplingHookShoot grapplingHookShoot;
     private PlayerCombat playerCombat;
     private StakeLogic stakeLogic;
-    private InputManager inputManager;
+    private InputHandler inputManager;
 
     private bool stakeHoldDown;
     private float stakeButtonDownTimer = 0f;
@@ -25,7 +25,7 @@ public class ControllerInputs : MonoBehaviour
         grapplingHookShoot = GetComponent<GrapplingHookShoot>();
         playerCombat = GetComponentInChildren<PlayerCombat>();
         stakeLogic = GetComponentInChildren<StakeLogic>();
-        inputManager = GetComponent<InputManager>();
+        inputManager = GetComponent<InputHandler>();
         // throwBomb = GetComponent<ThrowBomb>();
     }
     // Start is called before the first frame update

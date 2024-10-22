@@ -27,13 +27,13 @@ public class InputManager : MonoBehaviour
     private float stakeButtonDownTimer = 0f;
     public bool openDoor;
     private bool canAttack = true;
-    
+
 
     private void Awake()
     {
         controls = new PlayerControls();
         movement = controls.Movement;
-        movement.PauseMenu.performed += ctx =>
+        movement.Pause.performed += ctx =>
         {
             if (inputsEnabled)
             {
@@ -41,7 +41,7 @@ public class InputManager : MonoBehaviour
                 {
                     pauseScript.PauseGame();
                     menuNavigation.SelectFirstMenuButton();
-                   
+
                 }
                 else
                 {
@@ -57,10 +57,10 @@ public class InputManager : MonoBehaviour
             {
                 Vector2 navigationInput = ctx.ReadValue<Vector2>();
                 menuNavigation.Navigate(navigationInput);
-                
+
             }
         };
-        
+
 
         movement.HorizontalMovement.performed += ctx =>
         {
@@ -68,9 +68,9 @@ public class InputManager : MonoBehaviour
             {
                 horizontalInput = ctx.ReadValue<Vector2>();
                 HorizontalInputCheck(ctx);
-                
+
             }
-                
+
         };
 
         movement.Point.performed += ctx =>
@@ -110,7 +110,7 @@ public class InputManager : MonoBehaviour
             if (inputsEnabled)
                 playerMovement.OnSlidePressed();
         };
-        
+
         movement.Attack.performed += ctx =>
         {
             if (inputsEnabled && canAttack)
@@ -123,7 +123,7 @@ public class InputManager : MonoBehaviour
                 playerCombat.BlockAction();
         };
 
-        movement.GrapplingHook.performed += ctx =>
+        movement.Grapple.performed += ctx =>
         {
             if (inputsEnabled)
                 grapplingHookShoot.StartGrapple();
@@ -149,7 +149,7 @@ public class InputManager : MonoBehaviour
                 stakeButtonDownTimer = 0f;
                 canAttack = true;
             }
-                
+
         };
 
         movement.Use.performed += ctx =>
@@ -169,23 +169,23 @@ public class InputManager : MonoBehaviour
             Debug.Log("Open door = false");
         };
 
-        movement.SilverBomb.performed += ctx =>
-        {
-            if (inputsEnabled)
-                throwBomb.Throw();
-        };
+        //movement.SilverBomb.performed += ctx =>
+        //{
+        //    if (inputsEnabled)
+        //        throwBomb.Throw();
+        //};
 
-        movement.SwapToStarterSword.performed += ctx =>
-        {
-            if (inputsEnabled)
-                playerCombat.SetWeaponLogics(0);
-        };
+        //movement.SwapToStarterSword.performed += ctx =>
+        //{
+        //    if (inputsEnabled)
+        //        playerCombat.SetWeaponLogics(0);
+        //};
 
-        movement.SwapToSlayMore.performed += ctx =>
-        {
-            if (inputsEnabled)
-                playerCombat.SetWeaponLogics(1);
-        };
+        //movement.SwapToSlayMore.performed += ctx =>
+        //{
+        //    if (inputsEnabled)
+        //        playerCombat.SetWeaponLogics(1);
+        //};
 
     }
 
@@ -194,7 +194,7 @@ public class InputManager : MonoBehaviour
         inputsEnabled = true;
     }
 
-        private void Update()
+    private void Update()
     {
         playerMovement.ReceiveInput(horizontalInput);
         mouseLook.ReceiveInput(mouseInput);
@@ -226,7 +226,7 @@ public class InputManager : MonoBehaviour
         return horizontalInput;
     }
 
-   
 
-   
+
+
 }

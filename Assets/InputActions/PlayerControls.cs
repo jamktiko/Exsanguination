@@ -91,7 +91,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""GrapplingHook"",
+                    ""name"": ""Grapple"",
                     ""type"": ""Button"",
                     ""id"": ""4b653e1c-fd8c-4906-a9d9-089e0bdf9a94"",
                     ""expectedControlType"": ""Button"",
@@ -127,7 +127,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""SilverBomb"",
+                    ""name"": ""Throwable"",
                     ""type"": ""Button"",
                     ""id"": ""ccad1d33-754a-4907-80e1-f549bee05606"",
                     ""expectedControlType"": ""Button"",
@@ -157,13 +157,13 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""name"": ""MenuNavigate"",
                     ""type"": ""PassThrough"",
                     ""id"": ""febb6429-a8db-4a82-9bc0-0354668cbf62"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""PauseMenu"",
+                    ""name"": ""Pause"",
                     ""type"": ""Button"",
                     ""id"": ""1adc1f9b-8d80-4b0b-a9bd-4e25301e2053"",
                     ""expectedControlType"": ""Button"",
@@ -172,7 +172,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""SwapToStarterSword"",
+                    ""name"": ""Weapon1"",
                     ""type"": ""Button"",
                     ""id"": ""9ab3412a-352f-44b8-8c19-676fd1369c94"",
                     ""expectedControlType"": ""Button"",
@@ -181,7 +181,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""SwapToSlayMore"",
+                    ""name"": ""Weapon2"",
                     ""type"": ""Button"",
                     ""id"": ""5347b329-2d5c-4178-a23b-8f09cdad5caa"",
                     ""expectedControlType"": ""Button"",
@@ -307,7 +307,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""path"": ""<Mouse>/delta/x"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Gamepad"",
+                    ""groups"": ""Keyboard and Mouse"",
                     ""action"": ""MouseX"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -396,7 +396,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
-                    ""action"": ""GrapplingHook"",
+                    ""action"": ""Grapple"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -407,7 +407,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""GrapplingHook"",
+                    ""action"": ""Grapple"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -484,7 +484,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
-                    ""action"": ""SilverBomb"",
+                    ""action"": ""Throwable"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -495,7 +495,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""SilverBomb"",
+                    ""action"": ""Throwable"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -506,6 +506,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Point"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f4a3a10e-d933-4abc-ae06-8f3a9224ffe6"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Point"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -533,68 +544,13 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""2D Vector"",
-                    ""id"": ""80c1253e-1d58-4c23-bf94-bf346b6324f5"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MenuNavigate"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""eeec6d5e-8c3e-4052-9287-ab5f066ca89d"",
-                    ""path"": ""<Gamepad>/dpad/up"",
-                    ""interactions"": """",
-                    ""processors"": ""AxisDeadzone"",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""MenuNavigate"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""302aed8e-fde7-4879-a0dd-c93af7aac68a"",
-                    ""path"": ""<Gamepad>/dpad/down"",
-                    ""interactions"": """",
-                    ""processors"": ""AxisDeadzone"",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""MenuNavigate"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""ce26e604-7531-4775-aa74-48c1058e9b5e"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MenuNavigate"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""242620de-8d0f-4bc2-aad2-3f5987e0ce0f"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MenuNavigate"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
                     ""name"": """",
                     ""id"": ""608304d6-161a-4cdd-814a-7a432fefcffc"",
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
-                    ""action"": ""PauseMenu"",
+                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -605,7 +561,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""PauseMenu"",
+                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -616,7 +572,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
-                    ""action"": ""SwapToStarterSword"",
+                    ""action"": ""Weapon1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -627,7 +583,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""SwapToStarterSword"",
+                    ""action"": ""Weapon1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -638,7 +594,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
-                    ""action"": ""SwapToSlayMore"",
+                    ""action"": ""Weapon2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -649,9 +605,75 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""SwapToSlayMore"",
+                    ""action"": ""Weapon2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""b69fddd7-2d57-465d-ac9d-7636409e5667"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MenuNavigate"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""cd713eec-9d94-43fb-9891-90aae40aaa1f"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""MenuNavigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""9075775e-52e2-4676-90a4-0b45b67282b8"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""MenuNavigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""4d389887-d1cc-4e3d-b051-c81c8f96b79e"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MenuNavigate"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""b4344d33-a4cd-4158-a69a-431db0dcf263"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""MenuNavigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""8af33f48-d23d-4ed3-afec-2a1cd0be07ad"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""MenuNavigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -695,17 +717,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Movement_MouseY = m_Movement.FindAction("MouseY", throwIfNotFound: true);
         m_Movement_Slide = m_Movement.FindAction("Slide", throwIfNotFound: true);
         m_Movement_Attack = m_Movement.FindAction("Attack", throwIfNotFound: true);
-        m_Movement_GrapplingHook = m_Movement.FindAction("GrapplingHook", throwIfNotFound: true);
+        m_Movement_Grapple = m_Movement.FindAction("Grapple", throwIfNotFound: true);
         m_Movement_Stake = m_Movement.FindAction("Stake", throwIfNotFound: true);
         m_Movement_Use = m_Movement.FindAction("Use", throwIfNotFound: true);
         m_Movement_Block = m_Movement.FindAction("Block", throwIfNotFound: true);
-        m_Movement_SilverBomb = m_Movement.FindAction("SilverBomb", throwIfNotFound: true);
+        m_Movement_Throwable = m_Movement.FindAction("Throwable", throwIfNotFound: true);
         m_Movement_Point = m_Movement.FindAction("Point", throwIfNotFound: true);
         m_Movement_MenuInteraction = m_Movement.FindAction("MenuInteraction", throwIfNotFound: true);
         m_Movement_MenuNavigate = m_Movement.FindAction("MenuNavigate", throwIfNotFound: true);
-        m_Movement_PauseMenu = m_Movement.FindAction("PauseMenu", throwIfNotFound: true);
-        m_Movement_SwapToStarterSword = m_Movement.FindAction("SwapToStarterSword", throwIfNotFound: true);
-        m_Movement_SwapToSlayMore = m_Movement.FindAction("SwapToSlayMore", throwIfNotFound: true);
+        m_Movement_Pause = m_Movement.FindAction("Pause", throwIfNotFound: true);
+        m_Movement_Weapon1 = m_Movement.FindAction("Weapon1", throwIfNotFound: true);
+        m_Movement_Weapon2 = m_Movement.FindAction("Weapon2", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -774,17 +796,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Movement_MouseY;
     private readonly InputAction m_Movement_Slide;
     private readonly InputAction m_Movement_Attack;
-    private readonly InputAction m_Movement_GrapplingHook;
+    private readonly InputAction m_Movement_Grapple;
     private readonly InputAction m_Movement_Stake;
     private readonly InputAction m_Movement_Use;
     private readonly InputAction m_Movement_Block;
-    private readonly InputAction m_Movement_SilverBomb;
+    private readonly InputAction m_Movement_Throwable;
     private readonly InputAction m_Movement_Point;
     private readonly InputAction m_Movement_MenuInteraction;
     private readonly InputAction m_Movement_MenuNavigate;
-    private readonly InputAction m_Movement_PauseMenu;
-    private readonly InputAction m_Movement_SwapToStarterSword;
-    private readonly InputAction m_Movement_SwapToSlayMore;
+    private readonly InputAction m_Movement_Pause;
+    private readonly InputAction m_Movement_Weapon1;
+    private readonly InputAction m_Movement_Weapon2;
     public struct MovementActions
     {
         private @PlayerControls m_Wrapper;
@@ -796,17 +818,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @MouseY => m_Wrapper.m_Movement_MouseY;
         public InputAction @Slide => m_Wrapper.m_Movement_Slide;
         public InputAction @Attack => m_Wrapper.m_Movement_Attack;
-        public InputAction @GrapplingHook => m_Wrapper.m_Movement_GrapplingHook;
+        public InputAction @Grapple => m_Wrapper.m_Movement_Grapple;
         public InputAction @Stake => m_Wrapper.m_Movement_Stake;
         public InputAction @Use => m_Wrapper.m_Movement_Use;
         public InputAction @Block => m_Wrapper.m_Movement_Block;
-        public InputAction @SilverBomb => m_Wrapper.m_Movement_SilverBomb;
+        public InputAction @Throwable => m_Wrapper.m_Movement_Throwable;
         public InputAction @Point => m_Wrapper.m_Movement_Point;
         public InputAction @MenuInteraction => m_Wrapper.m_Movement_MenuInteraction;
         public InputAction @MenuNavigate => m_Wrapper.m_Movement_MenuNavigate;
-        public InputAction @PauseMenu => m_Wrapper.m_Movement_PauseMenu;
-        public InputAction @SwapToStarterSword => m_Wrapper.m_Movement_SwapToStarterSword;
-        public InputAction @SwapToSlayMore => m_Wrapper.m_Movement_SwapToSlayMore;
+        public InputAction @Pause => m_Wrapper.m_Movement_Pause;
+        public InputAction @Weapon1 => m_Wrapper.m_Movement_Weapon1;
+        public InputAction @Weapon2 => m_Wrapper.m_Movement_Weapon2;
         public InputActionMap Get() { return m_Wrapper.m_Movement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -837,9 +859,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Attack.started += instance.OnAttack;
             @Attack.performed += instance.OnAttack;
             @Attack.canceled += instance.OnAttack;
-            @GrapplingHook.started += instance.OnGrapplingHook;
-            @GrapplingHook.performed += instance.OnGrapplingHook;
-            @GrapplingHook.canceled += instance.OnGrapplingHook;
+            @Grapple.started += instance.OnGrapple;
+            @Grapple.performed += instance.OnGrapple;
+            @Grapple.canceled += instance.OnGrapple;
             @Stake.started += instance.OnStake;
             @Stake.performed += instance.OnStake;
             @Stake.canceled += instance.OnStake;
@@ -849,9 +871,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Block.started += instance.OnBlock;
             @Block.performed += instance.OnBlock;
             @Block.canceled += instance.OnBlock;
-            @SilverBomb.started += instance.OnSilverBomb;
-            @SilverBomb.performed += instance.OnSilverBomb;
-            @SilverBomb.canceled += instance.OnSilverBomb;
+            @Throwable.started += instance.OnThrowable;
+            @Throwable.performed += instance.OnThrowable;
+            @Throwable.canceled += instance.OnThrowable;
             @Point.started += instance.OnPoint;
             @Point.performed += instance.OnPoint;
             @Point.canceled += instance.OnPoint;
@@ -861,15 +883,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @MenuNavigate.started += instance.OnMenuNavigate;
             @MenuNavigate.performed += instance.OnMenuNavigate;
             @MenuNavigate.canceled += instance.OnMenuNavigate;
-            @PauseMenu.started += instance.OnPauseMenu;
-            @PauseMenu.performed += instance.OnPauseMenu;
-            @PauseMenu.canceled += instance.OnPauseMenu;
-            @SwapToStarterSword.started += instance.OnSwapToStarterSword;
-            @SwapToStarterSword.performed += instance.OnSwapToStarterSword;
-            @SwapToStarterSword.canceled += instance.OnSwapToStarterSword;
-            @SwapToSlayMore.started += instance.OnSwapToSlayMore;
-            @SwapToSlayMore.performed += instance.OnSwapToSlayMore;
-            @SwapToSlayMore.canceled += instance.OnSwapToSlayMore;
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
+            @Weapon1.started += instance.OnWeapon1;
+            @Weapon1.performed += instance.OnWeapon1;
+            @Weapon1.canceled += instance.OnWeapon1;
+            @Weapon2.started += instance.OnWeapon2;
+            @Weapon2.performed += instance.OnWeapon2;
+            @Weapon2.canceled += instance.OnWeapon2;
         }
 
         private void UnregisterCallbacks(IMovementActions instance)
@@ -895,9 +917,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Attack.started -= instance.OnAttack;
             @Attack.performed -= instance.OnAttack;
             @Attack.canceled -= instance.OnAttack;
-            @GrapplingHook.started -= instance.OnGrapplingHook;
-            @GrapplingHook.performed -= instance.OnGrapplingHook;
-            @GrapplingHook.canceled -= instance.OnGrapplingHook;
+            @Grapple.started -= instance.OnGrapple;
+            @Grapple.performed -= instance.OnGrapple;
+            @Grapple.canceled -= instance.OnGrapple;
             @Stake.started -= instance.OnStake;
             @Stake.performed -= instance.OnStake;
             @Stake.canceled -= instance.OnStake;
@@ -907,9 +929,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Block.started -= instance.OnBlock;
             @Block.performed -= instance.OnBlock;
             @Block.canceled -= instance.OnBlock;
-            @SilverBomb.started -= instance.OnSilverBomb;
-            @SilverBomb.performed -= instance.OnSilverBomb;
-            @SilverBomb.canceled -= instance.OnSilverBomb;
+            @Throwable.started -= instance.OnThrowable;
+            @Throwable.performed -= instance.OnThrowable;
+            @Throwable.canceled -= instance.OnThrowable;
             @Point.started -= instance.OnPoint;
             @Point.performed -= instance.OnPoint;
             @Point.canceled -= instance.OnPoint;
@@ -919,15 +941,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @MenuNavigate.started -= instance.OnMenuNavigate;
             @MenuNavigate.performed -= instance.OnMenuNavigate;
             @MenuNavigate.canceled -= instance.OnMenuNavigate;
-            @PauseMenu.started -= instance.OnPauseMenu;
-            @PauseMenu.performed -= instance.OnPauseMenu;
-            @PauseMenu.canceled -= instance.OnPauseMenu;
-            @SwapToStarterSword.started -= instance.OnSwapToStarterSword;
-            @SwapToStarterSword.performed -= instance.OnSwapToStarterSword;
-            @SwapToStarterSword.canceled -= instance.OnSwapToStarterSword;
-            @SwapToSlayMore.started -= instance.OnSwapToSlayMore;
-            @SwapToSlayMore.performed -= instance.OnSwapToSlayMore;
-            @SwapToSlayMore.canceled -= instance.OnSwapToSlayMore;
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
+            @Weapon1.started -= instance.OnWeapon1;
+            @Weapon1.performed -= instance.OnWeapon1;
+            @Weapon1.canceled -= instance.OnWeapon1;
+            @Weapon2.started -= instance.OnWeapon2;
+            @Weapon2.performed -= instance.OnWeapon2;
+            @Weapon2.canceled -= instance.OnWeapon2;
         }
 
         public void RemoveCallbacks(IMovementActions instance)
@@ -972,16 +994,16 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnMouseY(InputAction.CallbackContext context);
         void OnSlide(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
-        void OnGrapplingHook(InputAction.CallbackContext context);
+        void OnGrapple(InputAction.CallbackContext context);
         void OnStake(InputAction.CallbackContext context);
         void OnUse(InputAction.CallbackContext context);
         void OnBlock(InputAction.CallbackContext context);
-        void OnSilverBomb(InputAction.CallbackContext context);
+        void OnThrowable(InputAction.CallbackContext context);
         void OnPoint(InputAction.CallbackContext context);
         void OnMenuInteraction(InputAction.CallbackContext context);
         void OnMenuNavigate(InputAction.CallbackContext context);
-        void OnPauseMenu(InputAction.CallbackContext context);
-        void OnSwapToStarterSword(InputAction.CallbackContext context);
-        void OnSwapToSlayMore(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
+        void OnWeapon1(InputAction.CallbackContext context);
+        void OnWeapon2(InputAction.CallbackContext context);
     }
 }
