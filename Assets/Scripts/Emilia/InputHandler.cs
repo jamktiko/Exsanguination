@@ -227,6 +227,12 @@ public class InputHandler : MonoBehaviour
         }
     }
 
+    private void OnApplicationFocus(bool focus)
+    {
+        if (!focus)
+            pauseScript.PauseGame();
+    }
+
     private void OnEnable()
     {
         EnableInput();
