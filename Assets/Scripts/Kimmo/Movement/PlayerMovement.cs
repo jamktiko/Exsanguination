@@ -345,6 +345,10 @@ public class PlayerMovement : MonoBehaviour
     {
         slideSpeed = moveSpeed * slideSpeedMultiplier;
         rb.AddForce(orientation.forward * slideSpeed * 10f, ForceMode.Force);
+        if (isOnWall)
+        {
+            rb.AddForce(orientation.up * 9.81f, ForceMode.Force);
+        }
     }
 
     public void OnSlidePressed()

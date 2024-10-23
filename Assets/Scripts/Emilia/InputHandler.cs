@@ -60,7 +60,12 @@ public class InputHandler : MonoBehaviour
                     menuNavigation.SelectFirstMenuButton();
 
                 }
-                else
+                
+            }
+
+            else
+            {
+                if (pauseScript.paused)
                 {
                     pauseScript.UnPauseGame();
                 }
