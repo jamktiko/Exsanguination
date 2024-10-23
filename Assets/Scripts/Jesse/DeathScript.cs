@@ -52,7 +52,7 @@ public class DeathScript : MonoBehaviour
     {
         isDead = false;
         Debug.Log("pressed retry");
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void OnEnable()

@@ -7,9 +7,10 @@ public class GrapplingHookPointNotification : MonoBehaviour
     private Light hookPointLight;
     private Light lastHookPointLight;
     private Ray ray;
-    private float lightEnabledTimer = 2f;
-    private float defaultLightAmount = 0.5f;
-    private float highlightedLightAmount = 5f;
+    [SerializeField] float lightEnabledTimer = 2f;
+    [SerializeField] float defaultLightAmount = 0.5f;
+    [SerializeField] float highlightedLightAmount = 5f;
+    [SerializeField] float noticeDistance;
 
 
     private bool isCoroutineRunning = false; // Flag to track coroutine state
@@ -19,7 +20,7 @@ public class GrapplingHookPointNotification : MonoBehaviour
     {
         ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
         RaycastHit hit;
-        Physics.Raycast(ray, out hit, 25f);
+        Physics.Raycast(ray, out hit, noticeDistance);
 
         if (hit.collider != null)
         {

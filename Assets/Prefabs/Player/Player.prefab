@@ -1559,7 +1559,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8704
   lr: {fileID: 3762964810839066425}
-  maxGrappleDistance: 25
+  maxGrappleDistance: 15
   grappleDelayTime: 0
   grapplingCd: 1
 --- !u!114 &-5272548372710602540
@@ -1574,6 +1574,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b239bf85ce56be24fbd3467183bf9d54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lightEnabledTimer: 2
+  defaultLightAmount: 0.5
+  highlightedLightAmount: 5
+  noticeDistance: 15
 --- !u!120 &3762964810839066425
 LineRenderer:
   serializedVersion: 2
@@ -5569,7 +5573,7 @@ MonoBehaviour:
     m_Bits: 16384
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 1
+  m_RenderPostProcessing: 0
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -13770,7 +13774,7 @@ MonoBehaviour:
     m_Bits: 16384
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 1

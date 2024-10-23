@@ -25,6 +25,7 @@ public class EnemyFinisher : MonoBehaviour
     private GameObject enemyParticleSystem;
     private GameObject tmpParticle;
     [SerializeField] private GameObject particleInstantiateSpot;
+    private Rigidbody rb;
 
 
     private void Awake()
@@ -34,7 +35,7 @@ public class EnemyFinisher : MonoBehaviour
         playerCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Transform>();
         mLook = GetComponentInParent<MouseLook>();
         audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
-
+        rb = GetComponentInParent<Rigidbody>();
 
     }
 
@@ -92,6 +93,7 @@ public class EnemyFinisher : MonoBehaviour
         playerAnimator.SetTrigger("finish");
         InputManager.DisableInput();
         mLook.enabled = false;
+        rb.isKinematic = true;
     }
 
     public void EnemyExplode()
@@ -113,6 +115,7 @@ public class EnemyFinisher : MonoBehaviour
         mLook.enabled = true;
         Destroy(tmpParticle);
         tmpParticle = null;
+        rb.isKinematic = false;
     }
 
     public void RotateToTarget()
