@@ -8,6 +8,7 @@ namespace EmiliaScripts
         [SerializeField] int currentHealth;
         [SerializeField] int maxHealth;
         [SerializeField] Image injuredVFXImage;
+        [SerializeField] Image flashImage;
 
         public delegate void DeathInvokerEvent();
         /// <summary>
@@ -25,6 +26,7 @@ namespace EmiliaScripts
         {
             currentHealth = maxHealth;
             injuredVFXImage.color = new(1, 1, 1, 0);
+            flashImage.color = new(1, 1, 1, 0);
             Debug.Log("Updated Player Health to MAX: " + currentHealth);
         }
 
