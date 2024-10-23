@@ -247,12 +247,12 @@ public class InputHandler : MonoBehaviour
 
     public void EnableInput()
     {
-        playerInput.ActivateInput();
+        inputsEnabled = true;
     }
 
     public void DisableInput() 
     {
-        playerInput.DeactivateInput();
+        inputsEnabled = false;
     }
 
 }
