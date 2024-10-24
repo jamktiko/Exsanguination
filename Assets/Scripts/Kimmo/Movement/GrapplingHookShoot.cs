@@ -51,9 +51,10 @@ public class GrapplingHookShoot : MonoBehaviour
 
     public void StartGrapple()
     {
-        if (grapplingCdTimer > 0) return;
+        if (grapplingCdTimer > 0 || isGrappling) return;
         audioManager.PlayGrapplingHookShootAudioClip();
 
+        grapplingCdTimer = grapplingCd;
         isGrappling = true;
 
         //playerMovement.freeze = true;
@@ -99,7 +100,7 @@ public class GrapplingHookShoot : MonoBehaviour
 
         isGrappling = false;
 
-        grapplingCdTimer = grapplingCd;
+        //grapplingCdTimer = grapplingCd;
 
         lr.enabled = false;
     }
