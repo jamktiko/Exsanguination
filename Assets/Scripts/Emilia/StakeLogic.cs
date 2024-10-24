@@ -6,7 +6,7 @@ public class StakeLogic : MonoBehaviour
     [SerializeField] private GameObject prefab;
     [SerializeField] private float throwForce = 50f, stickDuration = 10f, returnCooldown = 10f, slowAmount = 0.5f, finisherThreshold = 50f, retrievalRange = 2f, stickTimer = 0f;
     [SerializeField] private bool isThrown = false, isStuck = false, isReturning = false;
-
+    public bool startedFinishing;
     private Rigidbody rb;
     [SerializeField] private EnemyAI stuckEnemy;
     private EnemyHealthScript stuckEnemyHealth;
@@ -114,7 +114,7 @@ public class StakeLogic : MonoBehaviour
         transform.SetParent(playerTransform, true);
         transform.position = stakeLocationOnPlayer.transform.position;
         transform.localRotation = stakeRotation;
-
+        startedFinishing = false;
         if (isFinished)
         {
             playerHealth.UpdatePlayerHealth(playerHealth.MaxPlayerHealth() / 2);
@@ -176,6 +176,7 @@ public class StakeLogic : MonoBehaviour
             {
                 if (stuckEnemyHealth.GetEnemyHealth() <= (int)(stuckEnemyHealth.GetEnemyMaxHealth() * 0.25f))
                 {
+                    startedFinishing = true;
                     stuckEnemyHealth.FinishEnemy();
                     UnstickFromEnemy(true);
                 }

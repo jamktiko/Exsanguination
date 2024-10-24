@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.ProBuilder.MeshOperations;
 
 public class InputHandler : MonoBehaviour
 {
@@ -182,14 +183,21 @@ public class InputHandler : MonoBehaviour
                 stakeLogic.RetrieveStake();
                 openDoor = true;
                 Debug.Log("Open door = true");
+                if (!stakeLogic.startedFinishing)
+                {
+                    horizontalInput = Vector2.zero;
+                }
             }
         };
 
         useAction.canceled += ctx =>
         {
             if (inputsEnabled)
+            {
                 openDoor = false;
-            Debug.Log("Open door = false");
+                Debug.Log("Open door = false");
+            }
+            
         };
 
         throwableAction.performed += ctx =>
@@ -225,6 +233,8 @@ public class InputHandler : MonoBehaviour
         {
             stakeButtonDownTimer += Time.deltaTime;
         }
+
+        Debug.Log(horizontalInput);
     }
 
     private void OnApplicationFocus(bool focus)

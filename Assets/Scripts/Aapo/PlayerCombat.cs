@@ -97,7 +97,7 @@ public class PlayerCombat : MonoBehaviour
 
         if(currentWeaponNumber == 1)
         {
-            //SlaymoreanimLogics
+            animator.SetTrigger("Attack");
         }
         
     }
@@ -110,8 +110,11 @@ public class PlayerCombat : MonoBehaviour
                 animator.SetTrigger("block");
             StartCoroutine(BlockingCooldown());
         }
-        
 
+        if (currentWeaponNumber == 1)
+        {
+            animator.SetTrigger("SecondAttack");
+        }
     }
 
     private IEnumerator BlockingCooldown()
