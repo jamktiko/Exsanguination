@@ -85,7 +85,6 @@ public class EnemyAI : MonoBehaviour
             {
                 navMeshAgent.enabled = false;
                 rb.AddForce(pounceDirection * pounceForceForward, ForceMode.Impulse);
-                Debug.Log("Enemy pounced with force " + pounceForceUp + " up and " + pounceDirection + " forward");
                 isPouncing = false;
             }
 
@@ -144,7 +143,7 @@ public class EnemyAI : MonoBehaviour
     private void DetectPlayer()
     {
         
-        if (player != null && !enemyStates.isStunned)
+        if (player != null && !enemyStates.isStunned && !isPouncing)
         {
             FollowPlayer();
             
@@ -156,7 +155,7 @@ public class EnemyAI : MonoBehaviour
         float distance = Vector3.Distance(transform.position, player.position);
         Vector3 direction = (player.position - transform.position).normalized;
 
-        if(!enemyStates.isStunned && !enemyAnimator.GetBool("isAttacking") && distance > attackRange && navMeshAgent.enabled && isGrounded)
+        if(!enemyStates.isStunned && !enemyAnimator.GetBool("isAttacking") && distance > attackRange && navMeshAgent.enabled && isGrounded && !isPouncing)
         {
             RotateTowardsPlayer(direction); // Always rotate towards the player
             navMeshAgent.SetDestination(player.position);  // Use NavMesh to move towards player
@@ -226,7 +225,7 @@ public class EnemyAI : MonoBehaviour
             rb.drag = 0;
         }
         //after 2 seconds of pounce if enemy is on ground turn ai movement logic back on
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1.5f);
        
         if (isGrounded)
         {
@@ -245,7 +244,7 @@ public class EnemyAI : MonoBehaviour
     IEnumerator ForceNavMesh()
     {
         //force enemy on surface after 5 seconds if its floating in air
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(2);
         navMeshAgent.enabled = true;
         rb.drag = 2;
     }

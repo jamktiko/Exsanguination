@@ -16,8 +16,17 @@ public class EnemyGroup // Information and methods of individual enemy groups
         {
             if (enemy != null)
             {
-               EnemyAI enemyAI = enemy.GetComponent<EnemyAI>();
-                enemyAI.ActivateEnemy();
+                if(enemy.GetComponent<EnemyAI>() != null)
+                {
+                    EnemyAI enemyAI = enemy.GetComponent<EnemyAI>();
+                    enemyAI.ActivateEnemy();
+                }
+               if(enemy.GetComponent<BatEnemyAI>() != null)
+                {
+                    BatEnemyAI batEnemyAI = enemy.GetComponent<BatEnemyAI>();
+                    batEnemyAI.ActivateEnemy();
+                }
+               
             }
         }
     }

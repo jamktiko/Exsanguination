@@ -234,7 +234,6 @@ public class InputHandler : MonoBehaviour
             stakeButtonDownTimer += Time.deltaTime;
         }
 
-        Debug.Log(horizontalInput);
     }
 
     private void OnApplicationFocus(bool focus)

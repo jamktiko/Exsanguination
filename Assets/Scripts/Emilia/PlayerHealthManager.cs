@@ -70,20 +70,20 @@ namespace EmiliaScripts
                     OnDeath?.Invoke();
                 }
                 OnHealthUpdate?.Invoke();
-                Debug.Log("Updating player health with modifier: " + healthNumber);
+                //Debug.Log("Updating player health with modifier: " + healthNumber);
             }
             else if (currentHealth <= 0)
             {
                 OnDeath?.Invoke();
-                Debug.Log("Player is dead. Health: " + currentHealth);
+                //Debug.Log("Player is dead. Health: " + currentHealth);
             }
             else if (currentHealth > maxHealth) // avoid overheal
             {
                 currentHealth = maxHealth;
-                Debug.Log("Current Health over max, setting to max health: " + currentHealth);
+                //Debug.Log("Current Health over max, setting to max health: " + currentHealth);
             }
 
-            Debug.Log("Current Player Health: " + currentHealth);
+            //Debug.Log("Current Player Health: " + currentHealth);
             UpdateInjuryVFX(currentHealth);
         }
 
