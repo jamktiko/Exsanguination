@@ -16,6 +16,7 @@ public class BatEnemyAI : MonoBehaviour
     private Animator enemyAnimator;
     private AudioManager audioManager;
     [SerializeField] private AudioSource enemyBatAlertAudioSource;
+    private Animator animator;
 
     void Awake()
     {
@@ -23,6 +24,7 @@ public class BatEnemyAI : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         enemyAnimator = GetComponent<Animator>();
         audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        animator = GetComponent<Animator>();
 
     }
  
@@ -75,6 +77,7 @@ public class BatEnemyAI : MonoBehaviour
     {
         isInAttackRange = false;
         agent.isStopped = false;
+        animator.SetBool("isAttacking", false);
         agent.SetDestination(player.position);
     }
 
@@ -87,6 +90,7 @@ public class BatEnemyAI : MonoBehaviour
         if (Time.time - lastAttackTime >= attackCooldown)
         {
             isAttacking = true;           // Set attacking state
+            animator.SetBool("isAttacking", true);
             lastAttackTime = Time.time;
             ShootProjectile();
             Invoke("EndAttack", 1.6f);    // Allow time for the attack to complete (adjust duration as needed)

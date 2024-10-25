@@ -1670,7 +1670,7 @@ GameObject:
   - component: {fileID: 3415339600894763335}
   m_Layer: 9
   m_Name: EnemyBat
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1715,7 +1715,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 208a8a2d1b743fd46a58b1bf7f99f666, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -1797,7 +1797,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackRange: 5
   projectile: {fileID: 2204540823184924156}
-  attackCooldown: 1.6
+  attackCooldown: 3
   enemyBatAlertAudioSource: {fileID: 3415339600894763335}
 --- !u!82 &3415339600894763335
 AudioSource:
