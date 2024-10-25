@@ -93,7 +93,6 @@ public class EnemyFinisher : MonoBehaviour
         playerAnimator.SetTrigger("finish");
         InputManager.DisableInput();
         mLook.enabled = false;
-        rb.isKinematic = true;
     }
 
     public void EnemyExplode()
@@ -115,7 +114,6 @@ public class EnemyFinisher : MonoBehaviour
         mLook.enabled = true;
         Destroy(tmpParticle);
         tmpParticle = null;
-        rb.isKinematic = false;
     }
 
     public void RotateToTarget()
