@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float airMultiplier;
     public bool isGrounded;
     [SerializeField] bool isJumping;
+    bool canJump;
     Vector3 verticalVelocity = Vector3.zero;
 
     [Header("Dash")]
@@ -56,6 +57,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Grapple")]
     public bool freeze;
     public bool activeGrapple;
+    GrapplingHookShoot grapplingHookShoot;
 
     [Header("Audio")]
     AudioManager audioManager;
@@ -75,11 +77,13 @@ public class PlayerMovement : MonoBehaviour
         audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         controllerHandler = GameObject.FindGameObjectWithTag("InputManager").GetComponent<ControllerHandler>();
         animator = GameObject.FindGameObjectWithTag("PlayerModel").GetComponent<Animator>();
+        grapplingHookShoot = GetComponent<GrapplingHookShoot>();
     }
 
     private void Start()
     {
         canMove = true;
+        canJump = true;
         canDash = true;
         canSlide = true;
         isLanded = true;
@@ -87,10 +91,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (freeze)
-        {
-            rb.velocity = Vector3.zero;
-        }
+        //if (freeze)
+        //{
+        //    rb.velocity = Vector3.zero;
+        //}
 
         isGrounded = Physics.CheckSphere(groundCheck.position, 0.1f, groundMask);
 
@@ -280,7 +284,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnJumpPressed()
     {
-        if (isGrounded)
+        if (isGrounded && canJump)
         {
             isJumping = true;
         }
@@ -412,11 +416,12 @@ public class PlayerMovement : MonoBehaviour
     {
         activeGrapple = true;
         canDash = false;
+        canJump = false;
 
         velocityToSet = CalculateJumpVelocity(transform.position, targetPosition, trajectoryHeight);
         Invoke(nameof(SetVelocity), 0.1f);
 
-        Invoke(nameof(ResetRestricitons), 3f);
+        Invoke(nameof(ResetRestricitons), grapplingHookShoot.grapplingCd);
     }
 
     private Vector3 velocityToSet;
@@ -431,6 +436,7 @@ public class PlayerMovement : MonoBehaviour
     {
         activeGrapple = false;
         canDash = true;
+        canJump = true;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -438,9 +444,8 @@ public class PlayerMovement : MonoBehaviour
         if (enableMovementOnNextTouch)
         {
             enableMovementOnNextTouch = false;
-            ResetRestricitons();
 
-            GetComponent<GrapplingHookShoot>().StopGrapple();
+            grapplingHookShoot.StopGrapple();
         }
     }
 
