@@ -13,7 +13,7 @@ public class InputHandler : MonoBehaviour
     [SerializeField] private PauseScript pauseScript;
     [SerializeField] private ControllerMenuNavigation menuNavigation;
     private PlayerInput playerInput;
-    private InputAction movementAction, jumpAction, dashAction, slideAction, attackAction, grapplingAction, stakeAction, useAction, blockAction, throwableAction, pauseAction, weapon1Action, weapon2Action, pointAction, menuInteractionAction, menuNavigateAction, lookXAction, lookYAction;
+    private InputAction movementAction, jumpAction, dashAction, slideAction, attackAction, grapplingAction, stakeAction, useAction, blockAction, throwableAction, pauseAction, weapon1Action, weapon2Action, pointAction, menuInteractionAction, menuNavigateAction, mouselookAround;
     private Vector2 horizontalInput;
     private Vector2 mouseInput;
     private Vector2 cursorPosition;
@@ -46,9 +46,7 @@ public class InputHandler : MonoBehaviour
         pointAction = playerInput.actions["Point"];
         menuInteractionAction = playerInput.actions["MenuInteraction"];
         menuNavigateAction = playerInput.actions["MenuNavigate"];
-        lookXAction = playerInput.actions["MouseX"];
-        lookYAction = playerInput.actions["MouseY"];
-
+        mouselookAround = playerInput.actions["Look"];
 
 
         pauseAction.performed += ctx =>
@@ -110,17 +108,19 @@ public class InputHandler : MonoBehaviour
                 playerMovement.OnJumpPressed();
         };
 
-        lookXAction.performed += ctx =>
+        mouselookAround.performed += ctx =>
         {
             if (inputsEnabled)
-                mouseInput.x = ctx.ReadValue<float>();
-        };
 
-        lookYAction.performed += ctx =>
-        {
-            if (inputsEnabled)
-                mouseInput.y = ctx.ReadValue<float>();
+                mouseInput = ctx.ReadValue<Vector2>(); // Use Vector2 to get both X and Y axes
+
         };
+        mouselookAround.canceled += ctx =>
+        {
+            // Reset mouseInput to zero when movement stops
+            mouseInput = Vector2.zero;
+        };
+        
 
 
         dashAction.performed += ctx =>
