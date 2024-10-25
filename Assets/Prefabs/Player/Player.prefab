@@ -1524,7 +1524,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sensitivityX: 8
-  sensitivityY: 0.5
+  sensitivityY: 0.2
   playerCamera: {fileID: 108411606681717390}
   cameraDirection: {x: 0, y: 0, z: 0}
   xClamp: 80
@@ -4247,7 +4247,7 @@ MonoBehaviour:
   - {fileID: 9100000, guid: 4bb898950f1dab341a81b66c05384b24, type: 2}
   canDamage: 0
   canCombo: 0
-  thirdAttackDamage: 0
+  specialDamage: 0
   isBlocking: 0
   blockCooldownTime: 2
   currentWeaponNumber: 0
@@ -5573,7 +5573,7 @@ MonoBehaviour:
     m_Bits: 16384
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -14082,6 +14082,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SlayMore
       objectReference: {fileID: 0}
+    - target: {fileID: 7252547384191853248, guid: 2ddfc3c8c3c6c4e4b8a185c5312d7cd0, type: 3}
+      propertyPath: playerCombat
+      value: 
+      objectReference: {fileID: 5528116302790637123}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -7,7 +7,7 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] RuntimeAnimatorController[] weaponAnimators;
     public bool canDamage;
     [SerializeField] private bool canCombo;
-    public bool thirdAttackDamage;
+    public bool specialDamage;
     public bool isBlocking;
     private bool blockOnCooldown;
     [SerializeField] private float blockCooldownTime;
@@ -162,12 +162,12 @@ public class PlayerCombat : MonoBehaviour
 
     public void ThirdAttackDamage()
     {
-        thirdAttackDamage = true;
+        specialDamage = true;
     }
 
     public void NormalAttackDamage()
     {
-        thirdAttackDamage = false;
+        specialDamage = false;
     }
 
     public void Blocking()
