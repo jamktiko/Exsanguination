@@ -56,6 +56,7 @@ public class PauseScript : MonoBehaviour
         Debug.Log("game unpaused");
         Time.timeScale = 1f;
         paused = false;
+        settingsMenu.CloseSettings();
         pauseMenu.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
