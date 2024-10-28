@@ -15,7 +15,6 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask playerLayer;
     [SerializeField] private LayerMask enemyLayer;
-    [SerializeField] private PlayerMovement playerMovementScript;
     [SerializeField] private float attackRange = 1.5f;
     [SerializeField] private float attackCooldown = 1.0f;
     [SerializeField] private float pounceRangeMax = 5f;
@@ -23,7 +22,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private float separationDistance = 2f;
     [SerializeField] private float stopSeparationDistance = 1.5f;
     [SerializeField] private Animator enemyAnimator;
-    [SerializeField] private AudioManager audioManager;
+    private AudioManager audioManager;
     [SerializeField] private AudioSource enemyAlertAudioSource;
     [SerializeField] private AudioSource enemyFootstepAudioSource;
 
@@ -53,7 +52,6 @@ public class EnemyAI : MonoBehaviour
         navMeshAgent = GetComponent<NavMeshAgent>(); // Initialize NavMeshAgent
         enemyStates = GetComponentInChildren<EnemyStates>();
         audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
-        playerMovementScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         if (player == null)
         {
             // Search for the player
@@ -87,7 +85,6 @@ public class EnemyAI : MonoBehaviour
             {
                 navMeshAgent.enabled = false;
                 rb.AddForce(pounceDirection * pounceForceForward, ForceMode.Impulse);
-                Debug.Log("Enemy pounced with force " + pounceForceUp + " up and " + pounceDirection + " forward");
                 isPouncing = false;
             }
 
@@ -139,7 +136,6 @@ public class EnemyAI : MonoBehaviour
     {
         enemyIsTriggered = true;
         enemyAnimator.SetTrigger("detect");
-        enemyAnimator.ResetTrigger("detect");
         audioManager.PlayEnemyAlertAudioClip(enemyAlertAudioSource);
 
     }
@@ -147,7 +143,7 @@ public class EnemyAI : MonoBehaviour
     private void DetectPlayer()
     {
         
-        if (player != null && !enemyStates.isStunned)
+        if (player != null && !enemyStates.isStunned && !isPouncing)
         {
             FollowPlayer();
             
@@ -159,7 +155,7 @@ public class EnemyAI : MonoBehaviour
         float distance = Vector3.Distance(transform.position, player.position);
         Vector3 direction = (player.position - transform.position).normalized;
 
-        if(!enemyStates.isStunned && !enemyAnimator.GetBool("isAttacking") && distance > attackRange && navMeshAgent.enabled && isGrounded)
+        if(!enemyStates.isStunned && !enemyAnimator.GetBool("isAttacking") && distance > attackRange && navMeshAgent.enabled && isGrounded && !isPouncing)
         {
             RotateTowardsPlayer(direction); // Always rotate towards the player
             navMeshAgent.SetDestination(player.position);  // Use NavMesh to move towards player
@@ -229,7 +225,7 @@ public class EnemyAI : MonoBehaviour
             rb.drag = 0;
         }
         //after 2 seconds of pounce if enemy is on ground turn ai movement logic back on
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1.5f);
        
         if (isGrounded)
         {
@@ -248,7 +244,7 @@ public class EnemyAI : MonoBehaviour
     IEnumerator ForceNavMesh()
     {
         //force enemy on surface after 5 seconds if its floating in air
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(2);
         navMeshAgent.enabled = true;
         rb.drag = 2;
     }

@@ -7,11 +7,11 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] RuntimeAnimatorController[] weaponAnimators;
     public bool canDamage;
     [SerializeField] private bool canCombo;
-    public bool thirdAttackDamage;
+    public bool specialDamage;
     public bool isBlocking;
     private bool blockOnCooldown;
     [SerializeField] private float blockCooldownTime;
-    [SerializeField] AudioManager audioManager;
+    AudioManager audioManager;
     public int currentWeaponNumber;
     [SerializeField] GameObject starterSword;
     [SerializeField] GameObject slayMore;
@@ -24,7 +24,7 @@ public class PlayerCombat : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
-        audioManager = FindObjectOfType<AudioManager>();
+        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
     }
     private void Start()
     {
@@ -32,7 +32,7 @@ public class PlayerCombat : MonoBehaviour
        slayMore.SetActive(false);
     }
    
-    private void SetWeaponLogics(int weaponIndex)
+    public void SetWeaponLogics(int weaponIndex)
     {
         currentWeaponNumber = weaponIndex;
         if (currentWeaponNumber == 0) 
@@ -52,7 +52,9 @@ public class PlayerCombat : MonoBehaviour
 
         }
     }
-   
+
+ 
+
     public void Attack()
     {
         //StarterSword
@@ -95,7 +97,7 @@ public class PlayerCombat : MonoBehaviour
 
         if(currentWeaponNumber == 1)
         {
-            //SlaymoreanimLogics
+            animator.SetTrigger("Attack");
         }
         
     }
@@ -108,8 +110,11 @@ public class PlayerCombat : MonoBehaviour
                 animator.SetTrigger("block");
             StartCoroutine(BlockingCooldown());
         }
-        
 
+        if (currentWeaponNumber == 1)
+        {
+            animator.SetTrigger("SecondAttack");
+        }
     }
 
     private IEnumerator BlockingCooldown()
@@ -157,12 +162,12 @@ public class PlayerCombat : MonoBehaviour
 
     public void ThirdAttackDamage()
     {
-        thirdAttackDamage = true;
+        specialDamage = true;
     }
 
     public void NormalAttackDamage()
     {
-        thirdAttackDamage = false;
+        specialDamage = false;
     }
 
     public void Blocking()

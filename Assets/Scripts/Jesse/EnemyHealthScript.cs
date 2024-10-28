@@ -5,7 +5,7 @@ public class EnemyHealthScript : MonoBehaviour
 {
     [SerializeField] int maxHealth = 100;
     [SerializeField] int health = 100;
-    [SerializeField] AudioManager audioManager;
+    AudioManager audioManager;
     [SerializeField] AudioSource enemyTakeDamageAudioSource;
     private EnemyFinisher stuckEnemyFinisher;
     private EnemyDeathScript enemyDeathScript;
@@ -18,7 +18,7 @@ public class EnemyHealthScript : MonoBehaviour
         enemyDeathScript = GetComponentInChildren<EnemyDeathScript>();
         bloodController = GetComponentInChildren<BloodFXController>();
         bloodSplatterParticle = GetComponentInChildren<ParticleSystem>();
-        audioManager = FindObjectOfType<AudioManager>();
+        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();            
     }
 
     private void Start()

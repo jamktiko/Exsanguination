@@ -1,70 +1,59 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SpikeTrapTrigger : MonoBehaviour
 {
     [SerializeField] GameObject spikes;
 
-
-    [SerializeField] bool active;
     [Header("Speeds as values from 0-1")]
     [SerializeField] float riseSpeed;
     [SerializeField] float lowerSpeed;
-    [SerializeField] float activeHeight;
-
     private Vector3 inactivePosition;
+    [SerializeField] float inactiveYOffset;
 
     [SerializeField] float upTime;
     [SerializeField] float coolDown;
 
-    [SerializeField] float timer;
+    [SerializeField] bool active;
 
-    private void Start()
+    private void Awake()
     {
-        inactivePosition = spikes.transform.position - new Vector3(0, activeHeight, 0);
+        Debug.Log(transform.root.transform.localScale.y);
+        inactivePosition = spikes.transform.position + new Vector3(0, inactiveYOffset * transform.root.transform.localScale.y, 0);
+        spikes.transform.position = inactivePosition;
     }
 
-
-    void Update()
-    {
-        if (active)
-        {
-            Vector3 targetPosition = new Vector3 (inactivePosition.x, inactivePosition.y + activeHeight, inactivePosition.z);
-            spikes.transform.position = Vector3.Lerp(spikes.transform.position, targetPosition, riseSpeed);
-            timer -= Time.deltaTime;
-            if (timer <= 0)
-            {
-                active = false;
-                timer = coolDown;
-            }
-        }
-        else
-        {
-            spikes.transform.position = Vector3.Lerp(spikes.transform.position, inactivePosition, lowerSpeed);
-            if (timer >0)
-            {
-                timer -= Time.deltaTime;
-            }
-            
-        }
-    }
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Player" || other.tag == "Enemy")
+        if (other.CompareTag("Player") || other.CompareTag("Enemy"))
         {
-
-            if (timer <= 0 && !active)
-            {
-                ActivateTrap();
-            }
+            if (active) { return; }
+            StartCoroutine(Thrust());
         }
     }
 
-    public void ActivateTrap()
+    IEnumerator Thrust()
     {
         active = true;
-        timer = upTime;
+        while (spikes.transform.position != transform.position)
+        {
+            spikes.transform.position = Vector3.MoveTowards(spikes.transform.position, transform.position, riseSpeed * Time.deltaTime);
+            yield return null;
+        }
+        Debug.Log("Spikes up");
+
+
+        yield return new WaitForSeconds(upTime);
+
+        while (spikes.transform.position != inactivePosition)
+        {
+            spikes.transform.position = Vector3.MoveTowards(spikes.transform.position, inactivePosition, lowerSpeed * Time.deltaTime);
+            yield return null;
+        }
+        Debug.Log("Spikes down");
+
+        yield return new WaitForSeconds(coolDown);
+        active = false;
     }
 }

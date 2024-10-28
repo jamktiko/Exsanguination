@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,12 +15,14 @@ public class PlayerMovement : MonoBehaviour
     public bool isMoving;
     Vector2 horizontalInput;
     Rigidbody rb;
+    private Animator animator;
 
     [Header("Jump")]
     [SerializeField] float jumpForce;
     [SerializeField] float airMultiplier;
     public bool isGrounded;
     [SerializeField] bool isJumping;
+    bool canJump;
     Vector3 verticalVelocity = Vector3.zero;
 
     [Header("Dash")]
@@ -43,6 +46,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float playerColliderHeight;
     [SerializeField] bool canSlide;
     public bool isSliding;
+    [SerializeField] bool isOnWall;
     [SerializeField] Transform cam;
     [SerializeField] Vector3 camStandingPos;
     [SerializeField] Vector3 camSlidingPos;
@@ -53,9 +57,10 @@ public class PlayerMovement : MonoBehaviour
     [Header("Grapple")]
     public bool freeze;
     public bool activeGrapple;
+    GrapplingHookShoot grapplingHookShoot;
 
     [Header("Audio")]
-    [SerializeField] AudioManager audioManager;
+    AudioManager audioManager;
     [SerializeField] float footstepTimer;
     [SerializeField] float footStepAudioCooldown;
     bool firstStepPlayed;
@@ -70,12 +75,15 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         dashDirection = orientation.forward;
         audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
-        controllerHandler = GameObject.FindGameObjectWithTag("GameManager").GetComponent<ControllerHandler>();
+        controllerHandler = GameObject.FindGameObjectWithTag("InputManager").GetComponent<ControllerHandler>();
+        animator = GameObject.FindGameObjectWithTag("PlayerModel").GetComponent<Animator>();
+        grapplingHookShoot = GetComponent<GrapplingHookShoot>();
     }
 
     private void Start()
     {
         canMove = true;
+        canJump = true;
         canDash = true;
         canSlide = true;
         isLanded = true;
@@ -83,10 +91,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (freeze)
-        {
-            rb.velocity = Vector3.zero;
-        }
+        //if (freeze)
+        //{
+        //    rb.velocity = Vector3.zero;
+        //}
 
         isGrounded = Physics.CheckSphere(groundCheck.position, 0.1f, groundMask);
 
@@ -179,9 +187,10 @@ public class PlayerMovement : MonoBehaviour
     }
     private void ControllerMovement()
     {
-        
-            // Read left stick input from the gamepad
-            movementInput = Gamepad.current.leftStick.ReadValue();
+        if (activeGrapple) return;
+
+        // Read left stick input from the gamepad
+        movementInput = Gamepad.current.leftStick.ReadValue();
 
         Vector3 moveDirection = new Vector3(movementInput.x, 0f, movementInput.y);
         moveDirection = transform.TransformDirection(moveDirection); // Convert to world space
@@ -246,6 +255,22 @@ public class PlayerMovement : MonoBehaviour
         horizontalInput = _horizontalInput;
     }
 
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.layer == 10)
+        {
+            isOnWall = true;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.layer == 10)
+        {
+            isOnWall = false;
+        }
+    }
+
     // Jump methods
     private void Jump()
     {
@@ -259,7 +284,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnJumpPressed()
     {
-        if (isGrounded)
+        if (isGrounded && canJump)
         {
             isJumping = true;
         }
@@ -324,18 +349,25 @@ public class PlayerMovement : MonoBehaviour
     {
         slideSpeed = moveSpeed * slideSpeedMultiplier;
         rb.AddForce(orientation.forward * slideSpeed * 10f, ForceMode.Force);
+        if (isOnWall)
+        {
+            rb.AddForce(orientation.up * 9.81f, ForceMode.Force);
+        }
     }
 
     public void OnSlidePressed()
     {
         if (canSlide && isMoving)
         {
-            canMove = false;
-            canDash = false;
-            canSlide = true;
-            cam.localPosition = camSlidingPos;
-            //audioManager.PlaySlideAudioClip();
-            StartCoroutine(SlideCoroutine());
+            if (isGrounded || isOnWall)
+            {
+                canMove = false;
+                canDash = false;
+                canSlide = false;
+                cam.localPosition = camSlidingPos;
+                //audioManager.PlaySlideAudioClip();
+                StartCoroutine(SlideCoroutine());
+            }
         }
     }
 
@@ -343,7 +375,7 @@ public class PlayerMovement : MonoBehaviour
     {
         audioManager.PlaySlideAudioClip();
         float startTime = Time.time;
-
+        animator.SetTrigger("slide");
         while (Time.time < startTime + slideTime)
         {
             isSliding = true;
@@ -384,11 +416,12 @@ public class PlayerMovement : MonoBehaviour
     {
         activeGrapple = true;
         canDash = false;
+        canJump = false;
 
         velocityToSet = CalculateJumpVelocity(transform.position, targetPosition, trajectoryHeight);
         Invoke(nameof(SetVelocity), 0.1f);
 
-        Invoke(nameof(ResetRestricitons), 3f);
+        Invoke(nameof(ResetRestricitons), grapplingHookShoot.grapplingCd);
     }
 
     private Vector3 velocityToSet;
@@ -403,6 +436,7 @@ public class PlayerMovement : MonoBehaviour
     {
         activeGrapple = false;
         canDash = true;
+        canJump = true;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -410,9 +444,8 @@ public class PlayerMovement : MonoBehaviour
         if (enableMovementOnNextTouch)
         {
             enableMovementOnNextTouch = false;
-            ResetRestricitons();
 
-            GetComponent<GrapplingHookShoot>().StopGrapple();
+            grapplingHookShoot.StopGrapple();
         }
     }
 

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -11,9 +12,12 @@ public class PauseScript : MonoBehaviour
 
     [SerializeField] SettingsMenu settingsMenu;
 
-    [SerializeField] private bool paused;
+    [SerializeField] public bool paused;
+    [SerializeField] ControllerHandler controllerHandler;
+    [SerializeField] InputHandler inputManager;
     void Awake()
     {
+        inputManager = GameObject.FindGameObjectWithTag("Player").GetComponent<InputHandler>();
         continueButton.onClick.AddListener(UnPauseGame);
         settingsButton.onClick.AddListener(OpenSettings);
         mainMenuButton.onClick.AddListener(ExitToMainMenu);
@@ -24,44 +28,50 @@ public class PauseScript : MonoBehaviour
         UnPauseGame();
     }
 
-
-    void Update()
+    public void DisableButtons()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && paused == false)
-        {
-            PauseGame();
-        }
-        else if (Input.GetKeyDown(KeyCode.Escape) && paused == true)
-        {
-            UnPauseGame();
-        }
+        inputManager.DisableInput();
     }
 
     public void PauseGame()
     {
+        Debug.Log("game paused");
         Time.timeScale = 0f;
         paused = true;
         pauseMenu.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        if (!controllerHandler.controllerIsConnected) 
+        {
+            Cursor.visible = true;
+        }
+        else
+        {
+            Cursor.visible = false;
+        }
+        inputManager.DisableInput(); //how to press buttons if input is disabled on pause? Maybe instead a bool to stop moving things?
     }
 
     public void UnPauseGame()
     {
+        Debug.Log("game unpaused");
         Time.timeScale = 1f;
         paused = false;
         pauseMenu.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        inputManager.EnableInput();
     }
 
     public void OpenSettings()
     {
-        settingsMenu.OpenSettings(gameObject);
+        Debug.Log("settings opened");
+        settingsMenu.OpenSettings(pauseMenu);
     }
 
-    private void ExitToMainMenu()
+    public void ExitToMainMenu()
     {
+        Debug.Log("exited");
+        inputManager.EnableInput();
         SceneManager.LoadScene(0);
     }
 }

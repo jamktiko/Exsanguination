@@ -17,7 +17,7 @@ public class StarterSwordDamage : MonoBehaviour
             
                 EnemyHealthScript enemyHealthScript = other.GetComponent<EnemyHealthScript>();
 
-                if (playerCombat.thirdAttackDamage)
+                if (playerCombat.specialDamage)
                 {
                     enemyHealthScript.ChangeEnemyHealth(thirdAttackDamage);
                     Debug.Log("Dealt " + thirdAttackDamage + " damage");

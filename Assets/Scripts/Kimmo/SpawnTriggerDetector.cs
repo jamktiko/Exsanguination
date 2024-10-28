@@ -14,7 +14,7 @@ public class SpawnTriggerDetector : MonoBehaviour
 
     private void Awake()
     {
-        enemySpawnerSystem = FindObjectOfType<EnemySpawnerSystem>();
+        enemySpawnerSystem = GameObject.FindGameObjectWithTag("EnemySpawnManager").GetComponent<EnemySpawnerSystem>();
 
         if (enemySpawnerSystem == null)
         {

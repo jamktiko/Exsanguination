@@ -7,7 +7,7 @@ public class GrapplingHookShoot : MonoBehaviour
 {
     [Header("References")]
     private PlayerMovement playerMovement;
-    [SerializeField] AudioManager audioManager;
+    AudioManager audioManager;
     public Transform cam;
     public Transform gunTip;
     public LayerMask whatIsGrappleable;
@@ -25,7 +25,7 @@ public class GrapplingHookShoot : MonoBehaviour
     private float grapplingCdTimer;
 
     private bool isGrappling;
-    // Start is called before the first frame update
+
     void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();
@@ -51,12 +51,11 @@ public class GrapplingHookShoot : MonoBehaviour
 
     public void StartGrapple()
     {
-        if (grapplingCdTimer > 0) return;
+        if (grapplingCdTimer > 0 || isGrappling) return;
         audioManager.PlayGrapplingHookShootAudioClip();
 
+        grapplingCdTimer = grapplingCd;
         isGrappling = true;
-
-        //playerMovement.freeze = true;
 
         RaycastHit hit;
         if(Physics.Raycast(cam.position, cam.forward, out hit, maxGrappleDistance, whatIsGrappleable))
@@ -79,8 +78,6 @@ public class GrapplingHookShoot : MonoBehaviour
 
     private void ExecuteGrapple()
     {
-        playerMovement.freeze = false;
-
         Vector3 lowestPoint = new Vector3 (transform.position.x, transform.position.y - 1f, transform.position.z);
 
         float grapplePointRelativeYPos = grapplePoint.y - lowestPoint.y;
@@ -90,17 +87,15 @@ public class GrapplingHookShoot : MonoBehaviour
 
         playerMovement.JumpToPosition(grapplePoint, highestPointOnArc);
 
-        Invoke(nameof(StopGrapple), 1f);
+        Invoke(nameof(StopGrapple), grapplingCd);
     }
 
     public void StopGrapple()
     {
-        playerMovement.freeze = false;
-
         isGrappling = false;
 
-        grapplingCdTimer = grapplingCd;
-
         lr.enabled = false;
+
+        playerMovement.ResetRestricitons();
     }
 }

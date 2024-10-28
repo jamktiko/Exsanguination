@@ -1,0 +1,5634 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1010247827715212
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4177019001142244}
+  - component: {fileID: 137577024645920192}
+  m_Layer: 0
+  m_Name: Fur_A
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &4177019001142244
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1010247827715212}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4096505652918410}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!137 &137577024645920192
+SkinnedMeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1010247827715212}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 30f43b188f5174f959bc1ec93ec528aa, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_SkinnedMotionVectors: 1
+  m_Mesh: {fileID: 4300002, guid: 191e232710a105b4ebe2cc62861f1604, type: 3}
+  m_Bones:
+  - {fileID: 4530151435181770}
+  - {fileID: 4889119386950880}
+  - {fileID: 4090287051329012}
+  - {fileID: 4825158458120920}
+  - {fileID: 4695315003215788}
+  - {fileID: 4493181140092440}
+  - {fileID: 4064098708713038}
+  - {fileID: 4895101582955134}
+  - {fileID: 4421065186882682}
+  - {fileID: 4697405753456128}
+  - {fileID: 4319350954320458}
+  - {fileID: 4341600002368026}
+  - {fileID: 4080845448768178}
+  - {fileID: 4816300678924412}
+  m_BlendShapeWeights:
+  - 0
+  - 0
+  - 0
+  - -0
+  - 0
+  - -0
+  - 0
+  - 0
+  - -0
+  - 0
+  m_RootBone: {fileID: 4530151435181770}
+  m_AABB:
+    m_Center: {x: -0.07947576, y: 0.025379255, z: 0.008295469}
+    m_Extent: {x: 0.20902228, y: 0.15421343, z: 0.16697103}
+  m_DirtyAABB: 0
+--- !u!1 &1017795993189494
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4085212433403364}
+  m_Layer: 0
+  m_Name: a_BatAnim
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4085212433403364
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017795993189494}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 6.5466793e-10, y: -0.07275942, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4530151435181770}
+  m_Father: {fileID: 4082754865382730}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1024914769929026
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4892517805520500}
+  m_Layer: 0
+  m_Name: BatLLegToe3_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4892517805520500
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1024914769929026}
+  m_LocalRotation: {x: -0.036612175, y: 0.020571083, z: 0.30884975, w: 0.9501833}
+  m_LocalPosition: {x: -0.049561806, y: -0.002845335, z: -0.0064240694}
+  m_LocalScale: {x: 1.0000031, y: 0.9999966, z: 1.0000002}
+  m_Children:
+  - {fileID: 4917696036546884}
+  m_Father: {fileID: 4966635763559060}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1027629857157128
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4616179126699050}
+  m_Layer: 0
+  m_Name: BatEarR2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4616179126699050
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1027629857157128}
+  m_LocalRotation: {x: -0.0021472136, y: 0.054055996, z: -0.03963211, w: 0.9977488}
+  m_LocalPosition: {x: -0.059240997, y: -0.000000009536743, z: 0}
+  m_LocalScale: {x: 1.0000025, y: 0.9999974, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4816300678924412}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1043494028346644
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4358916029060114}
+  m_Layer: 0
+  m_Name: BatRArmWing1_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4358916029060114
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1043494028346644}
+  m_LocalRotation: {x: 0.004414359, y: 0.11821802, z: 0.053050417, w: 0.99155974}
+  m_LocalPosition: {x: -0.017708855, y: 0.0039948975, z: -0.008356628}
+  m_LocalScale: {x: 1.0000031, y: 1.0000006, z: 0.99999624}
+  m_Children:
+  - {fileID: 4860001421458370}
+  m_Father: {fileID: 4980490735531142}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1052494883209904
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4127729634014520}
+  m_Layer: 0
+  m_Name: BatHookL1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4127729634014520
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1052494883209904}
+  m_LocalRotation: {x: 0.21449727, y: 0.49966142, z: 0.36089858, w: 0.7576817}
+  m_LocalPosition: {x: -0.024965, y: -0.0107743265, z: 0.017637856}
+  m_LocalScale: {x: 1.000003, y: 0.9999917, z: 1.0000055}
+  m_Children:
+  - {fileID: 4098261956309336}
+  m_Father: {fileID: 4966635763559060}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1058237124849956
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4458046322080214}
+  m_Layer: 0
+  m_Name: BatRToe1_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4458046322080214
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1058237124849956}
+  m_LocalRotation: {x: -0.0049919323, y: 0.020242462, z: 0.3536758, w: 0.9351357}
+  m_LocalPosition: {x: -0.014726581, y: 0, z: -0.000000019073486}
+  m_LocalScale: {x: 0.9999843, y: 1.0000157, z: 1.0000001}
+  m_Children: []
+  m_Father: {fileID: 4358773739175832}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1070216697138680
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4154521814926742}
+  m_Layer: 0
+  m_Name: BatHookR1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4154521814926742
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1070216697138680}
+  m_LocalRotation: {x: -0.21449278, y: -0.49966985, z: 0.3608843, w: 0.75768423}
+  m_LocalPosition: {x: -0.024965057, y: -0.010774345, z: -0.017637849}
+  m_LocalScale: {x: 0.9999879, y: 1.0000288, z: 0.9999833}
+  m_Children:
+  - {fileID: 4550682991618192}
+  m_Father: {fileID: 4161911790783622}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1076171905434056
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4889119386950880}
+  m_Layer: 0
+  m_Name: BatLLegThigh1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4889119386950880
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1076171905434056}
+  m_LocalRotation: {x: -0.10655699, y: 0.91003764, z: 0.16928875, w: 0.36306813}
+  m_LocalPosition: {x: 0.009556546, y: 0.0018004015, z: 0.02798252}
+  m_LocalScale: {x: 1.0000001, y: 1.0000008, z: 0.9999988}
+  m_Children:
+  - {fileID: 4392953232559940}
+  m_Father: {fileID: 4530151435181770}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1105860896491124
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4218110513218580}
+  m_Layer: 0
+  m_Name: BatLArmWing1_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4218110513218580
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1105860896491124}
+  m_LocalRotation: {x: -0.0044143773, y: -0.118216835, z: 0.05305032, w: 0.99155986}
+  m_LocalPosition: {x: -0.01770874, y: 0.0039949045, z: 0.0083566}
+  m_LocalScale: {x: 0.99999666, y: 0.9999992, z: 1.0000038}
+  m_Children:
+  - {fileID: 4271282966461588}
+  m_Father: {fileID: 4724263756231124}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1123404848952720
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4493181140092440}
+  m_Layer: 0
+  m_Name: BatRArm1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4493181140092440
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1123404848952720}
+  m_LocalRotation: {x: 0.24319829, y: -0.13691525, z: 0.31624198, w: 0.9066972}
+  m_LocalPosition: {x: -0.05572595, y: 0, z: 0}
+  m_LocalScale: {x: 0.99999917, y: 1.0000006, z: 1.0000002}
+  m_Children:
+  - {fileID: 4652881898333934}
+  m_Father: {fileID: 4695315003215788}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1132005683672198
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4465477791102612}
+  m_Layer: 0
+  m_Name: BatFlapL2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4465477791102612
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1132005683672198}
+  m_LocalRotation: {x: -0.036749613, y: -0.0229149, z: 0.053676926, w: 0.99761873}
+  m_LocalPosition: {x: -0.09809349, y: 0.000000019073486, z: 0.0000000011920929}
+  m_LocalScale: {x: 1.0000005, y: 0.99999905, z: 0.99999934}
+  m_Children: []
+  m_Father: {fileID: 4738241924550442}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1149725113031186
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4271282966461588}
+  m_Layer: 0
+  m_Name: BatLArmWing1_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4271282966461588
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1149725113031186}
+  m_LocalRotation: {x: 0.005760977, y: -0.1540014, z: -0.0026670182, w: 0.9880502}
+  m_LocalPosition: {x: -0.0880388, y: 0, z: -0.000000009536743}
+  m_LocalScale: {x: 0.9999958, y: 0.9999993, z: 1.000005}
+  m_Children:
+  - {fileID: 4231688561551588}
+  m_Father: {fileID: 4218110513218580}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1154474948904728
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4561538139667398}
+  m_Layer: 0
+  m_Name: BatSpine3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4561538139667398
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154474948904728}
+  m_LocalRotation: {x: 0.000000045228138, y: 0.000000030940207, z: -0.00587671, w: 0.9999828}
+  m_LocalPosition: {x: -0.036068227, y: 1.4901161e-10, z: 0}
+  m_LocalScale: {x: 1, y: 1.0000001, z: 0.9999999}
+  m_Children:
+  - {fileID: 4421065186882682}
+  m_Father: {fileID: 4879437422323884}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1162931512196680
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4098261956309336}
+  m_Layer: 0
+  m_Name: BatHookL2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4098261956309336
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1162931512196680}
+  m_LocalRotation: {x: 0.019629067, y: -0.28258258, z: -0.10885426, w: 0.95284444}
+  m_LocalPosition: {x: -0.023999996, y: 0, z: 0}
+  m_LocalScale: {x: 0.99999744, y: 1.0000002, z: 1.000002}
+  m_Children: []
+  m_Father: {fileID: 4127729634014520}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1176424894874958
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4080414826512848}
+  m_Layer: 0
+  m_Name: BatRArmWing2_4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4080414826512848
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1176424894874958}
+  m_LocalRotation: {x: -0.007001118, y: 0.045213114, z: -0.01726183, w: 0.9988037}
+  m_LocalPosition: {x: -0.08267008, y: 0, z: -0.000000019073486}
+  m_LocalScale: {x: 1.0000027, y: 0.99999595, z: 1.0000004}
+  m_Children: []
+  m_Father: {fileID: 4205509843739194}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1178246429144322
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4111372226163342}
+  m_Layer: 0
+  m_Name: BatRToe3_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4111372226163342
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1178246429144322}
+  m_LocalRotation: {x: 0.009640486, y: -0.0066150296, z: 0.3583653, w: 0.9335083}
+  m_LocalPosition: {x: -0.014353885, y: 0, z: -0.0000000047683715}
+  m_LocalScale: {x: 0.99998444, y: 1.0000153, z: 1.0000001}
+  m_Children: []
+  m_Father: {fileID: 4565319838878702}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1183917891519806
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4374872252963840}
+  m_Layer: 0
+  m_Name: BatLArmThumb2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4374872252963840
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1183917891519806}
+  m_LocalRotation: {x: -0.00000007450588, y: -0.0000000093131876, z: -0.00000006891762,
+    w: 1}
+  m_LocalPosition: {x: -0.048449744, y: 0, z: 0.000000019073486}
+  m_LocalScale: {x: 1.0000036, y: 0.99999905, z: 0.99999714}
+  m_Children: []
+  m_Father: {fileID: 4274886450974252}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1186967528288194
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4816300678924412}
+  m_Layer: 0
+  m_Name: BatEarR1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4816300678924412
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1186967528288194}
+  m_LocalRotation: {x: -0.11077339, y: -0.34233004, z: 0.5900583, w: 0.7227521}
+  m_LocalPosition: {x: 0.0057683946, y: -0.022601092, z: -0.03073769}
+  m_LocalScale: {x: 0.999992, y: 1.0000039, z: 1.0000044}
+  m_Children:
+  - {fileID: 4616179126699050}
+  m_Father: {fileID: 4319350954320458}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1191943461771858
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4064098708713038}
+  m_Layer: 0
+  m_Name: BatLArm1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4064098708713038
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1191943461771858}
+  m_LocalRotation: {x: -0.24319893, y: 0.1369158, z: 0.3162424, w: 0.90669686}
+  m_LocalPosition: {x: -0.05572595, y: -0.0000000023841857, z: 0.0000000023841857}
+  m_LocalScale: {x: 0.9999998, y: 0.99999905, z: 1.0000012}
+  m_Children:
+  - {fileID: 4054181685064002}
+  m_Father: {fileID: 4895101582955134}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1227807940224746
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4143735865465632}
+  m_Layer: 0
+  m_Name: BatRArmWing1_4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4143735865465632
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1227807940224746}
+  m_LocalRotation: {x: 0.000000004802826, y: 0.040989358, z: 0.00000020102074, w: 0.9991596}
+  m_LocalPosition: {x: -0.08084295, y: 0, z: 0.000000019073486}
+  m_LocalScale: {x: 1.000003, y: 1.0000008, z: 0.9999963}
+  m_Children: []
+  m_Father: {fileID: 4296105322745474}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1254792786162650
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4554030978711040}
+  m_Layer: 0
+  m_Name: BatLLegToe1_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4554030978711040
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1254792786162650}
+  m_LocalRotation: {x: 0.004991771, y: -0.020241575, z: 0.35368603, w: 0.93513185}
+  m_LocalPosition: {x: -0.014726562, y: -0.0000000011920929, z: 0}
+  m_LocalScale: {x: 1.0000044, y: 0.9999954, z: 1.0000002}
+  m_Children: []
+  m_Father: {fileID: 4741750896843640}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1271369420458520
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4741750896843640}
+  m_Layer: 0
+  m_Name: BatLLegToe1_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4741750896843640
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1271369420458520}
+  m_LocalRotation: {x: -0.01415313, y: 0.15428637, z: 0.2547645, w: 0.9545106}
+  m_LocalPosition: {x: -0.045357186, y: -0.0047592255, z: 0.01643131}
+  m_LocalScale: {x: 1.0000014, y: 0.999998, z: 1.0000007}
+  m_Children:
+  - {fileID: 4554030978711040}
+  m_Father: {fileID: 4966635763559060}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1274422580997776
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4780066851286646}
+  m_Layer: 0
+  m_Name: BatEarL2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4780066851286646
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1274422580997776}
+  m_LocalRotation: {x: 0.0021472194, y: -0.054056536, z: -0.03963244, w: 0.9977488}
+  m_LocalPosition: {x: -0.059241004, y: -0.000000009536743, z: -0.0000000047683715}
+  m_LocalScale: {x: 1.0000023, y: 0.9999973, z: 0.99999964}
+  m_Children: []
+  m_Father: {fileID: 4341600002368026}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1275937813854616
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4231688561551588}
+  m_Layer: 0
+  m_Name: BatLArmWing1_3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4231688561551588
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1275937813854616}
+  m_LocalRotation: {x: -0.0043056663, y: -0.18061613, z: 0.004532183, w: 0.9835338}
+  m_LocalPosition: {x: -0.10963258, y: 0, z: 0}
+  m_LocalScale: {x: 0.99999446, y: 0.999999, z: 1.000006}
+  m_Children:
+  - {fileID: 4308252519251594}
+  m_Father: {fileID: 4271282966461588}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1278322243245340
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4825158458120920}
+  m_Layer: 0
+  m_Name: BatTail1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4825158458120920
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1278322243245340}
+  m_LocalRotation: {x: -0.0000000035101728, y: 0.0000000053050973, z: 0.99993587,
+    w: -0.011325249}
+  m_LocalPosition: {x: 0.030738052, y: -0.002498767, z: -3.02432e-10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4259689476711198}
+  m_Father: {fileID: 4530151435181770}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1304276129029866
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4082754865382730}
+  m_Layer: 0
+  m_Name: BatRoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4082754865382730
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1304276129029866}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -6.5466793e-10, y: 0, z: -0.07275942}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4085212433403364}
+  m_Father: {fileID: 4096505652918410}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1305147247985800
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4161911790783622}
+  m_Layer: 0
+  m_Name: BatRAnkle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4161911790783622
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305147247985800}
+  m_LocalRotation: {x: -0.2509877, y: -0.13939092, z: -0.34605435, w: 0.8932087}
+  m_LocalPosition: {x: -0.06162646, y: 0, z: -0.000000005662441}
+  m_LocalScale: {x: 0.9999935, y: 1.0000225, z: 0.9999839}
+  m_Children:
+  - {fileID: 4154521814926742}
+  - {fileID: 4358773739175832}
+  - {fileID: 4302683131530846}
+  - {fileID: 4565319838878702}
+  - {fileID: 4835275191162832}
+  m_Father: {fileID: 4755899525338542}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1312591646129604
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4205493693749406}
+  m_Layer: 0
+  m_Name: BatRArmWing2_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4205493693749406
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1312591646129604}
+  m_LocalRotation: {x: 0.023079015, y: 0.36852643, z: 0.031050384, w: 0.9288119}
+  m_LocalPosition: {x: -0.012434959, y: 0.0035788273, z: -0.0006420946}
+  m_LocalScale: {x: 1.0000046, y: 1.0000008, z: 0.9999953}
+  m_Children:
+  - {fileID: 4122116433071188}
+  m_Father: {fileID: 4980490735531142}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1315198557575462
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4966635763559060}
+  m_Layer: 0
+  m_Name: BatLLegAnkle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4966635763559060
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1315198557575462}
+  m_LocalRotation: {x: 0.25103748, y: 0.13971005, z: -0.34568813, w: 0.89328665}
+  m_LocalPosition: {x: -0.061626423, y: -0.0000000047683715, z: 0.000000008940696}
+  m_LocalScale: {x: 1.0000015, y: 0.9999932, z: 1.0000048}
+  m_Children:
+  - {fileID: 4127729634014520}
+  - {fileID: 4741750896843640}
+  - {fileID: 4849260414808638}
+  - {fileID: 4892517805520500}
+  - {fileID: 4053132710910492}
+  m_Father: {fileID: 4503530100625640}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1328666286832286
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4695315003215788}
+  m_Layer: 0
+  m_Name: BatRArmCollarbone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4695315003215788
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1328666286832286}
+  m_LocalRotation: {x: 0.1947675, y: -0.7184975, z: 0.38918826, w: 0.542549}
+  m_LocalPosition: {x: 0.00005261898, y: -0.010768176, z: -0.0012103079}
+  m_LocalScale: {x: 0.99999785, y: 1.0000001, z: 1.0000013}
+  m_Children:
+  - {fileID: 4493181140092440}
+  m_Father: {fileID: 4421065186882682}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1344653924515924
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4323190903802096}
+  m_Layer: 0
+  m_Name: BatLArmWing2_3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4323190903802096
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1344653924515924}
+  m_LocalRotation: {x: 0.027324134, y: -0.09579964, z: 0.013680588, w: 0.9949315}
+  m_LocalPosition: {x: -0.08093658, y: 0.0000000011920929, z: 0}
+  m_LocalScale: {x: 0.9999965, y: 1.0000037, z: 0.9999998}
+  m_Children:
+  - {fileID: 4456242524212220}
+  m_Father: {fileID: 4924527752561294}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1353635574834656
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4860001421458370}
+  m_Layer: 0
+  m_Name: BatRArmWing1_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4860001421458370
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1353635574834656}
+  m_LocalRotation: {x: -0.0057611787, y: 0.15400492, z: -0.002667002, w: 0.9880497}
+  m_LocalPosition: {x: -0.08803875, y: 0, z: 0}
+  m_LocalScale: {x: 1.0000037, y: 1.0000008, z: 0.9999954}
+  m_Children:
+  - {fileID: 4296105322745474}
+  m_Father: {fileID: 4358916029060114}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1359192558056370
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4308252519251594}
+  m_Layer: 0
+  m_Name: BatLArmWing1_4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4308252519251594
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1359192558056370}
+  m_LocalRotation: {x: 0.00000002626273, y: -0.040987197, z: -0.000000041450104, w: 0.9991597}
+  m_LocalPosition: {x: -0.08084297, y: 0, z: 0.000000019073486}
+  m_LocalScale: {x: 0.99999726, y: 1.0000037, z: 0.99999934}
+  m_Children: []
+  m_Father: {fileID: 4231688561551588}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1365024998957866
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4765543284351468}
+  m_Layer: 0
+  m_Name: BatSpine1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4765543284351468
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1365024998957866}
+  m_LocalRotation: {x: -0.000000017972546, y: -0.00000010531568, z: -0.054460704,
+    w: 0.9985159}
+  m_LocalPosition: {x: -0.014231629, y: -0.00663742, z: 1.815124e-10}
+  m_LocalScale: {x: 1, y: 0.99999994, z: 1}
+  m_Children:
+  - {fileID: 4879437422323884}
+  m_Father: {fileID: 4530151435181770}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1366465651013230
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4835275191162832}
+  m_Layer: 0
+  m_Name: BatRToe4_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4835275191162832
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1366465651013230}
+  m_LocalRotation: {x: 0.007759647, y: 0.042842362, z: 0.3007179, w: 0.9527188}
+  m_LocalPosition: {x: -0.045466155, y: -0.005812082, z: 0.01525865}
+  m_LocalScale: {x: 0.99998915, y: 1.0000111, z: 1}
+  m_Children:
+  - {fileID: 4973737423676346}
+  m_Father: {fileID: 4161911790783622}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1379054403629898
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4879437422323884}
+  m_Layer: 0
+  m_Name: BatSpine2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4879437422323884
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1379054403629898}
+  m_LocalRotation: {x: 0.000000030900328, y: -0.000000026499288, z: -0.012306194,
+    w: 0.9999243}
+  m_LocalPosition: {x: -0.034977574, y: 0, z: 0}
+  m_LocalScale: {x: 0.9999998, y: 1.0000001, z: 1.0000001}
+  m_Children:
+  - {fileID: 4561538139667398}
+  m_Father: {fileID: 4765543284351468}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1416628803701204
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4146141686559572}
+  m_Layer: 0
+  m_Name: BatFlapR1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4146141686559572
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1416628803701204}
+  m_LocalRotation: {x: -0.025433775, y: 0.027215794, z: 0.7358886, w: 0.67607725}
+  m_LocalPosition: {x: -0.07962416, y: -0.024825105, z: -0.0011954296}
+  m_LocalScale: {x: 0.99999607, y: 1.0000032, z: 1}
+  m_Children:
+  - {fileID: 4098910790258748}
+  m_Father: {fileID: 4652881898333934}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1417539340411584
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4924527752561294}
+  m_Layer: 0
+  m_Name: BatLArmWing2_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4924527752561294
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417539340411584}
+  m_LocalRotation: {x: -0.017694812, y: -0.10851883, z: 0.0036070803, w: 0.9939304}
+  m_LocalPosition: {x: -0.08561426, y: -0.0000000017881393, z: 0}
+  m_LocalScale: {x: 0.9999965, y: 0.9999991, z: 1.0000042}
+  m_Children:
+  - {fileID: 4323190903802096}
+  m_Father: {fileID: 4028541530141866}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1442994597060276
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4358773739175832}
+  m_Layer: 0
+  m_Name: BatRToe1_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4358773739175832
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1442994597060276}
+  m_LocalRotation: {x: 0.01411367, y: -0.15452757, z: 0.25491595, w: 0.9544318}
+  m_LocalPosition: {x: -0.045357186, y: -0.0047592353, z: -0.016431315}
+  m_LocalScale: {x: 0.9999935, y: 1.0000088, z: 0.99999774}
+  m_Children:
+  - {fileID: 4458046322080214}
+  m_Father: {fileID: 4161911790783622}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1456167651564340
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4090287051329012}
+  m_Layer: 0
+  m_Name: BatRThigh1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4090287051329012
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1456167651564340}
+  m_LocalRotation: {x: -0.10655611, y: 0.91003937, z: -0.16928682, w: -0.3630649}
+  m_LocalPosition: {x: 0.009556565, y: 0.0018004003, z: -0.02798252}
+  m_LocalScale: {x: 0.99999994, y: 0.99999887, z: 1.0000011}
+  m_Children:
+  - {fileID: 4556579796461182}
+  m_Father: {fileID: 4530151435181770}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1491136677041562
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4369670788934728}
+  m_Layer: 0
+  m_Name: BatRArmThumb2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4369670788934728
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1491136677041562}
+  m_LocalRotation: {x: -0.00000004470344, y: 0.000000040047023, z: 0.0000000027939804,
+    w: 1}
+  m_LocalPosition: {x: -0.048449773, y: -0.000000009536743, z: 0.000000019073486}
+  m_LocalScale: {x: 0.9999962, y: 1.000001, z: 1.0000027}
+  m_Children: []
+  m_Father: {fileID: 4692405828241968}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1501770694982638
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4319350954320458}
+  m_Layer: 0
+  m_Name: BatHead
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4319350954320458
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1501770694982638}
+  m_LocalRotation: {x: 0.00019953895, y: -0.012663109, z: -0.032548692, w: 0.99938995}
+  m_LocalPosition: {x: -0.082034856, y: 0.0000000047683715, z: -7.4505804e-11}
+  m_LocalScale: {x: 0.99999756, y: 1.0000029, z: 1.0000001}
+  m_Children:
+  - {fileID: 4341600002368026}
+  - {fileID: 4816300678924412}
+  - {fileID: 4080845448768178}
+  m_Father: {fileID: 4697405753456128}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1508427870453176
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4259689476711198}
+  m_Layer: 0
+  m_Name: BatTail2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4259689476711198
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1508427870453176}
+  m_LocalRotation: {x: -0.0000000033475644, y: -0.000000052929046, z: 0.014757128,
+    w: 0.9998911}
+  m_LocalPosition: {x: -0.08810811, y: -0.000000002980232, z: 6.079199e-10}
+  m_LocalScale: {x: 1.0000002, y: 1.0000002, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4825158458120920}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1531054309787332
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4362490137967896}
+  m_Layer: 0
+  m_Name: BatRToe2_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4362490137967896
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1531054309787332}
+  m_LocalRotation: {x: 0.000047973932, y: 0.00015177978, z: 0.30727506, w: 0.95162076}
+  m_LocalPosition: {x: -0.017328529, y: 0, z: 0.0000000047683715}
+  m_LocalScale: {x: 0.9999887, y: 1.0000117, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4302683131530846}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1560496791038636
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4692405828241968}
+  m_Layer: 0
+  m_Name: BatRArmThumb1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4692405828241968
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1560496791038636}
+  m_LocalRotation: {x: -0.17856942, y: -0.54152757, z: -0.11537621, w: 0.8133568}
+  m_LocalPosition: {x: -0.010680008, y: -0.0000000011920929, z: -0.0049999855}
+  m_LocalScale: {x: 0.999999, y: 1.0000011, z: 1.0000005}
+  m_Children:
+  - {fileID: 4369670788934728}
+  m_Father: {fileID: 4980490735531142}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1563620394148610
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4980490735531142}
+  m_Layer: 0
+  m_Name: BatRArmPalm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4980490735531142
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1563620394148610}
+  m_LocalRotation: {x: 0.616003, y: 0.19286565, z: 0.13488925, w: 0.7517633}
+  m_LocalPosition: {x: -0.16000001, y: -0.000000019073486, z: 0}
+  m_LocalScale: {x: 1.0000023, y: 0.9999994, z: 0.99999774}
+  m_Children:
+  - {fileID: 4692405828241968}
+  - {fileID: 4358916029060114}
+  - {fileID: 4205493693749406}
+  m_Father: {fileID: 4652881898333934}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1617201861863302
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4355422413537748}
+  - component: {fileID: 137778654551108416}
+  m_Layer: 0
+  m_Name: Bat_A
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &4355422413537748
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1617201861863302}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4096505652918410}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!137 &137778654551108416
+SkinnedMeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1617201861863302}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 74a96d2d77c734583936f4b3ca1a4f08, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_SkinnedMotionVectors: 1
+  m_Mesh: {fileID: 4300000, guid: 191e232710a105b4ebe2cc62861f1604, type: 3}
+  m_Bones:
+  - {fileID: 4966635763559060}
+  - {fileID: 4465477791102612}
+  - {fileID: 4127729634014520}
+  - {fileID: 4259689476711198}
+  - {fileID: 4503530100625640}
+  - {fileID: 4421065186882682}
+  - {fileID: 4064098708713038}
+  - {fileID: 4895101582955134}
+  - {fileID: 4530151435181770}
+  - {fileID: 4341600002368026}
+  - {fileID: 4780066851286646}
+  - {fileID: 4319350954320458}
+  - {fileID: 4098261956309336}
+  - {fileID: 4816300678924412}
+  - {fileID: 4080845448768178}
+  - {fileID: 4889119386950880}
+  - {fileID: 4825158458120920}
+  - {fileID: 4392953232559940}
+  - {fileID: 4697405753456128}
+  - {fileID: 4161911790783622}
+  - {fileID: 4755899525338542}
+  - {fileID: 4892517805520500}
+  - {fileID: 4849260414808638}
+  - {fileID: 4695315003215788}
+  - {fileID: 4053132710910492}
+  - {fileID: 4616179126699050}
+  - {fileID: 4090287051329012}
+  - {fileID: 4741750896843640}
+  - {fileID: 4867816807568486}
+  - {fileID: 4554030978711040}
+  - {fileID: 4998083821240990}
+  - {fileID: 4917696036546884}
+  - {fileID: 4271282966461588}
+  - {fileID: 4218110513218580}
+  - {fileID: 4231688561551588}
+  - {fileID: 4924527752561294}
+  - {fileID: 4738241924550442}
+  - {fileID: 4054181685064002}
+  - {fileID: 4028541530141866}
+  - {fileID: 4274886450974252}
+  - {fileID: 4308252519251594}
+  - {fileID: 4456242524212220}
+  - {fileID: 4323190903802096}
+  - {fileID: 4374872252963840}
+  - {fileID: 4098910790258748}
+  - {fileID: 4154521814926742}
+  - {fileID: 4493181140092440}
+  - {fileID: 4550682991618192}
+  - {fileID: 4556579796461182}
+  - {fileID: 4358773739175832}
+  - {fileID: 4302683131530846}
+  - {fileID: 4565319838878702}
+  - {fileID: 4835275191162832}
+  - {fileID: 4973737423676346}
+  - {fileID: 4458046322080214}
+  - {fileID: 4362490137967896}
+  - {fileID: 4111372226163342}
+  - {fileID: 4296105322745474}
+  - {fileID: 4358916029060114}
+  - {fileID: 4860001421458370}
+  - {fileID: 4205509843739194}
+  - {fileID: 4080414826512848}
+  - {fileID: 4146141686559572}
+  - {fileID: 4122116433071188}
+  - {fileID: 4205493693749406}
+  - {fileID: 4652881898333934}
+  - {fileID: 4692405828241968}
+  - {fileID: 4143735865465632}
+  - {fileID: 4369670788934728}
+  m_BlendShapeWeights:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - -0
+  - 0
+  - -0
+  - 0
+  - -0
+  - 0
+  - -0
+  - 0
+  - -0
+  - 0
+  - -0
+  - 0
+  - -0
+  - 0
+  - -0
+  - 0
+  - -0
+  - 0
+  - 0
+  - -0
+  - 0
+  - -0
+  - 0
+  m_RootBone: {fileID: 4530151435181770}
+  m_AABB:
+    m_Center: {x: 0.016057715, y: -0.0675393, z: 0.009644747}
+    m_Extent: {x: 0.311736, y: 0.2022886, z: 0.57853293}
+  m_DirtyAABB: 0
+--- !u!1 &1623203938176108
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4550682991618192}
+  m_Layer: 0
+  m_Name: BatHookR2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4550682991618192
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1623203938176108}
+  m_LocalRotation: {x: -0.019632805, y: 0.28258938, z: -0.108847514, w: 0.9528431}
+  m_LocalPosition: {x: -0.024000006, y: 0, z: 0}
+  m_LocalScale: {x: 1.000005, y: 1.0000023, z: 0.99999326}
+  m_Children: []
+  m_Father: {fileID: 4154521814926742}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1633391103159308
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4738241924550442}
+  m_Layer: 0
+  m_Name: BatFlapL1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4738241924550442
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1633391103159308}
+  m_LocalRotation: {x: 0.025433835, y: -0.027215939, z: 0.7358885, w: 0.6760773}
+  m_LocalPosition: {x: -0.079624124, y: -0.024825277, z: 0.0011954736}
+  m_LocalScale: {x: 1.0000005, y: 0.99999976, z: 0.9999999}
+  m_Children:
+  - {fileID: 4465477791102612}
+  m_Father: {fileID: 4054181685064002}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1645947047386664
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4652881898333934}
+  m_Layer: 0
+  m_Name: BatRArm2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4652881898333934
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1645947047386664}
+  m_LocalRotation: {x: 0.04615333, y: -0.045300152, z: -0.70702237, w: 0.70422804}
+  m_LocalPosition: {x: -0.083465785, y: 0.0000000047683715, z: 0}
+  m_LocalScale: {x: 0.99999756, y: 1.0000021, z: 1.0000004}
+  m_Children:
+  - {fileID: 4146141686559572}
+  - {fileID: 4980490735531142}
+  m_Father: {fileID: 4493181140092440}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1657791071099680
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4028541530141866}
+  m_Layer: 0
+  m_Name: BatLArmWing2_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4028541530141866
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657791071099680}
+  m_LocalRotation: {x: -0.023078976, y: -0.36852416, z: 0.03105053, w: 0.9288128}
+  m_LocalPosition: {x: -0.012434749, y: 0.0035788284, z: 0.000641942}
+  m_LocalScale: {x: 0.9999936, y: 0.9999991, z: 1.0000072}
+  m_Children:
+  - {fileID: 4924527752561294}
+  m_Father: {fileID: 4724263756231124}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1723210234372156
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4438018497061366}
+  - component: {fileID: 137496568322457992}
+  m_Layer: 0
+  m_Name: Bat_B
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &4438018497061366
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1723210234372156}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4096505652918410}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!137 &137496568322457992
+SkinnedMeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1723210234372156}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 6dcd6b8f9194443858a41a49d97f25d6, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_SkinnedMotionVectors: 1
+  m_Mesh: {fileID: 4300004, guid: 191e232710a105b4ebe2cc62861f1604, type: 3}
+  m_Bones:
+  - {fileID: 4421065186882682}
+  - {fileID: 4697405753456128}
+  - {fileID: 4319350954320458}
+  - {fileID: 4080845448768178}
+  - {fileID: 4341600002368026}
+  - {fileID: 4780066851286646}
+  - {fileID: 4816300678924412}
+  - {fileID: 4895101582955134}
+  - {fileID: 4616179126699050}
+  - {fileID: 4695315003215788}
+  - {fileID: 4503530100625640}
+  - {fileID: 4966635763559060}
+  - {fileID: 4465477791102612}
+  - {fileID: 4259689476711198}
+  - {fileID: 4127729634014520}
+  - {fileID: 4064098708713038}
+  - {fileID: 4530151435181770}
+  - {fileID: 4825158458120920}
+  - {fileID: 4889119386950880}
+  - {fileID: 4392953232559940}
+  - {fileID: 4161911790783622}
+  - {fileID: 4755899525338542}
+  - {fileID: 4098261956309336}
+  - {fileID: 4090287051329012}
+  - {fileID: 4741750896843640}
+  - {fileID: 4849260414808638}
+  - {fileID: 4892517805520500}
+  - {fileID: 4053132710910492}
+  - {fileID: 4556579796461182}
+  - {fileID: 4867816807568486}
+  - {fileID: 4554030978711040}
+  - {fileID: 4998083821240990}
+  - {fileID: 4917696036546884}
+  - {fileID: 4231688561551588}
+  - {fileID: 4271282966461588}
+  - {fileID: 4218110513218580}
+  - {fileID: 4924527752561294}
+  - {fileID: 4308252519251594}
+  - {fileID: 4323190903802096}
+  - {fileID: 4738241924550442}
+  - {fileID: 4028541530141866}
+  - {fileID: 4054181685064002}
+  - {fileID: 4274886450974252}
+  - {fileID: 4374872252963840}
+  - {fileID: 4456242524212220}
+  - {fileID: 4098910790258748}
+  - {fileID: 4493181140092440}
+  - {fileID: 4652881898333934}
+  - {fileID: 4154521814926742}
+  - {fileID: 4358773739175832}
+  - {fileID: 4550682991618192}
+  - {fileID: 4835275191162832}
+  - {fileID: 4565319838878702}
+  - {fileID: 4302683131530846}
+  - {fileID: 4973737423676346}
+  - {fileID: 4458046322080214}
+  - {fileID: 4362490137967896}
+  - {fileID: 4111372226163342}
+  - {fileID: 4296105322745474}
+  - {fileID: 4860001421458370}
+  - {fileID: 4122116433071188}
+  - {fileID: 4205509843739194}
+  - {fileID: 4358916029060114}
+  - {fileID: 4080414826512848}
+  - {fileID: 4146141686559572}
+  - {fileID: 4205493693749406}
+  - {fileID: 4143735865465632}
+  - {fileID: 4692405828241968}
+  - {fileID: 4369670788934728}
+  m_BlendShapeWeights:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - -0
+  - 0
+  - -0
+  - 0
+  - -0
+  - 0
+  - -0
+  - 0
+  - -0
+  - 0
+  - -0
+  - 0
+  - -0
+  - 0
+  - -0
+  - 0
+  - -0
+  - 0
+  - 0
+  - -0
+  - 0
+  - -0
+  - 0
+  m_RootBone: {fileID: 4530151435181770}
+  m_AABB:
+    m_Center: {x: 0.033141762, y: -0.059484117, z: 0.007886589}
+    m_Extent: {x: 0.34453377, y: 0.20798823, z: 0.6167186}
+  m_DirtyAABB: 0
+--- !u!1 &1738066985311692
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4205509843739194}
+  m_Layer: 0
+  m_Name: BatRArmWing2_3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4205509843739194
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1738066985311692}
+  m_LocalRotation: {x: -0.027325002, y: 0.09580325, z: 0.013680874, w: 0.99493116}
+  m_LocalPosition: {x: -0.08093662, y: 0, z: -0.000000019073486}
+  m_LocalScale: {x: 1.0000033, y: 1.0000006, z: 0.9999956}
+  m_Children:
+  - {fileID: 4080414826512848}
+  m_Father: {fileID: 4122116433071188}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1741123328340386
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4849260414808638}
+  m_Layer: 0
+  m_Name: BatLLegToe2_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4849260414808638
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1741123328340386}
+  m_LocalRotation: {x: -0.02827284, y: 0.05203606, z: 0.36680865, w: 0.92840964}
+  m_LocalPosition: {x: -0.04987793, y: -0.00241621, z: 0.0058872793}
+  m_LocalScale: {x: 1.0000043, y: 0.9999951, z: 1.0000002}
+  m_Children:
+  - {fileID: 4998083821240990}
+  m_Father: {fileID: 4966635763559060}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1747431535504532
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4392953232559940}
+  m_Layer: 0
+  m_Name: BatLLegThigh2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4392953232559940
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1747431535504532}
+  m_LocalRotation: {x: -0.036054257, y: 0.00000000651502, z: 2.3504704e-10, w: 0.99934983}
+  m_LocalPosition: {x: -0.043474153, y: -0.0000000011920929, z: 0.0000000047683715}
+  m_LocalScale: {x: 0.99999994, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4503530100625640}
+  m_Father: {fileID: 4889119386950880}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1759880930889030
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4867816807568486}
+  m_Layer: 0
+  m_Name: BatLLegToe4_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4867816807568486
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1759880930889030}
+  m_LocalRotation: {x: 0.0122782085, y: 0.033238698, z: 0.3449815, w: 0.9379404}
+  m_LocalPosition: {x: -0.011059456, y: 0.0000000047683715, z: -0.0000000047683715}
+  m_LocalScale: {x: 1.0000037, y: 0.9999964, z: 1.0000002}
+  m_Children: []
+  m_Father: {fileID: 4053132710910492}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1773139597299608
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4565319838878702}
+  m_Layer: 0
+  m_Name: BatRToe3_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4565319838878702
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1773139597299608}
+  m_LocalRotation: {x: 0.03654021, y: -0.020803167, z: 0.309006, w: 0.95013016}
+  m_LocalPosition: {x: -0.049561806, y: -0.002845335, z: 0.0064240694}
+  m_LocalScale: {x: 0.99998873, y: 1.0000117, z: 0.99999976}
+  m_Children:
+  - {fileID: 4111372226163342}
+  m_Father: {fileID: 4161911790783622}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1784107473363072
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4296105322745474}
+  m_Layer: 0
+  m_Name: BatRArmWing1_3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4296105322745474
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1784107473363072}
+  m_LocalRotation: {x: 0.0043058614, y: 0.18062212, z: 0.004532197, w: 0.9835327}
+  m_LocalPosition: {x: -0.109632544, y: 0.0000000023841857, z: 0}
+  m_LocalScale: {x: 1.0000046, y: 1.0000007, z: 0.99999404}
+  m_Children:
+  - {fileID: 4143735865465632}
+  m_Father: {fileID: 4860001421458370}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1798805045797952
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4341600002368026}
+  m_Layer: 0
+  m_Name: BatEarL1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4341600002368026
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798805045797952}
+  m_LocalRotation: {x: 0.110773586, y: 0.34233007, z: 0.59005845, w: 0.72275203}
+  m_LocalPosition: {x: 0.0057683755, y: -0.022601161, z: 0.030728377}
+  m_LocalScale: {x: 0.9999975, y: 1.000001, z: 1.0000013}
+  m_Children:
+  - {fileID: 4780066851286646}
+  m_Father: {fileID: 4319350954320458}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1799707473600222
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4456242524212220}
+  m_Layer: 0
+  m_Name: BatLArmWing2_4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4456242524212220
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1799707473600222}
+  m_LocalRotation: {x: 0.007000882, y: -0.045210946, z: -0.01726137, w: 0.9988038}
+  m_LocalPosition: {x: -0.082670055, y: 0, z: -0.000000019073486}
+  m_LocalScale: {x: 0.9999971, y: 1.0000033, z: 0.99999905}
+  m_Children: []
+  m_Father: {fileID: 4323190903802096}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1824544509897608
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4973737423676346}
+  m_Layer: 0
+  m_Name: BatRToe4_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4973737423676346
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1824544509897608}
+  m_LocalRotation: {x: -0.012279287, y: -0.03323998, z: 0.34497124, w: 0.9379441}
+  m_LocalPosition: {x: -0.011059417, y: 0.0000000047683715, z: 0.0000000047683715}
+  m_LocalScale: {x: 0.9999862, y: 1.0000137, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4835275191162832}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1829031054473874
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4286195244386728}
+  - component: {fileID: 137311338908170552}
+  m_Layer: 0
+  m_Name: Fur_C
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4286195244386728
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1829031054473874}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4096505652918410}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!137 &137311338908170552
+SkinnedMeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1829031054473874}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 30f43b188f5174f959bc1ec93ec528aa, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_SkinnedMotionVectors: 1
+  m_Mesh: {fileID: 4300008, guid: 191e232710a105b4ebe2cc62861f1604, type: 3}
+  m_Bones:
+  - {fileID: 4161911790783622}
+  - {fileID: 4755899525338542}
+  - {fileID: 4259689476711198}
+  - {fileID: 4098910790258748}
+  - {fileID: 4966635763559060}
+  - {fileID: 4503530100625640}
+  - {fileID: 4465477791102612}
+  - {fileID: 4556579796461182}
+  - {fileID: 4825158458120920}
+  - {fileID: 4392953232559940}
+  - {fileID: 4889119386950880}
+  - {fileID: 4090287051329012}
+  - {fileID: 4493181140092440}
+  - {fileID: 4064098708713038}
+  - {fileID: 4146141686559572}
+  - {fileID: 4530151435181770}
+  - {fileID: 4421065186882682}
+  - {fileID: 4054181685064002}
+  - {fileID: 4652881898333934}
+  - {fileID: 4738241924550442}
+  - {fileID: 4695315003215788}
+  - {fileID: 4895101582955134}
+  - {fileID: 4028541530141866}
+  - {fileID: 4205493693749406}
+  - {fileID: 4122116433071188}
+  - {fileID: 4924527752561294}
+  - {fileID: 4697405753456128}
+  - {fileID: 4692405828241968}
+  - {fileID: 4274886450974252}
+  - {fileID: 4218110513218580}
+  - {fileID: 4358916029060114}
+  - {fileID: 4319350954320458}
+  - {fileID: 4816300678924412}
+  - {fileID: 4341600002368026}
+  - {fileID: 4080845448768178}
+  - {fileID: 4616179126699050}
+  - {fileID: 4780066851286646}
+  m_BlendShapeWeights:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - -0
+  - 0
+  - -0
+  - 0
+  - -0
+  - 0
+  - -0
+  - 0
+  - 0
+  - -0
+  - 0
+  m_RootBone: {fileID: 4530151435181770}
+  m_AABB:
+    m_Center: {x: -0.076289736, y: -0.06697896, z: -0.0038953573}
+    m_Extent: {x: 0.23362604, y: 0.18822283, z: 0.26665545}
+  m_DirtyAABB: 0
+--- !u!1 &1832731292172766
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4054181685064002}
+  m_Layer: 0
+  m_Name: BatLArm2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4054181685064002
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1832731292172766}
+  m_LocalRotation: {x: -0.046153538, y: 0.045300324, z: -0.7070225, w: 0.704228}
+  m_LocalPosition: {x: -0.083465785, y: 0.0000000047683715, z: 0}
+  m_LocalScale: {x: 1.0000001, y: 0.9999999, z: 1.0000001}
+  m_Children:
+  - {fileID: 4738241924550442}
+  - {fileID: 4724263756231124}
+  m_Father: {fileID: 4064098708713038}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1844299938678896
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4122116433071188}
+  m_Layer: 0
+  m_Name: BatRArmWing2_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4122116433071188
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1844299938678896}
+  m_LocalRotation: {x: 0.017695146, y: 0.108521156, z: 0.0036070135, w: 0.9939301}
+  m_LocalPosition: {x: -0.08561428, y: -5.9604643e-10, z: 0}
+  m_LocalScale: {x: 1.0000031, y: 1.0000006, z: 0.99999595}
+  m_Children:
+  - {fileID: 4205509843739194}
+  m_Father: {fileID: 4205493693749406}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1847391822585832
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4697405753456128}
+  m_Layer: 0
+  m_Name: BatNeck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4697405753456128
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847391822585832}
+  m_LocalRotation: {x: -0.0023151361, y: 0.012284172, z: 0.135268, w: 0.99073017}
+  m_LocalPosition: {x: -0.015666742, y: 0.016871624, z: -0.00000009105839}
+  m_LocalScale: {x: 0.99999917, y: 0.99999964, z: 1.0000008}
+  m_Children:
+  - {fileID: 4319350954320458}
+  m_Father: {fileID: 4421065186882682}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1850274191449930
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4421065186882682}
+  m_Layer: 0
+  m_Name: BatRibcage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4421065186882682
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1850274191449930}
+  m_LocalRotation: {x: 0.0000000066993238, y: -0.00000007720228, z: 0.1353046, w: 0.9908041}
+  m_LocalPosition: {x: -0.03582603, y: 7.45058e-10, z: 1.1368684e-15}
+  m_LocalScale: {x: 1.0000005, y: 0.9999994, z: 1.0000002}
+  m_Children:
+  - {fileID: 4895101582955134}
+  - {fileID: 4697405753456128}
+  - {fileID: 4695315003215788}
+  m_Father: {fileID: 4561538139667398}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1862748513484656
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4917696036546884}
+  m_Layer: 0
+  m_Name: BatLLegToe3_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4917696036546884
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1862748513484656}
+  m_LocalRotation: {x: -0.009640279, y: 0.0066147503, z: 0.3583753, w: 0.93350446}
+  m_LocalPosition: {x: -0.014353867, y: 0, z: -0.000000009536743}
+  m_LocalScale: {x: 1.0000042, y: 0.99999577, z: 1.0000004}
+  m_Children: []
+  m_Father: {fileID: 4892517805520500}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1863373300393388
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4080845448768178}
+  m_Layer: 0
+  m_Name: BatJaw
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4080845448768178
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1863373300393388}
+  m_LocalRotation: {x: 0.00000030235634, y: 0.00000047758425, z: -0.2474106, w: 0.96891075}
+  m_LocalPosition: {x: 0.0015735626, y: 0.021137718, z: -0.000002566278}
+  m_LocalScale: {x: 0.999996, y: 1.0000039, z: 0.99999994}
+  m_Children: []
+  m_Father: {fileID: 4319350954320458}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1877192250171852
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4895101582955134}
+  m_Layer: 0
+  m_Name: BatLArmCollarbone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4895101582955134
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1877192250171852}
+  m_LocalRotation: {x: -0.19476761, y: 0.7184975, z: 0.38918832, w: 0.54254895}
+  m_LocalPosition: {x: 0.00005261898, y: -0.010768177, z: 0.0012103026}
+  m_LocalScale: {x: 0.9999998, y: 1.0000014, z: 0.99999887}
+  m_Children:
+  - {fileID: 4064098708713038}
+  m_Father: {fileID: 4421065186882682}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1892305271115402
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4098910790258748}
+  m_Layer: 0
+  m_Name: BatFlapR2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4098910790258748
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1892305271115402}
+  m_LocalRotation: {x: 0.036749747, y: 0.02291479, z: 0.05367642, w: 0.9976188}
+  m_LocalPosition: {x: -0.098093495, y: 0.000000009536743, z: -0.0000000011920929}
+  m_LocalScale: {x: 0.99999875, y: 1.0000006, z: 1.0000001}
+  m_Children: []
+  m_Father: {fileID: 4146141686559572}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1893086278473366
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4503530100625640}
+  m_Layer: 0
+  m_Name: BatLLegCalf
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4503530100625640
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1893086278473366}
+  m_LocalRotation: {x: -0.03484857, y: 0.08319826, z: 0.24258697, w: 0.9659271}
+  m_LocalPosition: {x: -0.04347411, y: -0.00000013828277, z: 0.000000038146972}
+  m_LocalScale: {x: 1.0000019, y: 0.99999005, z: 1.0000082}
+  m_Children:
+  - {fileID: 4966635763559060}
+  m_Father: {fileID: 4392953232559940}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1897200530120354
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4530151435181770}
+  m_Layer: 0
+  m_Name: BatPelvis
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4530151435181770
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1897200530120354}
+  m_LocalRotation: {x: 0.5017346, y: 0.49825945, z: -0.5017343, w: -0.4982595}
+  m_LocalPosition: {x: -6.5466793e-10, y: 0.07275942, z: 0.0000000011133273}
+  m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 1}
+  m_Children:
+  - {fileID: 4889119386950880}
+  - {fileID: 4090287051329012}
+  - {fileID: 4765543284351468}
+  - {fileID: 4825158458120920}
+  m_Father: {fileID: 4085212433403364}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1899956217360838
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4302683131530846}
+  m_Layer: 0
+  m_Name: BatRToe2_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4302683131530846
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1899956217360838}
+  m_LocalRotation: {x: 0.028190728, y: -0.052265618, z: 0.36695892, w: 0.92833984}
+  m_LocalPosition: {x: -0.04987795, y: -0.0024162196, z: -0.0058872816}
+  m_LocalScale: {x: 0.9999846, y: 1.0000157, z: 0.9999994}
+  m_Children:
+  - {fileID: 4362490137967896}
+  m_Father: {fileID: 4161911790783622}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1912734758328992
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4755899525338542}
+  m_Layer: 0
+  m_Name: BatRCalf
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4755899525338542
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1912734758328992}
+  m_LocalRotation: {x: 0.034847595, y: -0.0833022, z: 0.24278635, w: 0.9658681}
+  m_LocalPosition: {x: -0.04347415, y: -0.00000015258789, z: -0.000000021457671}
+  m_LocalScale: {x: 0.99999434, y: 1.0000303, z: 0.9999751}
+  m_Children:
+  - {fileID: 4161911790783622}
+  m_Father: {fileID: 4556579796461182}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1927911506649426
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4274886450974252}
+  m_Layer: 0
+  m_Name: BatLArmThumb1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4274886450974252
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1927911506649426}
+  m_LocalRotation: {x: 0.17856993, y: 0.541526, z: -0.115376055, w: 0.8133577}
+  m_LocalPosition: {x: -0.010680008, y: 0.0000000011920929, z: 0.0049999855}
+  m_LocalScale: {x: 0.99999714, y: 0.9999993, z: 1.0000035}
+  m_Children:
+  - {fileID: 4374872252963840}
+  m_Father: {fileID: 4724263756231124}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1931612428212816
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4724263756231124}
+  m_Layer: 0
+  m_Name: BatLArmPalm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4724263756231124
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1931612428212816}
+  m_LocalRotation: {x: -0.61600286, y: -0.19286609, z: 0.13488945, w: 0.7517633}
+  m_LocalPosition: {x: -0.16000001, y: 0, z: 0}
+  m_LocalScale: {x: 0.99999714, y: 0.9999985, z: 1.0000045}
+  m_Children:
+  - {fileID: 4274886450974252}
+  - {fileID: 4218110513218580}
+  - {fileID: 4028541530141866}
+  m_Father: {fileID: 4054181685064002}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1941888727315558
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4556579796461182}
+  m_Layer: 0
+  m_Name: BatRThigh2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4556579796461182
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1941888727315558}
+  m_LocalRotation: {x: 0.036055587, y: -0.000000019813696, z: -0.00000000674057, w: 0.99934983}
+  m_LocalPosition: {x: -0.043474164, y: 0.0000000023841857, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1.0000001}
+  m_Children:
+  - {fileID: 4755899525338542}
+  m_Father: {fileID: 4090287051329012}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1958215272485110
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4096505652918410}
+  - component: {fileID: 95192039066237340}
+  - component: {fileID: 82404804667780602}
+  - component: {fileID: 114230787518144616}
+  - component: {fileID: 8638588452834857517}
+  - component: {fileID: 5898853153484325616}
+  m_Layer: 0
+  m_Name: Bats Demo C
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4096505652918410
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1958215272485110}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.25, y: 2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4355422413537748}
+  - {fileID: 4438018497061366}
+  - {fileID: 4999782405226088}
+  - {fileID: 4082754865382730}
+  - {fileID: 4177019001142244}
+  - {fileID: 4286195244386728}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &95192039066237340
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1958215272485110}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 191e232710a105b4ebe2cc62861f1604, type: 3}
+  m_Controller: {fileID: 9100000, guid: 2210ca5bd957240b1b966129bd110e3b, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!82 &82404804667780602
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1958215272485110}
+  m_Enabled: 0
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+--- !u!114 &114230787518144616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1958215272485110}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 609f49429392c476bb71685431efda79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClips:
+  - name: Chomp
+    audioClips:
+    - {fileID: 8300000, guid: 3dc517e71186d4248b3342b4ade31ae7, type: 3}
+    chanceOfPlaying: 100
+    volume: 0.5
+    volumeBySpeed: 0
+    minVolume: 0
+    pitchBySpeed: 0
+    minPitch: 0
+    maxPitch: 0
+  - name: Death
+    audioClips:
+    - {fileID: 8300000, guid: 35df5d20291364055b5fa455790413f5, type: 3}
+    chanceOfPlaying: 100
+    volume: 0.7
+    volumeBySpeed: 0
+    minVolume: 0
+    pitchBySpeed: 0
+    minPitch: 0
+    maxPitch: 0
+  - name: Dodge
+    audioClips:
+    - {fileID: 8300000, guid: 0031aaca631ef42d99b4883525331daf, type: 3}
+    - {fileID: 8300000, guid: e3d214e23f3c5478d96e7384ba30e4fb, type: 3}
+    chanceOfPlaying: 100
+    volume: 1
+    volumeBySpeed: 0
+    minVolume: 0
+    pitchBySpeed: 0
+    minPitch: 0
+    maxPitch: 0
+  - name: FlyTransition
+    audioClips:
+    - {fileID: 8300000, guid: f125dd995b7ae441cbc94726d04af184, type: 3}
+    chanceOfPlaying: 100
+    volume: 1
+    volumeBySpeed: 0
+    minVolume: 0
+    pitchBySpeed: 0
+    minPitch: 0
+    maxPitch: 0
+  - name: GotHit
+    audioClips:
+    - {fileID: 8300000, guid: 952b0a00c5b3041d69b175c252fe82dd, type: 3}
+    - {fileID: 8300000, guid: 15d8dcb54b74b49359390c6eb33ea301, type: 3}
+    - {fileID: 8300000, guid: a9a2b5f34af2e4120b9212956c44ec11, type: 3}
+    chanceOfPlaying: 100
+    volume: 1
+    volumeBySpeed: 0
+    minVolume: 0
+    pitchBySpeed: 0
+    minPitch: 0
+    maxPitch: 0
+  - name: Idle
+    audioClips:
+    - {fileID: 8300000, guid: bd957b4a25f994fefbadae3e3530f64d, type: 3}
+    chanceOfPlaying: 100
+    volume: 1
+    volumeBySpeed: 0
+    minVolume: 0
+    pitchBySpeed: 0
+    minPitch: 0
+    maxPitch: 0
+  - name: RoostTransition
+    audioClips:
+    - {fileID: 8300000, guid: b8aca55120024449a8357b498e6b7c69, type: 3}
+    chanceOfPlaying: 100
+    volume: 1
+    volumeBySpeed: 0
+    minVolume: 0
+    pitchBySpeed: 0
+    minPitch: 0
+    maxPitch: 0
+  - name: Scratch
+    audioClips:
+    - {fileID: 8300000, guid: 97a955f5ac95642f79ef7d37139d4fff, type: 3}
+    chanceOfPlaying: 100
+    volume: 1
+    volumeBySpeed: 0
+    minVolume: 0
+    pitchBySpeed: 0
+    minPitch: 0
+    maxPitch: 0
+  - name: GotHitVocals
+    audioClips:
+    - {fileID: 8300000, guid: b04894ddc96df42d8bf4c0d6fa53bc2c, type: 3}
+    - {fileID: 8300000, guid: 7241b4213ec0d45849467a06bf84af89, type: 3}
+    - {fileID: 8300000, guid: 53bf0e3d7804c42e280e05e88f25f7e9, type: 3}
+    - {fileID: 8300000, guid: 3c59d2b92353742a288266386085946e, type: 3}
+    chanceOfPlaying: 100
+    volume: 1
+    volumeBySpeed: 0
+    minVolume: 0
+    pitchBySpeed: 0
+    minPitch: 0
+    maxPitch: 0
+  - name: Scream
+    audioClips:
+    - {fileID: 8300000, guid: 3eb7caad5b12a4cbdb81199148509f5b, type: 3}
+    - {fileID: 8300000, guid: 9d9d1ee3ec0d64b16a9528f149ba6ecc, type: 3}
+    chanceOfPlaying: 100
+    volume: 1
+    volumeBySpeed: 0
+    minVolume: 0
+    pitchBySpeed: 0
+    minPitch: 0
+    maxPitch: 0
+  - name: Wing
+    audioClips:
+    - {fileID: 8300000, guid: 07111ecc2a70a4c86a5c32179f98b5b5, type: 3}
+    - {fileID: 8300000, guid: 268dae1de861d44719f27a354180e5ea, type: 3}
+    - {fileID: 8300000, guid: 2e4fb2003ca114c4289bf4016d2daf03, type: 3}
+    chanceOfPlaying: 100
+    volume: 1
+    volumeBySpeed: 0
+    minVolume: 0
+    pitchBySpeed: 0
+    minPitch: 0
+    maxPitch: 0
+  - name: WingUp
+    audioClips:
+    - {fileID: 8300000, guid: b300311086a364b36a101a592fd63e02, type: 3}
+    - {fileID: 8300000, guid: 58048632e17a442f99df7314939d3d78, type: 3}
+    - {fileID: 8300000, guid: 35163194ec50f466787ed1a646528905, type: 3}
+    - {fileID: 8300000, guid: 66bf816dc8285488e910a2a1b3bb375e, type: 3}
+    - {fileID: 8300000, guid: a07ee2bdfde5342daadac7fd45ff8443, type: 3}
+    chanceOfPlaying: 100
+    volume: 0.6
+    volumeBySpeed: 0
+    minVolume: 0
+    pitchBySpeed: 0
+    minPitch: 0
+    maxPitch: 0
+  - name: WingDown
+    audioClips:
+    - {fileID: 8300000, guid: 496ac2ff8eb8c427e9662ed79f0efe05, type: 3}
+    - {fileID: 8300000, guid: 899ba4a854b8c40d99ff98ae80261af5, type: 3}
+    - {fileID: 8300000, guid: 439366143384e443fa982287bcc69422, type: 3}
+    - {fileID: 8300000, guid: abe1ab8f557d74db69f71d194b857276, type: 3}
+    chanceOfPlaying: 100
+    volume: 0.6
+    volumeBySpeed: 0
+    minVolume: 0
+    pitchBySpeed: 0
+    minPitch: 0
+    maxPitch: 0
+  audioLoops: []
+  pitchByTimescale: 1
+--- !u!114 &8638588452834857517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1958215272485110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cf52f11bf2ee4abba5fc0133d75f3f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blendShapeGameObjects:
+  - gameObjectName: Bat_A
+    gameObject: {fileID: 1617201861863302}
+    smr: {fileID: 137778654551108416}
+    displayableValues: 12
+    blendShapeValues:
+    - objectIndex: 0
+      index: 0
+      display: 0
+      fullName: 
+      triggerName: 
+      isMinus: 0
+      value: 0
+      min: 0
+      max: 100
+      limitMin: 0
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 0
+      index: 0
+      display: 0
+      fullName: 
+      triggerName: 
+      isMinus: 0
+      value: 0
+      min: 0
+      max: 100
+      limitMin: 0
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 0
+      index: 0
+      display: 0
+      fullName: 
+      triggerName: 
+      isMinus: 0
+      value: 0
+      min: 0
+      max: 100
+      limitMin: 0
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 0
+      index: 0
+      display: 0
+      fullName: 
+      triggerName: 
+      isMinus: 0
+      value: 0
+      min: 0
+      max: 100
+      limitMin: 0
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 0
+      index: 0
+      display: 0
+      fullName: 
+      triggerName: 
+      isMinus: 0
+      value: 0
+      min: 0
+      max: 100
+      limitMin: 0
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 0
+      index: 0
+      display: 0
+      fullName: 
+      triggerName: 
+      isMinus: 0
+      value: 0
+      min: 0
+      max: 100
+      limitMin: 0
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 0
+      index: 0
+      display: 0
+      fullName: 
+      triggerName: 
+      isMinus: 0
+      value: 0
+      min: 0
+      max: 100
+      limitMin: 0
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 0
+      index: 0
+      display: 0
+      fullName: 
+      triggerName: 
+      isMinus: 0
+      value: 0
+      min: 0
+      max: 100
+      limitMin: 0
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 0
+      index: 8
+      display: 0
+      fullName: SFB_BS_BatAWingClawLengthMinus
+      triggerName: BatAWingClawLength
+      isMinus: 1
+      value: -0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 0
+      index: 9
+      display: 1
+      fullName: SFB_BS_BatAWingClawLengthPlus
+      triggerName: BatAWingClawLength
+      isMinus: 0
+      value: 0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 0
+      index: 10
+      display: 0
+      fullName: SFB_BS_BatAWingTipsLengthMinus
+      triggerName: BatAWingTipsLength
+      isMinus: 1
+      value: -0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 0
+      index: 11
+      display: 1
+      fullName: SFB_BS_BatAWingTipsLengthPlus
+      triggerName: BatAWingTipsLength
+      isMinus: 0
+      value: 0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 0
+      index: 12
+      display: 0
+      fullName: SFB_BS_BatAToeLengthMinus
+      triggerName: BatAToeLength
+      isMinus: 1
+      value: -0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 0
+      index: 13
+      display: 1
+      fullName: SFB_BS_BatAToeLengthPlus
+      triggerName: BatAToeLength
+      isMinus: 0
+      value: 0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 0
+      index: 14
+      display: 0
+      fullName: SFB_BS_BatAArmThicknessMinus
+      triggerName: BatAArmThickness
+      isMinus: 1
+      value: -0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 0
+      index: 15
+      display: 1
+      fullName: SFB_BS_BatAArmThicknessPlus
+      triggerName: BatAArmThickness
+      isMinus: 0
+      value: 0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 0
+      index: 16
+      display: 0
+      fullName: SFB_BS_BatAChestThicknessMinus
+      triggerName: BatAChestThickness
+      isMinus: 1
+      value: -0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 0
+      index: 17
+      display: 1
+      fullName: SFB_BS_BatAChestThicknessPlus
+      triggerName: BatAChestThickness
+      isMinus: 0
+      value: 0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 0
+      index: 18
+      display: 0
+      fullName: SFB_BS_BatAWingSizeMinus
+      triggerName: BatAWingSize
+      isMinus: 1
+      value: -0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 0
+      index: 19
+      display: 1
+      fullName: SFB_BS_BatAWingSizePlus
+      triggerName: BatAWingSize
+      isMinus: 0
+      value: 0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 0
+      index: 20
+      display: 0
+      fullName: SFB_BS_BatAEarSizeMinus
+      triggerName: BatAEarSize
+      isMinus: 1
+      value: -0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 0
+      index: 21
+      display: 1
+      fullName: SFB_BS_BatAEarSizePlus
+      triggerName: BatAEarSize
+      isMinus: 0
+      value: 0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 0
+      index: 22
+      display: 0
+      fullName: SFB_BS_BatAEarShapeMinus
+      triggerName: BatAEarShape
+      isMinus: 1
+      value: -0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 0
+      index: 23
+      display: 1
+      fullName: SFB_BS_BatAEarShapePlus
+      triggerName: BatAEarShape
+      isMinus: 0
+      value: 0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 0
+      index: 24
+      display: 0
+      fullName: SFB_BS_BatAInnerEarSizeMinus
+      triggerName: BatAInnerEarSize
+      isMinus: 1
+      value: -0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 0
+      index: 25
+      display: 1
+      fullName: SFB_BS_BatAInnerEarSizePlus
+      triggerName: BatAInnerEarSize
+      isMinus: 0
+      value: 0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 0
+      index: 26
+      display: 1
+      fullName: SFB_BS_BatAHornSizePlus
+      triggerName: BatAHornSize
+      isMinus: 0
+      value: 0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 0
+      index: 27
+      display: 0
+      fullName: SFB_BS_BatAHornSizeMinus
+      triggerName: BatAHornSize
+      isMinus: 1
+      value: -0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 0
+      index: 28
+      display: 1
+      fullName: SFB_BS_BatABodyMuscles
+      triggerName: BatABodyMuscles
+      isMinus: 0
+      value: 0
+      min: 0
+      max: 100
+      limitMin: 0
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 0
+      index: 29
+      display: 0
+      fullName: SFB_BS_BatAFaceShapeMinus
+      triggerName: BatAFaceShape
+      isMinus: 1
+      value: -0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 0
+      index: 30
+      display: 1
+      fullName: SFB_BS_BatAFaceShapePlus
+      triggerName: BatAFaceShape
+      isMinus: 0
+      value: 0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    showValues: 0
+  - gameObjectName: Bat_B
+    gameObject: {fileID: 1723210234372156}
+    smr: {fileID: 137496568322457992}
+    displayableValues: 12
+    blendShapeValues:
+    - objectIndex: 0
+      index: 0
+      display: 0
+      fullName: 
+      triggerName: 
+      isMinus: 0
+      value: 0
+      min: 0
+      max: 100
+      limitMin: 0
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 0
+      index: 0
+      display: 0
+      fullName: 
+      triggerName: 
+      isMinus: 0
+      value: 0
+      min: 0
+      max: 100
+      limitMin: 0
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 0
+      index: 0
+      display: 0
+      fullName: 
+      triggerName: 
+      isMinus: 0
+      value: 0
+      min: 0
+      max: 100
+      limitMin: 0
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 0
+      index: 0
+      display: 0
+      fullName: 
+      triggerName: 
+      isMinus: 0
+      value: 0
+      min: 0
+      max: 100
+      limitMin: 0
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 0
+      index: 0
+      display: 0
+      fullName: 
+      triggerName: 
+      isMinus: 0
+      value: 0
+      min: 0
+      max: 100
+      limitMin: 0
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 0
+      index: 0
+      display: 0
+      fullName: 
+      triggerName: 
+      isMinus: 0
+      value: 0
+      min: 0
+      max: 100
+      limitMin: 0
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 0
+      index: 0
+      display: 0
+      fullName: 
+      triggerName: 
+      isMinus: 0
+      value: 0
+      min: 0
+      max: 100
+      limitMin: 0
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 0
+      index: 0
+      display: 0
+      fullName: 
+      triggerName: 
+      isMinus: 0
+      value: 0
+      min: 0
+      max: 100
+      limitMin: 0
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 1
+      index: 8
+      display: 0
+      fullName: SFB_BS_BatBWingClawLengthMinus
+      triggerName: BatBWingClawLength
+      isMinus: 1
+      value: -0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 1
+      index: 9
+      display: 1
+      fullName: SFB_BS_BatBWingClawLengthPlus
+      triggerName: BatBWingClawLength
+      isMinus: 0
+      value: 0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 1
+      index: 10
+      display: 0
+      fullName: SFB_BS_BatBWingTipsLengthMinus
+      triggerName: BatBWingTipsLength
+      isMinus: 1
+      value: -0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 1
+      index: 11
+      display: 1
+      fullName: SFB_BS_BatBWingTipsLengthPlus
+      triggerName: BatBWingTipsLength
+      isMinus: 0
+      value: 0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 1
+      index: 12
+      display: 0
+      fullName: SFB_BS_BatBToeLengthMinus
+      triggerName: BatBToeLength
+      isMinus: 1
+      value: -0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 1
+      index: 13
+      display: 1
+      fullName: SFB_BS_BatBToeLengthPlus
+      triggerName: BatBToeLength
+      isMinus: 0
+      value: 0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 1
+      index: 14
+      display: 0
+      fullName: SFB_BS_BatBArmThicknessMinus
+      triggerName: BatBArmThickness
+      isMinus: 1
+      value: -0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 1
+      index: 15
+      display: 1
+      fullName: SFB_BS_BatBArmThicknessPlus
+      triggerName: BatBArmThickness
+      isMinus: 0
+      value: 0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 1
+      index: 16
+      display: 0
+      fullName: SFB_BS_BatBChestThicknessMinus
+      triggerName: BatBChestThickness
+      isMinus: 1
+      value: -0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 1
+      index: 17
+      display: 1
+      fullName: SFB_BS_BatBChestThicknessPlus
+      triggerName: BatBChestThickness
+      isMinus: 0
+      value: 0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 1
+      index: 18
+      display: 0
+      fullName: SFB_BS_BatBWingSizeMinus
+      triggerName: BatBWingSize
+      isMinus: 1
+      value: -0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 1
+      index: 19
+      display: 1
+      fullName: SFB_BS_BatBWingSizePlus
+      triggerName: BatBWingSize
+      isMinus: 0
+      value: 0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 1
+      index: 20
+      display: 0
+      fullName: SFB_BS_BatBEarSizeMinus
+      triggerName: BatBEarSize
+      isMinus: 1
+      value: -0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 1
+      index: 21
+      display: 1
+      fullName: SFB_BS_BatBEarSizePlus
+      triggerName: BatBEarSize
+      isMinus: 0
+      value: 0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 1
+      index: 22
+      display: 0
+      fullName: SFB_BS_BatBEarShapeMinus
+      triggerName: BatBEarShape
+      isMinus: 1
+      value: -0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 1
+      index: 23
+      display: 1
+      fullName: SFB_BS_BatBEarShapePlus
+      triggerName: BatBEarShape
+      isMinus: 0
+      value: 0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 1
+      index: 24
+      display: 0
+      fullName: SFB_BS_BatBInnerEarSizeMinus
+      triggerName: BatBInnerEarSize
+      isMinus: 1
+      value: -0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 1
+      index: 25
+      display: 1
+      fullName: SFB_BS_BatBInnerEarSizePlus
+      triggerName: BatBInnerEarSize
+      isMinus: 0
+      value: 0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 1
+      index: 26
+      display: 1
+      fullName: SFB_BS_BatBHornSizePlus
+      triggerName: BatBHornSize
+      isMinus: 0
+      value: 0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 1
+      index: 27
+      display: 0
+      fullName: SFB_BS_BatBHornSizeMinus
+      triggerName: BatBHornSize
+      isMinus: 1
+      value: -0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 1
+      index: 28
+      display: 1
+      fullName: SFB_BS_BatBBodyMuscles
+      triggerName: BatBBodyMuscles
+      isMinus: 0
+      value: 0
+      min: 0
+      max: 100
+      limitMin: 0
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 1
+      index: 29
+      display: 0
+      fullName: SFB_BS_BatBFaceShapeMinus
+      triggerName: BatBFaceShape
+      isMinus: 1
+      value: -0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 1
+      index: 30
+      display: 1
+      fullName: SFB_BS_BatBFaceShapePlus
+      triggerName: BatBFaceShape
+      isMinus: 0
+      value: 0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    showValues: 0
+  - gameObjectName: Bat_C
+    gameObject: {fileID: 1995730391053028}
+    smr: {fileID: 137131385714389790}
+    displayableValues: 10
+    blendShapeValues:
+    - objectIndex: 0
+      index: 0
+      display: 0
+      fullName: 
+      triggerName: 
+      isMinus: 0
+      value: 0
+      min: 0
+      max: 100
+      limitMin: 0
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 0
+      index: 0
+      display: 0
+      fullName: 
+      triggerName: 
+      isMinus: 0
+      value: 0
+      min: 0
+      max: 100
+      limitMin: 0
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 0
+      index: 0
+      display: 0
+      fullName: 
+      triggerName: 
+      isMinus: 0
+      value: 0
+      min: 0
+      max: 100
+      limitMin: 0
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 0
+      index: 0
+      display: 0
+      fullName: 
+      triggerName: 
+      isMinus: 0
+      value: 0
+      min: 0
+      max: 100
+      limitMin: 0
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 0
+      index: 0
+      display: 0
+      fullName: 
+      triggerName: 
+      isMinus: 0
+      value: 0
+      min: 0
+      max: 100
+      limitMin: 0
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 0
+      index: 0
+      display: 0
+      fullName: 
+      triggerName: 
+      isMinus: 0
+      value: 0
+      min: 0
+      max: 100
+      limitMin: 0
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 2
+      index: 6
+      display: 0
+      fullName: SFB_BS_BatCWingClawLengthMinus
+      triggerName: BatCWingClawLength
+      isMinus: 1
+      value: -0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 2
+      index: 7
+      display: 1
+      fullName: SFB_BS_BatCWingClawLengthPlus
+      triggerName: BatCWingClawLength
+      isMinus: 0
+      value: 0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 2
+      index: 8
+      display: 0
+      fullName: SFB_BS_BatCWingTipsLengthMinus
+      triggerName: BatCWingTipsLength
+      isMinus: 1
+      value: -0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 2
+      index: 9
+      display: 1
+      fullName: SFB_BS_BatCWingTipsLengthPlus
+      triggerName: BatCWingTipsLength
+      isMinus: 0
+      value: 0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 2
+      index: 10
+      display: 0
+      fullName: SFB_BS_BatCToeLengthMinus
+      triggerName: BatCToeLength
+      isMinus: 1
+      value: -0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 2
+      index: 11
+      display: 1
+      fullName: SFB_BS_BatCToeLengthPlus
+      triggerName: BatCToeLength
+      isMinus: 0
+      value: 0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 2
+      index: 12
+      display: 0
+      fullName: SFB_BS_BatCArmThicknessMinus
+      triggerName: BatCArmThickness
+      isMinus: 1
+      value: -0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 2
+      index: 13
+      display: 1
+      fullName: SFB_BS_BatCArmThicknessPlus
+      triggerName: BatCArmThickness
+      isMinus: 0
+      value: 0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 2
+      index: 14
+      display: 0
+      fullName: SFB_BS_BatCChestThicknessMinus
+      triggerName: BatCChestThickness
+      isMinus: 1
+      value: -0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 2
+      index: 15
+      display: 1
+      fullName: SFB_BS_BatCChestThicknessPlus
+      triggerName: BatCChestThickness
+      isMinus: 0
+      value: 0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 2
+      index: 16
+      display: 0
+      fullName: SFB_BS_BatCWingSizeMinus
+      triggerName: BatCWingSize
+      isMinus: 1
+      value: -0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 2
+      index: 17
+      display: 1
+      fullName: SFB_BS_BatCWingSizePlus
+      triggerName: BatCWingSize
+      isMinus: 0
+      value: 0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 2
+      index: 18
+      display: 0
+      fullName: SFB_BS_BatCEarSizeMinus
+      triggerName: BatCEarSize
+      isMinus: 1
+      value: -0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 2
+      index: 19
+      display: 1
+      fullName: SFB_BS_BatCEarSizePlus
+      triggerName: BatCEarSize
+      isMinus: 0
+      value: 0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 2
+      index: 20
+      display: 0
+      fullName: SFB_BS_BatCEarShapeMinus
+      triggerName: BatCEarShape
+      isMinus: 1
+      value: -0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 2
+      index: 21
+      display: 1
+      fullName: SFB_BS_BatCEarShapePlus
+      triggerName: BatCEarShape
+      isMinus: 0
+      value: 0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 2
+      index: 22
+      display: 1
+      fullName: SFB_BS_BatCBodyMuscles
+      triggerName: BatCBodyMuscles
+      isMinus: 0
+      value: 0
+      min: 0
+      max: 100
+      limitMin: 0
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 2
+      index: 23
+      display: 0
+      fullName: SFB_BS_BatCFaceShapeMinus
+      triggerName: BatCFaceShape
+      isMinus: 1
+      value: -0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 2
+      index: 24
+      display: 1
+      fullName: SFB_BS_BatCFaceShapePlus
+      triggerName: BatCFaceShape
+      isMinus: 0
+      value: 0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    showValues: 0
+  - gameObjectName: Fur_A
+    gameObject: {fileID: 1010247827715212}
+    smr: {fileID: 137577024645920192}
+    displayableValues: 0
+    blendShapeValues:
+    - objectIndex: 0
+      index: 0
+      display: 0
+      fullName: 
+      triggerName: 
+      isMinus: 0
+      value: 0
+      min: 0
+      max: 100
+      limitMin: 0
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 0
+      index: 0
+      display: 0
+      fullName: 
+      triggerName: 
+      isMinus: 0
+      value: 0
+      min: 0
+      max: 100
+      limitMin: 0
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 0
+      index: 0
+      display: 0
+      fullName: 
+      triggerName: 
+      isMinus: 0
+      value: 0
+      min: 0
+      max: 100
+      limitMin: 0
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 3
+      index: 3
+      display: 0
+      fullName: SFB_BSM_FurA_BatAArmThicknessMinus
+      triggerName: BatAArmThickness
+      isMinus: 1
+      value: -0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 3
+      index: 4
+      display: 0
+      fullName: SFB_BSM_FurA_BatAArmThicknessPlus
+      triggerName: BatAArmThickness
+      isMinus: 0
+      value: 0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 3
+      index: 5
+      display: 0
+      fullName: SFB_BSM_FurA_BatAChestThicknessMinus
+      triggerName: BatAChestThickness
+      isMinus: 1
+      value: -0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 3
+      index: 6
+      display: 0
+      fullName: SFB_BSM_FurA_BatAChestThicknessPlus
+      triggerName: BatAChestThickness
+      isMinus: 0
+      value: 0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 3
+      index: 7
+      display: 0
+      fullName: SFB_BSM_FurA_BatABodyMuscles
+      triggerName: BatABodyMuscles
+      isMinus: 0
+      value: 0
+      min: 0
+      max: 100
+      limitMin: 0
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 3
+      index: 8
+      display: 0
+      fullName: SFB_BSM_FurA_BatAFaceShapeMinus
+      triggerName: BatAFaceShape
+      isMinus: 1
+      value: -0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 3
+      index: 9
+      display: 0
+      fullName: SFB_BSM_FurA_BatAFaceShapePlus
+      triggerName: BatAFaceShape
+      isMinus: 0
+      value: 0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    showValues: 0
+  - gameObjectName: Fur_C
+    gameObject: {fileID: 1829031054473874}
+    smr: {fileID: 137311338908170552}
+    displayableValues: 0
+    blendShapeValues:
+    - objectIndex: 0
+      index: 0
+      display: 0
+      fullName: 
+      triggerName: 
+      isMinus: 0
+      value: 0
+      min: 0
+      max: 100
+      limitMin: 0
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 0
+      index: 0
+      display: 0
+      fullName: 
+      triggerName: 
+      isMinus: 0
+      value: 0
+      min: 0
+      max: 100
+      limitMin: 0
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 0
+      index: 0
+      display: 0
+      fullName: 
+      triggerName: 
+      isMinus: 0
+      value: 0
+      min: 0
+      max: 100
+      limitMin: 0
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 0
+      index: 0
+      display: 0
+      fullName: 
+      triggerName: 
+      isMinus: 0
+      value: 0
+      min: 0
+      max: 100
+      limitMin: 0
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 0
+      index: 0
+      display: 0
+      fullName: 
+      triggerName: 
+      isMinus: 0
+      value: 0
+      min: 0
+      max: 100
+      limitMin: 0
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 0
+      index: 0
+      display: 0
+      fullName: 
+      triggerName: 
+      isMinus: 0
+      value: 0
+      min: 0
+      max: 100
+      limitMin: 0
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 0
+      index: 0
+      display: 0
+      fullName: 
+      triggerName: 
+      isMinus: 0
+      value: 0
+      min: 0
+      max: 100
+      limitMin: 0
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 0
+      index: 0
+      display: 0
+      fullName: 
+      triggerName: 
+      isMinus: 0
+      value: 0
+      min: 0
+      max: 100
+      limitMin: 0
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 4
+      index: 8
+      display: 0
+      fullName: SFB_BSM_FurC_BatCArmThicknessMinus
+      triggerName: BatCArmThickness
+      isMinus: 1
+      value: -0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 4
+      index: 9
+      display: 0
+      fullName: SFB_BSM_FurC_BatCArmThicknessPlus
+      triggerName: BatCArmThickness
+      isMinus: 0
+      value: 0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 4
+      index: 10
+      display: 0
+      fullName: SFB_BSM_FurC_BatCChestThicknessMinus
+      triggerName: BatCChestThickness
+      isMinus: 1
+      value: -0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 4
+      index: 11
+      display: 0
+      fullName: SFB_BSM_FurC_BatCChestThicknessPlus
+      triggerName: BatCChestThickness
+      isMinus: 0
+      value: 0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 4
+      index: 12
+      display: 0
+      fullName: SFB_BSM_FurC_BatCEarSizeMinus
+      triggerName: BatCEarSize
+      isMinus: 1
+      value: -0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 4
+      index: 13
+      display: 0
+      fullName: SFB_BSM_FurC_BatCEarSizePlus
+      triggerName: BatCEarSize
+      isMinus: 0
+      value: 0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 4
+      index: 14
+      display: 0
+      fullName: SFB_BSM_FurC_BatCEarShapeMinus
+      triggerName: BatCEarShape
+      isMinus: 1
+      value: -0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 4
+      index: 15
+      display: 0
+      fullName: SFB_BSM_FurC_BatCEarShapePlus
+      triggerName: BatCEarShape
+      isMinus: 0
+      value: 0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 4
+      index: 16
+      display: 0
+      fullName: SFB_BSM_FurC_BatCBodyMuscles
+      triggerName: BatCBodyMuscles
+      isMinus: 0
+      value: 0
+      min: 0
+      max: 100
+      limitMin: 0
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 4
+      index: 17
+      display: 0
+      fullName: SFB_BSM_FurC_BatCFaceShapeMinus
+      triggerName: BatCFaceShape
+      isMinus: 1
+      value: -0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    - objectIndex: 4
+      index: 18
+      display: 0
+      fullName: SFB_BSM_FurC_BatCFaceShapePlus
+      triggerName: BatCFaceShape
+      isMinus: 0
+      value: 0
+      min: -100
+      max: 100
+      limitMin: -100
+      limitMax: 100
+      lastValue: 0
+      showValueOptions: 0
+      isOpen: 0
+      matchThisObjectIndex: 0
+      matchThisValueIndex: 0
+      matchAnotherValue: 0
+      otherValuesMatchThis: []
+    showValues: 0
+  userMatchRespectsLimits: 1
+  rangeFiles: []
+  presetFiles: []
+  blendShapePrimaryPrefix: SFB_BS_
+  blendShapeMatchPrefix: SFB_BSM_
+  matchList: []
+  matchListNames: []
+  matchListIndex: 0
+  exportPath: 
+  showHelpBoxes: 1
+  showSetup: 1
+  showPresets: 1
+  showFullInspector: 0
+  showBlendShapeObjects: 1
+  showRangeFiles: 1
+  showPresetFiles: 1
+--- !u!114 &5898853153484325616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1958215272485110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c023f4138a334623acb9140fdbbe0dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blendShapesManager: {fileID: 8638588452834857517}
+  presets: []
+  onTriggerMode:
+  - Explicit
+  - Random
+  shapeList: []
+  shapeListNames: []
+  shapeListIndex: 0
+  showHelpBoxes: 1
+  showFullInspector: 0
+  showSetup: 1
+--- !u!1 &1958842495656242
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4053132710910492}
+  m_Layer: 0
+  m_Name: BatLLegToe4_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4053132710910492
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1958842495656242}
+  m_LocalRotation: {x: -0.007840663, y: -0.043077055, z: 0.3005685, w: 0.9527547}
+  m_LocalPosition: {x: -0.045466136, y: -0.005812082, z: -0.01525866}
+  m_LocalScale: {x: 1.0000032, y: 0.9999966, z: 0.99999994}
+  m_Children:
+  - {fileID: 4867816807568486}
+  m_Father: {fileID: 4966635763559060}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1972874600506324
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4998083821240990}
+  m_Layer: 0
+  m_Name: BatLLegToe2_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4998083821240990
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1972874600506324}
+  m_LocalRotation: {x: -0.00004792569, y: -0.00015180818, z: 0.30728495, w: 0.9516176}
+  m_LocalPosition: {x: -0.017328547, y: 0, z: 0.0000000047683715}
+  m_LocalScale: {x: 1.0000037, y: 0.9999964, z: 0.9999999}
+  m_Children: []
+  m_Father: {fileID: 4849260414808638}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1995730391053028
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4999782405226088}
+  - component: {fileID: 137131385714389790}
+  m_Layer: 0
+  m_Name: Bat_C
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4999782405226088
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1995730391053028}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4096505652918410}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!137 &137131385714389790
+SkinnedMeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1995730391053028}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 61910a19080b64415b2f379448f100a9, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_SkinnedMotionVectors: 1
+  m_Mesh: {fileID: 4300006, guid: 191e232710a105b4ebe2cc62861f1604, type: 3}
+  m_Bones:
+  - {fileID: 4319350954320458}
+  - {fileID: 4341600002368026}
+  - {fileID: 4780066851286646}
+  - {fileID: 4080845448768178}
+  - {fileID: 4697405753456128}
+  - {fileID: 4816300678924412}
+  - {fileID: 4421065186882682}
+  - {fileID: 4616179126699050}
+  - {fileID: 4503530100625640}
+  - {fileID: 4966635763559060}
+  - {fileID: 4465477791102612}
+  - {fileID: 4259689476711198}
+  - {fileID: 4127729634014520}
+  - {fileID: 4895101582955134}
+  - {fileID: 4064098708713038}
+  - {fileID: 4530151435181770}
+  - {fileID: 4825158458120920}
+  - {fileID: 4889119386950880}
+  - {fileID: 4392953232559940}
+  - {fileID: 4161911790783622}
+  - {fileID: 4098261956309336}
+  - {fileID: 4090287051329012}
+  - {fileID: 4755899525338542}
+  - {fileID: 4695315003215788}
+  - {fileID: 4741750896843640}
+  - {fileID: 4849260414808638}
+  - {fileID: 4892517805520500}
+  - {fileID: 4053132710910492}
+  - {fileID: 4556579796461182}
+  - {fileID: 4867816807568486}
+  - {fileID: 4554030978711040}
+  - {fileID: 4998083821240990}
+  - {fileID: 4917696036546884}
+  - {fileID: 4231688561551588}
+  - {fileID: 4271282966461588}
+  - {fileID: 4218110513218580}
+  - {fileID: 4924527752561294}
+  - {fileID: 4308252519251594}
+  - {fileID: 4323190903802096}
+  - {fileID: 4738241924550442}
+  - {fileID: 4028541530141866}
+  - {fileID: 4054181685064002}
+  - {fileID: 4274886450974252}
+  - {fileID: 4374872252963840}
+  - {fileID: 4456242524212220}
+  - {fileID: 4098910790258748}
+  - {fileID: 4154521814926742}
+  - {fileID: 4493181140092440}
+  - {fileID: 4652881898333934}
+  - {fileID: 4358773739175832}
+  - {fileID: 4550682991618192}
+  - {fileID: 4835275191162832}
+  - {fileID: 4565319838878702}
+  - {fileID: 4302683131530846}
+  - {fileID: 4973737423676346}
+  - {fileID: 4458046322080214}
+  - {fileID: 4362490137967896}
+  - {fileID: 4111372226163342}
+  - {fileID: 4296105322745474}
+  - {fileID: 4860001421458370}
+  - {fileID: 4122116433071188}
+  - {fileID: 4205509843739194}
+  - {fileID: 4358916029060114}
+  - {fileID: 4080414826512848}
+  - {fileID: 4146141686559572}
+  - {fileID: 4205493693749406}
+  - {fileID: 4143735865465632}
+  - {fileID: 4692405828241968}
+  - {fileID: 4369670788934728}
+  m_BlendShapeWeights:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - -0
+  - 0
+  - -0
+  - 0
+  - -0
+  - 0
+  - -0
+  - 0
+  - -0
+  - 0
+  - -0
+  - 0
+  - -0
+  - 0
+  - -0
+  - 0
+  - 0
+  - -0
+  - 0
+  m_RootBone: {fileID: 4530151435181770}
+  m_AABB:
+    m_Center: {x: 0.012426883, y: -0.050888322, z: 0.007947415}
+    m_Extent: {x: 0.3215325, y: 0.19933468, z: 0.6045774}
+  m_DirtyAABB: 0

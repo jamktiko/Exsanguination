@@ -10,7 +10,7 @@ public class EnemyGhoulAttack : MonoBehaviour
     private Animator playerAnimator;
     [SerializeField] int damage;
     private PlayerHealthManager playerHealthManager;
-    [SerializeField] AudioManager audioManager;
+    AudioManager audioManager;
     [SerializeField] private Animator enemyAnimator;
 
 
@@ -19,7 +19,7 @@ public class EnemyGhoulAttack : MonoBehaviour
         playerCombat = GameObject.FindGameObjectWithTag("PlayerModel").GetComponent<PlayerCombat>();
         playerAnimator = GameObject.FindGameObjectWithTag("PlayerModel").GetComponent<Animator>();
         playerHealthManager = GameObject.FindGameObjectWithTag("HealthManager").GetComponent<PlayerHealthManager>();
-        audioManager = FindObjectOfType<AudioManager>();
+        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
     }
 
 

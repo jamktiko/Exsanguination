@@ -4,8 +4,8 @@ using UnityEngine;
 public class EnemyFinisher : MonoBehaviour
 {
     private Animator playerAnimator;
-    private InputManager InputManager;
-   [SerializeField] private Transform playerCamera;
+    private InputHandler InputManager;
+    private Transform playerCamera;
     private MouseLook mLook;
     [SerializeField] private AudioSource finisherGhoulAudioSource;
     [SerializeField] private GameObject finisherGhoulParticleSystem;
@@ -25,16 +25,17 @@ public class EnemyFinisher : MonoBehaviour
     private GameObject enemyParticleSystem;
     private GameObject tmpParticle;
     [SerializeField] private GameObject particleInstantiateSpot;
+    private Rigidbody rb;
 
 
     private void Awake()
     {
         playerAnimator = GetComponent<Animator>();
-        InputManager = GetComponentInParent<InputManager>();
+        InputManager = GetComponentInParent<InputHandler>();
         playerCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Transform>();
         mLook = GetComponentInParent<MouseLook>();
         audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
-
+        rb = GetComponentInParent<Rigidbody>();
 
     }
 
@@ -90,7 +91,7 @@ public class EnemyFinisher : MonoBehaviour
         enemyMesh.enabled = true;          
         finisherstickRenderer.enabled = true;
         playerAnimator.SetTrigger("finish");
-        InputManager.inputsEnabled = false;
+        InputManager.DisableInput();
         mLook.enabled = false;
     }
 
@@ -109,7 +110,7 @@ public class EnemyFinisher : MonoBehaviour
         //enemyParticleSystem.Stop();
 
         finisherstickRenderer.enabled = false;
-        InputManager.inputsEnabled = true;
+        InputManager.EnableInput();
         mLook.enabled = true;
         Destroy(tmpParticle);
         tmpParticle = null;
