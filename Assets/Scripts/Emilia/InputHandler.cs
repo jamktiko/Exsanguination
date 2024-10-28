@@ -1,3 +1,4 @@
+using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.ProBuilder.MeshOperations;
@@ -112,13 +113,13 @@ public class InputHandler : MonoBehaviour
         {
             if (inputsEnabled)
 
-                mouseInput = ctx.ReadValue<Vector2>(); // Use Vector2 to get both X and Y axes
-
+                mouseInput = ctx.ReadValue<Vector2>();
+            mouseLook.ReceiveInput(mouseInput);
         };
         mouselookAround.canceled += ctx =>
         {
-            // Reset mouseInput to zero when movement stops
             mouseInput = Vector2.zero;
+            mouseLook.ReceiveInput(mouseInput);
         };
         
 

@@ -1523,11 +1523,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87ad2894667258947a2e39e49d7f297d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensitivityX: 8
-  sensitivityY: 0.2
-  playerCamera: {fileID: 108411606681717390}
-  cameraDirection: {x: 0, y: 0, z: 0}
-  xClamp: 80
+  cameraTransform: {fileID: 108411606681717390}
+  sensitivity: 25
+  verticalClamp: 80
 --- !u!114 &2973974297268387390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5547,7 +5545,7 @@ Camera:
   m_AllowMSAA: 1
   m_AllowDynamicResolution: 1
   m_ForceIntoRT: 0
-  m_OcclusionCulling: 0
+  m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
 --- !u!114 &2007057630572557001
@@ -5573,7 +5571,7 @@ MonoBehaviour:
     m_Bits: 16384
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 1
+  m_RenderPostProcessing: 0
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -13740,7 +13738,7 @@ Camera:
   m_AllowMSAA: 1
   m_AllowDynamicResolution: 1
   m_ForceIntoRT: 0
-  m_OcclusionCulling: 0
+  m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
 --- !u!81 &7306181479741668352
@@ -13775,7 +13773,7 @@ MonoBehaviour:
     m_Bits: 16384
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 1
