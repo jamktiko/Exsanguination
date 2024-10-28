@@ -363,7 +363,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 canMove = false;
                 canDash = false;
-                canSlide = true;
+                canSlide = false;
                 cam.localPosition = camSlidingPos;
                 //audioManager.PlaySlideAudioClip();
                 StartCoroutine(SlideCoroutine());
