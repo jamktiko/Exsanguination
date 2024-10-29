@@ -15,6 +15,8 @@ public class PlayerCombat : MonoBehaviour
     public int currentWeaponNumber;
     [SerializeField] GameObject starterSword;
     [SerializeField] GameObject slayMore;
+    private bool isPerformingAction;
+    public bool isAttacking;
 
     //[SerializeField] private ParticleSystem starterSwordSwing1;
     //[SerializeField] private ParticleSystem starterSwordSwing2;
@@ -32,6 +34,22 @@ public class PlayerCombat : MonoBehaviour
        slayMore.SetActive(false);
     }
    
+    public void PerformAction()
+    {
+        isPerformingAction = true;
+    }
+
+    public void FinishAttack()
+    {
+        isAttacking = false;
+    }
+
+
+    public void StopAction()
+    {
+        isPerformingAction = false;
+    }
+
     public void SetWeaponLogics(int weaponIndex)
     {
         currentWeaponNumber = weaponIndex;
@@ -57,8 +75,10 @@ public class PlayerCombat : MonoBehaviour
 
     public void Attack()
     {
+        if (isPerformingAction || isBlocking) return; // Prevent action if another is in progress
+        isAttacking = true;
         //StarterSword
-        if(currentWeaponNumber == 0)
+        if (currentWeaponNumber == 0)
         {
             // Check if the attack just started
             if (!animator.GetBool("startedAttack"))
@@ -104,12 +124,13 @@ public class PlayerCombat : MonoBehaviour
 
     public void BlockAction()
     {
-        if (!blockOnCooldown)
-        {
+        if (isAttacking || blockOnCooldown) return; // Prevent blocking if another action is in progress
+        
             //playerIsBlockingVFX.Play();
-                animator.SetTrigger("block");
+            animator.SetTrigger("block");
+        isBlocking = true;
             StartCoroutine(BlockingCooldown());
-        }
+        
 
         if (currentWeaponNumber == 1)
         {
