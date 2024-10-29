@@ -3,11 +3,10 @@ using UnityEngine;
 public class MouseLook : MonoBehaviour
 {
     [SerializeField] private Transform cameraTransform;
-     public float sensitivity = 100f;
+    public float sensitivity = 100f;
     [SerializeField] private float verticalClamp = 90f;
 
     private float xRotation = 0f;
-    private Vector2 mouseInput = Vector2.zero;
 
     private void Start()
     {
@@ -17,14 +16,9 @@ public class MouseLook : MonoBehaviour
     // Method to receive input from Input System action
     public void ReceiveInput(Vector2 input)
     {
-        mouseInput = input;
-    }
-
-    private void Update()
-    {
         // Calculate rotations based on input
-        float mouseX = mouseInput.x * sensitivity * Time.deltaTime;
-        float mouseY = mouseInput.y * sensitivity * Time.deltaTime;
+        float mouseX = input.x * sensitivity * Time.deltaTime;
+        float mouseY = input.y * sensitivity * Time.deltaTime;
 
         // Vertical rotation for camera (clamped)
         xRotation -= mouseY;
