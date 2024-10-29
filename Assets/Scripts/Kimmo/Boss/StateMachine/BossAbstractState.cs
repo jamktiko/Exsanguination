@@ -2,19 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BossAbstractState : MonoBehaviour
+public class BossAbstractState
 {
+    protected Boss boss;
     protected BossStateManager bossStateManager;
 
-    // Start is called before the first frame update
-    public virtual void Start()
+    public BossAbstractState(Boss boss, BossStateManager bossStateManager)
     {
-        bossStateManager = GetComponent<BossStateManager>();
+        this.boss = boss;
+        this.bossStateManager = bossStateManager;
     }
 
-    public abstract void EnterState();
-
-    public abstract void UpdateState();
-
-    public abstract void ChangeToNextState();
+    public virtual void EnterState() { }
+    public virtual void ExitState() { }
+    public virtual void FrameUpdate() { }
+    public virtual void PhysicsUpdate() { }
+    public virtual void OnTriggerEnter(Collider other) { }
 }

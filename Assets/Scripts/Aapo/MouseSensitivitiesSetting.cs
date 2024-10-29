@@ -16,8 +16,8 @@ public class MouseSensitivitiesSetting : MonoBehaviour
     private void Start()
     {
 
-        sensitivityText.text = $"Sensitivity: {sensitivitySlider.value:F1}";
-
+        sensitivityText.text = $"Sensitivity: {mouseLookScript.sensitivity:F1}";
+        sensitivitySlider.value = mouseLookScript.sensitivity;
         sensitivitySlider.onValueChanged.AddListener(ChangeSensitivity);
     }
 

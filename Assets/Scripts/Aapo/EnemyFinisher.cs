@@ -26,7 +26,7 @@ public class EnemyFinisher : MonoBehaviour
     private GameObject tmpParticle;
     [SerializeField] private GameObject particleInstantiateSpot;
     private Rigidbody rb;
-
+    public bool isFinishing;
 
     private void Awake()
     {
@@ -93,6 +93,7 @@ public class EnemyFinisher : MonoBehaviour
         playerAnimator.SetTrigger("finish");
         InputManager.DisableInput();
         mLook.enabled = false;
+        isFinishing = true;
     }
 
     public void EnemyExplode()
@@ -108,7 +109,7 @@ public class EnemyFinisher : MonoBehaviour
     public void FinishFinisherAnimation()
     {
         //enemyParticleSystem.Stop();
-
+        isFinishing = false;
         finisherstickRenderer.enabled = false;
         InputManager.EnableInput();
         mLook.enabled = true;
