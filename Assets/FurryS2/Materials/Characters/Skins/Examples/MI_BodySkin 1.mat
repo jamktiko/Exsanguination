@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: MI_BodySkin 1
-  m_Shader: {fileID: 4800000, guid: 34e22a54801ad5546bc8b3e0083d5b4e, type: 3}
+  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -19,6 +19,7 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap:
     MotionVector: User
+    RenderType: Opaque
   disabledShaderPasses:
   - TransparentBackface
   m_LockedProperties: 
@@ -31,6 +32,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _AO:
         m_Texture: {fileID: 2800000, guid: 09a6ff309b9a58f4b9856748923ca480, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BaseMap:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -109,6 +114,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: e506a1e4d1b2eba41a84cc7435d09f5a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SpecGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _texcoord:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -145,18 +154,25 @@ Material:
     - Vector1_B9994903: 11
     - Vector1_E8746023: 16
     - _AddPrecomputedVelocity: 1
+    - _AlphaClip: 0
     - _AlphaCutoff: 0.5
     - _AlphaCutoffEnable: 0
     - _AlphaDstBlend: 0
     - _AlphaSrcBlend: 1
     - _AlphaToMask: 0
     - _AlphaToMaskInspectorValue: 0
+    - _Blend: 0
     - _BlendMode: 0
+    - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
+    - _ClearCoatMask: 0
+    - _ClearCoatSmoothness: 0
     - _ColorPow: 0.25
+    - _Cull: 2
     - _CullMode: 2
     - _CullModeForward: 2
     - _Cutoff: 0.5
+    - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DiffusionProfileHash: 3.4393191
     - _DirtBoots: 1
@@ -165,6 +181,7 @@ Material:
     - _DoubleSidedGIMode: 0
     - _DoubleSidedNormalMode: 2
     - _DstBlend: 0
+    - _DstBlendAlpha: 0
     - _EmissivePannerTilling: 1
     - _EmissivePower1: 0
     - _EmissivePower2: 0
@@ -204,9 +221,11 @@ Material:
     - _SkinPore_Power: 0.25
     - _SkinPore_Tilling: 35
     - _SkinRounghnessBoots: 0.7
+    - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
+    - _SrcBlendAlpha: 1
     - _StencilRef: 4
     - _StencilRefDepth: 8
     - _StencilRefDistortionVec: 4
@@ -218,6 +237,7 @@ Material:
     - _StencilWriteMaskGBuffer: 14
     - _StencilWriteMaskMV: 40
     - _SupportDecals: 1
+    - _Surface: 0
     - _SurfaceType: 0
     - _TransAmbient: 0.2
     - _TransDirect: 1
@@ -235,6 +255,7 @@ Material:
     - _TransparentZWrite: 1
     - _UVSec: 0
     - _UseShadowThreshold: 0
+    - _WorkflowMode: 1
     - _ZTestDepthEqualForOpaque: 3
     - _ZTestGBuffer: 4
     - _ZTestTransparent: 4
@@ -243,6 +264,7 @@ Material:
     m_Colors:
     - Color_2E5415DE: {r: 1, g: 1, b: 1, a: 0}
     - Vector2_8044833E: {r: 1, g: 1, b: 0, a: 0}
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColorMul: {r: 0.745283, g: 0.4324048, b: 0.4324048, a: 0}
     - _BlendColor01: {r: 0.5686275, g: 0.5686275, b: 0.5686275, a: 0}
     - _BlendColor02: {r: 1, g: 1, b: 1, a: 0}
@@ -263,6 +285,7 @@ Material:
     - _PannerProperty: {r: 0, g: 0, b: 0, a: 0}
     - _Profile_asset: {r: 2.7217396e-14, g: -0.00000033793674, b: 6.503509e-25, a: 2.5157696e-15}
     - _SSSColor: {r: 0.5471698, g: 0.077783935, b: 0, a: 1}
+    - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _Tint: {r: 1, g: 0.8288271, b: 0.7311321, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &2257380798908251981
