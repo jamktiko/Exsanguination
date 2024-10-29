@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 public class SettingsValueHandler : MonoBehaviour
 {
-    Crosshair crosshair;
+    //Crosshair crosshair;
 
     [Header("General settings")]
 
-    [SerializeField] Toggle crosshairToggle;
+    //[SerializeField] Toggle crosshairToggle;
 
     [Header("Volume settings")]
 
@@ -21,18 +21,18 @@ public class SettingsValueHandler : MonoBehaviour
 
     [SerializeField] TMP_Dropdown graphicsDropdown;
 
-    private void Awake()
-    {
-        crosshair = GameObject.Find("Crosshair").GetComponent<Crosshair>();
-    }
+    //private void Awake()
+    //{
+    //    crosshair = GameObject.Find("Crosshair").GetComponent<Crosshair>();
+    //}
 
     void OnEnable()
     {
-        crosshairToggle.isOn = crosshair.crosshairShown;
+        //crosshairToggle.isOn = crosshair.crosshairShown;
     }
     void Start()
     {
-        crosshairToggle.onValueChanged.AddListener(delegate { ToggleCrosshair(crosshairToggle.isOn); });
+        //crosshairToggle.onValueChanged.AddListener(delegate { ToggleCrosshair(crosshairToggle.isOn); });
 
         masterVolumeSlider.onValueChanged.AddListener(delegate { ChangeMasterVolume(masterVolumeSlider.value); });
         musicVolumeSlider.onValueChanged.AddListener(delegate { ChangeMusicVolume(masterVolumeSlider.value); });
@@ -41,17 +41,17 @@ public class SettingsValueHandler : MonoBehaviour
         graphicsDropdown.onValueChanged.AddListener(delegate { ChangeGraphics(graphicsDropdown.value); });
     }
 
-    void ToggleCrosshair(bool value)
-    {
-        if (value == false)
-        {
-            crosshair.HideCrosshair();
-        }
-        else if (value == true)
-        {
-            crosshair.ShowCrosshair();
-        }
-    }
+    //void ToggleCrosshair(bool value)
+    //{
+    //    if (value == false)
+    //    {
+    //        crosshair.HideCrosshair();
+    //    }
+    //    else if (value == true)
+    //    {
+    //        crosshair.ShowCrosshair();
+    //    }
+    //}
 
     void ChangeMasterVolume(float value)
     {

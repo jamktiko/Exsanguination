@@ -10,10 +10,8 @@ public class ControllerAim : MonoBehaviour
     private float xRotation = 0f;                    // Current X rotation (pitch)
     private float yRotation = 0f;                    // Current Y rotation (yaw)
 
-
     private void Awake()
     {
-        // Find the ControllerHandler in the scene
         Cursor.visible = false;                        // Hide cursor
         Cursor.lockState = CursorLockMode.Locked;     // Lock cursor to the center of the screen
     }
@@ -28,27 +26,24 @@ public class ControllerAim : MonoBehaviour
 
     private void HandleControllerAim()
     {
-        
-            // Get the direction of the right stick
-            Vector2 aimDirection = Gamepad.current.rightStick.ReadValue();
+        // Get the direction of the right stick
+        Vector2 aimDirection = Gamepad.current.rightStick.ReadValue();
 
-            // Set a deadzone threshold
-            float deadzoneThreshold = 0.2f; // Adjust this value as needed
+        // Set a deadzone threshold
+        float deadzoneThreshold = 0.2f; // Adjust this value as needed
 
-            // Check if the aim direction is above the deadzone
-            if (aimDirection.magnitude > deadzoneThreshold)
-            {
-                // Update yaw based on right stick X (horizontal)
-                yRotation += aimDirection.x * sensitivityX * Time.deltaTime;
+        // Check if the aim direction is above the deadzone
+        if (aimDirection.magnitude > deadzoneThreshold)
+        {
+            // Update yaw based on right stick X (horizontal)
+            yRotation += aimDirection.x * sensitivityX * Time.deltaTime;
 
-                // Update pitch based on right stick Y (vertical)
-                xRotation -= aimDirection.y * sensitivityY * Time.deltaTime;
-                xRotation = Mathf.Clamp(xRotation, -xClamp, xClamp); // Clamp pitch rotation
+            // Update pitch based on right stick Y (vertical)
+            xRotation -= aimDirection.y * sensitivityY * Time.deltaTime;
+            xRotation = Mathf.Clamp(xRotation, -xClamp, xClamp); // Clamp pitch rotation
 
-                // Apply the new rotations to the camera and player
-                playerCamera.localRotation = Quaternion.Euler(xRotation, 0f, 0f); // Apply pitch rotation to camera
-                transform.rotation = Quaternion.Euler(0f, yRotation, 0f); // Apply yaw rotation to player
-            }
-       
+            // Apply the new rotations to the camera and player
+            playerCamera.localRotation = Quaternion.Euler(xRotation, yRotation, 0f); // Apply pitch rotation to camera
+        }
     }
 }

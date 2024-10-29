@@ -23,7 +23,11 @@ public class SettingsMenu : MonoBehaviour
 
     public void CloseSettings()
     {
-        activator.SetActive(true);
+        if (activator != null)
+        {
+            activator.SetActive(true);
+
+        }
         gameObject.SetActive(false);
     }
 }
