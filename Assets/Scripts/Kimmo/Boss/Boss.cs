@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boss : MonoBehaviour, IMoveable
+public class Boss : MonoBehaviour
 {
     public BossStateManager stateManager { get; set; }
     public IdleState idleState { get; set; }
@@ -11,7 +11,12 @@ public class Boss : MonoBehaviour, IMoveable
     public ChargeState chargeState { get; set; }
     public MeleeAttackState meleeAttackState { get; set; }
     public SpecialAttackState specialAttackState { get; set; }
-    public float moveSpeed { get; set; }
+
+    public float moveSpeed;
+    public Transform[] wayPoints;
+    public Transform playerTransform;
+    public Vector3 targetPosition;
+
 
     private void Awake()
     {
@@ -23,11 +28,12 @@ public class Boss : MonoBehaviour, IMoveable
         chargeState = new ChargeState(this, stateManager);
         meleeAttackState = new MeleeAttackState(this, stateManager);
         specialAttackState = new SpecialAttackState(this, stateManager);
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     private void Start()
     {
-        stateManager.Initialize(chargeState);
+        stateManager.Initialize(dashState);
     }
 
     private void Update()
@@ -38,10 +44,5 @@ public class Boss : MonoBehaviour, IMoveable
     private void FixedUpdate()
     {
         stateManager.currentBossState.PhysicsUpdate();
-    }
-
-    public void MoveBoss(Vector3 velocity)
-    {
-        
     }
 }
