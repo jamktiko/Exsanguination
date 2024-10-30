@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class SpecialAttackState : BossAbstractState
 {
-    public SpecialAttackState(Boss boss, BossStateManager bossStateManager) : base(boss, bossStateManager)
+    public SpecialAttackState(Boss boss, BossMovement bossMovement, BossStateManager bossStateManager) : base(boss, bossMovement, bossStateManager)
     {
+
     }
 
     public override void EnterState()
     {
         base.EnterState();
+        Debug.Log("Boss entered to SPECIAL ATTACK state.");
     }
 
     public override void ExitState()

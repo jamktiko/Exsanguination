@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class IdleState : BossAbstractState
 {
-    public IdleState(Boss boss, BossStateManager bossStateManager) : base(boss, bossStateManager)
+    float idleTimer;
+
+    public IdleState(Boss boss, BossMovement bossMovement, BossStateManager bossStateManager) : base(boss, bossMovement, bossStateManager)
     {
+
     }
 
     public override void EnterState()
     {
         base.EnterState();
+        Debug.Log("Boss entered to IDLE state.");
     }
 
     public override void ExitState()
@@ -21,6 +25,15 @@ public class IdleState : BossAbstractState
     public override void FrameUpdate()
     {
         base.FrameUpdate();
+
+        if (idleTimer < boss.idleDuration)
+        {
+            idleTimer += Time.deltaTime;
+        }
+        else
+        {
+            boss.stateManager.ChangeState();
+        }
     }
 
     public override void PhysicsUpdate()

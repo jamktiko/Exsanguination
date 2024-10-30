@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ChargeState : BossAbstractState
 {
-    public ChargeState(Boss boss, BossStateManager bossStateManager) : base(boss, bossStateManager)
+    public ChargeState(Boss boss, BossMovement bossMovement, BossStateManager bossStateManager) : base(boss, bossMovement, bossStateManager)
     {
         
     }
@@ -26,24 +26,20 @@ public class ChargeState : BossAbstractState
     public override void FrameUpdate()
     {
         base.FrameUpdate();
+
+        boss.RotateTowardsTarget();
+
+        boss.MoveTowardsTarget();
+
+        if (boss.transform.position == boss.targetPosition)
+        {
+            boss.stateManager.ChangeState();
+        }
     }
 
     public override void PhysicsUpdate()
     {
-        base.PhysicsUpdate();
-
-        Vector3 targetDirection = boss.targetPosition - boss.transform.position;
-        Vector3 newDirection = Vector3.RotateTowards(boss.transform.forward, targetDirection, 10f * Time.fixedDeltaTime, 0f);
-        boss.transform.rotation = Quaternion.LookRotation(newDirection);
-
-        boss.transform.position = Vector3.MoveTowards(boss.transform.position, boss.targetPosition, 
-            boss.moveSpeed * Time.fixedDeltaTime);
-
-        if (boss.transform.position == boss.targetPosition)
-        {
-            boss.stateManager.ChangeState(boss.meleeAttackState);
-        }
-        
+        base.PhysicsUpdate();  
     }
 
     public override void OnTriggerEnter(Collider other)

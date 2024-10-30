@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class MeleeAttackState : BossAbstractState
 {
-
-    public MeleeAttackState(Boss boss, BossStateManager bossStateManager) : base(boss, bossStateManager)
+    public MeleeAttackState(Boss boss, BossMovement bossMovement, BossStateManager bossStateManager) : base(boss, bossMovement, bossStateManager)
     {
+
     }
 
     public override void EnterState()
     {
         base.EnterState();
-
-        Debug.Log("Boss entered to MELEE ATTACK STATE.");
+        Debug.Log("Boss entered to MELEE ATTACK state.");
 
         // Activate boss melee attack animation
     }
@@ -26,6 +25,8 @@ public class MeleeAttackState : BossAbstractState
     public override void FrameUpdate()
     {
         base.FrameUpdate();
+
+        boss.stateManager.ChangeState();
     }
 
     public override void PhysicsUpdate()

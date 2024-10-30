@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class StunState : BossAbstractState
 {
-    public StunState(Boss boss, BossStateManager bossStateManager) : base(boss, bossStateManager)
+    float stunTimer;
+
+    public StunState(Boss boss, BossMovement bossMovement, BossStateManager bossStateManager) : base(boss, bossMovement, bossStateManager)
     {
+            
     }
 
     public override void EnterState()
     {
         base.EnterState();
+        Debug.Log("Boss entered to STUN state.");
+
+        stunTimer = 0;
     }
 
     public override void ExitState()
@@ -21,6 +27,15 @@ public class StunState : BossAbstractState
     public override void FrameUpdate()
     {
         base.FrameUpdate();
+
+        if (stunTimer < boss.stunDuration)
+        {
+            stunTimer += Time.deltaTime;
+        }
+        else
+        {
+            boss.stateManager.ChangeState();
+        }
     }
 
     public override void PhysicsUpdate()
