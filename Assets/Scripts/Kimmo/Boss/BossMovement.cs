@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BossMovement : MonoBehaviour
 {
+    //public Collider bossCollider;
     //[SerializeField] float moveSpeed;
     //[SerializeField] Transform[] waypoints;
     //public Transform playerTransform;
@@ -12,6 +13,7 @@ public class BossMovement : MonoBehaviour
 
     //private void Awake()
     //{
+    //    bossCollider = GetComponent<Collider>();
     //    playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
     //}
 

@@ -6,7 +6,7 @@ using UnityEngine;
 public class Boss : MonoBehaviour
 {
     public BossMovement bossMovement { get; set; }
-    public BossStateManager stateManager { get; set; }
+    public BossStateManager bossStateManager { get; set; }
     public IdleState idleState { get; set; }
     public DashState dashState { get; set; }
     public StunState stunState { get; set; }
@@ -14,11 +14,13 @@ public class Boss : MonoBehaviour
     public MeleeAttackState meleeAttackState { get; set; }
     public SpecialAttackState specialAttackState { get; set; }
 
+    public Collider bossCollider;
     [SerializeField] float moveSpeed;
     [SerializeField] Transform[] waypoints;
     public Transform playerTransform;
     public Vector3 targetPosition;
     float minDistance = 5f; // Minimum distance from player to exclude waypoint
+    public bool isInMeleeRange;
 
     public bool meleeAttackBlocked;
     public bool meleeAttackHit;
@@ -29,33 +31,59 @@ public class Boss : MonoBehaviour
 
     private void Awake()
     {
-        stateManager = new BossStateManager();
+        bossStateManager = new BossStateManager();
 
-        idleState = new IdleState(this, bossMovement, stateManager);
-        dashState = new DashState(this, bossMovement, stateManager);
-        stunState = new StunState(this, bossMovement, stateManager);
-        chargeState = new ChargeState(this, bossMovement, stateManager);
-        meleeAttackState = new MeleeAttackState(this, bossMovement, stateManager);
-        specialAttackState = new SpecialAttackState(this, bossMovement, stateManager);
+        idleState = new IdleState(this, bossMovement, bossStateManager);
+        dashState = new DashState(this, bossMovement, bossStateManager);
+        stunState = new StunState(this, bossMovement, bossStateManager);
+        chargeState = new ChargeState(this, bossMovement, bossStateManager);
+        meleeAttackState = new MeleeAttackState(this, bossMovement, bossStateManager);
+        specialAttackState = new SpecialAttackState(this, bossMovement, bossStateManager);
 
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     private void Start()
     {
-        stateManager.states = new BossAbstractState[] { chargeState, meleeAttackState, stunState, dashState, idleState, dashState, specialAttackState, dashState, idleState, dashState };
+        bossStateManager.states = new BossAbstractState[] { chargeState, meleeAttackState, stunState, dashState, idleState, dashState, specialAttackState, dashState, idleState, dashState };
 
-        stateManager.Initialize(chargeState);
+        bossStateManager.Initialize(chargeState);
     }
 
     private void Update()
     {
-        stateManager.currentBossState.FrameUpdate();
+        bossStateManager.currentBossState.FrameUpdate();
     }
 
     private void FixedUpdate()
     {
-        stateManager.currentBossState.PhysicsUpdate();
+        bossStateManager.currentBossState.PhysicsUpdate();
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            isInMeleeRange = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            isInMeleeRange = false;
+        }
+    }
+
+    public void DeactivateCollider()
+    {
+        bossCollider.enabled = false;
+    }
+
+    public void ActivateCollider()
+    {
+        bossCollider.enabled = true;
     }
 
     public void ChooseWaypoint()

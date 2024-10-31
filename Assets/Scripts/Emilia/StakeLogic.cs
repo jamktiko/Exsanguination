@@ -4,7 +4,7 @@ using UnityEngine;
 public class StakeLogic : MonoBehaviour
 {
     [SerializeField] private GameObject prefab;
-    [SerializeField] private float throwForce = 50f, stickDuration = 10f, returnCooldown = 10f, slowAmount = 0.5f, finisherThreshold = 50f, retrievalRange = 2f, stickTimer = 0f;
+    [SerializeField] private float throwForce = 50f, stickDuration = 10f, returnCooldown = 10f, slowAmount = 0.5f, finisherThreshold = 0.25f, retrievalRange = 2f, stickTimer = 0f;
     [SerializeField] private bool isThrown = false, isStuck = false, isReturning = false;
     public bool startedFinishing;
     private Rigidbody rb;
@@ -174,7 +174,7 @@ public class StakeLogic : MonoBehaviour
             // Check if within retrieval range
             if (Vector3.Distance(playerTransform.position, transform.position) <= retrievalRange)
             {
-                if (stuckEnemyHealth.GetEnemyHealth() <= (int)(stuckEnemyHealth.GetEnemyMaxHealth() * 0.25f))
+                if (stuckEnemyHealth.GetEnemyHealth() <= (int)(stuckEnemyHealth.GetEnemyMaxHealth() * finisherThreshold))
                 {
                     startedFinishing = true;
                     stuckEnemyHealth.FinishEnemy();

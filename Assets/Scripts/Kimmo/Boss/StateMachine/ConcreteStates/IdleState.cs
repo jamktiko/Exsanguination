@@ -32,17 +32,12 @@ public class IdleState : BossAbstractState
         }
         else
         {
-            boss.stateManager.ChangeState();
+            boss.bossStateManager.ChangeState();
         }
     }
 
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
-    }
-
-    public override void OnTriggerEnter(Collider other)
-    {
-        base.OnTriggerEnter(other);
     }
 }

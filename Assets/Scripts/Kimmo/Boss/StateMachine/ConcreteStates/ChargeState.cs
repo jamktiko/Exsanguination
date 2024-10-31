@@ -15,12 +15,15 @@ public class ChargeState : BossAbstractState
         base.EnterState();
         Debug.Log("Boss entered to CHARGE state.");
 
-        boss.targetPosition = boss.playerTransform.position;
+        boss.DeactivateCollider();
+        
     }
 
     public override void ExitState()
     {
         base.ExitState();
+
+        boss.ActivateCollider();
     }
 
     public override void FrameUpdate()
@@ -29,21 +32,17 @@ public class ChargeState : BossAbstractState
 
         boss.RotateTowardsTarget();
 
+        boss.targetPosition = boss.playerTransform.position;
         boss.MoveTowardsTarget();
 
-        if (boss.transform.position == boss.targetPosition)
+        if (boss.isInMeleeRange)
         {
-            boss.stateManager.ChangeState();
+            boss.bossStateManager.ChangeState();
         }
     }
 
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();  
-    }
-
-    public override void OnTriggerEnter(Collider other)
-    {
-        base.OnTriggerEnter(other);
     }
 }
