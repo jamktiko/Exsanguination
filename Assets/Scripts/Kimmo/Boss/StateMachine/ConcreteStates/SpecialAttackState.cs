@@ -29,9 +29,4 @@ public class SpecialAttackState : BossAbstractState
     {
         base.PhysicsUpdate();
     }
-
-    public override void OnTriggerEnter(Collider other)
-    {
-        base.OnTriggerEnter(other);
-    }
 }
