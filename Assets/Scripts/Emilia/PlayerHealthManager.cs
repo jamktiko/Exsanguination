@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,8 +8,12 @@ namespace EmiliaScripts
     {
         [SerializeField] int currentHealth;
         [SerializeField] int maxHealth;
+
+        [SerializeField] float damageTakenVFXFlashAmount = 0.03f;
+
         [SerializeField] Image injuredVFXImage;
         [SerializeField] Image flashImage;
+        Color flashColor;
 
         public delegate void DeathInvokerEvent();
         /// <summary>
@@ -26,7 +31,9 @@ namespace EmiliaScripts
         {
             currentHealth = maxHealth;
             injuredVFXImage.color = new(1, 1, 1, 0);
-            flashImage.color = new(1, 1, 1, 0);
+            flashColor = flashImage.color;
+            flashColor.a = 0f;
+            flashImage.color = flashColor;
             Debug.Log("Updated Player Health to MAX: " + currentHealth);
         }
 
@@ -85,6 +92,11 @@ namespace EmiliaScripts
 
             //Debug.Log("Current Player Health: " + currentHealth);
             UpdateInjuryVFX(currentHealth);
+            if (healthNumber < 0)
+            {
+                StopAllCoroutines();
+                StartCoroutine(nameof(FlashDamageTakenVFXCoroutine));
+            }
         }
 
         private void UpdateInjuryVFX(int health)
@@ -96,6 +108,17 @@ namespace EmiliaScripts
                 tmpColor.a = 0;
 
             injuredVFXImage.color = tmpColor;
+        }
+
+        IEnumerator FlashDamageTakenVFXCoroutine() 
+        {
+            flashColor.a = damageTakenVFXFlashAmount;
+            flashImage.color = flashColor;
+
+            yield return new WaitForSeconds(0.1f);
+
+            flashColor.a = 0f;
+            flashImage.color = flashColor;
         }
 
     }
