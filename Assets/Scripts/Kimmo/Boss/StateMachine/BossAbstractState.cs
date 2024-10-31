@@ -19,5 +19,4 @@ public class BossAbstractState
     public virtual void ExitState() { }
     public virtual void FrameUpdate() { }
     public virtual void PhysicsUpdate() { }
-    public virtual void OnTriggerEnter(Collider other) { }
 }

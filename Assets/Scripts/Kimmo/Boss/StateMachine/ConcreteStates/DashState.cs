@@ -15,13 +15,16 @@ public class DashState : BossAbstractState
     {
         base.EnterState();
         Debug.Log("Boss entered to DASH state.");
-        
+
+        boss.DeactivateCollider();
         boss.ChooseWaypoint();
     }
 
     public override void ExitState()
     {
         base.ExitState();
+
+        boss.ActivateCollider();
     }
 
     public override void FrameUpdate()
@@ -34,17 +37,12 @@ public class DashState : BossAbstractState
 
         if (boss.transform.position == boss.targetPosition)
         {
-            boss.stateManager.ChangeState();
+            boss.bossStateManager.ChangeState();
         }
     }
 
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
-    }
-
-    public override void OnTriggerEnter(Collider other)
-    {
-        base.OnTriggerEnter(other);
     }
 }
