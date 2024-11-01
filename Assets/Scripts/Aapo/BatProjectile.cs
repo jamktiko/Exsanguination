@@ -7,6 +7,7 @@ public class BatProjectile : MonoBehaviour
 {
     [SerializeField] int damage;
     [SerializeField] float projectileSpeed;
+    [SerializeField] GameObject particleEffect;
     private PlayerCombat playerCombat;
     private PlayerHealthManager playerHealthManager;
     private Transform player;             // Reference to the player's position
@@ -82,6 +83,15 @@ public class BatProjectile : MonoBehaviour
 
     private void OnEnable()
     {
+        particleEffect.transform.LookAt(player.transform);
+        particleEffect.GetComponent<ParticleSystem>().Play();
+        StartCoroutine(nameof(TimeBullet));
+        
+    }
+
+    IEnumerator TimeBullet()
+    {
+        yield return new WaitForSecondsRealtime(0.3f);
         Vector3 directionToPlayer = (player.position - transform.position).normalized;
         rb.velocity = directionToPlayer * projectileSpeed;  // Set the velocity directly
     }
