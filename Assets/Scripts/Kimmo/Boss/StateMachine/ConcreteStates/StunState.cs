@@ -16,6 +16,7 @@ public class StunState : BossAbstractState
         base.EnterState();
         Debug.Log("Boss entered to STUN state.");
 
+       
         stunTimer = 0;
     }
 

@@ -15,7 +15,7 @@ public class ChargeState : BossAbstractState
         base.EnterState();
         Debug.Log("Boss entered to CHARGE state.");
 
-        boss.DeactivateCollider();
+        boss.DeactivateBossCollider();
         
     }
 
@@ -23,7 +23,7 @@ public class ChargeState : BossAbstractState
     {
         base.ExitState();
 
-        boss.ActivateCollider();
+        boss.ActivateBossCollider();
     }
 
     public override void FrameUpdate()

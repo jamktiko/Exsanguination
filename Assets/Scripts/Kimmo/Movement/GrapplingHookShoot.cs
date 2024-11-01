@@ -1,36 +1,47 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
 
 public class GrapplingHookShoot : MonoBehaviour
 {
     [Header("References")]
-    private PlayerMovement playerMovement;
+    PlayerMovement playerMovement;
     AudioManager audioManager;
     public Transform cam;
     public Transform gunTip;
     public LayerMask whatIsGrappleable;
     public LineRenderer lr;
+    public GameObject arrow;
+    Animator playerAnimator;
+    Transform grapplingHooktransform;
 
     [Header("Grappling")]
     public float maxGrappleDistance;
     public float grappleDelayTime;
     float overShootYAxis = 0;
-
-    private Vector3 grapplePoint;
+    [SerializeField] float arrowSpeed;
+    bool shootArrow;
+    Vector3 grapplePoint;
+    Vector3 arrowPosition;
+    Vector3 arrowStartPosition;
 
     [Header("Cooldown")]
     public float grapplingCd;
-    private float grapplingCdTimer;
+    float grapplingCdTimer;
 
-    private bool isGrappling;
+    bool isGrappling;
 
     void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();
         //grappleCooldown = GameObject.Find("GrappleCooldown").GetComponent<GrappleCooldown>();
         audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        playerAnimator = GameObject.FindGameObjectWithTag("PlayerModel").GetComponent<Animator>();
+
+        arrowStartPosition = arrow.transform.position;
+        arrowPosition = arrowStartPosition;
     }
 
     private void Update()
@@ -38,6 +49,13 @@ public class GrapplingHookShoot : MonoBehaviour
         if (grapplingCdTimer > 0)
         {
             grapplingCdTimer -= Time.deltaTime;
+        }
+
+        if (shootArrow)
+        {
+            arrow.transform.SetParent(null);
+            arrowPosition = Vector3.MoveTowards(arrowPosition, grapplePoint, arrowSpeed * Time.deltaTime);
+
         }
     }
 
@@ -53,12 +71,14 @@ public class GrapplingHookShoot : MonoBehaviour
     {
         if (grapplingCdTimer > 0 || isGrappling) return;
         audioManager.PlayGrapplingHookShootAudioClip();
+        playerAnimator.SetBool("grapple", true);
 
         grapplingCdTimer = grapplingCd;
         isGrappling = true;
 
         RaycastHit hit;
-        if(Physics.Raycast(cam.position, cam.forward, out hit, maxGrappleDistance, whatIsGrappleable))
+
+        if (Physics.Raycast(cam.position, cam.forward, out hit, maxGrappleDistance, whatIsGrappleable))
         {
             audioManager.PlayGrapplingHookHitAudioClip();
             grapplePoint = hit.point;
@@ -72,8 +92,9 @@ public class GrapplingHookShoot : MonoBehaviour
             Invoke(nameof(StopGrapple), grappleDelayTime);
         }
 
+        shootArrow = true;
         lr.enabled = true;
-        lr.SetPosition(1, grapplePoint);
+        lr.SetPosition(1, arrowPosition);
     }
 
     private void ExecuteGrapple()
@@ -92,10 +113,14 @@ public class GrapplingHookShoot : MonoBehaviour
 
     public void StopGrapple()
     {
-        isGrappling = false;
+        playerAnimator.SetBool("grapple", false);
 
+        shootArrow = false;
+        arrowPosition = arrowStartPosition;
+        isGrappling = false;
         lr.enabled = false;
 
         playerMovement.ResetRestricitons();
+        //playerAnimator.ResetTrigger("grapplefinished");
     }
 }

@@ -14,7 +14,8 @@ public class Boss : MonoBehaviour
     public MeleeAttackState meleeAttackState { get; set; }
     public SpecialAttackState specialAttackState { get; set; }
 
-    public Collider bossCollider;
+    [SerializeField] Collider bossCollider;
+    [SerializeField] Collider swordCollider;
     [SerializeField] float moveSpeed;
     [SerializeField] Transform[] waypoints;
     public Transform playerTransform;
@@ -22,8 +23,7 @@ public class Boss : MonoBehaviour
     float minDistance = 5f; // Minimum distance from player to exclude waypoint
     public bool isInMeleeRange;
 
-    public bool meleeAttackBlocked;
-    public bool meleeAttackHit;
+    public Animator bossAnimator;
 
     public float stunDuration;
 
@@ -76,14 +76,24 @@ public class Boss : MonoBehaviour
         }
     }
 
-    public void DeactivateCollider()
+    public void DeactivateBossCollider()
     {
         bossCollider.enabled = false;
     }
 
-    public void ActivateCollider()
+    public void ActivateBossCollider()
     {
         bossCollider.enabled = true;
+    }
+
+    public void DeactivateSwordCollider()
+    {
+        swordCollider.enabled = false;
+    }
+
+    public void ActivateSwordCollider()
+    {
+        swordCollider.enabled = true;
     }
 
     public void ChooseWaypoint()
