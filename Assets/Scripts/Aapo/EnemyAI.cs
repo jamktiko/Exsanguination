@@ -1,8 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.AI; // Include NavMesh
+using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -40,32 +38,20 @@ public class EnemyAI : MonoBehaviour
     private Vector3 pounceDirection;
     private bool canMoveAfterPounce;
     private bool isStuckOnStake;
-
+    private float nextSeparationCheckTime = 0f;  // Timer for frequency control
+private Vector3 separationForce;             // Reusable vector for separation force
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        if (rb == null)
-        {
-            rb = gameObject.AddComponent<Rigidbody>();
-        }
-
         navMeshAgent = GetComponent<NavMeshAgent>(); // Initialize NavMeshAgent
         enemyStates = GetComponentInChildren<EnemyStates>();
         audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
-        if (player == null)
-        {
-            // Search for the player
-            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-            if (playerObj != null)
-                player = playerObj.transform;
-        }
+      player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();    
     }
 
     private void Start()
     {
         storedSeparationDistance = separationDistance;
-        rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
-        rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
         navMeshAgent.speed = moveSpeed;  // Sync NavMeshAgent speed
         navMeshAgent.stoppingDistance = stoppingDistance;
 
@@ -77,12 +63,15 @@ public class EnemyAI : MonoBehaviour
     {
         if (!enemyIsTriggered) return;
 
-
+        CheckGroundedStatus();
         if (!isPouncing)
         {
             AvoidOtherEnemies();
             DetectPlayer();
-
+            if (isGrounded)
+            {
+                navMeshAgent.enabled = true;
+            }
         }
         else
         {
@@ -109,28 +98,38 @@ public class EnemyAI : MonoBehaviour
         isStuckOnStake = false;
     }
 
-    
 
- 
+
+
 
 
 
 
     void AvoidOtherEnemies()
     {
+        // Only run this check every 0.2 seconds to reduce overhead
+        if (Time.time < nextSeparationCheckTime) return;
+        nextSeparationCheckTime = Time.time + 0.2f;
+
+        // Reset the accumulated separation force
+        separationForce = Vector3.zero;
+
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, separationDistance, enemyLayer);
 
         foreach (var hitCollider in hitColliders)
         {
             if (hitCollider.transform != transform) // Ignore self
             {
-                Vector3 directionToAvoid = transform.position - hitCollider.transform.position;
-                rb.AddForce(directionToAvoid.normalized * moveSpeed * Time.fixedDeltaTime, ForceMode.VelocityChange);
+                // Accumulate direction to avoid other enemies
+                separationForce += (transform.position - hitCollider.transform.position).normalized;
             }
         }
+
+        // Apply the accumulated separation force scaled by moveSpeed and delta time
+        rb.AddForce(separationForce * moveSpeed * Time.fixedDeltaTime, ForceMode.VelocityChange);
     }
 
-   public void ActivateEnemy()
+    public void ActivateEnemy()
     {
         enemyIsTriggered = true;
         enemyAnimator.SetTrigger("detect");
@@ -174,7 +173,6 @@ public class EnemyAI : MonoBehaviour
 
         if (distance <= pounceRangeMax && distance >= pounceRangeMin && CanPounce() && !enemyStates.isStunned && navMeshAgent.enabled && !enemyAnimator.GetBool("isAttacking") && !isStuckOnStake)
         {
-            CheckGroundedStatus();
             SnapRotationTowardsPlayer(direction);
             if (isGrounded)
             {
@@ -217,39 +215,9 @@ public class EnemyAI : MonoBehaviour
         pounceDirection.y = pounceForceUp;
         enemyAnimator.SetTrigger("pounce");
         isPouncing = true;
-        StartCoroutine(PounceWait());
     }
 
-    IEnumerator PounceWait()
-    {
-        if (!isGrounded)
-        {
-            rb.drag = 0;
-        }
-        //after 2 seconds of pounce if enemy is on ground turn ai movement logic back on
-        yield return new WaitForSeconds(1f);
-       
-        if (isGrounded)
-        {
-            
-            navMeshAgent.enabled = true;
-            rb.drag = 2;
-        }
-        else
-        {
-            //if the enemy is still in the air, start new timer
-            StartCoroutine(ForceNavMesh());
-        }
-
-    }
-
-    IEnumerator ForceNavMesh()
-    {
-        //force enemy on surface after 5 seconds if its floating in air
-        yield return new WaitForSeconds(0.5f);
-        navMeshAgent.enabled = true;
-        rb.drag = 2;
-    }
+   
 
     bool CanPounce()
     {
@@ -259,7 +227,7 @@ public class EnemyAI : MonoBehaviour
 
     bool CanAttack()
     {
-        return Time.time >= lastAttackTime + attackCooldown;
+        return Time.time >= lastAttackTime + attackCooldown && !enemyAnimator.GetBool("isAttacking");
     }
 
     void RotateTowardsPlayer(Vector3 direction)
@@ -284,7 +252,7 @@ public class EnemyAI : MonoBehaviour
 
     void CheckGroundedStatus()
     {
-        isGrounded = Physics.Raycast(transform.position, Vector3.down, 1.1f, groundLayer);
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, 0.1f, groundLayer);
     }
 
   
