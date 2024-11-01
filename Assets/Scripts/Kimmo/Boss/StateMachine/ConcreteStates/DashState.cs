@@ -16,7 +16,7 @@ public class DashState : BossAbstractState
         base.EnterState();
         Debug.Log("Boss entered to DASH state.");
 
-        boss.DeactivateCollider();
+        boss.DeactivateBossCollider();
         boss.ChooseWaypoint();
     }
 
@@ -24,7 +24,7 @@ public class DashState : BossAbstractState
     {
         base.ExitState();
 
-        boss.ActivateCollider();
+        boss.ActivateBossCollider();
     }
 
     public override void FrameUpdate()
