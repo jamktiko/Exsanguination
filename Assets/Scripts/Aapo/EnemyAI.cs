@@ -75,23 +75,21 @@ public class EnemyAI : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (enemyIsTriggered)
-        { 
-            CheckGroundedStatus();
+        if (!enemyIsTriggered) return;
+
+
+        if (!isPouncing)
+        {
             AvoidOtherEnemies();
             DetectPlayer();
 
-            if (isPouncing)
-            {
-                navMeshAgent.enabled = false;
-                rb.AddForce(pounceDirection * pounceForceForward, ForceMode.Impulse);
-                isPouncing = false;
-            }
-
-
         }
-
-        
+        else
+        {
+            navMeshAgent.enabled = false;
+            rb.AddForce(pounceDirection * pounceForceForward, ForceMode.Impulse);
+            isPouncing = false;
+        }
     }
 
 
@@ -174,11 +172,16 @@ public class EnemyAI : MonoBehaviour
         }
 
 
-        if (distance <= pounceRangeMax && distance >= pounceRangeMin && CanPounce() && !enemyStates.isStunned && !enemyAnimator.GetBool("isAttacking") && !isStuckOnStake)
+        if (distance <= pounceRangeMax && distance >= pounceRangeMin && CanPounce() && !enemyStates.isStunned && navMeshAgent.enabled && !enemyAnimator.GetBool("isAttacking") && !isStuckOnStake)
         {
+            CheckGroundedStatus();
             SnapRotationTowardsPlayer(direction);
-            Pounce();
-            lastPounceTime = Time.time;
+            if (isGrounded)
+            {
+                Pounce();
+                lastPounceTime = Time.time;
+            }
+            
         }
 
         if (distance <= stopSeparationDistance)
@@ -198,7 +201,6 @@ public class EnemyAI : MonoBehaviour
         // Check if the enemy is already attacking
         if (enemyAnimator.GetBool("isAttacking"))
             return;  // If attacking, do nothing (don't reset or start another attack)
-        Debug.Log("Enemy is attacking");
         lastAttackTime = Time.time;  // Record the last time an attack was initiated
         enemyAnimator.SetBool("isAttacking", true);  // Start attack animation
         StartCoroutine(ResetAttackAfterCooldown());  // Reset attack state after the animation
@@ -225,7 +227,7 @@ public class EnemyAI : MonoBehaviour
             rb.drag = 0;
         }
         //after 2 seconds of pounce if enemy is on ground turn ai movement logic back on
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
        
         if (isGrounded)
         {
@@ -236,7 +238,7 @@ public class EnemyAI : MonoBehaviour
         else
         {
             //if the enemy is still in the air, start new timer
-            StartCoroutine(ForceNavMesh());  
+            StartCoroutine(ForceNavMesh());
         }
 
     }
@@ -244,7 +246,7 @@ public class EnemyAI : MonoBehaviour
     IEnumerator ForceNavMesh()
     {
         //force enemy on surface after 5 seconds if its floating in air
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(0.5f);
         navMeshAgent.enabled = true;
         rb.drag = 2;
     }

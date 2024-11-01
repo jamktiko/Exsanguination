@@ -2646,7 +2646,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7149229392581079108}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 718bf2538a76516459bfcd8627028c8b, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 512
@@ -2722,7 +2722,7 @@ MonoBehaviour:
   originalSpeed: 2
   stoppingDistance: 1
   pounceForceUp: 1
-  pounceForceForward: 300
+  pounceForceForward: 250
   pounceCooldown: 10
   groundLayer:
     serializedVersion: 2
@@ -2733,10 +2733,10 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 512
-  attackRange: 1.5
+  attackRange: 1
   attackCooldown: 1.4
-  pounceRangeMax: 5
-  pounceRangeMin: 4
+  pounceRangeMax: 4
+  pounceRangeMin: 3
   separationDistance: 1
   stopSeparationDistance: 1
   enemyAnimator: {fileID: 9016512344435087899}

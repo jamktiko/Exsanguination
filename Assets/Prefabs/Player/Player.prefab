@@ -1568,9 +1568,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lightEnabledTimer: 2
-  defaultLightAmount: 0.5
+  defaultLightAmount: 1
   highlightedLightAmount: 5
-  noticeDistance: 15
+  noticeDistance: 14
 --- !u!120 &3762964810839066425
 LineRenderer:
   serializedVersion: 2
@@ -11797,11 +11797,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6553958922768888807}
   - component: {fileID: 5390492291779143793}
-  - component: {fileID: 2288234754725892726}
   - component: {fileID: 8886038671008897964}
   - component: {fileID: 6413329364949692448}
   - component: {fileID: 8549657485242047148}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Stake
   m_TagString: Stake
   m_Icon: {fileID: 0}
@@ -11833,48 +11832,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7276361565754859725}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &2288234754725892726
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7276361565754859725}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!136 &8886038671008897964
 CapsuleCollider:
   m_ObjectHideFlags: 0

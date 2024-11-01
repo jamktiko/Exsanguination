@@ -61,8 +61,7 @@ public class GrapplingHookShoot : MonoBehaviour
                 arrowSpeed * Time.deltaTime);
         }
 
-        Debug.Log("Grapple point: " + grapplePoint);
-        Debug.Log("Arrow position: " + arrowPosition);
+        
     }
 
     private void LateUpdate()
