@@ -13,9 +13,11 @@ public class GrapplingHookShoot : MonoBehaviour
     public Transform gunTip;
     public LayerMask whatIsGrappleable;
     public LineRenderer lr;
-    public GameObject arrow;
     Animator playerAnimator;
-    Transform grapplingHooktransform;
+    [SerializeField] GameObject arrow;
+    [SerializeField] GameObject arrowProjectile;
+    [SerializeField] GameObject arroProjectileSpot;
+    [SerializeField] Rigidbody arrowRB;
 
     [Header("Grappling")]
     public float maxGrappleDistance;
@@ -24,8 +26,8 @@ public class GrapplingHookShoot : MonoBehaviour
     [SerializeField] float arrowSpeed;
     bool shootArrow;
     Vector3 grapplePoint;
-    Vector3 arrowPosition;
-    Vector3 arrowStartPosition;
+    [SerializeField] Vector3 arrowPosition;
+    [SerializeField] Vector3 arrowStartPosition;
 
     [Header("Cooldown")]
     public float grapplingCd;
@@ -40,8 +42,10 @@ public class GrapplingHookShoot : MonoBehaviour
         audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         playerAnimator = GameObject.FindGameObjectWithTag("PlayerModel").GetComponent<Animator>();
 
-        arrowStartPosition = arrow.transform.position;
-        arrowPosition = arrowStartPosition;
+        arrowStartPosition = arrowProjectile.transform.position;
+        arrowRB = arrowProjectile.GetComponent<Rigidbody>();
+        arrowProjectile.SetActive(false);
+        //arrowPosition = arrow.transform.position;
     }
 
     private void Update()
@@ -53,10 +57,12 @@ public class GrapplingHookShoot : MonoBehaviour
 
         if (shootArrow)
         {
-            arrow.transform.SetParent(null);
-            arrowPosition = Vector3.MoveTowards(arrowPosition, grapplePoint, arrowSpeed * Time.deltaTime);
-
+            arrowProjectile.transform.position = Vector3.MoveTowards(arrowProjectile.transform.position, grapplePoint,
+                arrowSpeed * Time.deltaTime);
         }
+
+        Debug.Log("Grapple point: " + grapplePoint);
+        Debug.Log("Arrow position: " + arrowPosition);
     }
 
     private void LateUpdate()
@@ -92,9 +98,15 @@ public class GrapplingHookShoot : MonoBehaviour
             Invoke(nameof(StopGrapple), grappleDelayTime);
         }
 
+        arrow.SetActive(false);
+        arrowProjectile.SetActive(true);
+        arrowProjectile.transform.SetParent(null);
+        arrowRB.isKinematic = false;
+        arrowProjectile.transform.position = grapplePoint;
         shootArrow = true;
+
         lr.enabled = true;
-        lr.SetPosition(1, arrowPosition);
+        lr.SetPosition(1, grapplePoint);
     }
 
     private void ExecuteGrapple()
@@ -116,11 +128,15 @@ public class GrapplingHookShoot : MonoBehaviour
         playerAnimator.SetBool("grapple", false);
 
         shootArrow = false;
+        arrow.SetActive(true);
+        arrowProjectile.transform.SetParent(transform);
         arrowPosition = arrowStartPosition;
+        arrowRB.isKinematic = true;
+        arrowProjectile.SetActive(false);
+
         isGrappling = false;
         lr.enabled = false;
 
         playerMovement.ResetRestricitons();
-        //playerAnimator.ResetTrigger("grapplefinished");
     }
 }
