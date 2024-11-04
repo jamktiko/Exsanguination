@@ -16,8 +16,8 @@ public class BatProjectile : MonoBehaviour
 
     private void Awake()
     {
-       playerCombat = GameObject.FindGameObjectWithTag("PlayerModel").GetComponent<PlayerCombat>();
-       playerHealthManager = GameObject.FindGameObjectWithTag("HealthManager").GetComponent<PlayerHealthManager>();
+        playerCombat = GameObject.FindGameObjectWithTag("PlayerModel").GetComponent<PlayerCombat>();
+        playerHealthManager = GameObject.FindGameObjectWithTag("HealthManager").GetComponent<PlayerHealthManager>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         rb = GetComponent<Rigidbody>();
 
@@ -29,7 +29,7 @@ public class BatProjectile : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.collider.tag == "Player")
+        if(collision.collider.CompareTag("Player"))
         {
             if (playerCombat.isBlocking)
             {
@@ -49,7 +49,7 @@ public class BatProjectile : MonoBehaviour
 
         }
 
-        else if (isReflected && collision.collider.tag == "Enemy")
+        else if (isReflected && collision.collider.CompareTag("Enemy"))
         {
             EnemyHealthScript enemyHealthScript = collision.collider.GetComponent<EnemyHealthScript>();
 
@@ -83,16 +83,41 @@ public class BatProjectile : MonoBehaviour
 
     private void OnEnable()
     {
-        particleEffect.transform.LookAt(player.transform);
+        // Store the target position as the player's position when this object is enabled
+        Vector3 targetPosition = player.position;
+
+        // Detach the particle effect to prevent rotation inheritance
+        Transform originalParent = particleEffect.transform.parent;
+        particleEffect.transform.parent = null;
+
+        // Reset any existing velocity to avoid inherited movement
+        rb.velocity = Vector3.zero;
+
+        // Calculate the direction to the player’s initial position
+        Vector3 directionToPlayer = (targetPosition - particleEffect.transform.position).normalized;
+
+        // Set the rotation explicitly based on the target direction
+        Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
+        particleEffect.transform.rotation = targetRotation;
+
+        // Reattach the particle effect to its original parent
+        particleEffect.transform.parent = originalParent;
+
+        // Start the particle system
         particleEffect.GetComponent<ParticleSystem>().Play();
-        StartCoroutine(nameof(TimeBullet));
-        
+
+        // Start the coroutine to apply velocity after a delay
+        StartCoroutine(TimeBullet(directionToPlayer, originalParent));
     }
 
-    IEnumerator TimeBullet()
+    IEnumerator TimeBullet(Vector3 directionToPlayer, Transform originalParent)
     {
-        yield return new WaitForSecondsRealtime(0.3f);
-        Vector3 directionToPlayer = (player.position - transform.position).normalized;
-        rb.velocity = directionToPlayer * projectileSpeed;  // Set the velocity directly
+        yield return new WaitForSecondsRealtime(0.5f);
+
+        rb.velocity = directionToPlayer * projectileSpeed;
+
+        yield return new WaitForSecondsRealtime(5f);
+
+        particleEffect.transform.parent = originalParent;
     }
 }
