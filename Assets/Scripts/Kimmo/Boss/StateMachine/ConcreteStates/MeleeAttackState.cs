@@ -28,7 +28,7 @@ public class MeleeAttackState : BossAbstractState
     {
         base.FrameUpdate();
 
-        boss.bossStateManager.ChangeState();
+        //boss.bossStateManager.ChangeState();
     }
 
     public override void PhysicsUpdate()

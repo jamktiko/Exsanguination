@@ -15,6 +15,7 @@ public class ChargeState : BossAbstractState
         base.EnterState();
         Debug.Log("Boss entered to CHARGE state.");
 
+        boss.bossAnimator.SetBool("moveForward", true);
         boss.DeactivateBossCollider();
         
     }
@@ -23,16 +24,17 @@ public class ChargeState : BossAbstractState
     {
         base.ExitState();
 
+        boss.bossAnimator.SetBool("moveForward", false);
         boss.ActivateBossCollider();
     }
 
     public override void FrameUpdate()
     {
         base.FrameUpdate();
-
+        
+        boss.targetPosition = boss.playerTransform.position;
         boss.RotateTowardsTarget();
 
-        boss.targetPosition = boss.playerTransform.position;
         boss.MoveTowardsTarget();
 
         if (boss.isInMeleeRange)
