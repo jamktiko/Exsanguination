@@ -32,7 +32,7 @@ public class PlayerStats : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(TimeInString(timer));
+        //Debug.Log(TimeInString(timer));
     }
 
     IEnumerator Timer()
