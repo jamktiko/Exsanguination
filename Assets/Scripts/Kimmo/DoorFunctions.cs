@@ -6,11 +6,13 @@ using UnityEngine;
 public class DoorFunctions : MonoBehaviour
 {
     InputHandler inputManager;
+    PlayerStats playerStats;
     bool doorIsOpening;
     bool isOpen;
-    bool isRotatingDoor;
+    bool canOpen;
     Vector3 rotation;
     [SerializeField] float rotationSpeed;
+    [SerializeField] bool requiresKey;
     Transform doorTransform;
     float RotationAmount = 90f;
     float forwardDirection;
@@ -20,7 +22,8 @@ public class DoorFunctions : MonoBehaviour
 
     private void Awake()
     {
-        inputManager = FindAnyObjectByType<InputHandler>();
+        inputManager = GameObject.FindGameObjectWithTag("Player").GetComponent<InputHandler>();
+        playerStats = GameObject.FindGameObjectWithTag("PlayerStats").GetComponent<PlayerStats>();
         doorTransform = GetComponent<Transform>();
         startRotation = transform.rotation.eulerAngles;
         forward = transform.right;
@@ -28,15 +31,40 @@ public class DoorFunctions : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.CompareTag("Player") && inputManager.openDoor)
+        if (other.tag == "Player" && inputManager.openDoor)
         {
             Debug.Log("Try open door");
+
+            CheckIfCanOpen();
+        }
+        if (canOpen)
+        {
             Open(other.transform.position);
+        }
+    }
+
+    private void CheckIfCanOpen()
+    {
+        if (requiresKey)
+        {
+            if (playerStats.foundKeycard)
+            {
+                canOpen = true;
+            }
+            else
+            {
+                canOpen = false;
+            }
+        }
+        else
+        {
+            canOpen = true;
         }
     }
 
     public void Open(Vector3 UserPosition)
     {
+
         Debug.Log("Open the door!");
         if (!isOpen)
         {
