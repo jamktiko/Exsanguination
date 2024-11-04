@@ -18,6 +18,7 @@ public class Boss : MonoBehaviour
     [SerializeField] Collider swordCollider;
     [SerializeField] float moveSpeed;
     [SerializeField] Transform[] waypoints;
+    [SerializeField] Transform bossTransform;
     public Transform playerTransform;
     public Vector3 targetPosition;
     float minDistance = 5f; // Minimum distance from player to exclude waypoint
@@ -47,7 +48,7 @@ public class Boss : MonoBehaviour
     {
         bossStateManager.states = new BossAbstractState[] { chargeState, meleeAttackState, stunState, dashState, idleState, dashState, specialAttackState, dashState, idleState, dashState };
 
-        bossStateManager.Initialize(chargeState);
+        bossStateManager.Initialize(bossStateManager.states[0]);
     }
 
     private void Update()
@@ -113,14 +114,16 @@ public class Boss : MonoBehaviour
 
     public void RotateTowardsTarget()
     {
-        Vector3 targetDirection = targetPosition - transform.position;
+        Debug.Log("Boss rotates");
+        Vector3 targetDirection = targetPosition - bossTransform.position;
         Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, 10f * Time.deltaTime, 0f);
-        transform.rotation = Quaternion.LookRotation(newDirection);
+        bossTransform.rotation = Quaternion.LookRotation(newDirection);
     }
 
     public void MoveTowardsTarget()
     {
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition,
+        Debug.Log("Boss moves");
+        bossTransform.position = Vector3.MoveTowards(bossTransform.position, targetPosition,
             moveSpeed * Time.deltaTime);
     }
 }
