@@ -142,7 +142,7 @@ public class AudioManager : MonoBehaviour
     // Sword swing combo 2
     public void PlaySwordSwingClips2()
     {
-        AudioClip clip = swordSwingCombo1AudioClips[Random.Range(0, swordSwingCombo2AudioClips.Length)];
+        AudioClip clip = swordSwingCombo2AudioClips[Random.Range(0, swordSwingCombo2AudioClips.Length)];
         swordSwingAudioSource.clip = clip;
         swordSwingAudioSource.PlayOneShot(clip);
     }
@@ -150,7 +150,7 @@ public class AudioManager : MonoBehaviour
     // Sword swing combo 3
     public void PlaySwordSwingClips3()
     {
-        AudioClip clip = swordSwingCombo1AudioClips[Random.Range(0, swordSwingCombo3AudioClips.Length)];
+        AudioClip clip = swordSwingCombo3AudioClips[Random.Range(0, swordSwingCombo3AudioClips.Length)];
         swordSwingAudioSource.clip = clip;
         swordSwingAudioSource.PlayOneShot(clip);
     }

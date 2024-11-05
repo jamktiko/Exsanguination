@@ -18,6 +18,7 @@ public class GrapplingHookShoot : MonoBehaviour
     [SerializeField] GameObject arrowProjectile;
     [SerializeField] GameObject arroProjectileSpot;
     [SerializeField] Rigidbody arrowRB;
+    EnemyFinisher enemyFinisher;
 
     [Header("Grappling")]
     public float maxGrappleDistance;
@@ -45,6 +46,8 @@ public class GrapplingHookShoot : MonoBehaviour
         arrowStartPosition = arrowProjectile.transform.position;
         arrowRB = arrowProjectile.GetComponent<Rigidbody>();
         arrowProjectile.SetActive(false);
+        enemyFinisher = GameObject.FindGameObjectWithTag("PlayerModel").GetComponent<EnemyFinisher>();
+
         //arrowPosition = arrow.transform.position;
     }
 
@@ -74,7 +77,7 @@ public class GrapplingHookShoot : MonoBehaviour
 
     public void StartGrapple()
     {
-        if (grapplingCdTimer > 0 || isGrappling) return;
+        if (grapplingCdTimer > 0 || isGrappling || enemyFinisher.isFinishing) return;
         audioManager.PlayGrapplingHookShootAudioClip();
         playerAnimator.SetBool("grapple", true);
 
