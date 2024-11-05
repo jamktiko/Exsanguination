@@ -6,7 +6,7 @@ public class DashState : BossAbstractState
 {
     private Transform targetWaypoint;
 
-    public DashState(Boss boss, BossMovement bossMovement, BossStateManager bossStateManager) : base(boss, bossMovement, bossStateManager)
+    public DashState(Boss boss, BossStateManager bossStateManager) : base(boss, bossStateManager)
     {
 
     }

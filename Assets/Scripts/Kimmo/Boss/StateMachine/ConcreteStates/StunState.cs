@@ -6,7 +6,7 @@ public class StunState : BossAbstractState
 {
     float stunTimer;
 
-    public StunState(Boss boss, BossMovement bossMovement, BossStateManager bossStateManager) : base(boss, bossMovement, bossStateManager)
+    public StunState(Boss boss, BossStateManager bossStateManager) : base(boss, bossStateManager)
     {
             
     }

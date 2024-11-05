@@ -5,13 +5,11 @@ using UnityEngine;
 public class BossAbstractState
 {
     protected Boss boss;
-    protected BossMovement bossMovement;
     protected BossStateManager bossStateManager;
 
-    public BossAbstractState(Boss boss, BossMovement bossMovement, BossStateManager bossStateManager)
+    public BossAbstractState(Boss boss, BossStateManager bossStateManager)
     {
         this.boss = boss;
-        this.bossMovement = bossMovement;
         this.bossStateManager = bossStateManager;
     }
 

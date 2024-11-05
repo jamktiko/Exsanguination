@@ -6,7 +6,7 @@ public class IdleState : BossAbstractState
 {
     float idleTimer;
 
-    public IdleState(Boss boss, BossMovement bossMovement, BossStateManager bossStateManager) : base(boss, bossMovement, bossStateManager)
+    public IdleState(Boss boss, BossStateManager bossStateManager) : base(boss, bossStateManager)
     {
 
     }
