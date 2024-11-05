@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpecialAttackState : BossAbstractState
 {
-    public SpecialAttackState(Boss boss, BossMovement bossMovement, BossStateManager bossStateManager) : base(boss, bossMovement, bossStateManager)
+    public SpecialAttackState(Boss boss, BossStateManager bossStateManager) : base(boss, bossStateManager)
     {
 
     }

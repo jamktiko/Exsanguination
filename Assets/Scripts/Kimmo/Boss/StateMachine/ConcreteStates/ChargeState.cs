@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ChargeState : BossAbstractState
 {
-    public ChargeState(Boss boss, BossMovement bossMovement, BossStateManager bossStateManager) : base(boss, bossMovement, bossStateManager)
+    public ChargeState(Boss boss,  BossStateManager bossStateManager) : base(boss, bossStateManager)
     {
         
     }

@@ -13,10 +13,13 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] TimeSpan preBoss, boss, total;
 
     PlayerHealthManager healthManager;
+    public static PlayerStats playerStats;
 
     [SerializeField] public string preBossTimeString;
     [SerializeField] public string bossTimeString;
     [SerializeField] public string totalTimeString;
+
+
 
     private void Awake()
     {
@@ -27,7 +30,15 @@ public class PlayerStats : MonoBehaviour
         
         SceneManager.sceneLoaded += OnLevelLoad;
 
-        DontDestroyOnLoad(gameObject);
+        if (playerStats == null)
+        {
+            playerStats = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (playerStats != this)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void Update()

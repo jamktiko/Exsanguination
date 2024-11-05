@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MeleeAttackState : BossAbstractState
 {
-    public MeleeAttackState(Boss boss, BossMovement bossMovement, BossStateManager bossStateManager) : base(boss, bossMovement, bossStateManager)
+    public MeleeAttackState(Boss boss, BossStateManager bossStateManager) : base(boss, bossStateManager)
     {
 
     }

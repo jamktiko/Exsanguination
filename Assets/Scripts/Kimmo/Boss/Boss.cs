@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class Boss : MonoBehaviour
 {
-    public BossMovement bossMovement { get; set; }
     public BossStateManager bossStateManager { get; set; }
     public IdleState idleState { get; set; }
     public DashState dashState { get; set; }
@@ -17,6 +17,7 @@ public class Boss : MonoBehaviour
     [SerializeField] Collider bossCollider;
     [SerializeField] Collider swordCollider;
     [SerializeField] float moveSpeed;
+    [SerializeField] float rotationSpeed;
     [SerializeField] Transform[] waypoints;
     [SerializeField] Transform bossTransform;
     public Transform playerTransform;
@@ -34,12 +35,12 @@ public class Boss : MonoBehaviour
     {
         bossStateManager = new BossStateManager();
 
-        idleState = new IdleState(this, bossMovement, bossStateManager);
-        dashState = new DashState(this, bossMovement, bossStateManager);
-        stunState = new StunState(this, bossMovement, bossStateManager);
-        chargeState = new ChargeState(this, bossMovement, bossStateManager);
-        meleeAttackState = new MeleeAttackState(this, bossMovement, bossStateManager);
-        specialAttackState = new SpecialAttackState(this, bossMovement, bossStateManager);
+        idleState = new IdleState(this, bossStateManager);
+        dashState = new DashState(this, bossStateManager);
+        stunState = new StunState(this, bossStateManager);
+        chargeState = new ChargeState(this, bossStateManager);
+        meleeAttackState = new MeleeAttackState(this, bossStateManager);
+        specialAttackState = new SpecialAttackState(this, bossStateManager);
 
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
     }
@@ -114,16 +115,20 @@ public class Boss : MonoBehaviour
 
     public void RotateTowardsTarget()
     {
-        Debug.Log("Boss rotates");
-        Vector3 targetDirection = targetPosition - bossTransform.position;
-        Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, 10f * Time.deltaTime, 0f);
-        bossTransform.rotation = Quaternion.LookRotation(newDirection);
+        Vector3 direction = targetPosition - transform.position;
+        direction.y = 0;
+
+        if (direction != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            bossTransform.rotation = Quaternion.Slerp(bossTransform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        }
     }
 
     public void MoveTowardsTarget()
     {
-        Debug.Log("Boss moves");
-        bossTransform.position = Vector3.MoveTowards(bossTransform.position, targetPosition,
+        var actualTargetPosition = new Vector3(targetPosition.x, 0, targetPosition.z);
+        bossTransform.position = Vector3.MoveTowards(bossTransform.position, actualTargetPosition,
             moveSpeed * Time.deltaTime);
     }
 }
