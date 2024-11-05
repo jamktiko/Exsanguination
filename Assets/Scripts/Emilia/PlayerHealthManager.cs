@@ -96,7 +96,7 @@ namespace EmiliaScripts
             }
             if (healthNumber > 0)
             {
-                healthVFXUpdater.HealingVFXActivate();
+                //healthVFXUpdater.HealingVFXActivate();
             }
         }
 

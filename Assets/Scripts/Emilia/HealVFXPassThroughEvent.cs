@@ -8,12 +8,10 @@ public class HealVFXPassThroughEvent : MonoBehaviour
     public void CallSwirlAnim()
     {
         vFXHandler.StartSwirlAnim();
-        gameObject.SetActive(false);
     }
 
     public void CallEndAnim()
     {
         vFXHandler.StartExitAnim();
-        gameObject.SetActive(false);
     }
 }

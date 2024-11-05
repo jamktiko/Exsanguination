@@ -9,22 +9,30 @@ public class HealthVFXUpdater : MonoBehaviour
     [SerializeField] float damageTakenVFXFlashAmount = 0.03f;
 
     [SerializeField] Image injuredVFXImage;
-    [SerializeField] Image flashImage;
-    Color flashColor;
+    [SerializeField] Image hitImage;
+    [SerializeField] Image hitSplatterImage;
+    Color hitSplatterColor;
+    Color hitColor;
 
     PlayerHealthManager healthManager;
     HealVFXHandler healVFXHandler;
+
+    InjuredVFXAnimation injuredVFXAnimation;
 
     private void Awake()
     {
         healthManager = GetComponent<PlayerHealthManager>();
         healVFXHandler = GetComponent<HealVFXHandler>();
+        injuredVFXAnimation = GetComponent<InjuredVFXAnimation>();
 
         injuredVFXImage.color = new(1, 1, 1, 0);
 
-        flashColor = flashImage.color;
-        flashColor.a = 0f;
-        flashImage.color = flashColor;
+        hitColor = hitImage.color;
+        hitSplatterColor = hitSplatterImage.color;
+        hitColor.a = 0f;
+        hitSplatterColor.a = 0f;
+        hitImage.color = hitColor;
+        hitSplatterImage.color = hitSplatterColor;
     }
 
     public void UpdateInjuryVFX(int health)
@@ -37,18 +45,37 @@ public class HealthVFXUpdater : MonoBehaviour
         else
             tmpColor.a = 0;
 
+        if (health <= 50)
+        {
+            injuredVFXAnimation.StopInjuredVFXAnimation(); //Ensure effect does not stack
+            injuredVFXAnimation.StartInjuredVFXAnimation(health);
+        }
+        else
+            injuredVFXAnimation.StopInjuredVFXAnimation();
+
         injuredVFXImage.color = tmpColor;
     }
 
     public IEnumerator FlashDamageTakenVFXCoroutine()
     {
-        flashColor.a = damageTakenVFXFlashAmount;
-        flashImage.color = flashColor;
+        hitColor.a = damageTakenVFXFlashAmount;
+        hitImage.color = hitColor;
+
+        hitSplatterColor.a = 1f;
+        hitSplatterImage.color = hitSplatterColor;
 
         yield return new WaitForSeconds(0.1f);
 
-        flashColor.a = 0f;
-        flashImage.color = flashColor;
+        hitColor.a = 0f;
+        hitImage.color = hitColor;
+
+        hitSplatterColor.a = 0.5f;
+        hitSplatterImage.color = hitSplatterColor;
+
+        yield return new WaitForSeconds(0.1f);
+
+        hitSplatterColor.a = 0f;
+        hitSplatterImage.color = hitSplatterColor;
     }
 
     public void HealingVFXActivate()
