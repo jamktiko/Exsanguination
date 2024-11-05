@@ -26,7 +26,7 @@ public class BossStateManager
     {
         currentBossState.ExitState();
 
-        if (stateIndex < states.Length)
+        if (stateIndex < states.Length - 1)
         {
             stateIndex++;
         }

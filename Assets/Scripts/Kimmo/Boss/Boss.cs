@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class Boss : MonoBehaviour
 {
@@ -14,22 +12,29 @@ public class Boss : MonoBehaviour
     public MeleeAttackState meleeAttackState { get; set; }
     public SpecialAttackState specialAttackState { get; set; }
 
+    public Animator bossAnimator;
     [SerializeField] Collider bossCollider;
     [SerializeField] Collider swordCollider;
     [SerializeField] float moveSpeed;
     [SerializeField] float rotationSpeed;
     [SerializeField] Transform[] waypoints;
-    [SerializeField] Transform bossTransform;
+    public Transform bossTransform;
     public Transform playerTransform;
     public Vector3 targetPosition;
     float minDistance = 5f; // Minimum distance from player to exclude waypoint
     public bool isInMeleeRange;
 
-    public Animator bossAnimator;
-
+    public bool isStunned;
     public float stunDuration;
-
     public float idleDuration;
+
+    System.Action[] specialAttacks;
+    System.Action currentSpecialAttack;
+    public bool isCastingSpecialAttack;
+    float castTime = 1.2f;
+    [SerializeField] GameObject spikeTrap;
+    [SerializeField] Vector3 spikeTrapStartingPosition;
+    float spikeTrapDuration = 10f;
 
     private void Awake()
     {
@@ -48,8 +53,10 @@ public class Boss : MonoBehaviour
     private void Start()
     {
         bossStateManager.states = new BossAbstractState[] { chargeState, meleeAttackState, stunState, dashState, idleState, dashState, specialAttackState, dashState, idleState, dashState };
-
         bossStateManager.Initialize(bossStateManager.states[0]);
+
+        specialAttacks = new System.Action[] {CastSpikeGrowth, CastPirouette, CastFirewall, CastHellfire };
+        DeactivateSwordCollider();
     }
 
     private void Update()
@@ -130,5 +137,54 @@ public class Boss : MonoBehaviour
         var actualTargetPosition = new Vector3(targetPosition.x, 0, targetPosition.z);
         bossTransform.position = Vector3.MoveTowards(bossTransform.position, actualTargetPosition,
             moveSpeed * Time.deltaTime);
+    }
+
+    public void RandomizeSpecialAttack()
+    {
+        isCastingSpecialAttack = true;
+        currentSpecialAttack = specialAttacks[Random.Range(0, specialAttacks.Length)];
+        StartCoroutine(CastTimer());
+    }
+
+    IEnumerator CastTimer()
+    {
+        yield return new WaitForSeconds(castTime);
+        currentSpecialAttack();
+        isCastingSpecialAttack = false;
+    }
+
+    private void CastSpikeGrowth()
+    {
+        Debug.Log("Boss' special attack is: SPIKE GROWTH!");
+
+        spikeTrap.transform.position = new Vector3(playerTransform.position.x, 0, playerTransform.position.z);
+        StartCoroutine(SpikeTrapTimer());
+    }
+
+    IEnumerator SpikeTrapTimer()
+    {
+        yield return new WaitForSeconds(10);
+        spikeTrap.transform.position = spikeTrapStartingPosition;
+    }
+
+    private void CastPirouette()
+    {
+        Debug.Log("Boss' special attack is: PIROUETTE!");
+
+
+    }
+
+    private void CastFirewall()
+    {
+        Debug.Log("Boss' special attack is: FIREWALL!");
+
+
+    }
+
+    private void CastHellfire()
+    {
+        Debug.Log("Boss' special attack is: HELLFIRE!");
+
+
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class DashState : BossAbstractState
@@ -16,6 +17,7 @@ public class DashState : BossAbstractState
         base.EnterState();
         Debug.Log("Boss entered to DASH state.");
 
+        boss.bossAnimator.SetBool("moveForward", true);
         boss.DeactivateBossCollider();
         boss.ChooseWaypoint();
     }
@@ -24,6 +26,7 @@ public class DashState : BossAbstractState
     {
         base.ExitState();
 
+        boss.bossAnimator.SetBool("moveForward", false);
         boss.ActivateBossCollider();
     }
 
@@ -32,10 +35,8 @@ public class DashState : BossAbstractState
         base.FrameUpdate();
 
         boss.RotateTowardsTarget();
-
         boss.MoveTowardsTarget();
-
-        if (boss.transform.position == boss.targetPosition)
+        if (boss.bossTransform.position == new Vector3(boss.targetPosition.x, 0, boss.targetPosition.z))
         {
             boss.bossStateManager.ChangeState();
         }

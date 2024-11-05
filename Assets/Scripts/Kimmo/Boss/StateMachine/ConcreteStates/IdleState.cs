@@ -15,6 +15,8 @@ public class IdleState : BossAbstractState
     {
         base.EnterState();
         Debug.Log("Boss entered to IDLE state.");
+
+        boss.bossAnimator.SetTrigger("idle");
     }
 
     public override void ExitState()
@@ -25,6 +27,9 @@ public class IdleState : BossAbstractState
     public override void FrameUpdate()
     {
         base.FrameUpdate();
+
+        boss.targetPosition = boss.playerTransform.position;
+        boss.RotateTowardsTarget();
 
         if (idleTimer < boss.idleDuration)
         {

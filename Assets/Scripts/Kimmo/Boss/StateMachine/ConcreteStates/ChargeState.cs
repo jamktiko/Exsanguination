@@ -17,7 +17,6 @@ public class ChargeState : BossAbstractState
 
         boss.bossAnimator.SetBool("moveForward", true);
         boss.DeactivateBossCollider();
-        
     }
 
     public override void ExitState()
@@ -34,7 +33,6 @@ public class ChargeState : BossAbstractState
         
         boss.targetPosition = boss.playerTransform.position;
         boss.RotateTowardsTarget();
-
         boss.MoveTowardsTarget();
 
         if (boss.isInMeleeRange)
