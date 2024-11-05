@@ -32,16 +32,19 @@ public class PlayerCombat : MonoBehaviour
     {
         animator.runtimeAnimatorController = weaponAnimators[0];
        slayMore.SetActive(false);
+        audioManager.PlaySwordEquipClips();
+
     }
-   
+
+
+    public void DrawSword()
+    {
+        animator.SetBool("hasDrawn", true);
+    }
+
     public void PerformAction()
     {
         isPerformingAction = true;
-    }
-
-    public void FinishAttack()
-    {
-        isAttacking = false;
     }
 
 
@@ -49,6 +52,12 @@ public class PlayerCombat : MonoBehaviour
     {
         isPerformingAction = false;
     }
+
+    public void FinishAttack()
+    {
+        isAttacking = false;
+    }
+
 
     public void SetWeaponLogics(int weaponIndex)
     {
@@ -58,7 +67,7 @@ public class PlayerCombat : MonoBehaviour
         animator.runtimeAnimatorController = weaponAnimators[0];
             starterSword.SetActive(true);
             slayMore.SetActive(false);
-
+            audioManager.PlaySwordEquipClips();
 
         }
 
