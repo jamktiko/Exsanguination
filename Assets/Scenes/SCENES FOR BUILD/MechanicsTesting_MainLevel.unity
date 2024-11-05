@@ -2878,7 +2878,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7865076154497525656, guid: 607241fc019739a44b320e48be37d371, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1935568602}
   m_SourcePrefab: {fileID: 100100000, guid: 607241fc019739a44b320e48be37d371, type: 3}
 --- !u!114 &910122946 stripped
 MonoBehaviour:
@@ -4152,6 +4155,26 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3354343937421006595, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
   m_PrefabInstance: {fileID: 2119100836}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1935568600 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7865076154497525656, guid: 607241fc019739a44b320e48be37d371, type: 3}
+  m_PrefabInstance: {fileID: 881361085}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1935568602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1935568600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72ed46bca47bbcc4797557a41eac0e62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageTakenVFXFlashAmount: 0.05
+  injuredVFXImage: {fileID: 1690078728}
+  flashImage: {fileID: 207782695}
 --- !u!1 &1952535722 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 933140183658167023, guid: 8ca8caef2e3b6d344bd1cd7e4b73adce, type: 3}
@@ -4482,9 +4505,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4838399768028031227, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8306886513490813497, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
       propertyPath: m_Name
       value: PlayerCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 8589031146889788302, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 960
+      objectReference: {fileID: 0}
+    - target: {fileID: 8589031146889788302, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 540
+      objectReference: {fileID: 0}
+    - target: {fileID: 8589031146889788302, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8589031146889788302, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8589031146889788302, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8589031146889788302, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

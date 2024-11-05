@@ -9,11 +9,7 @@ namespace EmiliaScripts
         [SerializeField] int currentHealth;
         [SerializeField] int maxHealth;
 
-        [SerializeField] float damageTakenVFXFlashAmount = 0.03f;
-
-        [SerializeField] Image injuredVFXImage;
-        [SerializeField] Image flashImage;
-        Color flashColor;
+        HealthVFXUpdater healthVFXUpdater;
 
         public delegate void DeathInvokerEvent();
         /// <summary>
@@ -27,13 +23,14 @@ namespace EmiliaScripts
         /// </summary>
         public event HealthUpdate OnHealthUpdate;
 
+        private void Awake()
+        {
+            healthVFXUpdater = GetComponent<HealthVFXUpdater>();
+        }
+
         void Start()
         {
             currentHealth = maxHealth;
-            injuredVFXImage.color = new(1, 1, 1, 0);
-            flashColor = flashImage.color;
-            flashColor.a = 0f;
-            flashImage.color = flashColor;
             Debug.Log("Updated Player Health to MAX: " + currentHealth);
         }
 
@@ -91,35 +88,14 @@ namespace EmiliaScripts
             }
 
             //Debug.Log("Current Player Health: " + currentHealth);
-            UpdateInjuryVFX(currentHealth);
-            if (healthNumber < 0)
+            healthVFXUpdater.UpdateInjuryVFX(currentHealth);
+            if (healthNumber < 0) //check for damage
             {
                 StopAllCoroutines();
-                StartCoroutine(nameof(FlashDamageTakenVFXCoroutine));
+                StartCoroutine(healthVFXUpdater.FlashDamageTakenVFXCoroutine());
             }
         }
 
-        private void UpdateInjuryVFX(int health)
-        {
-            Color tmpColor = injuredVFXImage.color;
-            if (health <= 80) 
-                tmpColor.a = 1 - (health / 80f);
-            else
-                tmpColor.a = 0;
-
-            injuredVFXImage.color = tmpColor;
-        }
-
-        IEnumerator FlashDamageTakenVFXCoroutine() 
-        {
-            flashColor.a = damageTakenVFXFlashAmount;
-            flashImage.color = flashColor;
-
-            yield return new WaitForSeconds(0.1f);
-
-            flashColor.a = 0f;
-            flashImage.color = flashColor;
-        }
 
     }
 }
