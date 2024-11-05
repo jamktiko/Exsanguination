@@ -40,6 +40,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 741176242193661328}
     m_Modifications:
+    - target: {fileID: 2880908769235496517, guid: fa8ab26040e87a64784fbbfcdcbe3361, type: 3}
+      propertyPath: bossTransform
+      value: 
+      objectReference: {fileID: 741176242193661328}
+    - target: {fileID: 2880908769235496517, guid: fa8ab26040e87a64784fbbfcdcbe3361, type: 3}
+      propertyPath: rotationSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3859455374709035118, guid: fa8ab26040e87a64784fbbfcdcbe3361, type: 3}
       propertyPath: m_Name
       value: Boss
@@ -84,13 +92,45 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -1.4002415
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8383442014662345745, guid: fa8ab26040e87a64784fbbfcdcbe3361, type: 3}
+      propertyPath: m_Radius
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 1669800251878762824, guid: fa8ab26040e87a64784fbbfcdcbe3361, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4796500153946221533, guid: fa8ab26040e87a64784fbbfcdcbe3361, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6580459969220134067}
   m_SourcePrefab: {fileID: 100100000, guid: fa8ab26040e87a64784fbbfcdcbe3361, type: 3}
 --- !u!4 &4135210419154621996 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4522839550081452756, guid: fa8ab26040e87a64784fbbfcdcbe3361, type: 3}
+  m_PrefabInstance: {fileID: 551529790528937208}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4987730085782484773 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4796500153946221533, guid: fa8ab26040e87a64784fbbfcdcbe3361, type: 3}
+  m_PrefabInstance: {fileID: 551529790528937208}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6580459969220134067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4987730085782484773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddcda23b1002dfc428cd7e56e6abecf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 80
+  enemyAnimator: {fileID: 5576392244125125738}
+--- !u!95 &5576392244125125738 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5387499633743728786, guid: fa8ab26040e87a64784fbbfcdcbe3361, type: 3}
   m_PrefabInstance: {fileID: 551529790528937208}
   m_PrefabAsset: {fileID: 0}

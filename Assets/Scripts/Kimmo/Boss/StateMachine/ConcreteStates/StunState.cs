@@ -35,6 +35,11 @@ public class StunState : BossAbstractState
         }
         else
         {
+            boss.isStunned = false;
+        }
+
+        if (!boss.isStunned)
+        {
             boss.bossStateManager.ChangeState();
         }
     }

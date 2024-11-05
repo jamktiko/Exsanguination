@@ -13,6 +13,9 @@ public class SpecialAttackState : BossAbstractState
     {
         base.EnterState();
         Debug.Log("Boss entered to SPECIAL ATTACK state.");
+
+        boss.bossAnimator.SetTrigger("cast");
+        boss.RandomizeSpecialAttack();
     }
 
     public override void ExitState()
@@ -23,6 +26,11 @@ public class SpecialAttackState : BossAbstractState
     public override void FrameUpdate()
     {
         base.FrameUpdate();
+
+        if (!boss.isCastingSpecialAttack)
+        {
+            boss.bossStateManager.ChangeState();
+        }
     }
 
     public override void PhysicsUpdate()
