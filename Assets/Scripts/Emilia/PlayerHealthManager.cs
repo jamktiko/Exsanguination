@@ -94,6 +94,10 @@ namespace EmiliaScripts
                 StopAllCoroutines();
                 StartCoroutine(healthVFXUpdater.FlashDamageTakenVFXCoroutine());
             }
+            if (healthNumber > 0)
+            {
+                healthVFXUpdater.HealingVFXActivate();
+            }
         }
 
 

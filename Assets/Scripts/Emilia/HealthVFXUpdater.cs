@@ -13,10 +13,12 @@ public class HealthVFXUpdater : MonoBehaviour
     Color flashColor;
 
     PlayerHealthManager healthManager;
+    HealVFXHandler healVFXHandler;
 
     private void Awake()
     {
         healthManager = GetComponent<PlayerHealthManager>();
+        healVFXHandler = GetComponent<HealVFXHandler>();
 
         injuredVFXImage.color = new(1, 1, 1, 0);
 
@@ -47,5 +49,10 @@ public class HealthVFXUpdater : MonoBehaviour
 
         flashColor.a = 0f;
         flashImage.color = flashColor;
+    }
+
+    public void HealingVFXActivate()
+    {
+        healVFXHandler.StartHealAnimation();
     }
 }
