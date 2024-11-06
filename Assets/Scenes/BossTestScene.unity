@@ -315,6 +315,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2061484337}
     - target: {fileID: 2331851059440595645, guid: 5c3309b74ec8cd34daa6b2931262ed37, type: 3}
+      propertyPath: stalkSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2331851059440595645, guid: 5c3309b74ec8cd34daa6b2931262ed37, type: 3}
+      propertyPath: rotationSpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2331851059440595645, guid: 5c3309b74ec8cd34daa6b2931262ed37, type: 3}
       propertyPath: waypoints.Array.data[0]
       value: 
       objectReference: {fileID: 388489208}
@@ -333,6 +341,10 @@ PrefabInstance:
     - target: {fileID: 2331851059440595645, guid: 5c3309b74ec8cd34daa6b2931262ed37, type: 3}
       propertyPath: spikeTrapStartingPosition.y
       value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354341635572439273, guid: 5c3309b74ec8cd34daa6b2931262ed37, type: 3}
+      propertyPath: m_Radius
+      value: 1.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1293,6 +1305,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4872557799192573021, guid: 1b62a4bb8cc8efb4aae4dc9174a7bd6b, type: 3}
+      propertyPath: stakeLogic
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4872557799192573021, guid: 1b62a4bb8cc8efb4aae4dc9174a7bd6b, type: 3}
       propertyPath: pauseScript
       value: 
       objectReference: {fileID: 1323733699}
@@ -1374,7 +1390,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6413329364949692448, guid: 1b62a4bb8cc8efb4aae4dc9174a7bd6b, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6621452454128547944, guid: 1b62a4bb8cc8efb4aae4dc9174a7bd6b, type: 3}
       propertyPath: m_IsActive
@@ -1806,9 +1822,9 @@ SceneRoots:
   - {fileID: 868065866}
   - {fileID: 1596513031}
   - {fileID: 31168511}
+  - {fileID: 1224828773}
   - {fileID: 1078331424}
   - {fileID: 251270345}
-  - {fileID: 1224828773}
   - {fileID: 978222212}
   - {fileID: 388489208}
   - {fileID: 1859690323}

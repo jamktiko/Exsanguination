@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class Boss : MonoBehaviour
@@ -16,6 +17,7 @@ public class Boss : MonoBehaviour
     [SerializeField] Collider bossCollider;
     [SerializeField] Collider swordCollider;
     [SerializeField] float moveSpeed;
+    [SerializeField] float stalkSpeed;
     [SerializeField] float rotationSpeed;
     [SerializeField] Transform[] waypoints;
     public Transform bossTransform;
@@ -137,6 +139,22 @@ public class Boss : MonoBehaviour
         var actualTargetPosition = new Vector3(targetPosition.x, 0, targetPosition.z);
         bossTransform.position = Vector3.MoveTowards(bossTransform.position, actualTargetPosition,
             moveSpeed * Time.deltaTime);
+    }
+
+    public void MoveSideways()
+    {
+        AnimatorStateInfo stateInfo = bossAnimator.GetCurrentAnimatorStateInfo(0);
+
+        if (stateInfo.IsName("Stalking Right"))
+        {
+            bossTransform.position += bossTransform.right * stalkSpeed * Time.deltaTime;
+        }   
+
+        else if (stateInfo.IsName("Stalking Left"))
+        {
+            bossTransform.position -= bossTransform.right * stalkSpeed * Time.deltaTime;
+        }
+
     }
 
     public void RandomizeSpecialAttack()

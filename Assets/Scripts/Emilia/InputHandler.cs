@@ -28,7 +28,11 @@ public class InputHandler : MonoBehaviour
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
+        playerMovement = GetComponent<PlayerMovement>();
+        grapplingHookShoot = GetComponent<GrapplingHookShoot>();
         mouseLook = GetComponent<MouseLook>();
+        stakeLogic = GetComponent<StakeLogic>();
+
 
         movementAction = playerInput.actions["HorizontalMovement"];
         jumpAction = playerInput.actions["Jump"];
