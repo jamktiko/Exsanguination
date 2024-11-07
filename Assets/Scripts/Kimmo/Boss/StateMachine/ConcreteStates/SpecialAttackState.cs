@@ -27,7 +27,15 @@ public class SpecialAttackState : BossAbstractState
     {
         base.FrameUpdate();
 
-        if (!boss.isCastingSpecialAttack)
+        if (boss.isCastingSpecialAttack)
+        {
+            boss.targetPosition = boss.playerTransform.position;
+            boss.RotateTowardsTarget();
+        }
+
+        AnimatorStateInfo stateInfo = boss.bossAnimator.GetCurrentAnimatorStateInfo(0);
+
+        if (stateInfo.IsName("GS Casting") && stateInfo.normalizedTime >= 1.0f)
         {
             boss.bossStateManager.ChangeState();
         }

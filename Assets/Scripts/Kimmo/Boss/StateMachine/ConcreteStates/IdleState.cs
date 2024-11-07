@@ -25,6 +25,7 @@ public class IdleState : BossAbstractState
     public override void ExitState()
     {
         base.ExitState();
+        idleTimer = 0;
     }
 
     public override void FrameUpdate()

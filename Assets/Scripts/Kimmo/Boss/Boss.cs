@@ -19,10 +19,14 @@ public class Boss : MonoBehaviour
     [SerializeField] float moveSpeed;
     [SerializeField] float stalkSpeed;
     [SerializeField] float rotationSpeed;
+    [SerializeField] float meleeAttackSpeed;
+    [SerializeField] float meleeAttackDistance;
+    Vector3 targetOffset;
     [SerializeField] Transform[] waypoints;
     public Transform bossTransform;
     public Transform playerTransform;
     public Vector3 targetPosition;
+    Vector3 startPosition;
     float minDistance = 5f; // Minimum distance from player to exclude waypoint
     public bool isInMeleeRange;
 
@@ -33,10 +37,13 @@ public class Boss : MonoBehaviour
     System.Action[] specialAttacks;
     System.Action currentSpecialAttack;
     public bool isCastingSpecialAttack;
-    float castTime = 1.2f;
+    [SerializeField] float castTime;
+
     [SerializeField] GameObject spikeTrap;
     [SerializeField] Vector3 spikeTrapStartingPosition;
     float spikeTrapDuration = 10f;
+
+    [SerializeField] GameObject fireWall;
 
     private void Awake()
     {
@@ -57,7 +64,9 @@ public class Boss : MonoBehaviour
         bossStateManager.states = new BossAbstractState[] { chargeState, meleeAttackState, stunState, dashState, idleState, dashState, specialAttackState, dashState, idleState, dashState };
         bossStateManager.Initialize(bossStateManager.states[0]);
 
-        specialAttacks = new System.Action[] {CastSpikeGrowth, CastPirouette, CastFirewall, CastHellfire };
+        //specialAttacks = new System.Action[] {CastSpikeGrowth, CastPirouette, CastFirewall, CastHellfire };
+
+        specialAttacks = new System.Action[] { CastFirewall };
         DeactivateSwordCollider();
     }
 
@@ -154,7 +163,19 @@ public class Boss : MonoBehaviour
         {
             bossTransform.position -= bossTransform.right * stalkSpeed * Time.deltaTime;
         }
+    }
 
+    public void MeleeAttackMove()
+    {
+        if (Vector3.Distance(startPosition, bossTransform.position) < meleeAttackDistance)
+        {
+            bossTransform.Translate(Vector3.forward * meleeAttackSpeed * Time.deltaTime);
+        }
+    }
+
+    public void SetStartPosition()
+    {
+        startPosition = bossTransform.position;
     }
 
     public void RandomizeSpecialAttack()
@@ -196,7 +217,9 @@ public class Boss : MonoBehaviour
     {
         Debug.Log("Boss' special attack is: FIREWALL!");
 
-
+        fireWall.transform.eulerAngles = new Vector3(
+            fireWall.transform.eulerAngles.x, bossTransform.rotation.y, fireWall.transform.eulerAngles.z);
+        fireWall.transform.position = new Vector3(bossTransform.position.x, 1, bossTransform.position.z);
     }
 
     private void CastHellfire()
