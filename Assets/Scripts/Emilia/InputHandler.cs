@@ -30,9 +30,12 @@ public class InputHandler : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         playerMovement = GetComponent<PlayerMovement>();
         grapplingHookShoot = GetComponent<GrapplingHookShoot>();
+        playerCombat = GameObject.Find("PlayerModel").GetComponent<PlayerCombat>();
         mouseLook = GetComponent<MouseLook>();
         stakeLogic = GameObject.Find("Stake").GetComponent<StakeLogic>();
         throwBomb = GameObject.Find("SilverBomb").GetComponent<ThrowBomb>();
+        pauseScript = GameObject.Find("PauseManager").GetComponent<PauseScript>();
+        menuNavigation = GameObject.Find("InputManager").GetComponent<ControllerMenuNavigation>();
 
         movementAction = playerInput.actions["HorizontalMovement"];
         jumpAction = playerInput.actions["Jump"];
