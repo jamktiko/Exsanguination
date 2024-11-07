@@ -15,14 +15,14 @@ public class HealthVFXUpdater : MonoBehaviour
     Color hitColor;
 
     PlayerHealthManager healthManager;
-    HealVFXHandler healVFXHandler;
 
     InjuredVFXAnimation injuredVFXAnimation;
+
+    [SerializeField] GameObject healVFX;
 
     private void Awake()
     {
         healthManager = GetComponent<PlayerHealthManager>();
-        healVFXHandler = GetComponent<HealVFXHandler>();
         injuredVFXAnimation = GetComponent<InjuredVFXAnimation>();
 
         injuredVFXImage.color = new(1, 1, 1, 0);
@@ -80,6 +80,7 @@ public class HealthVFXUpdater : MonoBehaviour
 
     public void HealingVFXActivate()
     {
-        healVFXHandler.StartHealAnimation();
+        healVFX.SetActive(true);
+        healVFX.GetComponent<Animator>().Play("HealAnimation");
     }
 }
