@@ -17,6 +17,7 @@ public class MeleeAttackState : BossAbstractState
 
         boss.bossAnimator.SetTrigger("meleeAttack");
         boss.ActivateSwordCollider();
+        boss.SetStartPosition();
     }
 
     public override void ExitState()
@@ -29,8 +30,8 @@ public class MeleeAttackState : BossAbstractState
     {
         base.FrameUpdate();
 
+        boss.MeleeAttackMove();
         AnimatorStateInfo stateInfo = boss.bossAnimator.GetCurrentAnimatorStateInfo(0);
-
 
         if (stateInfo.IsName("1H Attack") && stateInfo.normalizedTime >= 1.0f)
         {
