@@ -43,7 +43,9 @@ public class Boss : MonoBehaviour
     [SerializeField] Vector3 spikeTrapStartingPosition;
     float spikeTrapDuration = 10f;
 
-    [SerializeField] GameObject fireWall;
+    FireWallBehaviour fireWallBehaviour;
+    [SerializeField] GameObject smoulderingLine;
+    [SerializeField] GameObject fireWallPoint;
 
     private void Awake()
     {
@@ -57,6 +59,7 @@ public class Boss : MonoBehaviour
         specialAttackState = new SpecialAttackState(this, bossStateManager);
 
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        fireWallBehaviour = GameObject.Find("FireWall").GetComponent<FireWallBehaviour>(); 
     }
 
     private void Start()
@@ -217,9 +220,19 @@ public class Boss : MonoBehaviour
     {
         Debug.Log("Boss' special attack is: FIREWALL!");
 
-        fireWall.transform.eulerAngles = new Vector3(
-            fireWall.transform.eulerAngles.x, bossTransform.rotation.y, fireWall.transform.eulerAngles.z);
-        fireWall.transform.position = new Vector3(bossTransform.position.x, 1, bossTransform.position.z);
+        smoulderingLine.transform.position = new Vector3(fireWallPoint.transform.position.x, 0, fireWallPoint.transform.position.z);
+
+        Vector3 bossRotation = bossTransform.eulerAngles;
+        smoulderingLine.transform.eulerAngles = new Vector3(
+            smoulderingLine.transform.eulerAngles.x, bossRotation.y, smoulderingLine.transform.eulerAngles.z);
+
+        StartCoroutine(WaitBeforeFireWall());
+    }
+
+    IEnumerator WaitBeforeFireWall()
+    {
+        yield return new WaitForSeconds(0.5f);
+        fireWallBehaviour.isCreated = true;
     }
 
     private void CastHellfire()
