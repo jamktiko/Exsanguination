@@ -172,8 +172,8 @@ public class AudioManager : MonoBehaviour
     // Parry
     public void PlayParryAudioClip()
     {
-        playerLandAudioSource.clip = parryAudioClip;
-        playerLandAudioSource.PlayOneShot(parryAudioClip);
+        parryAudioSource.clip = parryAudioClip;
+        parryAudioSource.PlayOneShot(parryAudioClip);
     }
 
     // Grappling hook ready
