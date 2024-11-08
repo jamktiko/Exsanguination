@@ -26,7 +26,8 @@ public class GrapplingHookShoot : MonoBehaviour
     float overShootYAxis = 0;
     [SerializeField] float arrowSpeed;
     bool shootArrow;
-    Vector3 grapplePoint;
+    public bool isGrappling;
+    [SerializeField] Vector3 grapplePoint;
     [SerializeField] Vector3 arrowPosition;
     [SerializeField] Vector3 arrowStartPosition;
 
@@ -34,7 +35,7 @@ public class GrapplingHookShoot : MonoBehaviour
     public float grapplingCd;
     float grapplingCdTimer;
 
-    bool isGrappling;
+    bool hasPlayedReadyAudioClip;
 
     void Awake()
     {
@@ -47,6 +48,7 @@ public class GrapplingHookShoot : MonoBehaviour
         arrowRB = arrowProjectile.GetComponent<Rigidbody>();
         arrowProjectile.SetActive(false);
         enemyFinisher = GameObject.FindGameObjectWithTag("PlayerModel").GetComponent<EnemyFinisher>();
+        hasPlayedReadyAudioClip = true;
 
         //arrowPosition = arrow.transform.position;
     }
@@ -64,7 +66,16 @@ public class GrapplingHookShoot : MonoBehaviour
                 arrowSpeed * Time.deltaTime);
         }
 
-        
+        if (grapplingCdTimer <= 0 && !isGrappling)
+        {
+            ResetArrow();
+
+            if (!hasPlayedReadyAudioClip)
+            {
+                audioManager.PlayGrapplingHookReadyAudioClip();
+                hasPlayedReadyAudioClip = true;
+            }
+        }
     }
 
     private void LateUpdate()
@@ -104,7 +115,6 @@ public class GrapplingHookShoot : MonoBehaviour
         arrowProjectile.SetActive(true);
         arrowProjectile.transform.SetParent(null);
         arrowRB.isKinematic = false;
-        arrowProjectile.transform.position = grapplePoint;
         shootArrow = true;
 
         lr.enabled = true;
@@ -130,15 +140,19 @@ public class GrapplingHookShoot : MonoBehaviour
         playerAnimator.SetBool("grapple", false);
 
         shootArrow = false;
-        arrow.SetActive(true);
-        arrowProjectile.transform.SetParent(transform);
-        arrowPosition = arrowStartPosition;
-        arrowRB.isKinematic = true;
-        arrowProjectile.SetActive(false);
-
         isGrappling = false;
         lr.enabled = false;
+        hasPlayedReadyAudioClip = false;
 
         playerMovement.ResetRestricitons();
+    }
+
+    private void ResetArrow()
+    {
+        arrow.SetActive(true);
+        arrowProjectile.transform.SetParent(transform);
+        arrowProjectile.transform.position = arrowStartPosition;
+        arrowRB.isKinematic = true;
+        arrowProjectile.SetActive(false);
     }
 }

@@ -455,7 +455,10 @@ public class PlayerMovement : MonoBehaviour
         {
             enableMovementOnNextTouch = false;
 
-            grapplingHookShoot.StopGrapple();
+            if (grapplingHookShoot.isGrappling)
+            {
+                grapplingHookShoot.StopGrapple();
+            }
         }
     }
 
