@@ -226,13 +226,13 @@ public class Boss : MonoBehaviour
         smoulderingLine.transform.eulerAngles = new Vector3(
             smoulderingLine.transform.eulerAngles.x, bossRotation.y, smoulderingLine.transform.eulerAngles.z);
 
-        StartCoroutine(WaitBeforeFireWall());
+        StartCoroutine(WaitBeforeCreatingFireWall());
     }
 
-    IEnumerator WaitBeforeFireWall()
+    IEnumerator WaitBeforeCreatingFireWall()
     {
         yield return new WaitForSeconds(0.5f);
-        fireWallBehaviour.isCreated = true;
+        fireWallBehaviour.isGrowing = true;
     }
 
     private void CastHellfire()

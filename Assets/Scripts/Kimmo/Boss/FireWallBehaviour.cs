@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class FireWallBehaviour : MonoBehaviour
 {
-    public bool isCreated;
+    public bool isGrowing;
     Vector3 scale;
-    Vector3 scaleIncrease = new Vector3(0, 0, 0.1f);
-    [SerializeField] float scaleIncreaseSpeed;
+    Vector3 horizontalScaleIncrease = new Vector3(0, 0, 0.1f);
+    Vector3 verticalScaleDecrease = new Vector3(0, 0.1f, 0);
+    [SerializeField] float fireWallLength;
+    [SerializeField] float firewallHorizontalGrowthSpeed;
+    [SerializeField] float firewallVerticalShrinkSpeed;
+    [SerializeField] GameObject smoulderingLine;
+    [SerializeField] Vector3 smoulderingLineStartingPosition;
 
     private void Start()
     {
@@ -17,12 +22,38 @@ public class FireWallBehaviour : MonoBehaviour
 
     private void Update()
     {
-        if (isCreated)
+        if (isGrowing)
         {
-            if (transform.localScale.z < 1)
+            if (transform.localScale.z < fireWallLength)
             {
-                transform.localScale += scaleIncrease * scaleIncreaseSpeed * Time.deltaTime;
+                transform.localScale += horizontalScaleIncrease * firewallHorizontalGrowthSpeed * Time.deltaTime;
+            }
+            else
+            {
+                StartCoroutine(WaitBeforeRemovingFireWall());
             }
         }
+    }
+
+    IEnumerator WaitBeforeRemovingFireWall()
+    {
+        isGrowing = false;
+
+        yield return new WaitForSeconds(5);
+
+        StartCoroutine(RemoveFireWall());
+    }
+
+    IEnumerator RemoveFireWall()
+    {
+        while (transform.localScale.y > 0)
+        {
+
+            transform.localScale -= verticalScaleDecrease * firewallVerticalShrinkSpeed * Time.deltaTime;
+            yield return null;
+        }
+
+        smoulderingLine.transform.position = smoulderingLineStartingPosition;
+        transform.localScale = new Vector3(scale.x, 1, 0);
     }
 }
