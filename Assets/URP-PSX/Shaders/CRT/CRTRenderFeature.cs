@@ -33,8 +33,8 @@ namespace PSX
         static readonly int MainTexId = Shader.PropertyToID("_MainTex");
         static readonly int TempTargetId = Shader.PropertyToID("_TempTargetCRT");
 
-        static readonly int ScanLinesWeight = Shader.PropertyToID("_ScanlinesWeight");
-        static readonly int NoiseWeight = Shader.PropertyToID("_NoiseWeight");
+        //static readonly int ScanLinesWeight = Shader.PropertyToID("_ScanlinesWeight");
+        //static readonly int NoiseWeight = Shader.PropertyToID("_NoiseWeight");
         
         static readonly int ScreenBendX = Shader.PropertyToID("_ScreenBendX");
         static readonly int ScreenBendY = Shader.PropertyToID("_ScreenBendY");
@@ -43,9 +43,9 @@ namespace PSX
         static readonly int VignetteRounding = Shader.PropertyToID("_VignetteRounding");
         static readonly int VignetteSmoothing = Shader.PropertyToID("_VignetteSmoothing");
 
-        static readonly int ScanLinesDensity = Shader.PropertyToID("_ScanLinesDensity");
-        static readonly int ScanLinesSpeed = Shader.PropertyToID("_ScanLinesSpeed");
-        static readonly int NoiseAmount = Shader.PropertyToID("_NoiseAmount");
+        //static readonly int ScanLinesDensity = Shader.PropertyToID("_ScanLinesDensity");
+        //static readonly int ScanLinesSpeed = Shader.PropertyToID("_ScanLinesSpeed");
+        //static readonly int NoiseAmount = Shader.PropertyToID("_NoiseAmount");
 
         static readonly int ChromaticRed = Shader.PropertyToID("_ChromaticRed");
         static readonly int ChromaticGreen = Shader.PropertyToID("_ChromaticGreen");
@@ -124,8 +124,8 @@ namespace PSX
             //setting parameters here 
             cameraData.camera.depthTextureMode = cameraData.camera.depthTextureMode | DepthTextureMode.Depth;
 
-            this.crtMaterial.SetFloat(ScanLinesWeight, this.m_Crt.scanlinesWeight.value);
-            this.crtMaterial.SetFloat(NoiseWeight, this.m_Crt.noiseWeight.value);
+            //this.crtMaterial.SetFloat(ScanLinesWeight, this.m_Crt.scanlinesWeight.value);
+            //this.crtMaterial.SetFloat(NoiseWeight, this.m_Crt.noiseWeight.value);
             
             this.crtMaterial.SetFloat(ScreenBendX, this.m_Crt.screenBendX.value);
             this.crtMaterial.SetFloat(ScreenBendY, this.m_Crt.screenBendY.value);
@@ -134,9 +134,9 @@ namespace PSX
             this.crtMaterial.SetFloat(VignetteRounding, this.m_Crt.vignetteRounding.value);
             this.crtMaterial.SetFloat(VignetteSmoothing, this.m_Crt.vignetteSmoothing.value);
 
-            this.crtMaterial.SetFloat(ScanLinesDensity, this.m_Crt.scanlinesDensity.value);
-            this.crtMaterial.SetFloat(ScanLinesSpeed, this.m_Crt.scanlinesSpeed.value);
-            this.crtMaterial.SetFloat(NoiseAmount, this.m_Crt.noiseAmount.value);
+            //this.crtMaterial.SetFloat(ScanLinesDensity, this.m_Crt.scanlinesDensity.value);
+            //this.crtMaterial.SetFloat(ScanLinesSpeed, this.m_Crt.scanlinesSpeed.value);
+            //this.crtMaterial.SetFloat(NoiseAmount, this.m_Crt.noiseAmount.value);
 
             this.crtMaterial.SetVector(ChromaticRed, this.m_Crt.chromaticRed.value);
             this.crtMaterial.SetVector(ChromaticGreen, this.m_Crt.chromaticGreen.value);

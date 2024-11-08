@@ -10,8 +10,8 @@ public class CRTEffectController : MonoBehaviour
 
     protected Crt crt;
 
-    [SerializeField] protected float scanlinesWeight = 1f;
-    [SerializeField] protected float noiseWeight = 1f;
+    //[SerializeField] protected float scanlinesWeight = 1f;
+    //[SerializeField] protected float noiseWeight = 1f;
     
     [SerializeField] protected float screenBendX = 1000.0f;
     [SerializeField] protected float screenBendY = 1000.0f;
@@ -20,9 +20,9 @@ public class CRTEffectController : MonoBehaviour
     [SerializeField] protected float vignetteRounding = 0.0f;
     [SerializeField] protected float vignetteSmoothing = 0.0f;
     
-    [SerializeField] protected float scanLinesDensity = 200.0f;
-    [SerializeField] protected float scanLinesSpeed = -10.0f;
-    [SerializeField] protected float noiseAmount = 250.0f;
+    //[SerializeField] protected float scanLinesDensity = 200.0f;
+    //[SerializeField] protected float scanLinesSpeed = -10.0f;
+    //[SerializeField] protected float noiseAmount = 250.0f;
     
     [SerializeField] protected Vector2 chromaticRed = new Vector2();
     [SerializeField] protected Vector2 chromaticGreen = new Vector2();
@@ -49,8 +49,8 @@ public class CRTEffectController : MonoBehaviour
         if (this.crt == null) volumeProfile.TryGet<Crt>(out this.crt);
         if (this.crt == null) return;
 
-        this.crt.scanlinesWeight.value = this.scanlinesWeight;
-        this.crt.noiseWeight.value = this.noiseWeight;
+        //this.crt.scanlinesWeight.value = this.scanlinesWeight;
+        //this.crt.noiseWeight.value = this.noiseWeight;
         
         this.crt.screenBendX.value = this.screenBendX;
         this.crt.screenBendY.value = this.screenBendY;
@@ -59,9 +59,9 @@ public class CRTEffectController : MonoBehaviour
         this.crt.vignetteRounding.value = this.vignetteRounding;
         this.crt.vignetteSmoothing.value = this.vignetteSmoothing;
 
-        this.crt.scanlinesDensity.value = this.scanLinesDensity;
-        this.crt.scanlinesSpeed.value = this.scanLinesDensity;
-        this.crt.noiseAmount.value = this.noiseAmount;
+        //this.crt.scanlinesDensity.value = this.scanLinesDensity;
+        //this.crt.scanlinesSpeed.value = this.scanLinesDensity;
+        //this.crt.noiseAmount.value = this.noiseAmount;
 
         this.crt.chromaticRed.value = this.chromaticRed;
         this.crt.chromaticGreen.value = this.chromaticGreen;
