@@ -14,7 +14,7 @@ public class StakeLogic : MonoBehaviour
     private Transform playerTransform;
     public Camera playerCamera;
 
-    private Quaternion stakeRotation = Quaternion.Euler(90f, 0f, 0f);
+    private Quaternion stakeRotation = Quaternion.Euler(0f, 0f, 0f);
 
     [SerializeField] private GameObject stakeLocationOnPlayer;
 
