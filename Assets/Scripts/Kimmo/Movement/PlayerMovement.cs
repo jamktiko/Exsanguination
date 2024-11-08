@@ -41,7 +41,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float slideSpeed;
     [SerializeField] float slideSpeedMultiplier;
     [SerializeField] float slideTime;
-    float slideCooldownTimer;
+    [SerializeField] float slideCooldown;
+    [SerializeField] float slideCooldownTimer;
     [SerializeField] CapsuleCollider playerCollider;
     [SerializeField] float playerColliderHeight;
     [SerializeField] bool canSlide;
@@ -124,6 +125,11 @@ public class PlayerMovement : MonoBehaviour
         if (dashCooldownTimer > 0)
         {
             dashCooldownTimer -= Time.deltaTime;
+        }
+
+        if (slideCooldownTimer > 0)
+        {
+            slideCooldownTimer -= Time.deltaTime;
         }
 
         if (isMoving && isGrounded)
@@ -358,7 +364,10 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnSlidePressed()
     {
-        if (canSlide && isMoving)
+        if (slideCooldownTimer > 0 || !isMoving) return;
+        else slideCooldownTimer = slideCooldown;
+
+        if (canSlide)
         {
             if (isGrounded || isOnWall)
             {
