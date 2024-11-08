@@ -21,8 +21,9 @@ public class GrapplingHookShoot : MonoBehaviour
     EnemyFinisher enemyFinisher;
 
     [Header("Grappling")]
-    public float maxGrappleDistance;
-    public float grappleDelayTime;
+    [SerializeField] float maxGrappleDistance;
+    [SerializeField] float maxGrappleTime;
+    [SerializeField] float grappleDelayTime;
     float overShootYAxis = 0;
     [SerializeField] float arrowSpeed;
     bool shootArrow;
@@ -34,7 +35,7 @@ public class GrapplingHookShoot : MonoBehaviour
     public float grapplingCd;
     float grapplingCdTimer;
 
-    bool isGrappling;
+    [SerializeField] bool isGrappling;
 
     void Awake()
     {
@@ -63,8 +64,6 @@ public class GrapplingHookShoot : MonoBehaviour
             arrowProjectile.transform.position = Vector3.MoveTowards(arrowProjectile.transform.position, grapplePoint,
                 arrowSpeed * Time.deltaTime);
         }
-
-        
     }
 
     private void LateUpdate()
@@ -81,7 +80,6 @@ public class GrapplingHookShoot : MonoBehaviour
         audioManager.PlayGrapplingHookShootAudioClip();
         playerAnimator.SetBool("grapple", true);
 
-        grapplingCdTimer = grapplingCd;
         isGrappling = true;
 
         RaycastHit hit;
@@ -122,7 +120,7 @@ public class GrapplingHookShoot : MonoBehaviour
 
         playerMovement.JumpToPosition(grapplePoint, highestPointOnArc);
 
-        Invoke(nameof(StopGrapple), grapplingCd);
+        Invoke(nameof(StopGrapple), maxGrappleTime);
     }
 
     public void StopGrapple()
@@ -136,6 +134,7 @@ public class GrapplingHookShoot : MonoBehaviour
         arrowRB.isKinematic = true;
         arrowProjectile.SetActive(false);
 
+        grapplingCdTimer = grapplingCd;
         isGrappling = false;
         lr.enabled = false;
 
