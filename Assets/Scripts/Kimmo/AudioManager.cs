@@ -28,8 +28,12 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioSource playerHealAudioSource;
     [SerializeField] AudioSource playerFallAudioSource;
 
+
     [Header("SFX clips")]
-    [SerializeField] AudioClip[] playerFootstepsAudioClips; 
+
+    [Header("Player")]
+
+    [SerializeField] AudioClip[] playerFootstepsAudioClips;
     [SerializeField] AudioClip playerJumpAudioClip;
     [SerializeField] AudioClip playerLandAudioClip;
     [SerializeField] AudioClip dashAudioClip;
@@ -53,11 +57,21 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioClip playerDieAudioClip;
     [SerializeField] AudioClip playerHealAudioClip;
     [SerializeField] AudioClip playerFallAudioClip;
+
+    [Header("Ghoul")]
+
     [SerializeField] AudioClip enemyAlertAudioClip;
     [SerializeField] AudioClip[] enemyFootstepsAudioClips;
     [SerializeField] AudioClip[] enemyMeleeAudioClips;
     [SerializeField] AudioClip enemyTakeDamageAudioClip;
     [SerializeField] AudioClip enemyDieAudioClip;
+
+    [Header("Bat")]
+    [SerializeField] AudioClip batAttackAudioClip;
+    [SerializeField] AudioClip batDieAudioClip;
+    [SerializeField] AudioClip batAlertAudioClip;
+
+
 
     private void Awake()
     {
@@ -297,5 +311,18 @@ public class AudioManager : MonoBehaviour
     {
         audioSource.clip = enemyDieAudioClip;
         audioSource.PlayOneShot(enemyDieAudioClip);
+    }
+
+    public void PlayEnemyBatAttackClip(AudioSource audiosource)
+    {
+        audiosource.clip = batAttackAudioClip;
+        audiosource.PlayOneShot(batAttackAudioClip);
+    }
+
+    public void PlayEnemyBatAlertClip(AudioSource audiosource)
+    {
+        audiosource.clip = batAlertAudioClip;
+        audiosource.PlayOneShot(batAlertAudioClip);
+
     }
 }

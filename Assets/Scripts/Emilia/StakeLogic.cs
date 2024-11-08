@@ -11,7 +11,6 @@ public class StakeLogic : MonoBehaviour
     [SerializeField] private EnemyAI stuckEnemy;
     private EnemyHealthScript stuckEnemyHealth;
     private EnemyFinisher stuckEnemyFinisher;
-    private PlayerHealthManager playerHealth;
     private Transform playerTransform;
     public Camera playerCamera;
 
@@ -24,7 +23,6 @@ public class StakeLogic : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         playerTransform = GameObject.FindWithTag("Player").transform;
         playerCamera = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
-        playerHealth = GameObject.FindWithTag("HealthManager").GetComponent<PlayerHealthManager>();
         stuckEnemyFinisher = GameObject.FindGameObjectWithTag("PlayerModel").GetComponent<EnemyFinisher>();
     }
 
@@ -117,7 +115,7 @@ public class StakeLogic : MonoBehaviour
         startedFinishing = false;
         if (isFinished)
         {
-            playerHealth.UpdatePlayerHealth(playerHealth.MaxPlayerHealth() / 2);
+            //playerHealth.UpdatePlayerHealth(playerHealth.MaxPlayerHealth() / 2); I put this into enemyFinisher script when enemy explodes - Aapo
         }
 
         // Re-enable collision between stake and enemy

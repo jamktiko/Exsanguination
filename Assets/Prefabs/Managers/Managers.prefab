@@ -557,13 +557,58 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5491918205836964492, guid: b764a005e5c2d6f4a967c46d62c827f5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5399136682188282763}
+    - targetCorrespondingSourceObject: {fileID: 5491918205836964492, guid: b764a005e5c2d6f4a967c46d62c827f5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 206857401816065077}
   m_SourcePrefab: {fileID: 100100000, guid: b764a005e5c2d6f4a967c46d62c827f5, type: 3}
 --- !u!4 &3975470348402336859 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1601837455211721039, guid: b764a005e5c2d6f4a967c46d62c827f5, type: 3}
   m_PrefabInstance: {fileID: 2382803968541709588}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7865076154497525656 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5491918205836964492, guid: b764a005e5c2d6f4a967c46d62c827f5, type: 3}
+  m_PrefabInstance: {fileID: 2382803968541709588}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5399136682188282763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7865076154497525656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72ed46bca47bbcc4797557a41eac0e62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageTakenVFXFlashAmount: 0.05
+  injuredVFXImage: {fileID: 0}
+  hitImage: {fileID: 0}
+  hitSplatterImage: {fileID: 0}
+  healVFX: {fileID: 0}
+--- !u!114 &206857401816065077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7865076154497525656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3f1f237b7d499e46b2826193d251f74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InjuredVFX0: {fileID: 0}
+  InjuredVFX1: {fileID: 0}
+  InjuredVFX2: {fileID: 0}
+  fadeDuration: 2
+  resetDelay: 1
 --- !u!1001 &2701663973125691993
 PrefabInstance:
   m_ObjectHideFlags: 0

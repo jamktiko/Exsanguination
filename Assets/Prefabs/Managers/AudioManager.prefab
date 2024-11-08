@@ -66,10 +66,8 @@ MonoBehaviour:
   playerDieAudioSource: {fileID: 0}
   playerHealAudioSource: {fileID: 0}
   playerFallAudioSource: {fileID: 0}
-  playerFootstepsAudioClips:
-  - {fileID: 8300000, guid: 080660eeba69ba3efa029effddad1363, type: 3}
-  - {fileID: 8300000, guid: bfebeebe3e37f445d9dc512e0340a4a5, type: 3}
-  - {fileID: 8300000, guid: 4e07dc4c5f3d23beba29707af79666da, type: 3}
+  playerRightFootstepAudioClip: {fileID: 8300000, guid: 21de6488f8cad4044835693810efd0d5, type: 3}
+  playerLeftFootstepAudioClip: {fileID: 8300000, guid: aa7b8374514819246896c2c437dcd5db, type: 3}
   playerJumpAudioClip: {fileID: 8300000, guid: 13a34dbcb8d788c4dbd2c630c154585e, type: 3}
   playerLandAudioClip: {fileID: 8300000, guid: 7437dbf027368c74497f2aeee60811d6, type: 3}
   dashAudioClip: {fileID: 8300000, guid: 5862939446bb52c4190d7f481ce00757, type: 3}
@@ -84,9 +82,9 @@ MonoBehaviour:
   swordSwingCombo3AudioClips:
   - {fileID: 8300000, guid: ace3a7bf4e2fabb43be215f99ddf19f4, type: 3}
   parryAudioClip: {fileID: 8300000, guid: 790c386f4e8e0024aaa4535acead954e, type: 3}
-  grapplingHookReadyAudioClip: {fileID: 0}
+  grapplingHookReadyAudioClip: {fileID: 8300000, guid: 4906b3d8e74f6a9408b4ebc59288b475, type: 3}
   grapplingHookShootAudioClip: {fileID: 8300000, guid: 204c2564397866a45b614739447f6608, type: 3}
-  grapplingHookHitAudioClip: {fileID: 8300000, guid: 9666bbe96120c3743812db6b90795505, type: 3}
+  grapplingHookHitAudioClip: {fileID: 8300000, guid: 21cfc9c737b049c419a569f79bfe7fe3, type: 3}
   stakeThrowAudioClip: {fileID: 8300000, guid: d1cffddc6b0b91c4e8d59d8297a8558f, type: 3}
   stakeHitAudioClip: {fileID: 8300000, guid: a37f44cbf8c2a7443a3c361efa2f233a, type: 3}
   stakePickUpAudioClip: {fileID: 0}
@@ -107,3 +105,6 @@ MonoBehaviour:
   enemyMeleeAudioClips: []
   enemyTakeDamageAudioClip: {fileID: 8300000, guid: 3df9bbbc130ccb344af5f3fc793a630f, type: 3}
   enemyDieAudioClip: {fileID: 8300000, guid: aa4cea0908892094193e76ed944b011b, type: 3}
+  batAttackAudioClip: {fileID: 8300000, guid: 5439b51dbed269d4298051714d159cf0, type: 3}
+  batDieAudioClip: {fileID: 8300000, guid: aa4cea0908892094193e76ed944b011b, type: 3}
+  batAlertAudioClip: {fileID: 8300000, guid: f681b9f1a639ee848ace84ffec94a688, type: 3}

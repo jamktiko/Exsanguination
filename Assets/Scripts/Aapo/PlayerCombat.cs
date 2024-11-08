@@ -58,6 +58,10 @@ public class PlayerCombat : MonoBehaviour
         isAttacking = false;
     }
 
+    public void AnimatorAttackingFalse()
+    {
+        animator.SetBool("isAttacking", false);
+    }
 
     public void SetWeaponLogics(int weaponIndex)
     {
@@ -92,7 +96,6 @@ public class PlayerCombat : MonoBehaviour
             // Check if the attack just started
             if (!animator.GetBool("startedAttack"))
             {
-                audioManager.PlaySwordSwingClips1();
                 //starterSwordSwing1.Play();
                 animator.SetBool("startedAttack", true);
                 // Reset any combo-related states
@@ -101,7 +104,6 @@ public class PlayerCombat : MonoBehaviour
             }
             if (canCombo && animator.GetBool("startedAttack"))
             {
-                audioManager.PlaySwordSwingClips2();
                 //starterSwordSwing2.Play();
                 animator.SetBool("isAttacking", true);
                 animator.SetBool("failedCombo", false);  // Ensure failedCombo is reset
@@ -110,7 +112,6 @@ public class PlayerCombat : MonoBehaviour
             if (canCombo && animator.GetBool("startedAttack"))
             {
                 //starterSwordSwing3.Play();
-                audioManager.PlaySwordSwingClips2();
                 animator.SetBool("isAttacking", true);
                 animator.SetBool("failedCombo", false);  // Ensure failedCombo is reset
             }
@@ -185,7 +186,7 @@ public class PlayerCombat : MonoBehaviour
     public void CantCombo()
     {
         canCombo = false;
-        animator.SetBool("isAttacking", false);
+        //animator.SetBool("isAttacking", false);
 
 
     }
@@ -208,5 +209,22 @@ public class PlayerCombat : MonoBehaviour
     public void NotBlocking()
     {
         isBlocking = false;
+    }
+
+    public void Attack1Sfx()
+    {
+        audioManager.PlaySwordSwingClips1();
+
+    }
+
+    public void Attack2Sfx()
+    {
+        audioManager.PlaySwordSwingClips2();
+    }
+
+    public void Attack3Sfx()
+    {
+        audioManager.PlaySwordSwingClips3();
+
     }
 }

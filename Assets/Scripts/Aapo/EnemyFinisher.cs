@@ -1,5 +1,7 @@
 using System.Collections;
 using UnityEngine;
+using EmiliaScripts;
+
 
 public class EnemyFinisher : MonoBehaviour
 {
@@ -14,6 +16,7 @@ public class EnemyFinisher : MonoBehaviour
     private AudioManager audioManager;
     public float duration; // Time to complete the rotation
 
+    private PlayerHealthManager playerHealth;
     private Quaternion targetRotation; // Desired target rotation
     private Quaternion startRotation;  // Starting rotation
     private float elapsedTime = 0f;    // Time passed since the start of the rotation
@@ -34,6 +37,7 @@ public class EnemyFinisher : MonoBehaviour
         InputManager = GetComponentInParent<InputHandler>();
         playerCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Transform>();
         mLook = GetComponentInParent<MouseLook>();
+        playerHealth = GameObject.FindWithTag("HealthManager").GetComponent<PlayerHealthManager>();
         audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         rb = GetComponentInParent<Rigidbody>();
 
@@ -98,7 +102,7 @@ public class EnemyFinisher : MonoBehaviour
 
     public void EnemyExplode()
     {
-
+        playerHealth.UpdatePlayerHealth(playerHealth.MaxPlayerHealth() / 2);
         //enemyParticleSystem.Play();
         tmpParticle = Instantiate(enemyParticleSystem, particleInstantiateSpot.transform);
         enemyMesh.enabled = false;

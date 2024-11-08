@@ -81,6 +81,6 @@ public class HealthVFXUpdater : MonoBehaviour
     public void HealingVFXActivate()
     {
         healVFX.SetActive(true);
-        healVFX.GetComponent<Animator>().Play("HealAnimation");
+        healVFX.GetComponent<Animator>().SetTrigger("Heal");
     }
 }
