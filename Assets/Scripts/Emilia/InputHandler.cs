@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.ProBuilder.MeshOperations;
@@ -12,6 +13,8 @@ public class InputHandler : MonoBehaviour
     [SerializeField] private ThrowBomb throwBomb;
     [SerializeField] private PauseScript pauseScript;
     [SerializeField] private ControllerMenuNavigation menuNavigation;
+    [SerializeField] private PlayerStats playerStats;
+    [SerializeField] private GameObject[] pickUpItems;
     private PlayerInput playerInput;
     private InputAction movementAction, jumpAction, dashAction, slideAction, attackAction, grapplingAction, stakeAction, useAction, blockAction, throwableAction, pauseAction, weapon1Action, weapon2Action, pointAction, menuInteractionAction, menuNavigateAction, mouselookAround;
     private Vector2 horizontalInput;
@@ -36,6 +39,7 @@ public class InputHandler : MonoBehaviour
         throwBomb = GameObject.Find("SilverBomb").GetComponent<ThrowBomb>();
         pauseScript = GameObject.Find("PauseManager").GetComponent<PauseScript>();
         menuNavigation = GameObject.Find("InputManager").GetComponent<ControllerMenuNavigation>();
+        playerStats = GameObject.FindGameObjectWithTag("PlayerStats").GetComponent<PlayerStats>();
 
         movementAction = playerInput.actions["HorizontalMovement"];
         jumpAction = playerInput.actions["Jump"];
@@ -54,6 +58,9 @@ public class InputHandler : MonoBehaviour
         menuInteractionAction = playerInput.actions["MenuInteraction"];
         menuNavigateAction = playerInput.actions["MenuNavigate"];
         mouselookAround = playerInput.actions["Look"];
+
+        pickUpItems = GameObject.FindGameObjectsWithTag("PickUp");
+
 
 
         pauseAction.performed += ctx =>
@@ -164,13 +171,13 @@ public class InputHandler : MonoBehaviour
 
         grapplingAction.performed += ctx =>
         {
-            if (inputsEnabled)
+            if (inputsEnabled && playerStats.foundGrapplinghook)
                 grapplingHookShoot.StartGrapple();
         };
 
         stakeAction.performed += ctx =>
         {
-            if (inputsEnabled)
+            if (inputsEnabled && playerStats.foundStake)
             {
                 stakeHoldDown = true;
                 canAttack = false;
@@ -180,7 +187,7 @@ public class InputHandler : MonoBehaviour
 
         stakeAction.canceled += ctx =>
         {
-            if (inputsEnabled)
+            if (inputsEnabled && playerStats.foundStake)
             {
                 stakeHoldDown = false;
                 stakeLogic.StartThrowVisual();
@@ -201,6 +208,11 @@ public class InputHandler : MonoBehaviour
                 if (!stakeLogic.startedFinishing)
                 {
                     horizontalInput = Vector2.zero;
+                }
+
+                foreach (var item in pickUpItems)
+                {
+                    item.GetComponent<PickUpItem>().StartPickUpItem();
                 }
             }
         };
