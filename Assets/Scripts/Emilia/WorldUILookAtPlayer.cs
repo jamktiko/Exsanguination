@@ -8,7 +8,7 @@ public class WorldUILookAtPlayer : MonoBehaviour
 
     private void Awake()
     {
-        GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
