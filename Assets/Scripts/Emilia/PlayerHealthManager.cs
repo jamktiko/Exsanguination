@@ -10,6 +10,7 @@ namespace EmiliaScripts
         [SerializeField] int maxHealth;
 
         HealthVFXUpdater healthVFXUpdater;
+        private AudioManager audioManager;
 
         public delegate void DeathInvokerEvent();
         /// <summary>
@@ -26,6 +27,7 @@ namespace EmiliaScripts
         private void Awake()
         {
             healthVFXUpdater = GetComponent<HealthVFXUpdater>();
+            audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         }
 
         void Start()
@@ -93,10 +95,12 @@ namespace EmiliaScripts
             {
                 StopAllCoroutines();
                 StartCoroutine(healthVFXUpdater.FlashDamageTakenVFXCoroutine());
+                audioManager.PlayPlayerTakeDamageAudioClip();
             }
             if (healthNumber > 0)
             {
                 healthVFXUpdater.HealingVFXActivate();
+                audioManager.PlayPlayerHealAudioClip();
             }
         }
 
