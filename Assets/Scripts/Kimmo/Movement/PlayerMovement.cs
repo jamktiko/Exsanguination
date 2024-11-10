@@ -134,21 +134,25 @@ public class PlayerMovement : MonoBehaviour
 
         if (isMoving && isGrounded)
         {
-            if (!firstStepPlayed)
+            Debug.Log(rb.velocity);
+            if (rb.velocity != Vector3.zero)
             {
-                audioManager.PlayPlayerFootstepsAudioClips();
-                
-                firstStepPlayed = true;
-                footstepTimer = 0f;
-            }
-            else
-            {
-                footstepTimer += Time.deltaTime;
-
-                if (footstepTimer >= footStepAudioCooldown)
+                if (!firstStepPlayed)
                 {
                     audioManager.PlayPlayerFootstepsAudioClips();
+
+                    firstStepPlayed = true;
                     footstepTimer = 0f;
+                }
+                else
+                {
+                    footstepTimer += Time.deltaTime;
+
+                    if (footstepTimer >= footStepAudioCooldown)
+                    {
+                        audioManager.PlayPlayerFootstepsAudioClips();
+                        footstepTimer = 0f;
+                    }
                 }
             }
         }

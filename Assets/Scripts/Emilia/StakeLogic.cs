@@ -9,7 +9,7 @@ public class StakeLogic : MonoBehaviour
     public bool startedFinishing;
     private Rigidbody rb;
     [SerializeField] private EnemyAI stuckEnemy;
-    private EnemyHealthScript stuckEnemyHealth;
+    public EnemyHealthScript stuckEnemyHealth;
     private EnemyFinisher stuckEnemyFinisher;
     private Transform playerTransform;
     public Camera playerCamera;

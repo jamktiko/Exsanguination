@@ -60,7 +60,11 @@ public class EnemyHealthScript : MonoBehaviour
     public void EnemyDie()
     {
         enemyDeathScript.EnemyDie();
-        stakeLogic.ResetConnectionToEnemy();
+        if (stakeLogic.stuckEnemyHealth != null)
+        {
+            if (gameObject == stakeLogic.stuckEnemyHealth.gameObject)
+                stakeLogic.ResetConnectionToEnemy();
+        }
         gameObject.SetActive(false);
     }
 }
