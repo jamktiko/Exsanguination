@@ -11,6 +11,7 @@ public class EnemyHealthScript : MonoBehaviour
     private EnemyDeathScript enemyDeathScript;
     [SerializeField] private BloodFXController bloodController;
     [SerializeField] private ParticleSystem bloodSplatterParticle;
+    [SerializeField] private StakeLogic stakeLogic;
 
     private void Awake()
     {
@@ -18,7 +19,8 @@ public class EnemyHealthScript : MonoBehaviour
         enemyDeathScript = GetComponentInChildren<EnemyDeathScript>();
         bloodController = GetComponentInChildren<BloodFXController>();
         bloodSplatterParticle = GetComponentInChildren<ParticleSystem>();
-        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();            
+        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();   
+        stakeLogic = GameObject.FindGameObjectWithTag("Stake").GetComponent<StakeLogic>();
     }
 
     private void Start()
@@ -58,6 +60,7 @@ public class EnemyHealthScript : MonoBehaviour
     public void EnemyDie()
     {
         enemyDeathScript.EnemyDie();
+        stakeLogic.ResetConnectionToEnemy();
         gameObject.SetActive(false);
     }
 }

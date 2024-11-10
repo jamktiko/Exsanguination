@@ -203,4 +203,9 @@ public class StakeLogic : MonoBehaviour
         // Throw Stake
     }
 
+    public void ResetConnectionToEnemy()
+    {
+        CompleteReturnToPlayer();
+    }
+
 }
