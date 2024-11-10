@@ -47,6 +47,15 @@ public class Boss : MonoBehaviour
     [SerializeField] GameObject smoulderingLine;
     [SerializeField] GameObject fireWallPoint;
 
+    public float spinDuration;
+    [SerializeField] float elapsedSpinTime;
+    [SerializeField] int daggerAmount;
+    bool isSpinning;
+    bool canThrow;
+    public GameObject[] daggers;
+    GameObject currentDagger;
+    int daggerIndex;
+    
     private void Awake()
     {
         bossStateManager = new BossStateManager();
@@ -69,13 +78,19 @@ public class Boss : MonoBehaviour
 
         //specialAttacks = new System.Action[] {CastSpikeGrowth, CastPirouette, CastFirewall, CastHellfire };
 
-        specialAttacks = new System.Action[] { CastFirewall };
+        specialAttacks = new System.Action[] { CastPirouette };
         DeactivateSwordCollider();
     }
 
     private void Update()
     {
         bossStateManager.currentBossState.FrameUpdate();
+
+        if (isSpinning)
+        {
+            PirouetteSpin();
+            ThrowDagger();
+        }
     }
 
     private void FixedUpdate()
@@ -197,7 +212,7 @@ public class Boss : MonoBehaviour
 
     private void CastSpikeGrowth()
     {
-        Debug.Log("Boss' special attack is: SPIKE GROWTH!");
+        Debug.Log("Boss special attack is: SPIKE GROWTH!");
 
         spikeTrap.transform.position = new Vector3(playerTransform.position.x, 0, playerTransform.position.z);
         StartCoroutine(SpikeTrapTimer());
@@ -211,9 +226,49 @@ public class Boss : MonoBehaviour
 
     private void CastPirouette()
     {
-        Debug.Log("Boss' special attack is: PIROUETTE!");
+        Debug.Log("Boss special attack is: PIROUETTE!");
 
+        isSpinning = true;
+        canThrow = true;
+    }
 
+    private void PirouetteSpin()
+    {
+        elapsedSpinTime += Time.deltaTime;
+        float rotationAngle = (elapsedSpinTime / spinDuration) * 360f;
+        bossTransform.eulerAngles = new Vector3(0, rotationAngle % 360, 0);
+
+        if (elapsedSpinTime >= spinDuration)
+        {
+            elapsedSpinTime = 0f;
+            isSpinning = false;
+        }
+    }
+
+    private void ThrowDagger()
+    {
+        if (!canThrow) return;
+
+        if (daggerIndex < daggers.Length - 1)
+        {
+            daggerIndex++;
+        }
+        else
+        {
+            daggerIndex = 0;
+        }
+
+        currentDagger = daggers[daggerIndex];
+
+        currentDagger.GetComponent<DaggerLogic>().isThrown = true;
+        StartCoroutine(WaitBetweenThrows());
+    }
+
+    IEnumerator WaitBetweenThrows()
+    {
+        canThrow = false;
+        yield return new WaitForSeconds(spinDuration / daggerAmount);
+        canThrow = true;
     }
 
     private void CastFirewall()
@@ -241,4 +296,6 @@ public class Boss : MonoBehaviour
 
 
     }
+
+
 }
