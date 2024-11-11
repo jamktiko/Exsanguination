@@ -14,6 +14,8 @@ public class Boss : MonoBehaviour
     public SpecialAttackState specialAttackState { get; set; }
 
     public Animator bossAnimator;
+    EnemyHealthScript enemyHealthScript;
+    int previousHealth;
     [SerializeField] Collider bossCollider;
     [SerializeField] Collider swordCollider;
     [SerializeField] float moveSpeed;
@@ -71,6 +73,7 @@ public class Boss : MonoBehaviour
         meleeAttackState = new MeleeAttackState(this, bossStateManager);
         specialAttackState = new SpecialAttackState(this, bossStateManager);
 
+        enemyHealthScript = gameObject.GetComponent<EnemyHealthScript>();
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         fireWallBehaviour = GameObject.Find("FireWall").GetComponent<FirewallBehaviour>(); 
     }
@@ -116,6 +119,37 @@ public class Boss : MonoBehaviour
         {
             isInMeleeRange = false;
         }
+    }
+
+    private void BossHealthEffects()
+    {
+        int health = enemyHealthScript.health;
+
+        if (previousHealth > 150 && health <= 150)
+        {
+            idleDuration = 3;
+
+        }
+
+        else if (previousHealth > 100 && health <= 100)
+        {
+            idleDuration = 1;
+
+        }
+
+        else if (previousHealth > 50 && health <= 50)
+        {
+            idleDuration = 0;
+
+        }
+
+        else if (previousHealth > 0 && health <= 0)
+        {
+            // Boss escapes
+
+        }
+
+        previousHealth = health;
     }
 
     public void DeactivateBossCollider()
