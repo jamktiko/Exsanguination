@@ -14,8 +14,6 @@ public class Boss : MonoBehaviour
     public SpecialAttackState specialAttackState { get; set; }
 
     public Animator bossAnimator;
-    EnemyHealthScript enemyHealthScript;
-    int previousHealth;
     [SerializeField] Collider bossCollider;
     [SerializeField] Collider swordCollider;
     [SerializeField] float moveSpeed;
@@ -32,14 +30,18 @@ public class Boss : MonoBehaviour
     float minDistance = 5f; // Minimum distance from player to exclude waypoint
     public bool isInMeleeRange;
 
+    [SerializeField] List<GameObject> vents;
+    GameObject currentVent;
+
     public bool isStunned;
     public float stunDuration;
     public float idleDuration;
 
     System.Action[] specialAttacks;
     System.Action currentSpecialAttack;
+    string[] animationTriggers;
+    float[] castingTimes;
     public bool isCastingSpecialAttack;
-    [SerializeField] float castTime;
 
     [SerializeField] GameObject spikeTrap;
     [SerializeField] Vector3 spikeTrapStartingPosition;
@@ -49,6 +51,7 @@ public class Boss : MonoBehaviour
     [SerializeField] GameObject smoulderingLine;
     [SerializeField] GameObject firewallPoint;
 
+    [SerializeField] Transform spinSpoint;
     public float spinDuration;
     [SerializeField] float elapsedSpinTime;
     [SerializeField] int daggerAmount;
@@ -61,7 +64,6 @@ public class Boss : MonoBehaviour
     [SerializeField] GameObject hellfire;
     [SerializeField] GameObject hellfirePoint;
 
-    
     private void Awake()
     {
         bossStateManager = new BossStateManager();
@@ -73,7 +75,6 @@ public class Boss : MonoBehaviour
         meleeAttackState = new MeleeAttackState(this, bossStateManager);
         specialAttackState = new SpecialAttackState(this, bossStateManager);
 
-        enemyHealthScript = gameObject.GetComponent<EnemyHealthScript>();
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         fireWallBehaviour = GameObject.Find("FireWall").GetComponent<FirewallBehaviour>(); 
     }
@@ -83,9 +84,10 @@ public class Boss : MonoBehaviour
         bossStateManager.states = new BossAbstractState[] { chargeState, meleeAttackState, stunState, dashState, idleState, dashState, specialAttackState, dashState, idleState, dashState };
         bossStateManager.Initialize(bossStateManager.states[0]);
 
-        //specialAttacks = new System.Action[] {CastSpikeGrowth, CastPirouette, CastFirewall, CastHellfire };
+        specialAttacks = new System.Action[] { CastPirouette, CastPirouette, CastPirouette, CastPirouette };
+        animationTriggers = new string[] { "pirouette", "pirouette", "pirouette", "pirouette" };
+        castingTimes = new float[] { 1.5f, 1.5f, 1.5f, 1.5f };
 
-        specialAttacks = new System.Action[] { CastHellfire };
         DeactivateSwordCollider();
     }
 
@@ -120,36 +122,27 @@ public class Boss : MonoBehaviour
             isInMeleeRange = false;
         }
     }
-
-    private void BossHealthEffects()
+    
+    public void PickAndActivateVents(int ventsNumber)
     {
-        int health = enemyHealthScript.health;
+        List<GameObject> chosenVents = new List<GameObject>();
 
-        if (previousHealth > 150 && health <= 150)
+        // Randomly pick vents
+        for (int i = 0; i < ventsNumber && vents.Count > 0; i++)
         {
-            idleDuration = 3;
+            int randomIndex = Random.Range(0, vents.Count);
+            GameObject selectedVent = vents[randomIndex];
+            chosenVents.Add(selectedVent);
 
+            // Remove from the original list to avoid picking the same vent again
+            vents.RemoveAt(randomIndex);
         }
 
-        else if (previousHealth > 100 && health <= 100)
+        // Activate the method on each chosen vent
+        foreach (GameObject vent in chosenVents)
         {
-            idleDuration = 1;
-
+            vent.GetComponent<VentDamage>().isActive = true;
         }
-
-        else if (previousHealth > 50 && health <= 50)
-        {
-            idleDuration = 0;
-
-        }
-
-        else if (previousHealth > 0 && health <= 0)
-        {
-            // Boss escapes
-
-        }
-
-        previousHealth = health;
     }
 
     public void DeactivateBossCollider()
@@ -236,12 +229,15 @@ public class Boss : MonoBehaviour
 
     public void RandomizeSpecialAttack()
     {
+        int randomIndex;
+        randomIndex = Random.Range(0, 3);
+        currentSpecialAttack = specialAttacks[randomIndex];
+        bossAnimator.SetTrigger(animationTriggers[randomIndex]);
         isCastingSpecialAttack = true;
-        currentSpecialAttack = specialAttacks[Random.Range(0, specialAttacks.Length)];
-        StartCoroutine(CastTimer());
+        StartCoroutine(CastTimer(castingTimes[randomIndex]));
     }
 
-    IEnumerator CastTimer()
+    IEnumerator CastTimer(float castTime)
     {
         yield return new WaitForSeconds(castTime);
         currentSpecialAttack();
@@ -274,7 +270,7 @@ public class Boss : MonoBehaviour
     {
         elapsedSpinTime += Time.deltaTime;
         float rotationAngle = (elapsedSpinTime / spinDuration) * 360f;
-        bossTransform.eulerAngles = new Vector3(0, rotationAngle % 360, 0);
+        spinSpoint.eulerAngles = new Vector3(0, rotationAngle % 360, 0);
 
         if (elapsedSpinTime >= spinDuration)
         {

@@ -59,7 +59,7 @@ public class BossDaggerLogic : MonoBehaviour
 
         }
 
-        else if (isReflected && collision.collider.CompareTag("Boss"))
+        else if (isReflected && collision.collider.CompareTag("Enemy"))
         {
             EnemyHealthScript enemyHealthScript = collision.collider.GetComponent<EnemyHealthScript>();
 

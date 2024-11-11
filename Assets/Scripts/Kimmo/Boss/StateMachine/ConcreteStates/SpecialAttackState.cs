@@ -14,7 +14,7 @@ public class SpecialAttackState : BossAbstractState
         base.EnterState();
         Debug.Log("Boss entered to SPECIAL ATTACK state.");
 
-        boss.bossAnimator.SetTrigger("cast");
+        
         boss.RandomizeSpecialAttack();
     }
 
@@ -35,7 +35,7 @@ public class SpecialAttackState : BossAbstractState
 
         AnimatorStateInfo stateInfo = boss.bossAnimator.GetCurrentAnimatorStateInfo(0);
 
-        if (stateInfo.IsName("GS Casting") && stateInfo.normalizedTime >= 1.0f)
+        if (stateInfo.normalizedTime >= 1.0f && !boss.isCastingSpecialAttack)
         {
             boss.bossStateManager.ChangeState();
         }

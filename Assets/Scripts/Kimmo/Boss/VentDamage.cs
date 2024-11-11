@@ -9,12 +9,19 @@ public class VentDamage : MonoBehaviour
     PlayerHealthManager playerHealthManager;
     bool canDamage;
     public bool isActive;
+    [SerializeField] GameObject gasObject;
+
+    private void Start()
+    {
+        gasObject.SetActive(false);
+    }
 
     private void Update()
     {
         if (isActive)
         {
-            // Cloud effect
+            gasObject.SetActive(true);
+            canDamage = true;
         }
     }
 

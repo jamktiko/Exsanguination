@@ -25,6 +25,11 @@ public class EnemyHealthScript : MonoBehaviour
         bloodSplatterParticle = GetComponentInChildren<ParticleSystem>();
         audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();   
         stakeLogic = GameObject.FindGameObjectWithTag("Stake").GetComponent<StakeLogic>();
+
+        if (isBoss)
+        {
+            boss = GetComponent<Boss>();
+        }
     }
 
     private void Start()
@@ -44,7 +49,12 @@ public class EnemyHealthScript : MonoBehaviour
         {
             Debug.Log("Enemy health is zero");
             EnemyDie();
-        }        
+        }
+        
+        if (isBoss)
+        {
+            BossHealthEffects();
+        }
     }
 
     public void FinishEnemy()
@@ -71,5 +81,34 @@ public class EnemyHealthScript : MonoBehaviour
                 stakeLogic.ResetConnectionToEnemy();
         }
         gameObject.SetActive(false);
+    }
+
+    private void BossHealthEffects()
+    {
+        if (previousHealth > 150 && health <= 150)
+        {
+            boss.idleDuration = 3;
+            boss.PickAndActivateVents(3);
+        }
+
+        else if (previousHealth > 100 && health <= 100)
+        {
+            boss.idleDuration = 1;
+            boss.PickAndActivateVents(4);
+        }
+
+        else if (previousHealth > 50 && health <= 50)
+        {
+            boss.idleDuration = 0;
+            boss.PickAndActivateVents(7);
+        }
+
+        else if (previousHealth > 0 && health <= 0)
+        {
+            // Boss escapes
+
+        }
+
+        previousHealth = health;
     }
 }
