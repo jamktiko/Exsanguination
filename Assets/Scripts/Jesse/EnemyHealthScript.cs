@@ -4,7 +4,7 @@ using UnityEngine;
 public class EnemyHealthScript : MonoBehaviour
 {
     [SerializeField] int maxHealth = 100;
-    [SerializeField] int health = 100;
+    public int health = 100;
     AudioManager audioManager;
     [SerializeField] AudioSource enemyTakeDamageAudioSource;
     private EnemyFinisher stuckEnemyFinisher;
@@ -12,6 +12,10 @@ public class EnemyHealthScript : MonoBehaviour
     [SerializeField] private BloodFXController bloodController;
     [SerializeField] private ParticleSystem bloodSplatterParticle;
     [SerializeField] private StakeLogic stakeLogic;
+
+    [SerializeField] Boss boss;
+    [SerializeField] bool isBoss;
+    int previousHealth;
 
     private void Awake()
     {
@@ -26,6 +30,7 @@ public class EnemyHealthScript : MonoBehaviour
     private void Start()
     {
         health = maxHealth;
+        previousHealth = maxHealth;
     }
 
     public void ChangeEnemyHealth(int changeAmount)
@@ -35,11 +40,11 @@ public class EnemyHealthScript : MonoBehaviour
         bloodSplatterParticle.Play(true);
         health = Mathf.Clamp(health - changeAmount, 0, maxHealth);
         Debug.Log("Enemy health = " + health);
-        if (health <= 0)
+        if (health <= 0 && !isBoss)
         {
             Debug.Log("Enemy health is zero");
             EnemyDie();
-        }
+        }        
     }
 
     public void FinishEnemy()
