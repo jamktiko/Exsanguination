@@ -260,7 +260,7 @@ public class Boss : MonoBehaviour
 
         currentDagger = daggers[daggerIndex];
 
-        currentDagger.GetComponent<DaggerLogic>().isThrown = true;
+        currentDagger.SetActive(true);
         StartCoroutine(WaitBetweenThrows());
     }
 
