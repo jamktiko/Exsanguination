@@ -12,7 +12,7 @@ public class HellfireBehaviour : MonoBehaviour
     private void Awake()
     {
         playerHealthManager = GameObject.FindGameObjectWithTag("HealthManager").GetComponent<PlayerHealthManager>();
-        startingPosition = transform.position;
+        startingPosition = transform.localPosition;
         gameObject.SetActive(false);
     }
 
@@ -32,7 +32,7 @@ public class HellfireBehaviour : MonoBehaviour
 
     private void ResetObject()
     {
-        transform.position = startingPosition;
+        transform.localPosition = startingPosition;
         gameObject.SetActive(false);
     }
 }
