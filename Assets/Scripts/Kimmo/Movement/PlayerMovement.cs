@@ -134,7 +134,6 @@ public class PlayerMovement : MonoBehaviour
 
         if (isMoving && isGrounded)
         {
-            Debug.Log(rb.velocity);
             if (rb.velocity != Vector3.zero)
             {
                 if (!firstStepPlayed)
