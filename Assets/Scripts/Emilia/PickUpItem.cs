@@ -21,6 +21,12 @@ public class PickUpItem : MonoBehaviour
         playerStats = GameObject.FindGameObjectWithTag("PlayerStats").GetComponent<PlayerStats>();
     }
 
+    private void Start()
+    {
+        GetComponentInChildren<Light>().enabled = false;
+        GetComponentInChildren<TMP_Text>().enabled = false;
+    }
+
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
