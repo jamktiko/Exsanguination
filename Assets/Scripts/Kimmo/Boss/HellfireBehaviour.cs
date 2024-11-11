@@ -8,21 +8,12 @@ public class HellfireBehaviour : MonoBehaviour
     [SerializeField] int damage;
     PlayerHealthManager playerHealthManager;
     [SerializeField] Vector3 startingPosition;
-    [SerializeField] bool isDestryed;
 
     private void Awake()
     {
         playerHealthManager = GameObject.FindGameObjectWithTag("HealthManager").GetComponent<PlayerHealthManager>();
-        startingPosition = gameObject.transform.position;
+        startingPosition = transform.position;
         gameObject.SetActive(false);
-    }
-
-    private void Update()
-    {
-        if (isDestryed)
-        {
-            ResetObject();
-        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -35,7 +26,7 @@ public class HellfireBehaviour : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Wall")
         {
-            isDestryed = true;
+            ResetObject();
         }
     }
 

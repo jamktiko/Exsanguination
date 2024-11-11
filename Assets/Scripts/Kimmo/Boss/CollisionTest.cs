@@ -15,4 +15,12 @@ public class CollisionTest : MonoBehaviour
     {
         
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("Player"))
+        {
+            gameObject.SetActive(false);
+        }
+    }
 }
