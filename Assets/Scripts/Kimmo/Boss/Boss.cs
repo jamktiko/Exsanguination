@@ -43,9 +43,9 @@ public class Boss : MonoBehaviour
     [SerializeField] Vector3 spikeTrapStartingPosition;
     float spikeTrapDuration = 10f;
 
-    FireWallBehaviour fireWallBehaviour;
+    FirewallBehaviour fireWallBehaviour;
     [SerializeField] GameObject smoulderingLine;
-    [SerializeField] GameObject fireWallPoint;
+    [SerializeField] GameObject firewallPoint;
 
     public float spinDuration;
     [SerializeField] float elapsedSpinTime;
@@ -55,6 +55,10 @@ public class Boss : MonoBehaviour
     public GameObject[] daggers;
     GameObject currentDagger;
     int daggerIndex;
+
+    [SerializeField] GameObject hellfire;
+    [SerializeField] GameObject hellfirePoint;
+
     
     private void Awake()
     {
@@ -68,7 +72,7 @@ public class Boss : MonoBehaviour
         specialAttackState = new SpecialAttackState(this, bossStateManager);
 
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-        fireWallBehaviour = GameObject.Find("FireWall").GetComponent<FireWallBehaviour>(); 
+        fireWallBehaviour = GameObject.Find("FireWall").GetComponent<FirewallBehaviour>(); 
     }
 
     private void Start()
@@ -78,7 +82,7 @@ public class Boss : MonoBehaviour
 
         //specialAttacks = new System.Action[] {CastSpikeGrowth, CastPirouette, CastFirewall, CastHellfire };
 
-        specialAttacks = new System.Action[] { CastPirouette };
+        specialAttacks = new System.Action[] { CastHellfire };
         DeactivateSwordCollider();
     }
 
@@ -275,7 +279,7 @@ public class Boss : MonoBehaviour
     {
         Debug.Log("Boss' special attack is: FIREWALL!");
 
-        smoulderingLine.transform.position = new Vector3(fireWallPoint.transform.position.x, 0, fireWallPoint.transform.position.z);
+        smoulderingLine.transform.position = new Vector3(firewallPoint.transform.position.x, 0, firewallPoint.transform.position.z);
 
         Vector3 bossRotation = bossTransform.eulerAngles;
         smoulderingLine.transform.eulerAngles = new Vector3(
@@ -294,7 +298,8 @@ public class Boss : MonoBehaviour
     {
         Debug.Log("Boss' special attack is: HELLFIRE!");
 
-
+        hellfire.SetActive(true);
+        hellfire.transform.position = hellfirePoint.transform.position;
     }
 
 

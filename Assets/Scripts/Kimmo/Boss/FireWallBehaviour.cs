@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireWallBehaviour : MonoBehaviour
+public class FirewallBehaviour : MonoBehaviour
 {
     public bool isGrowing;
     Vector3 scale;
@@ -12,7 +12,7 @@ public class FireWallBehaviour : MonoBehaviour
     [SerializeField] float firewallHorizontalGrowthSpeed;
     [SerializeField] float firewallVerticalShrinkSpeed;
     [SerializeField] GameObject smoulderingLine;
-    [SerializeField] Vector3 smoulderingLineStartingPosition;
+    [SerializeField] Vector3 startingPosition;
 
     private void Start()
     {
@@ -53,7 +53,7 @@ public class FireWallBehaviour : MonoBehaviour
             yield return null;
         }
 
-        smoulderingLine.transform.position = smoulderingLineStartingPosition;
+        smoulderingLine.transform.position = startingPosition;
         transform.localScale = new Vector3(scale.x, 1, 0);
     }
 }

@@ -54,9 +54,9 @@ public class BossDaggerLogic : MonoBehaviour
             {
                 playerHealthManager.UpdatePlayerHealth(-damage);
                 Debug.Log("Hit player");
+                ResetValues();
             }
 
-            ResetValues();
         }
 
         else if (isReflected && collision.collider.CompareTag("Boss"))
@@ -72,14 +72,12 @@ public class BossDaggerLogic : MonoBehaviour
             {
                 Debug.LogWarning("EnemyHealthScript not found on " + collision.collider.name);
             }
-
-            ResetValues();
         }
 
         else
 
         {
-            //ResetValues();
+            ResetValues();
         }
     }
 
