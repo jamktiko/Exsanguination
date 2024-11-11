@@ -21,6 +21,13 @@ public class CloseBook : MonoBehaviour
         scrollData.SetActive(false);
     }
 
+    public void CloseOtherBooks()
+    {
+        foreach (var scroll in scrolls)
+        {
+            scroll.SetActive(false);
+        }
+    }
 
     public void CloseBookButton()
     {
@@ -28,10 +35,7 @@ public class CloseBook : MonoBehaviour
         Cursor.visible = false;
         inputManager.EnableInput();
         Time.timeScale = 1f;
-        foreach (var scroll in scrolls)
-        {
-            scroll.SetActive(false);
-        }
+        CloseOtherBooks();
         scrollData.SetActive(false);
     }
 }

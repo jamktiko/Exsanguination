@@ -18,56 +18,70 @@ public class PickUpItem : MonoBehaviour
     InputHandler inputManager;
     [SerializeField] GameObject thisScroll;
     [SerializeField] GameObject scrollData;
+    [SerializeField] CloseBook closeBook;
+    private Light lightComponent;
+    private TMP_Text text;
     private void Awake()
     {
         playerStats = GameObject.FindGameObjectWithTag("PlayerStats").GetComponent<PlayerStats>();
         inputManager = GameObject.FindGameObjectWithTag("Player").GetComponent<InputHandler>();
+        lightComponent = GetComponentInChildren<Light>();
+        text = GetComponentInChildren<TMP_Text>();
     }
 
     private void Start()
     {
-        GetComponentInChildren<Light>().enabled = false;
-        if (tool != UtilityTool.Scroll)
-        GetComponentInChildren<TMP_Text>().enabled = false;     
+        lightComponent.enabled = false;
+        text.enabled = false;     
     }
 
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
+        {
             inArea = true;
 
-        GetComponentInChildren<Light>().enabled = true;
-        if(tool != UtilityTool.Scroll)
-        GetComponentInChildren<TMP_Text>().enabled = true;
+            lightComponent.enabled = true;
+            text.enabled = true;
+        }
+            
     }
 
     private void OnTriggerExit(Collider other)
     {
-        GetComponentInChildren<Light>().enabled = false;
-        if (tool != UtilityTool.Scroll)
-            GetComponentInChildren<TMP_Text>().enabled = false;
+        lightComponent.enabled = false;
+        text.enabled = false;
+        inArea = false;
+
     }
 
     public void StartPickUpItem()
     {
         if (inArea)
         {
+           
             if (tool == UtilityTool.Stake)
+            {
                 playerStats.foundStake = true;
-            else if (tool == UtilityTool.GrapplingHook)
+                gameObject.SetActive(false);
+            }
+            if (tool == UtilityTool.GrapplingHook)
+            {
                 playerStats.foundGrapplinghook = true;
+                gameObject.SetActive(false);
+            }
 
-            gameObject.SetActive(false);
-            if(tool == UtilityTool.Scroll)
+            if (tool == UtilityTool.Scroll)
             {
                 Debug.Log("book was clicked");
-                gameObject.SetActive(true);
-                Time.timeScale = 0f;
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
-                inputManager.DisableInput(); //how to press buttons if input is disabled on pause? Maybe instead a bool to stop moving things?
+                closeBook.CloseOtherBooks();
                 thisScroll.SetActive(true);
                 scrollData.SetActive(true);
+                Time.timeScale = 0f;               
+                inputManager.DisableInput(); //how to press buttons if input is disabled on pause? Maybe instead a bool to stop moving things?
+                
             }
         }
     }
