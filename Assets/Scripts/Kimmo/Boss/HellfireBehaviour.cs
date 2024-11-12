@@ -8,6 +8,7 @@ public class HellfireBehaviour : MonoBehaviour
     [SerializeField] int damage;
     PlayerHealthManager playerHealthManager;
     [SerializeField] Vector3 startingPosition;
+    [SerializeField] ParticleSystem flameParticle;
 
     private void Awake()
     {
@@ -16,15 +17,19 @@ public class HellfireBehaviour : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnEnable()
     {
-        if (collision.collider.CompareTag("Player"))
+        flameParticle.Play(true);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
         {
-            Debug.Log("Hellfire hit player");
-            playerHealthManager.UpdatePlayerHealth(-damage);
             ResetObject();
+            playerHealthManager.UpdatePlayerHealth(-damage);
         }
-        else if (collision.gameObject.tag == "Wall")
+        else if (other.tag == "Wall")
         {
             ResetObject();
         }
@@ -32,6 +37,8 @@ public class HellfireBehaviour : MonoBehaviour
 
     private void ResetObject()
     {
+        Debug.Log("Hellfire is reset");
+        flameParticle.Stop();
         transform.localPosition = startingPosition;
         gameObject.SetActive(false);
     }

@@ -348,6 +348,10 @@ PrefabInstance:
       value: NewBossPrefab
       objectReference: {fileID: 0}
     - target: {fileID: 2331851059440595645, guid: 5c3309b74ec8cd34daa6b2931262ed37, type: 3}
+      propertyPath: firewall
+      value: 
+      objectReference: {fileID: 1526661100}
+    - target: {fileID: 2331851059440595645, guid: 5c3309b74ec8cd34daa6b2931262ed37, type: 3}
       propertyPath: hellfire
       value: 
       objectReference: {fileID: 1839461636}
@@ -355,10 +359,6 @@ PrefabInstance:
       propertyPath: spikeTrap
       value: 
       objectReference: {fileID: 2061484337}
-    - target: {fileID: 2331851059440595645, guid: 5c3309b74ec8cd34daa6b2931262ed37, type: 3}
-      propertyPath: smoulderingLine
-      value: 
-      objectReference: {fileID: 872363701}
     - target: {fileID: 2331851059440595645, guid: 5c3309b74ec8cd34daa6b2931262ed37, type: 3}
       propertyPath: vents.Array.data[0]
       value: 
@@ -860,11 +860,6 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
---- !u!1 &872363701 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5388051187930934980, guid: ea382dc31021ec34d84021f5e75e2410, type: 3}
-  m_PrefabInstance: {fileID: 5330478112474122589}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &963038291 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4723234118656151584, guid: ea382dc31021ec34d84021f5e75e2410, type: 3}
@@ -1116,6 +1111,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1526661100 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 210623294308673703, guid: ea382dc31021ec34d84021f5e75e2410, type: 3}
+  m_PrefabInstance: {fileID: 5330478112474122589}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1545464198
 GameObject:
   m_ObjectHideFlags: 0

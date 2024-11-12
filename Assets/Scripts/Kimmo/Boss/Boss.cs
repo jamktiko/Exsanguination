@@ -48,7 +48,7 @@ public class Boss : MonoBehaviour
     float spikeTrapDuration = 10f;
 
     FirewallBehaviour fireWallBehaviour;
-    [SerializeField] GameObject smoulderingLine;
+    [SerializeField] GameObject firewall;
     [SerializeField] GameObject firewallPoint;
 
     [SerializeField] Transform spinSpoint;
@@ -76,7 +76,6 @@ public class Boss : MonoBehaviour
         specialAttackState = new SpecialAttackState(this, bossStateManager);
 
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-        fireWallBehaviour = GameObject.Find("FireWall").GetComponent<FirewallBehaviour>(); 
     }
 
     private void Start()
@@ -84,9 +83,9 @@ public class Boss : MonoBehaviour
         bossStateManager.states = new BossAbstractState[] { chargeState, meleeAttackState, stunState, dashState, idleState, dashState, specialAttackState, dashState, idleState, dashState };
         bossStateManager.Initialize(bossStateManager.states[0]);
 
-        specialAttacks = new System.Action[] { CastPirouette, CastPirouette, CastPirouette, CastPirouette };
-        animationTriggers = new string[] { "pirouette", "pirouette", "pirouette", "pirouette" };
-        castingTimes = new float[] { 1.5f, 1.5f, 1.5f, 1.5f };
+        specialAttacks = new System.Action[] { CastSpikeGrowth, CastPirouette, CastFirewall, CastHellfire };
+        animationTriggers = new string[] { "spikeGrowth", "pirouette", "firewall", "hellfire" };
+        castingTimes = new float[] { 2f, 1.5f, 2f, 1f };
 
         DeactivateSwordCollider();
     }
@@ -194,7 +193,7 @@ public class Boss : MonoBehaviour
 
     public void MoveTowardsTarget()
     {
-        var actualTargetPosition = new Vector3(targetPosition.x, 0, targetPosition.z);
+        var actualTargetPosition = new Vector3(targetPosition.x, bossTransform.position.y, targetPosition.z);
         bossTransform.position = Vector3.MoveTowards(bossTransform.position, actualTargetPosition,
             moveSpeed * Time.deltaTime);
     }
@@ -230,7 +229,7 @@ public class Boss : MonoBehaviour
     public void RandomizeSpecialAttack()
     {
         int randomIndex;
-        randomIndex = Random.Range(0, 3);
+        randomIndex = Random.Range(0, specialAttacks.Length);
         currentSpecialAttack = specialAttacks[randomIndex];
         bossAnimator.SetTrigger(animationTriggers[randomIndex]);
         isCastingSpecialAttack = true;
@@ -309,27 +308,27 @@ public class Boss : MonoBehaviour
     {
         Debug.Log("Boss' special attack is: FIREWALL!");
 
-        smoulderingLine.transform.position = new Vector3(firewallPoint.transform.position.x, 0, firewallPoint.transform.position.z);
+        firewall.transform.position = new Vector3(firewallPoint.transform.position.x, 0, firewallPoint.transform.position.z);
 
         Vector3 bossRotation = bossTransform.eulerAngles;
-        smoulderingLine.transform.eulerAngles = new Vector3(
-            smoulderingLine.transform.eulerAngles.x, bossRotation.y, smoulderingLine.transform.eulerAngles.z);
-
-        StartCoroutine(WaitBeforeCreatingFireWall());
+        firewall.transform.eulerAngles = new Vector3(
+            firewall.transform.eulerAngles.x, bossRotation.y, firewall.transform.eulerAngles.z);
+        firewall.SetActive(true);
+        //StartCoroutine(WaitBeforeCreatingFireWall());
     }
 
-    IEnumerator WaitBeforeCreatingFireWall()
-    {
-        yield return new WaitForSeconds(0.5f);
-        fireWallBehaviour.isGrowing = true;
-    }
+    //IEnumerator WaitBeforeCreatingFireWall()
+    //{
+    //    yield return new WaitForSeconds(0.5f);
+    //    fireWallBehaviour.isGrowing = true;
+    //}
 
     private void CastHellfire()
     {
         Debug.Log("Boss' special attack is: HELLFIRE!");
 
-        hellfire.SetActive(true);
         hellfire.transform.position = hellfirePoint.transform.position;
+        hellfire.SetActive(true);
     }
 
 
