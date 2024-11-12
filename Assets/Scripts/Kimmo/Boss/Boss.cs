@@ -247,7 +247,7 @@ public class Boss : MonoBehaviour
     {
         Debug.Log("Boss special attack is: SPIKE GROWTH!");
 
-        spikeTrap.transform.position = new Vector3(playerTransform.position.x, 0, playerTransform.position.z);
+        spikeTrap.transform.position = new Vector3(playerTransform.position.x, bossTransform.position.y, playerTransform.position.z);
         StartCoroutine(SpikeTrapTimer());
     }
 
@@ -308,7 +308,7 @@ public class Boss : MonoBehaviour
     {
         Debug.Log("Boss' special attack is: FIREWALL!");
 
-        firewall.transform.position = new Vector3(firewallPoint.transform.position.x, 0, firewallPoint.transform.position.z);
+        firewall.transform.position = new Vector3(firewallPoint.transform.position.x, bossTransform.position.y, firewallPoint.transform.position.z);
 
         Vector3 bossRotation = bossTransform.eulerAngles;
         firewall.transform.eulerAngles = new Vector3(

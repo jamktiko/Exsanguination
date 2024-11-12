@@ -11,6 +11,11 @@ public class VentDamage : MonoBehaviour
     public bool isActive;
     [SerializeField] GameObject gasObject;
 
+    private void Awake()
+    {
+        playerHealthManager = GameObject.FindGameObjectWithTag("HealthManager").GetComponent<PlayerHealthManager>();
+    }
+
     private void Start()
     {
         gasObject.SetActive(false);
@@ -27,16 +32,23 @@ public class VentDamage : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Player" && canDamage && isActive)
+        if (other.tag == "Player" && isActive)
         {
-            playerHealthManager.UpdatePlayerHealth(-damage);
-            StartCoroutine(WaitBeforeNextDamage());
+            Damage();
         }
+    }
+
+    private void Damage()
+    {
+        if (!canDamage) return;
+
+        canDamage = false;
+        playerHealthManager.UpdatePlayerHealth(-damage);
+        StartCoroutine(WaitBeforeNextDamage());
     }
 
     IEnumerator WaitBeforeNextDamage()
     {
-        canDamage = false;
         yield return new WaitForSeconds(1);
         canDamage = true;
     }
