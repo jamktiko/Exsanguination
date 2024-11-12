@@ -2393,6 +2393,9 @@ MonoBehaviour:
   enemyTakeDamageAudioSource: {fileID: 2463057039683506548}
   bloodController: {fileID: 4323281299790090424}
   bloodSplatterParticle: {fileID: 7178517801240974941}
+  stakeLogic: {fileID: 0}
+  boss: {fileID: 0}
+  isBoss: 0
 --- !u!114 &4788433511447380642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2424,8 +2427,8 @@ MonoBehaviour:
   attackCooldown: 1.5
   pounceRangeMax: 4
   pounceRangeMin: 3
-  separationDistance: 1
-  stopSeparationDistance: 1
+  separationDistance: 0
+  stopSeparationDistance: 0
   enemyAnimator: {fileID: 9016512344435087899}
   enemyAlertAudioSource: {fileID: 6701046629129589312}
   enemyFootstepAudioSource: {fileID: 4555619591960417357}
