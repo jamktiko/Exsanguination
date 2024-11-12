@@ -18,7 +18,7 @@ public class SpikeTrapTrigger : MonoBehaviour
 
     private void Awake()
     {
-        inactivePosition = spikes.transform.localPosition + new Vector3(0, inactiveYOffset * transform.root.transform.localScale.y, 0);
+        inactivePosition = spikes.transform.position + new Vector3(0, inactiveYOffset * transform.root.transform.localScale.y, 0);
         spikes.transform.position = inactivePosition;
     }
 
@@ -37,7 +37,7 @@ public class SpikeTrapTrigger : MonoBehaviour
         active = true;
         while (spikes.transform.position != transform.position)
         {
-            spikes.transform.position = Vector3.MoveTowards(spikes.transform.localPosition, transform.position, riseSpeed * Time.deltaTime);
+            spikes.transform.position = Vector3.MoveTowards(spikes.transform.position, transform.position, riseSpeed * Time.deltaTime);
             yield return null;
         }
 
@@ -46,7 +46,7 @@ public class SpikeTrapTrigger : MonoBehaviour
 
         while (spikes.transform.position != inactivePosition)
         {
-            spikes.transform.position = Vector3.MoveTowards(spikes.transform.localPosition, inactivePosition, lowerSpeed * Time.deltaTime);
+            spikes.transform.position = Vector3.MoveTowards(spikes.transform.position, inactivePosition, lowerSpeed * Time.deltaTime);
             yield return null;
         }
 
