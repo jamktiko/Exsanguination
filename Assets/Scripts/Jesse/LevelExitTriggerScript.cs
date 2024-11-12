@@ -5,28 +5,26 @@ using UnityEngine.SceneManagement;
 
 public class LevelExitTriggerScript : MonoBehaviour
 {
-
-    void Start()
+    private PlayerStats playerStats;
+    private TransitionToBossroom transition;
+    void Awake()
     {
-        
+        playerStats = GameObject.FindWithTag("PlayerStats").GetComponent<PlayerStats>();
+        transition = GameObject.FindWithTag("TransitionToBossroom").GetComponent<TransitionToBossroom>();
     }
 
-    void Update()
-    {
-        
-    }
+   
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.name);
-        if (other.tag == "Player")
+        if (other.tag == "Player" && playerStats.foundKeycard)
         {
-            CheckExit();
+            transition.TransitionToBoss();
         }
     }
 
-    public void CheckExit()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    }
+    //public void CheckExit()
+    //{
+    //    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    //}
 }

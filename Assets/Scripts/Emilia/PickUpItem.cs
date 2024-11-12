@@ -9,7 +9,8 @@ public class PickUpItem : MonoBehaviour
     {
         Stake,
         GrapplingHook,
-        Scroll
+        Scroll,
+        Keycard
     };
 
     [SerializeField] public UtilityTool tool;
@@ -82,6 +83,13 @@ public class PickUpItem : MonoBehaviour
                 Time.timeScale = 0f;               
                 inputManager.DisableInput(); //how to press buttons if input is disabled on pause? Maybe instead a bool to stop moving things?
                 
+            }
+
+            if(tool == UtilityTool.Keycard)
+            {
+                playerStats.foundKeycard = true;
+                gameObject.SetActive(false);
+
             }
         }
     }
