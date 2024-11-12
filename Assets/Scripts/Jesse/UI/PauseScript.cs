@@ -11,6 +11,7 @@ public class PauseScript : MonoBehaviour
     [SerializeField] Button mainMenuButton;
 
     [SerializeField] SettingsMenu settingsMenu;
+    [SerializeField] GameObject victoryScreen;
 
     [SerializeField] public bool paused;
     [SerializeField] ControllerHandler controllerHandler;
@@ -26,6 +27,7 @@ public class PauseScript : MonoBehaviour
     private void Start()
     {
         UnPauseGame();
+        victoryScreen.SetActive(false);
     }
 
     public void DisableButtons()
@@ -75,5 +77,10 @@ public class PauseScript : MonoBehaviour
         Debug.Log("exited");
         inputManager.EnableInput();
         SceneManager.LoadScene(0);
+    }
+
+    public void ShowVictoryScreen()
+    {
+        victoryScreen.SetActive(true);
     }
 }

@@ -36,7 +36,7 @@ public class DashState : BossAbstractState
 
         boss.RotateTowardsTarget();
         boss.MoveTowardsTarget();
-        if (boss.bossTransform.position == new Vector3(boss.targetPosition.x, 0, boss.targetPosition.z))
+        if (boss.bossTransform.position == new Vector3(boss.targetPosition.x, boss.bossTransform.transform.position.y, boss.targetPosition.z))
         {
             boss.bossStateManager.ChangeState();
         }

@@ -193,7 +193,7 @@ public class Boss : MonoBehaviour
 
     public void MoveTowardsTarget()
     {
-        var actualTargetPosition = new Vector3(targetPosition.x, 0, targetPosition.z);
+        var actualTargetPosition = new Vector3(targetPosition.x, bossTransform.position.y, targetPosition.z);
         bossTransform.position = Vector3.MoveTowards(bossTransform.position, actualTargetPosition,
             moveSpeed * Time.deltaTime);
     }
