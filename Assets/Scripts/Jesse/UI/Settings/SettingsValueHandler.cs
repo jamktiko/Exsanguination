@@ -35,8 +35,8 @@ public class SettingsValueHandler : MonoBehaviour
         //crosshairToggle.onValueChanged.AddListener(delegate { ToggleCrosshair(crosshairToggle.isOn); });
 
         masterVolumeSlider.onValueChanged.AddListener(delegate { ChangeMasterVolume(masterVolumeSlider.value); });
-        musicVolumeSlider.onValueChanged.AddListener(delegate { ChangeMusicVolume(masterVolumeSlider.value); });
-        soundVolumeSlider.onValueChanged.AddListener(delegate { ChangeSoundVolume(masterVolumeSlider.value); });
+        musicVolumeSlider.onValueChanged.AddListener(delegate { ChangeMusicVolume(musicVolumeSlider.value); });
+        soundVolumeSlider.onValueChanged.AddListener(delegate { ChangeSoundVolume(soundVolumeSlider.value); });
 
         graphicsDropdown.onValueChanged.AddListener(delegate { ChangeGraphics(graphicsDropdown.value); });
     }
