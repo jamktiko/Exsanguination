@@ -25,7 +25,7 @@ public class FirewallBehaviour : MonoBehaviour
         startingPosition = transform.position;
     }
 
-    private void Start()
+    private void OnEnable()
     {
         smoulderingLineParticle.Play(true);
         StartCoroutine(MoveOverDistance(smoulderingLine.transform, smoulderingLine.transform.forward, 10f, 0.5f));

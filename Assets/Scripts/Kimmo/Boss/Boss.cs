@@ -76,7 +76,6 @@ public class Boss : MonoBehaviour
         specialAttackState = new SpecialAttackState(this, bossStateManager);
 
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-        fireWallBehaviour = GameObject.Find("FireWall").GetComponent<FirewallBehaviour>(); 
     }
 
     private void Start()
@@ -84,9 +83,13 @@ public class Boss : MonoBehaviour
         bossStateManager.states = new BossAbstractState[] { chargeState, meleeAttackState, stunState, dashState, idleState, dashState, specialAttackState, dashState, idleState, dashState };
         bossStateManager.Initialize(bossStateManager.states[0]);
 
-        specialAttacks = new System.Action[] { CastSpikeGrowth, CastPirouette, CastFirewall, CastHellfire };
-        animationTriggers = new string[] { "spikeGrowth", "pirouette", "firewall", "hellfire" };
-        castingTimes = new float[] { 2f, 1.5f, 2f, 1f };
+        //specialAttacks = new System.Action[] { CastSpikeGrowth, CastPirouette, CastFirewall, CastHellfire };
+        //animationTriggers = new string[] { "spikeGrowth", "pirouette", "firewall", "hellfire" };
+        //castingTimes = new float[] { 2f, 1.5f, 2f, 1f };
+
+        specialAttacks = new System.Action[] { CastHellfire, CastHellfire, CastHellfire, CastHellfire };
+        animationTriggers = new string[] { "hellfire", "hellfire", "hellfire", "hellfire" };
+        castingTimes = new float[] { 1f, 1f, 1f, 1f };
 
         DeactivateSwordCollider();
     }
@@ -328,8 +331,8 @@ public class Boss : MonoBehaviour
     {
         Debug.Log("Boss' special attack is: HELLFIRE!");
 
-        hellfire.SetActive(true);
         hellfire.transform.position = hellfirePoint.transform.position;
+        hellfire.SetActive(true);
     }
 
 

@@ -5004,6 +5004,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 30
   startingPosition: {x: 0, y: 0, z: 0}
+  flameParticle: {fileID: 8667190433724449756}
 --- !u!135 &5649305983104111814
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5019,11 +5020,11 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.25
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &2820797282871110906
 Rigidbody:
@@ -6123,11 +6124,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5446956602186619686, guid: bc99263f2bfe0d444859953607900c39, type: 3}
+    - {fileID: 5613347376861466407, guid: bc99263f2bfe0d444859953607900c39, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc99263f2bfe0d444859953607900c39, type: 3}
+--- !u!198 &8667190433724449756 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4738264980699757172, guid: bc99263f2bfe0d444859953607900c39, type: 3}
+  m_PrefabInstance: {fileID: 4146048488062810536}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8708667954578678550 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4707069198201395902, guid: bc99263f2bfe0d444859953607900c39, type: 3}
