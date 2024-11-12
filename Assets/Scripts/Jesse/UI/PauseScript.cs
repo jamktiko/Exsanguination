@@ -27,6 +27,7 @@ public class PauseScript : MonoBehaviour
     private void Start()
     {
         UnPauseGame();
+        victoryScreen.SetActive(false);
     }
 
     public void DisableButtons()
