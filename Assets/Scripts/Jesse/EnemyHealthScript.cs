@@ -16,6 +16,7 @@ public class EnemyHealthScript : MonoBehaviour
     [SerializeField] Boss boss;
     [SerializeField] bool isBoss;
     int previousHealth;
+    PauseScript pauseScript;
 
     private void Awake()
     {
@@ -25,6 +26,7 @@ public class EnemyHealthScript : MonoBehaviour
         bloodSplatterParticle = GetComponentInChildren<ParticleSystem>();
         audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();   
         stakeLogic = GameObject.FindGameObjectWithTag("Stake").GetComponent<StakeLogic>();
+        pauseScript = GameObject.Find("PauseManager").GetComponent<PauseScript>();
 
         if (isBoss)
         {
@@ -105,8 +107,8 @@ public class EnemyHealthScript : MonoBehaviour
 
         else if (previousHealth > 0 && health <= 0)
         {
-            // Boss escapes
-
+            pauseScript.PauseGame();
+            pauseScript.ShowVictoryScreen();
         }
 
         previousHealth = health;
