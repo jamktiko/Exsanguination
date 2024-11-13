@@ -57,7 +57,8 @@ public class Boss : MonoBehaviour
 
     [SerializeField] GameObject hellfire;
     [SerializeField] GameObject hellfirePoint;
-
+    [SerializeField] AudioClip[] bossCasts;
+    [SerializeField] AudioSource castSpecialAttack;
     private void Awake()
     {
         bossStateManager = new BossStateManager();
@@ -80,6 +81,7 @@ public class Boss : MonoBehaviour
         specialAttacks = new System.Action[] { CastSpikeGrowth, CastPirouette, CastFirewall, CastHellfire };
         animationTriggers = new string[] { "spikeGrowth", "pirouette", "firewall", "hellfire" };
         castingTimes = new float[] { 2f, 1.5f, 2f, 1f };
+        
     }
 
     private void Update()
@@ -207,6 +209,8 @@ public class Boss : MonoBehaviour
         currentSpecialAttack = specialAttacks[randomIndex];
         bossAnimator.SetTrigger(animationTriggers[randomIndex]);
         isCastingSpecialAttack = true;
+        AudioClip castClip = castSpecialAttack.clip = bossCasts[randomIndex];
+        castSpecialAttack.PlayOneShot(castClip);
         StartCoroutine(CastTimer(castingTimes[randomIndex]));
     }
 
@@ -220,7 +224,7 @@ public class Boss : MonoBehaviour
     private void CastSpikeGrowth()
     {
         Debug.Log("Boss special attack is: SPIKE GROWTH!");
-
+        
         spikeTrap.transform.position = new Vector3(playerTransform.position.x, bossTransform.position.y, playerTransform.position.z);
         StartCoroutine(SpikeTrapTimer());
     }
@@ -234,7 +238,7 @@ public class Boss : MonoBehaviour
     private void CastPirouette()
     {
         Debug.Log("Boss special attack is: PIROUETTE!");
-
+        
         isSpinning = true;
         canThrow = true;
     }
@@ -281,7 +285,7 @@ public class Boss : MonoBehaviour
     private void CastFirewall()
     {
         Debug.Log("Boss' special attack is: FIREWALL!");
-
+       
         firewall.transform.position = new Vector3(firewallPoint.transform.position.x, bossTransform.position.y, firewallPoint.transform.position.z);
 
         Vector3 bossRotation = bossTransform.eulerAngles;
@@ -294,7 +298,7 @@ public class Boss : MonoBehaviour
     private void CastHellfire()
     {
         Debug.Log("Boss' special attack is: HELLFIRE!");
-
+       
         hellfire.transform.position = hellfirePoint.transform.position;
         hellfire.SetActive(true);
     }

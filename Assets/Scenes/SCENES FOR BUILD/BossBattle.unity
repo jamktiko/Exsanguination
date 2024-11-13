@@ -646,9 +646,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1441528707055977359, guid: 5c3309b74ec8cd34daa6b2931262ed37, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.251
+      objectReference: {fileID: 0}
     - target: {fileID: 1825213512916216652, guid: 5c3309b74ec8cd34daa6b2931262ed37, type: 3}
       propertyPath: m_Name
       value: NewBossPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 2313358608766056994, guid: 5c3309b74ec8cd34daa6b2931262ed37, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.405
       objectReference: {fileID: 0}
     - target: {fileID: 2331851059440595645, guid: 5c3309b74ec8cd34daa6b2931262ed37, type: 3}
       propertyPath: firewall
@@ -742,6 +750,22 @@ PrefabInstance:
       propertyPath: waypoints.Array.data[3]
       value: 
       objectReference: {fileID: 658025927}
+    - target: {fileID: 3317335330478242750, guid: 5c3309b74ec8cd34daa6b2931262ed37, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3317335330478242750, guid: 5c3309b74ec8cd34daa6b2931262ed37, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3317335330478242750, guid: 5c3309b74ec8cd34daa6b2931262ed37, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3317335330478242750, guid: 5c3309b74ec8cd34daa6b2931262ed37, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1330,7 +1354,7 @@ MonoBehaviour:
   loopSource: {fileID: 1766901222805943443}
   deathSource: {fileID: 2629700626894805935}
   deathScript: {fileID: 1215644641}
-  introToLoopDelay: -16
+  introToLoopDelay: -15.5
   isBossScene: 1
 --- !u!82 &2629700626894805935
 AudioSource:
