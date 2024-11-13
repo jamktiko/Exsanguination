@@ -98,6 +98,7 @@ public class FirewallBehaviour : MonoBehaviour
         flamesObject.transform.localPosition = Vector3.zero;
         fireCollider.transform.localScale = new Vector3(1, 1, 0.1f);
         fireCollider.SetActive(false);
+        flameIsCreated = false;
         gameObject.SetActive(false);
     }
 }
