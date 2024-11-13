@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class TransitionInBossroom : MonoBehaviour
 {
-    Image background;
+    [SerializeField] Image background;
 
     TextMeshProUGUI topText;
     TextMeshProUGUI bottomText;
@@ -19,18 +19,20 @@ public class TransitionInBossroom : MonoBehaviour
     [SerializeField] float timeBeforeFadeOut;
     [SerializeField] float fadeOutTime;
     private PlayerInput playerInput;
-
+    [SerializeField] Transform cameraTransform;
 
     void Awake()
     {
-        background = GetComponent<Image>();
 
         topText = GetComponentsInChildren<TextMeshProUGUI>()[0];
         bottomText = GetComponentsInChildren<TextMeshProUGUI>()[1];
 
         topText.color = bottomText.color = new Color(1,1,1,0);
         playerInput = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
-
+        background.enabled = true;
+        playerInput.DeactivateInput();
+        cameraTransform.rotation = Quaternion.Euler(Vector3.zero);
+        Time.timeScale = 0f;
     }
 
     private void Start()
@@ -60,14 +62,13 @@ public class TransitionInBossroom : MonoBehaviour
 
         yield return new WaitForSecondsRealtime(timeBeforeFadeOut);
 
-        
+
         while (background.color.a >= 0)
         {
             bottomText.color = topText.color = new Color(1, 1, 1, topText.color.a - Time.unscaledDeltaTime / fadeOutTime);
             background.color = new Color(0,0,0, background.color.a - Time.unscaledDeltaTime / fadeOutTime);
             yield return null;
         }
-
         playerInput.ActivateInput();
         Time.timeScale = 1f;
 

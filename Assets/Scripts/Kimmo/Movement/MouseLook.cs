@@ -12,6 +12,7 @@ public class MouseLook : MonoBehaviour
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        cameraTransform.rotation = Quaternion.Euler(Vector3.zero);
     }
 
     // Method to receive input from Input System action

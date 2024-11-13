@@ -1,26 +1,48 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LevelExitTriggerScript : MonoBehaviour
 {
     private PlayerStats playerStats;
-    private TransitionToBossroom transition;
+    [SerializeField] TransitionToBossroom transition;
+    [SerializeField] Image transitionImage;
+    private TMP_Text text;
     void Awake()
     {
         playerStats = GameObject.FindWithTag("PlayerStats").GetComponent<PlayerStats>();
-        transition = GameObject.FindWithTag("TransitionToBossroom").GetComponent<TransitionToBossroom>();
+        text = GetComponentInChildren<TMP_Text>();
     }
 
-   
+    private void Start()
+    {
+        text.enabled = false;
+    }
+
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player" && playerStats.foundKeycard)
+        if (other.tag == "Player")
         {
-            transition.TransitionToBoss();
+            if (playerStats.foundKeycard)
+            {
+                transitionImage.enabled = true;
+                transition.TransitionToBoss();
+
+            }
+            else
+            {
+                text.enabled = true;
+            }
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        text.enabled = false;
     }
 
     //public void CheckExit()
