@@ -76,6 +76,12 @@ public class TransitionInBossroom : MonoBehaviour
         }
         playerInput.ActivateInput();
         Time.timeScale = 1f;
+        if(bottomText.color.a != 0 || topText.color.a !=0)
+        {
+            Debug.Log("color nulled");
+            bottomText.color = new Color(0, 0, 0, 0);
+            topText.color = new Color(0, 0, 0, 0);
 
+        }
     }
 }
