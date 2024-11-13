@@ -56,9 +56,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Vector3 playerModelSlidingPos;
 
     [Header("Grapple")]
-    public bool freeze;
     public bool activeGrapple;
     GrapplingHookShoot grapplingHookShoot;
+
+    [Header("UI")]
+    CooldownUI cooldownUI;
 
     [Header("Audio")]
     AudioManager audioManager;
@@ -80,6 +82,7 @@ public class PlayerMovement : MonoBehaviour
         controllerHandler = GameObject.FindGameObjectWithTag("InputManager").GetComponent<ControllerHandler>();
         animator = GameObject.FindGameObjectWithTag("PlayerModel").GetComponent<Animator>();
         grapplingHookShoot = GetComponent<GrapplingHookShoot>();
+        cooldownUI = GameObject.Find("CooldownUI").GetComponent<CooldownUI>();
     }
 
     private void Start()
@@ -89,15 +92,14 @@ public class PlayerMovement : MonoBehaviour
         canDash = true;
         canSlide = true;
         isLanded = true;
+        dashCooldownTimer = dashCooldown;
+        slideCooldownTimer = slideCooldown;
+
+        cooldownUI.SetDashCooldownMaxValue(dashCooldown);
     }
 
     private void Update()
     {
-        //if (freeze)
-        //{
-        //    rb.velocity = Vector3.zero;
-        //}
-
         isGrounded = Physics.CheckSphere(groundCheck.position, 0.1f, groundMask);
 
         if (isGrounded && !isLanded) 
@@ -122,14 +124,15 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (dashCooldownTimer > 0)
+        if (dashCooldownTimer < dashCooldown)
         {
-            dashCooldownTimer -= Time.deltaTime;
+            dashCooldownTimer += Time.deltaTime;
+            cooldownUI.UpdateDashCooldownBar(dashCooldownTimer);
         }
 
-        if (slideCooldownTimer > 0)
+        if (slideCooldownTimer < slideCooldown)
         {
-            slideCooldownTimer -= Time.deltaTime;
+            slideCooldownTimer += Time.deltaTime;
         }
 
         if (isMoving && isGrounded)
@@ -308,8 +311,8 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnDashPressed()
     {
-        if (dashCooldownTimer > 0 || !isMoving) return;
-        else dashCooldownTimer = dashCooldown;
+        if (dashCooldownTimer < dashCooldown || !isMoving) return;
+        else dashCooldownTimer = 0;
 
         if (canDash)
         {
@@ -367,8 +370,8 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnSlidePressed()
     {
-        if (slideCooldownTimer > 0 || !isMoving) return;
-        else slideCooldownTimer = slideCooldown;
+        if (slideCooldownTimer < slideCooldown || !isMoving) return;
+        else slideCooldownTimer = 0;
 
         if (canSlide)
         {
