@@ -19,7 +19,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] public string bossTimeString;
     [SerializeField] public string totalTimeString;
 
-
+    public bool cutSceneSeen;
 
     private void Awake()
     {

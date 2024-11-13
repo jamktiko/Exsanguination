@@ -20,6 +20,7 @@ public class TransitionInBossroom : MonoBehaviour
     [SerializeField] float fadeOutTime;
     private PlayerInput playerInput;
     [SerializeField] Transform cameraTransform;
+    [SerializeField] PlayerStats playerStats;
 
     void Awake()
     {
@@ -29,15 +30,19 @@ public class TransitionInBossroom : MonoBehaviour
 
         topText.color = bottomText.color = new Color(1,1,1,0);
         playerInput = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
-        background.enabled = true;
-        playerInput.DeactivateInput();
         cameraTransform.rotation = Quaternion.Euler(Vector3.zero);
-        Time.timeScale = 0f;
+        if (!playerStats.cutSceneSeen)
+        {
+            Time.timeScale = 0f;
+            playerInput.DeactivateInput();
+            background.enabled = true;
+        }
     }
 
     private void Start()
     {
-        StartCoroutine(TransitionInBoss());
+        if (!playerStats.cutSceneSeen)
+            StartCoroutine(TransitionInBoss());
     }
 
     IEnumerator TransitionInBoss()
