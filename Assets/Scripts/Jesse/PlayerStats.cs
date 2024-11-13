@@ -25,7 +25,10 @@ public class PlayerStats : MonoBehaviour
     {
         healthManager = GameObject.FindWithTag("HealthManager").GetComponent<PlayerHealthManager>();
 
-        healthManager.OnDeath += StopTimer;
+        if (healthManager != null)
+        {
+            healthManager.OnDeath += StopTimer;
+        }
         //boss death event += StopTimer;
         
         SceneManager.sceneLoaded += OnLevelLoad;
