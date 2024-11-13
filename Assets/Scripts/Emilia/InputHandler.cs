@@ -235,13 +235,13 @@ public class InputHandler : MonoBehaviour
 
         weapon1Action.performed += ctx =>
         {
-            if (inputsEnabled)
+            if (inputsEnabled && playerStats.foundSlaymore)
                 playerCombat.SetWeaponLogics(0);
         };
 
         weapon2Action.performed += ctx =>
         {
-            if (inputsEnabled)
+            if (inputsEnabled && playerStats.foundSlaymore)
                 playerCombat.SetWeaponLogics(1);
         };
 
