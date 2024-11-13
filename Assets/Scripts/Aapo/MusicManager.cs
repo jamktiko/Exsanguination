@@ -32,33 +32,6 @@ public class MusicManager : MonoBehaviour
 
     private void Update()
     {
-        // Check if the game is paused (Time.timeScale == 0)
-        if (Time.timeScale == 0 && !isPaused && !isBossScene)
-        {
-            // Pause the music when the game is paused
-            PauseMusic();
-            isPaused = true;
-        }
-        else if (Time.timeScale != 0 && isPaused)
-        {
-            // Resume the music when the game is unpaused
-            ResumeMusic();
-            isPaused = false;
-        }
-    }
-
-    private void PauseMusic()
-    {
-        // Pause both intro and loop music
-        if (introSource.isPlaying)
-        {
-            introSource.Pause();
-        }
-        if (loopSource.isPlaying)
-        {
-            loopSource.Pause();
-        }
-
         if (deathScript.isDead)
         {
             deathSource.Play();
@@ -68,16 +41,53 @@ public class MusicManager : MonoBehaviour
         }
     }
 
-    private void ResumeMusic()
-    {
-        // Resume both intro and loop music if they were paused
-        if (!introSource.isPlaying)
-        {
-            introSource.UnPause();
-        }
-        if (!loopSource.isPlaying)
-        {
-            loopSource.UnPause();
-        }
-    }
+    //{
+    //    // Check if the game is paused (Time.timeScale == 0)
+    //    if (Time.timeScale == 0 && !isPaused && !isBossScene)
+    //    {
+    //        // Pause the music when the game is paused
+    //        PauseMusic();
+    //        isPaused = true;
+    //    }
+    //    else if (Time.timeScale != 0 && isPaused)
+    //    {
+    //        // Resume the music when the game is unpaused
+    //        ResumeMusic();
+    //        isPaused = false;
+    //    }
+    //}
+
+    //private void PauseMusic()
+    //{
+    //    // Pause both intro and loop music
+    //    if (introSource.isPlaying)
+    //    {
+    //        introSource.Pause();
+    //    }
+    //    if (loopSource.isPlaying)
+    //    {
+    //        loopSource.Pause();
+    //    }
+
+    //    if (deathScript.isDead)
+    //    {
+    //        deathSource.Play();
+    //        loopSource.Pause();
+    //        introSource.Pause();
+
+    //    }
+    //}
+
+    //private void ResumeMusic()
+    //{
+    //    // Resume both intro and loop music if they were paused
+    //    if (!introSource.isPlaying)
+    //    {
+    //        introSource.UnPause();
+    //    }
+    //    if (!loopSource.isPlaying)
+    //    {
+    //        loopSource.UnPause();
+    //    }
+    //}
 }
