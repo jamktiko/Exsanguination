@@ -14,7 +14,7 @@ public class Boss : MonoBehaviour
     public SpecialAttackState specialAttackState { get; set; }
 
     public Animator bossAnimator;
-    [SerializeField] Collider bossCollider;
+    [SerializeField] Collider bossDamageCollider;
     [SerializeField] float moveSpeed;
     [SerializeField] float stalkSpeed;
     [SerializeField] float rotationSpeed;
@@ -143,12 +143,12 @@ public class Boss : MonoBehaviour
 
     public void DeactivateBossCollider()
     {
-        bossCollider.enabled = false;
+        bossDamageCollider.enabled = false;
     }
 
     public void ActivateBossCollider()
     {
-        bossCollider.enabled = true;
+        bossDamageCollider.enabled = true;
     }
 
     public void ChooseWaypoint()
