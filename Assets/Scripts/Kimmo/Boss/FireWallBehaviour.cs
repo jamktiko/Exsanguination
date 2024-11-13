@@ -13,7 +13,7 @@ public class FirewallBehaviour : MonoBehaviour
     [SerializeField] GameObject flamesObject;
     [SerializeField] Vector3 startingPosition;
     [SerializeField] GameObject fireCollider;
-    bool firewallIsCreated;
+    bool flameIsCreated;
 
     [SerializeField] ParticleSystem smoulderingLineParticle;
     [SerializeField] ParticleSystem flamesParticle;
@@ -46,9 +46,9 @@ public class FirewallBehaviour : MonoBehaviour
 
         target.position = endPosition; // Ensure the object reaches the exact endpoint
 
-        if (!firewallIsCreated)
+        if (!flameIsCreated)
         {
-            StartCoroutine(WaitBeforeCreatingFirewall());
+            StartCoroutine(WaitBeforeCreatingFlames());
         }
         else
         {
@@ -56,11 +56,11 @@ public class FirewallBehaviour : MonoBehaviour
         }
     }
 
-    IEnumerator WaitBeforeCreatingFirewall()
+    IEnumerator WaitBeforeCreatingFlames()
     {
         yield return new WaitForSeconds(0.5f);
 
-        firewallIsCreated = true;
+        flameIsCreated = true;
         flamesParticle.Play(true);
         fireCollider.SetActive(true);
         StartCoroutine(MoveOverDistance(flamesObject.transform, flamesObject.transform.forward, 30f, 0.2f));
