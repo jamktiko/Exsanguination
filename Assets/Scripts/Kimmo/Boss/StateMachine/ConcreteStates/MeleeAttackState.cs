@@ -28,7 +28,6 @@ public class MeleeAttackState : BossAbstractState
     {
         base.FrameUpdate();
 
-        boss.MeleeAttackMove();
         AnimatorStateInfo stateInfo = boss.bossAnimator.GetCurrentAnimatorStateInfo(0);
 
         if (stateInfo.IsName("1H Attack") && stateInfo.normalizedTime >= 1.0f)

@@ -9,8 +9,8 @@ public class FirewallBehaviour : MonoBehaviour
     [SerializeField] float fireWallLength;
     [SerializeField] float firewallHorizontalGrowthSpeed;
     [SerializeField] float firewallVerticalShrinkSpeed;
-    [SerializeField] GameObject smoulderingLine;
-    [SerializeField] GameObject flames;
+    [SerializeField] GameObject smoulderingLineObject;
+    [SerializeField] GameObject flamesObject;
     [SerializeField] Vector3 startingPosition;
     [SerializeField] GameObject fireCollider;
     bool firewallIsCreated;
@@ -28,7 +28,7 @@ public class FirewallBehaviour : MonoBehaviour
     private void OnEnable()
     {
         smoulderingLineParticle.Play(true);
-        StartCoroutine(MoveOverDistance(smoulderingLine.transform, smoulderingLine.transform.forward, 10f, 0.5f));
+        StartCoroutine(MoveOverDistance(smoulderingLineObject.transform, smoulderingLineObject.transform.forward, 30f, 0.2f));
     }
 
     private IEnumerator MoveOverDistance(Transform target, Vector3 direction, float distance, float duration)
@@ -58,12 +58,12 @@ public class FirewallBehaviour : MonoBehaviour
 
     IEnumerator WaitBeforeCreatingFirewall()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.5f);
 
         firewallIsCreated = true;
         flamesParticle.Play(true);
         fireCollider.SetActive(true);
-        StartCoroutine(MoveOverDistance(flames.transform, flames.transform.forward, 10f, 0.5f));
+        StartCoroutine(MoveOverDistance(flamesObject.transform, flamesObject.transform.forward, 30f, 0.2f));
         StartCoroutine(ScaleOverTime(targetScale, 0.5f));
     }
 
@@ -94,9 +94,10 @@ public class FirewallBehaviour : MonoBehaviour
         smoulderingLineParticle.Stop();
         flamesParticle.Stop();
         transform.position = startingPosition;
-        smoulderingLine.transform.localPosition = Vector3.zero;
-        flames.transform.localPosition = Vector3.zero;
+        smoulderingLineObject.transform.localPosition = Vector3.zero;
+        flamesObject.transform.localPosition = Vector3.zero;
         fireCollider.transform.localScale = new Vector3(1, 1, 0.1f);
         fireCollider.SetActive(false);
+        gameObject.SetActive(false);
     }
 }

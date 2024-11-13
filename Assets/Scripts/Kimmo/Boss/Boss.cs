@@ -18,9 +18,6 @@ public class Boss : MonoBehaviour
     [SerializeField] float moveSpeed;
     [SerializeField] float stalkSpeed;
     [SerializeField] float rotationSpeed;
-    [SerializeField] float meleeAttackSpeed;
-    [SerializeField] float meleeAttackDistance;
-    Vector3 targetOffset;
     [SerializeField] Transform[] waypoints;
     public Transform bossTransform;
     public Transform playerTransform;
@@ -30,7 +27,6 @@ public class Boss : MonoBehaviour
     public bool isInMeleeRange;
 
     [SerializeField] List<GameObject> vents;
-    GameObject currentVent;
 
     public bool isStunned;
     public float stunDuration;
@@ -44,7 +40,6 @@ public class Boss : MonoBehaviour
 
     [SerializeField] GameObject spikeTrap;
     [SerializeField] Vector3 spikeTrapStartingPosition;
-    float spikeTrapDuration = 10f;
 
     FirewallBehaviour fireWallBehaviour;
     [SerializeField] GameObject firewall;
@@ -82,9 +77,13 @@ public class Boss : MonoBehaviour
         bossStateManager.states = new BossAbstractState[] { chargeState, meleeAttackState, stunState, dashState, idleState, dashState, specialAttackState, dashState, idleState, dashState };
         bossStateManager.Initialize(bossStateManager.states[0]);
 
-        specialAttacks = new System.Action[] { CastSpikeGrowth, CastPirouette, CastFirewall, CastHellfire };
-        animationTriggers = new string[] { "spikeGrowth", "pirouette", "firewall", "hellfire" };
-        castingTimes = new float[] { 2f, 1.5f, 2f, 1f };
+        //specialAttacks = new System.Action[] { CastSpikeGrowth, CastPirouette, CastFirewall, CastHellfire };
+        //animationTriggers = new string[] { "spikeGrowth", "pirouette", "firewall", "hellfire" };
+        //castingTimes = new float[] { 2f, 1.5f, 2f, 1f };
+
+        specialAttacks = new System.Action[] { CastFirewall, CastFirewall, CastFirewall, CastFirewall };
+        animationTriggers = new string[] { "firewall", "firewall", "firewall", "firewall" };
+        castingTimes = new float[] { 2f, 2f, 2f, 2f };
     }
 
     private void Update()
@@ -200,14 +199,6 @@ public class Boss : MonoBehaviour
         }
     }
 
-    public void MeleeAttackMove()
-    {
-        if (Vector3.Distance(startPosition, bossTransform.position) < meleeAttackDistance)
-        {
-            bossTransform.Translate(Vector3.forward * meleeAttackSpeed * Time.deltaTime);
-        }
-    }
-
     public void SetStartPosition()
     {
         startPosition = bossTransform.position;
@@ -304,12 +295,6 @@ public class Boss : MonoBehaviour
         //StartCoroutine(WaitBeforeCreatingFireWall());
     }
 
-    //IEnumerator WaitBeforeCreatingFireWall()
-    //{
-    //    yield return new WaitForSeconds(0.5f);
-    //    fireWallBehaviour.isGrowing = true;
-    //}
-
     private void CastHellfire()
     {
         Debug.Log("Boss' special attack is: HELLFIRE!");
@@ -317,6 +302,4 @@ public class Boss : MonoBehaviour
         hellfire.transform.position = hellfirePoint.transform.position;
         hellfire.SetActive(true);
     }
-
-
 }
