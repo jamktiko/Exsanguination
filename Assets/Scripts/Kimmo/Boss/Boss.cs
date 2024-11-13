@@ -15,7 +15,6 @@ public class Boss : MonoBehaviour
 
     public Animator bossAnimator;
     [SerializeField] Collider bossCollider;
-    [SerializeField] Collider swordCollider;
     [SerializeField] float moveSpeed;
     [SerializeField] float stalkSpeed;
     [SerializeField] float rotationSpeed;
@@ -86,8 +85,6 @@ public class Boss : MonoBehaviour
         specialAttacks = new System.Action[] { CastSpikeGrowth, CastPirouette, CastFirewall, CastHellfire };
         animationTriggers = new string[] { "spikeGrowth", "pirouette", "firewall", "hellfire" };
         castingTimes = new float[] { 2f, 1.5f, 2f, 1f };
-
-        DeactivateSwordCollider();
     }
 
     private void Update()
@@ -152,16 +149,6 @@ public class Boss : MonoBehaviour
     public void ActivateBossCollider()
     {
         bossCollider.enabled = true;
-    }
-
-    public void DeactivateSwordCollider()
-    {
-        swordCollider.enabled = false;
-    }
-
-    public void ActivateSwordCollider()
-    {
-        swordCollider.enabled = true;
     }
 
     public void ChooseWaypoint()

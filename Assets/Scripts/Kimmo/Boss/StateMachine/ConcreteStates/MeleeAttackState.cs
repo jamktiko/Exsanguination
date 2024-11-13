@@ -16,14 +16,12 @@ public class MeleeAttackState : BossAbstractState
         Debug.Log("Boss entered to MELEE ATTACK state.");
 
         boss.bossAnimator.SetTrigger("meleeAttack");
-        boss.ActivateSwordCollider();
         boss.SetStartPosition();
     }
 
     public override void ExitState()
     {
         base.ExitState();
-        boss.DeactivateSwordCollider();
     }
 
     public override void FrameUpdate()
