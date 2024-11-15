@@ -21,17 +21,17 @@ public class TransitionInBossroom : MonoBehaviour
     private PlayerInput playerInput;
     [SerializeField] Transform cameraTransform;
     [SerializeField] PlayerStats playerStats;
-
+    CutsceneSkip cutsceneSkip;
     void Awake()
     {
 
         topText = GetComponentsInChildren<TextMeshProUGUI>()[0];
         bottomText = GetComponentsInChildren<TextMeshProUGUI>()[1];
-
+        cutsceneSkip = GameObject.FindGameObjectWithTag("CutsceneSkip").GetComponent<CutsceneSkip>();
         topText.color = bottomText.color = new Color(1,1,1,0);
         playerInput = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
         cameraTransform.rotation = Quaternion.Euler(Vector3.zero);
-        if (!playerStats.cutSceneSeen)
+        if (!cutsceneSkip.hasSeenCutscene)
         {
             Time.timeScale = 0f;
             playerInput.DeactivateInput();
@@ -41,7 +41,7 @@ public class TransitionInBossroom : MonoBehaviour
 
     private void Start()
     {
-        if (!playerStats.cutSceneSeen)
+        if (!cutsceneSkip.hasSeenCutscene)
             StartCoroutine(TransitionInBoss());
     }
 
@@ -76,7 +76,8 @@ public class TransitionInBossroom : MonoBehaviour
         }
         playerInput.ActivateInput();
         Time.timeScale = 1f;
-        if(bottomText.color.a != 0 || topText.color.a !=0)
+        cutsceneSkip.MarkCutsceneAsSeen();
+        if (bottomText.color.a != 0 || topText.color.a !=0)
         {
             Debug.Log("color nulled");
             bottomText.color = new Color(0, 0, 0, 0);

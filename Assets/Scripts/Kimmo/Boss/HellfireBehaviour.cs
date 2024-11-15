@@ -29,7 +29,7 @@ public class HellfireBehaviour : MonoBehaviour
             ResetObject();
             playerHealthManager.UpdatePlayerHealth(-damage);
         }
-        else if (other.tag == "Wall")
+        else if (other.includeLayers == 10)
         {
             ResetObject();
         }

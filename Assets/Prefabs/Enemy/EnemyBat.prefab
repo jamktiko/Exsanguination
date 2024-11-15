@@ -1095,7 +1095,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2969974521589250546}
   - component: {fileID: 164293730185852554}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Fur_A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1761,6 +1761,9 @@ MonoBehaviour:
   enemyTakeDamageAudioSource: {fileID: 6427034565302248483}
   bloodController: {fileID: 2773328690221678376}
   bloodSplatterParticle: {fileID: 3621862439878368813}
+  stakeLogic: {fileID: 0}
+  boss: {fileID: 0}
+  isBoss: 0
 --- !u!195 &7494266204906293972
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1798,7 +1801,6 @@ MonoBehaviour:
   attackRange: 5
   projectile: {fileID: 2204540823184924156}
   attackCooldown: 3
-  enemyBatAlertAudioSource: {fileID: 3415339600894763335}
 --- !u!82 &3415339600894763335
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1905,7 +1907,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3337285109527292180}
   - component: {fileID: 7133093122199232498}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bat_A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7177,7 +7179,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4704022597436605557}
   - component: {fileID: 5733647647883165552}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bat_B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7427,7 +7429,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7118553155537822391}
   - component: {fileID: 4872220788826370452}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bat_C
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7606,7 +7608,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7865241287505785103}
   - component: {fileID: 6247707286512962780}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Fur_C
   m_TagString: Untagged
   m_Icon: {fileID: 0}
