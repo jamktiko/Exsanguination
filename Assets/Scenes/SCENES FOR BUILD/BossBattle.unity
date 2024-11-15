@@ -96,8 +96,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: d8a502438ee06d2499867b72423e68a3, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: d889e8e83e1956947a028dc15877f7cf, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1591,9 +1591,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1441528707055977359, guid: 5c3309b74ec8cd34daa6b2931262ed37, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.251
+      objectReference: {fileID: 0}
     - target: {fileID: 1825213512916216652, guid: 5c3309b74ec8cd34daa6b2931262ed37, type: 3}
       propertyPath: m_Name
       value: NewBossPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 2313358608766056994, guid: 5c3309b74ec8cd34daa6b2931262ed37, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.405
       objectReference: {fileID: 0}
     - target: {fileID: 2331851059440595645, guid: 5c3309b74ec8cd34daa6b2931262ed37, type: 3}
       propertyPath: firewall
@@ -1687,6 +1695,22 @@ PrefabInstance:
       propertyPath: waypoints.Array.data[3]
       value: 
       objectReference: {fileID: 658025927}
+    - target: {fileID: 3317335330478242750, guid: 5c3309b74ec8cd34daa6b2931262ed37, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3317335330478242750, guid: 5c3309b74ec8cd34daa6b2931262ed37, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3317335330478242750, guid: 5c3309b74ec8cd34daa6b2931262ed37, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3317335330478242750, guid: 5c3309b74ec8cd34daa6b2931262ed37, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1951,8 +1975,8 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
+  m_Color: {r: 0.5896226, g: 0.9473117, b: 1, a: 1}
+  m_Intensity: 0.99
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -1989,9 +2013,9 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 768
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -2010,13 +2034,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1529410473}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalRotation: {x: 0.6830127, y: -0.18301266, z: 0.18301266, w: 0.6830127}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: -30, z: 0}
 --- !u!114 &1529410476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3299,7 +3323,7 @@ MonoBehaviour:
   loopSource: {fileID: 1766901222805943443}
   deathSource: {fileID: 2629700626894805935}
   deathScript: {fileID: 1215644641}
-  introToLoopDelay: -16
+  introToLoopDelay: -15.5
   isBossScene: 1
 --- !u!82 &2629700626894805935
 AudioSource:

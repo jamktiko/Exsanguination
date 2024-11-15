@@ -11,10 +11,10 @@ public class MusicManager : MonoBehaviour
 
     private bool isPaused;
     public bool isBossScene;
+    private bool hasDeathMusicStarted;
 
     private void Start()
     {
-        deathSource.Stop();
         // Start playing the intro clip
         introSource.Play();
 
@@ -32,8 +32,10 @@ public class MusicManager : MonoBehaviour
 
     private void Update()
     {
-        if (deathScript.isDead)
+        if (deathScript.isDead && !hasDeathMusicStarted)
         {
+            hasDeathMusicStarted = true;
+            Debug.Log("dead");
             deathSource.Play();
             loopSource.Pause();
             introSource.Pause();
