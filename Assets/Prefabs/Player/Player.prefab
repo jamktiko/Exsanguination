@@ -1333,7 +1333,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7f097787f5721e45be5a5db3f6f7cdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 14
+  moveSpeed: 10
+  airMultiplier: 0.4
   groundDrag: 10
   airDrag: 0
   groundMask:
@@ -1341,8 +1342,7 @@ MonoBehaviour:
     m_Bits: 256
   canMove: 0
   isMoving: 0
-  jumpForce: 12
-  airMultiplier: 0.4
+  jumpForce: 16
   isGrounded: 0
   isJumping: 0
   dashDirection: {x: 0, y: 0, z: 0}

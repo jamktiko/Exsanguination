@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
     [SerializeField] float moveSpeed;
+    [SerializeField] float airMultiplier;
     [SerializeField] float groundDrag;
     [SerializeField] float airDrag;
     [SerializeField] LayerMask groundMask;
@@ -19,7 +20,6 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Jump")]
     [SerializeField] float jumpForce;
-    [SerializeField] float airMultiplier;
     public bool isGrounded;
     [SerializeField] bool isJumping;
     bool canJump;
@@ -433,6 +433,7 @@ public class PlayerMovement : MonoBehaviour
         activeGrapple = true;
         canDash = false;
         canJump = false;
+        rb.drag = 4;
 
         velocityToSet = CalculateJumpVelocity(transform.position, targetPosition, trajectoryHeight);
         Invoke(nameof(SetVelocity), 0.1f);
