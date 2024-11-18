@@ -34,14 +34,6 @@ public class VentDamage : MonoBehaviour
         }
     }
 
-    //private void OnTriggerStay(Collider other)
-    //{
-    //    if (other.tag == "Player" && isActive)
-    //    {
-    //        Damage();
-    //    }
-    //}
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player" && isActive)
@@ -60,18 +52,14 @@ public class VentDamage : MonoBehaviour
 
     private void Damage()
     {
-        //if (!canDamage) return;
-
         canDamage = false;
         playerHealthManager.UpdatePlayerHealth(-damage);
-        Debug.Log("Vent damaged the player");
         StartCoroutine(WaitBeforeNextDamage());
     }
 
     IEnumerator WaitBeforeNextDamage()
     {
         yield return new WaitForSeconds(1);
-        Debug.Log("Ready to deal damage again");
         canDamage = true;
     }
 }
