@@ -7,7 +7,7 @@ public class VentDamage : MonoBehaviour
 {
     [SerializeField] int damage;
     PlayerHealthManager playerHealthManager;
-    bool canDamage;
+    [SerializeField] bool canDamage;
     public bool isActive;
     [SerializeField] GameObject gasObject;
 
@@ -26,30 +26,52 @@ public class VentDamage : MonoBehaviour
         if (isActive)
         {
             gasObject.SetActive(true);
-            canDamage = true;
         }
-    }
 
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.tag == "Player" && isActive)
+        if (canDamage)
         {
             Damage();
         }
     }
 
+    //private void OnTriggerStay(Collider other)
+    //{
+    //    if (other.tag == "Player" && isActive)
+    //    {
+    //        Damage();
+    //    }
+    //}
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player" && isActive)
+        {
+            canDamage = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player" && isActive)
+        {
+            canDamage = false;
+        }
+    }
+
     private void Damage()
     {
-        if (!canDamage) return;
+        //if (!canDamage) return;
 
         canDamage = false;
         playerHealthManager.UpdatePlayerHealth(-damage);
+        Debug.Log("Vent damaged the player");
         StartCoroutine(WaitBeforeNextDamage());
     }
 
     IEnumerator WaitBeforeNextDamage()
     {
         yield return new WaitForSeconds(1);
+        Debug.Log("Ready to deal damage again");
         canDamage = true;
     }
 }
