@@ -10,13 +10,14 @@ public class StarterSwordDamage : MonoBehaviour
 
     public bool hasDamagedEnemy = false;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        if (playerCombat.canDamage && other.CompareTag("Enemy"))
+        if (playerCombat.canDamage && other.CompareTag("Enemy") && !hasDamagedEnemy)
         {
-            
+            if (!hasDamagedEnemy)
+            {
                 EnemyHealthScript enemyHealthScript = other.GetComponent<EnemyHealthScript>();
-
+                hasDamagedEnemy = true;
                 if (playerCombat.specialDamage)
                 {
                     enemyHealthScript.ChangeEnemyHealth(thirdAttackDamage);
@@ -27,11 +28,13 @@ public class StarterSwordDamage : MonoBehaviour
                     enemyHealthScript.ChangeEnemyHealth(damage);
                     Debug.Log("Dealt " + damage + " damage");
                 }
-
-                hasDamagedEnemy = true;
             }
-        
-    }
+            
+            
+        }
 
+    }
    
+
+
 }

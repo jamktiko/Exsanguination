@@ -17,6 +17,7 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] GameObject slayMore;
     private bool isPerformingAction;
     public bool isAttacking;
+    [SerializeField] StarterSwordDamage starterSwordDamage;
 
     //[SerializeField] private ParticleSystem starterSwordSwing1;
     //[SerializeField] private ParticleSystem starterSwordSwing2;
@@ -173,6 +174,7 @@ public class PlayerCombat : MonoBehaviour
     public void CantDamageMethod()
     {
         canDamage = false;
+        starterSwordDamage.hasDamagedEnemy = false;
     }
 
     public void CanCombo()
