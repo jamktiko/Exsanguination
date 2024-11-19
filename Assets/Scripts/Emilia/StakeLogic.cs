@@ -5,10 +5,10 @@ public class StakeLogic : MonoBehaviour
 {
     [SerializeField] private GameObject prefab;
     [SerializeField] private float throwForce = 50f, stickDuration = 10f, returnCooldown = 10f, slowAmount = 0.5f, finisherThreshold = 0.25f, retrievalRange = 2f, stickTimer = 0f;
-    [SerializeField] private bool isThrown = false, isStuck = false, isReturning = false;
+    public bool isThrown = false, isStuck = false, isReturning = false;
     public bool startedFinishing;
     private Rigidbody rb;
-    [SerializeField] private EnemyAI stuckEnemy;
+    public EnemyAI stuckEnemy;
     public EnemyHealthScript stuckEnemyHealth;
     private EnemyFinisher stuckEnemyFinisher;
     private Transform playerTransform;
