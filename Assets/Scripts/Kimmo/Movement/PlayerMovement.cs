@@ -24,6 +24,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] bool isJumping;
     bool canJump;
     Vector3 verticalVelocity = Vector3.zero;
+    [SerializeField] float coyoteTime;
+    [SerializeField] float coyoteTimeCounter;
 
     [Header("Dash")]
     [SerializeField] Vector3 dashDirection;
@@ -102,26 +104,41 @@ public class PlayerMovement : MonoBehaviour
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, 0.1f, groundMask);
 
-        if (isGrounded && !isLanded) 
+        if (isGrounded) 
         {
-            audioManager.PlayPlayerLandAudioClip();
-            isLanded = true;
-        }
+            if (!isLanded)
+            {
+                audioManager.PlayPlayerLandAudioClip();
+                isLanded = true;
+            }
 
-        if (isGrounded && !activeGrapple)
-        {
-            rb.drag = groundDrag;
-            verticalVelocity.y = 0;
+            if (!activeGrapple)
+            {
+                rb.drag = groundDrag;
+                verticalVelocity.y = 0;
+            }
+
+            coyoteTimeCounter = 0;
         }
 
         if (!isGrounded)
         {
             isLanded = false;
-
+            coyoteTimeCounter += Time.deltaTime;
+            
             if(rb.velocity.y < 0 || activeGrapple)
             {
                 rb.drag = airDrag;
             }
+        }
+
+        if (coyoteTimeCounter < coyoteTime)
+        {
+            canJump = true;
+        }
+        else
+        {
+            canJump = false;
         }
 
         if (dashCooldownTimer < dashCooldown)
@@ -285,30 +302,24 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Jump methods
+    public void OnJumpPressed()
+    {
+        if (canJump)
+        {
+            isJumping = true;
+        }
+    }
+
     private void Jump()
     {
-        if (!isGrounded) return;
-
+        coyoteTimeCounter = coyoteTime;
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
         audioManager.PlayPlayerJumpAudioClip();
         isJumping = false;
     }
 
-    public void OnJumpPressed()
-    {
-        if (isGrounded && canJump)
-        {
-            isJumping = true;
-        }
-    }
-
     // Dash methods
-    private void Dash()
-    {
-        rb.AddForce(dashDirection * dashSpeed, ForceMode.Impulse);
-    }
-
     public void OnDashPressed()
     {
         if (dashCooldownTimer < dashCooldown || !isMoving) return;
@@ -318,8 +329,14 @@ public class PlayerMovement : MonoBehaviour
         {
             //audioManager.PlayDashAudioClip();
             canMove = false;
+            canSlide = false;
             StartCoroutine(DashCoroutine());
         }
+    }
+
+    private void Dash()
+    {
+        rb.AddForce(dashDirection * dashSpeed, ForceMode.Impulse);
     }
 
     public void GetDirection()
@@ -350,6 +367,7 @@ public class PlayerMovement : MonoBehaviour
         {
             isDashing = true;
             canMove = false;
+            canSlide = false;
             
             yield return null;
         }
@@ -358,16 +376,6 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Slide methods
-    private void Slide()
-    {
-        slideSpeed = moveSpeed * slideSpeedMultiplier;
-        rb.AddForce(orientation.forward * slideSpeed * 10f, ForceMode.Force);
-        if (isOnWall)
-        {
-            rb.AddForce(orientation.up * 9.81f, ForceMode.Force);
-        }
-    }
-
     public void OnSlidePressed()
     {
         if (slideCooldownTimer < slideCooldown || !isMoving) return;
@@ -384,6 +392,16 @@ public class PlayerMovement : MonoBehaviour
                 //audioManager.PlaySlideAudioClip();
                 StartCoroutine(SlideCoroutine());
             }
+        }
+    }
+
+    private void Slide()
+    {
+        slideSpeed = moveSpeed * slideSpeedMultiplier;
+        rb.AddForce(orientation.forward * slideSpeed * 10f, ForceMode.Force);
+        if (isOnWall)
+        {
+            rb.AddForce(orientation.up * 9.81f, ForceMode.Force);
         }
     }
 
@@ -433,7 +451,6 @@ public class PlayerMovement : MonoBehaviour
         activeGrapple = true;
         canDash = false;
         canJump = false;
-        rb.drag = 4;
 
         velocityToSet = CalculateJumpVelocity(transform.position, targetPosition, trajectoryHeight);
         Invoke(nameof(SetVelocity), 0.1f);
