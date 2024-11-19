@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
     bool canJump;
     Vector3 verticalVelocity = Vector3.zero;
     [SerializeField] float coyoteTime;
-    [SerializeField] float coyoteTimeCounter;
+    float coyoteTimeCounter;
 
     [Header("Dash")]
     [SerializeField] Vector3 dashDirection;
@@ -114,7 +114,6 @@ public class PlayerMovement : MonoBehaviour
 
             if (!activeGrapple)
             {
-                rb.drag = groundDrag;
                 verticalVelocity.y = 0;
             }
 
@@ -125,11 +124,16 @@ public class PlayerMovement : MonoBehaviour
         {
             isLanded = false;
             coyoteTimeCounter += Time.deltaTime;
-            
-            if(rb.velocity.y < 0 || activeGrapple)
-            {
-                rb.drag = airDrag;
-            }
+        }
+
+        if (rb.velocity.y < 0 || activeGrapple)
+        {
+            rb.drag = airDrag;
+        }
+
+        if (isGrounded && !activeGrapple || isJumping)
+        {
+            rb.drag = groundDrag;
         }
 
         if (coyoteTimeCounter < coyoteTime)

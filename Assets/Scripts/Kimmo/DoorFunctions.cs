@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class DoorFunctions : MonoBehaviour
 {
-    InputHandler inputManager;
+    InputHandler inputHandler;
     PlayerStats playerStats;
     bool doorIsOpening;
     bool isOpen;
@@ -22,7 +22,7 @@ public class DoorFunctions : MonoBehaviour
 
     private void Awake()
     {
-        inputManager = GameObject.FindGameObjectWithTag("Player").GetComponent<InputHandler>();
+        inputHandler = GameObject.FindGameObjectWithTag("Player").GetComponent<InputHandler>();
         playerStats = GameObject.FindGameObjectWithTag("PlayerStats").GetComponent<PlayerStats>();
         doorTransform = GetComponent<Transform>();
         startRotation = transform.rotation.eulerAngles;
@@ -31,7 +31,7 @@ public class DoorFunctions : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Player" && inputManager.openDoor)
+        if (other.tag == "Player" && inputHandler.openDoor)
         {
             Debug.Log("Try open door");
 
@@ -64,12 +64,10 @@ public class DoorFunctions : MonoBehaviour
 
     public void Open(Vector3 UserPosition)
     {
-
         Debug.Log("Open the door!");
         if (!isOpen)
         {
             float dot = Vector3.Dot(forward, (UserPosition - transform.position).normalized);
-            Debug.Log($"Dot: {dot.ToString("N3")}");
             StartCoroutine(OpenDoorRotation(dot));
         }
     }
