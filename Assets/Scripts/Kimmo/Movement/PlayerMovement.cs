@@ -84,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
         controllerHandler = GameObject.FindGameObjectWithTag("InputManager").GetComponent<ControllerHandler>();
         animator = GameObject.FindGameObjectWithTag("PlayerModel").GetComponent<Animator>();
         grapplingHookShoot = GetComponent<GrapplingHookShoot>();
-        cooldownUI = GameObject.Find("CooldownUI").GetComponent<CooldownUI>();
+        cooldownUI = GameObject.Find("DashCooldownBar").GetComponent<CooldownUI>();
     }
 
     private void Start()
