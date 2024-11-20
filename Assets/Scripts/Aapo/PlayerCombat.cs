@@ -18,7 +18,7 @@ public class PlayerCombat : MonoBehaviour
     private bool isPerformingAction;
     public bool isAttacking;
     [SerializeField] StarterSwordDamage starterSwordDamage;
-
+    private EnemyHealthScript[] enemies;
     //[SerializeField] private ParticleSystem starterSwordSwing1;
     //[SerializeField] private ParticleSystem starterSwordSwing2;
     //[SerializeField] private ParticleSystem starterSwordSwing3;
@@ -28,6 +28,13 @@ public class PlayerCombat : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+
+        GameObject[] enemyObjects = GameObject.FindGameObjectsWithTag("Enemy");
+        enemies = new EnemyHealthScript[enemyObjects.Length];
+        for (int i = 0; i < enemyObjects.Length; i++)
+        {
+            enemies[i] = enemyObjects[i].GetComponent<EnemyHealthScript>();
+        }
     }
     private void Start()
     {
@@ -174,7 +181,15 @@ public class PlayerCombat : MonoBehaviour
     public void CantDamageMethod()
     {
         canDamage = false;
-        starterSwordDamage.hasDamagedEnemy = false;
+
+
+        foreach (var enemy in enemies)
+        {
+            if (enemy != null) // Ensure the enemy hasn't been destroyed
+            {
+                enemy.hasBeenDamaged = false;
+            }
+        }
     }
 
     public void CanCombo()

@@ -18,15 +18,25 @@ public class MusicManager : MonoBehaviour
         // Start playing the intro clip
         introSource.Play();
 
-        // Set loopSource to not play yet
+        // Ensure the loop source is set to loop
         loopSource.loop = true;
 
-        // Wait for intro to finish, plus the editable delay, and then start the loop
-        Invoke("StartLoop", introSource.clip.length + introToLoopDelay);
+        // Start coroutine to handle timing
+        StartCoroutine(PlayLoopAfterIntro());
     }
 
-    private void StartLoop()
+    private System.Collections.IEnumerator PlayLoopAfterIntro()
     {
+        // Calculate when to start the loop
+        float introEndTime = Time.unscaledTime + introSource.clip.length + introToLoopDelay;
+
+        // Wait until the unscaled time reaches the calculated end time
+        while (Time.unscaledTime < introEndTime)
+        {
+            yield return null;
+        }
+
+        // Play the looping audio
         loopSource.Play();
     }
 
@@ -36,60 +46,11 @@ public class MusicManager : MonoBehaviour
         {
             hasDeathMusicStarted = true;
             Debug.Log("dead");
+
+            // Stop other music and play death music
             deathSource.Play();
             loopSource.Pause();
             introSource.Pause();
-
         }
     }
-
-    //{
-    //    // Check if the game is paused (Time.timeScale == 0)
-    //    if (Time.timeScale == 0 && !isPaused && !isBossScene)
-    //    {
-    //        // Pause the music when the game is paused
-    //        PauseMusic();
-    //        isPaused = true;
-    //    }
-    //    else if (Time.timeScale != 0 && isPaused)
-    //    {
-    //        // Resume the music when the game is unpaused
-    //        ResumeMusic();
-    //        isPaused = false;
-    //    }
-    //}
-
-    //private void PauseMusic()
-    //{
-    //    // Pause both intro and loop music
-    //    if (introSource.isPlaying)
-    //    {
-    //        introSource.Pause();
-    //    }
-    //    if (loopSource.isPlaying)
-    //    {
-    //        loopSource.Pause();
-    //    }
-
-    //    if (deathScript.isDead)
-    //    {
-    //        deathSource.Play();
-    //        loopSource.Pause();
-    //        introSource.Pause();
-
-    //    }
-    //}
-
-    //private void ResumeMusic()
-    //{
-    //    // Resume both intro and loop music if they were paused
-    //    if (!introSource.isPlaying)
-    //    {
-    //        introSource.UnPause();
-    //    }
-    //    if (!loopSource.isPlaying)
-    //    {
-    //        loopSource.UnPause();
-    //    }
-    //}
 }

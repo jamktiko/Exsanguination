@@ -15,6 +15,7 @@ public class EnemyHealthScript : MonoBehaviour
 
     [SerializeField] Boss boss;
     [SerializeField] bool isBoss;
+    public bool hasBeenDamaged;
     int previousHealth;
     PauseScript pauseScript;
 

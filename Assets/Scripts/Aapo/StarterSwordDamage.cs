@@ -7,17 +7,17 @@ public class StarterSwordDamage : MonoBehaviour
     [SerializeField] private PlayerCombat playerCombat;
     [SerializeField] private int damage;
     [SerializeField] private int thirdAttackDamage;
+    
 
-    public bool hasDamagedEnemy = false;
 
     private void OnTriggerStay(Collider other)
     {
-        if (playerCombat.canDamage && other.CompareTag("Enemy") && !hasDamagedEnemy)
+        if (playerCombat.canDamage && other.CompareTag("Enemy"))
         {
-            if (!hasDamagedEnemy)
+            EnemyHealthScript enemyHealthScript = other.GetComponent<EnemyHealthScript>();
+            if (enemyHealthScript != null && !enemyHealthScript.hasBeenDamaged)
             {
-                EnemyHealthScript enemyHealthScript = other.GetComponent<EnemyHealthScript>();
-                hasDamagedEnemy = true;
+                enemyHealthScript.hasBeenDamaged = true;
                 if (playerCombat.specialDamage)
                 {
                     enemyHealthScript.ChangeEnemyHealth(thirdAttackDamage);
@@ -29,12 +29,14 @@ public class StarterSwordDamage : MonoBehaviour
                     Debug.Log("Dealt " + damage + " damage");
                 }
             }
-            
-            
+
+
         }
 
     }
-   
+
 
 
 }
+
+

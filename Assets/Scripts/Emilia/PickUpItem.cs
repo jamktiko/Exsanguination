@@ -19,7 +19,7 @@ public class PickUpItem : MonoBehaviour
     InputHandler inputManager;
     [SerializeField] GameObject thisScroll;
     [SerializeField] GameObject scrollData;
-    [SerializeField] CloseBook closeBook;
+    CloseBook closeBook;
     private Light lightComponent;
     private TMP_Text text;
     private void Awake()
@@ -28,6 +28,7 @@ public class PickUpItem : MonoBehaviour
         inputManager = GameObject.FindGameObjectWithTag("Player").GetComponent<InputHandler>();
         lightComponent = GetComponentInChildren<Light>();
         text = GetComponentInChildren<TMP_Text>();
+        closeBook = GameObject.FindGameObjectWithTag("Scroll").GetComponent<CloseBook>();
     }
 
     private void Start()
