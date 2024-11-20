@@ -70,6 +70,7 @@ public class PickUpItem : MonoBehaviour
             if (tool == UtilityTool.GrapplingHook)
             {
                 playerStats.foundGrapplinghook = true;
+                playerStats.grapple.SetActive(true);
                 gameObject.SetActive(false);
             }
 

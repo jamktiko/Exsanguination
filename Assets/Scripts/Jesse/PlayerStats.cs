@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class PlayerStats : MonoBehaviour
 {
     [SerializeField] public bool foundSlaymore, foundGrapplinghook, foundStake, foundKeycard;
+    public GameObject grapple;
     [SerializeField] float preBossTime, bossTime, totalTime;
     [SerializeField] float timer;
 
@@ -88,11 +89,14 @@ public class PlayerStats : MonoBehaviour
         {
             preBossTime = timer;
             preBossTimeString = $"Level completion time: {TimeInString(preBossTime)}";
+            
+
         }
         RestartTimer();
         if (scene.buildIndex == 1)
         { //set all found bools to false and fully resets saved times if in base level
             foundGrapplinghook = foundKeycard = foundSlaymore = foundStake = false;
+            grapple.SetActive(false);
             ResetSavedTimes();
         }
     }
