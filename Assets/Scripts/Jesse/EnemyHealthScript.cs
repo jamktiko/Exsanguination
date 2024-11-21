@@ -102,7 +102,7 @@ public class EnemyHealthScript : MonoBehaviour
 
         else if (previousHealth > 50 && health <= 50)
         {
-            boss.idleDuration = 0;
+            boss.idleDuration = 0.1f;
             boss.PickAndActivateVents(7);
         }
 
