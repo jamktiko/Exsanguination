@@ -326,13 +326,16 @@ public class PlayerMovement : MonoBehaviour
     // Dash methods
     public void OnDashPressed()
     {
-        if (dashCooldownTimer < dashCooldown || !isMoving || !canDash) return;
+        if (dashCooldownTimer < dashCooldown || !isMoving) return;
         else dashCooldownTimer = 0;
 
-        //audioManager.PlayDashAudioClip();
-        canMove = false;
-        canSlide = false;
-        StartCoroutine(DashCoroutine());
+        if (canDash)
+        {
+            //audioManager.PlayDashAudioClip();
+            canMove = false;
+            canSlide = false;
+            StartCoroutine(DashCoroutine());
+        }
     }
 
     private void Dash()
@@ -367,6 +370,8 @@ public class PlayerMovement : MonoBehaviour
         while (Time.time < startTime + dashTime)
         {
             isDashing = true;
+            canMove = false;
+            canSlide = false;
             
             yield return null;
         }
@@ -377,17 +382,20 @@ public class PlayerMovement : MonoBehaviour
     // Slide methods
     public void OnSlidePressed()
     {
-        if (slideCooldownTimer < slideCooldown || !isMoving || !canSlide) return;
+        if (slideCooldownTimer < slideCooldown || !isMoving) return;
         else slideCooldownTimer = 0;
 
-        if (isGrounded || isOnWall)
+        if (canSlide)
         {
-            canMove = false;
-            canDash = false;
-            canSlide = false;
-            cam.localPosition = camSlidingPos;
-            //audioManager.PlaySlideAudioClip();
-            StartCoroutine(SlideCoroutine());
+            if (isGrounded || isOnWall)
+            {
+                canMove = false;
+                canDash = false;
+                canSlide = false;
+                cam.localPosition = camSlidingPos;
+                //audioManager.PlaySlideAudioClip();
+                StartCoroutine(SlideCoroutine());
+            }
         }
     }
 
