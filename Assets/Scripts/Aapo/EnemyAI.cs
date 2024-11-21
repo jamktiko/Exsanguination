@@ -24,7 +24,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private AudioSource enemyAlertAudioSource;
     [SerializeField] private AudioSource enemyFootstepAudioSource;
 
-
+    public bool pouncingEnemy;
     private NavMeshAgent navMeshAgent;  // NavMeshAgent reference
     private Transform player;
     private Rigidbody rb;
@@ -54,6 +54,12 @@ private Vector3 separationForce;             // Reusable vector for separation f
         storedSeparationDistance = separationDistance;
         navMeshAgent.speed = moveSpeed;  // Sync NavMeshAgent speed
         navMeshAgent.stoppingDistance = stoppingDistance;
+
+        int randomNumber = Random.Range(1, 3);
+        if (randomNumber == 1)
+        {
+            pouncingEnemy = true;
+        }
 
     }
 
@@ -171,14 +177,19 @@ private Vector3 separationForce;             // Reusable vector for separation f
         }
 
 
-        if (distance <= pounceRangeMax && distance >= pounceRangeMin && CanPounce() && !enemyStates.isStunned && navMeshAgent.enabled && !enemyAnimator.GetBool("isAttacking") && !isStuckOnStake)
+        if (pouncingEnemy && distance <= pounceRangeMax && distance >= pounceRangeMin && CanPounce() && !enemyStates.isStunned && navMeshAgent.enabled && !enemyAnimator.GetBool("isAttacking") && !isStuckOnStake)
         {
-            SnapRotationTowardsPlayer(direction);
-            if (isGrounded)
+           
+            
             {
-                Pounce();
-                lastPounceTime = Time.time;
+                SnapRotationTowardsPlayer(direction);
+                if (isGrounded)
+                {
+                    Pounce();
+                    lastPounceTime = Time.time;
+                }
             }
+            
             
         }
 

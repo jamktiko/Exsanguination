@@ -31,7 +31,7 @@ public class EnemyFinisher : MonoBehaviour
     public bool isFinishing;
 
     // URP Volume components
-    [SerializeField] private Volume volume;
+    private Volume volume;
     private ColorAdjustments colorAdjustments;
     private LensDistortion lensDistortion;
     private Vignette vignette;
@@ -45,6 +45,7 @@ public class EnemyFinisher : MonoBehaviour
         playerHealth = GameObject.FindWithTag("HealthManager").GetComponent<PlayerHealthManager>();
         audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         rb = GetComponentInParent<Rigidbody>();
+        volume = GameObject.FindWithTag("FinisherVolume").GetComponent<Volume>();
 
         volume.profile.TryGet(out colorAdjustments);
         volume.profile.TryGet(out lensDistortion);
@@ -198,4 +199,21 @@ public class EnemyFinisher : MonoBehaviour
         lensDistortion.intensity.value = 0;
         vignette.intensity.value = 0;
     }
+
+    public void UpdateHealthRedness(float healthPercentage)
+    {
+        // Convert health percentage to a scale of 0 to 1
+        float normalizedHealth = Mathf.Clamp01(healthPercentage);
+
+        // Calculate the green and blue values based on health
+        float greenBlueValue = normalizedHealth;
+
+        // Set the color filter value, keeping red at full intensity (1f)
+        colorAdjustments.colorFilter.value = new Color(1f, greenBlueValue, greenBlueValue);
+    }
+
+
+
+
 }
+

@@ -8,10 +8,12 @@ namespace CrusaderUI.Scripts
     {
         private Material _material;
         private PlayerHealthManager playerHealthManager;
+        private EnemyFinisher enemyFinisher;
 
         private void Awake()
         {
             playerHealthManager = GameObject.FindGameObjectWithTag("HealthManager").GetComponent<PlayerHealthManager>();
+            enemyFinisher = GameObject.FindGameObjectWithTag("PlayerModel").GetComponent<EnemyFinisher>();
         }
 
         private void Start()
@@ -40,6 +42,8 @@ namespace CrusaderUI.Scripts
             // Calculate the health percentage and update the material's fill level
             float healthPercentage = (float)playerHealthManager.CurrentPlayerHealth() / playerHealthManager.MaxPlayerHealth();
             SetValue(healthPercentage);
+
+            enemyFinisher.UpdateHealthRedness(healthPercentage);
         }
     }
 }
