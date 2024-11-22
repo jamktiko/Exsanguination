@@ -10,7 +10,6 @@ public class InputHandler : MonoBehaviour
     [SerializeField] private PlayerCombat playerCombat;
     [SerializeField] private MouseLook mouseLook;
     [SerializeField] private StakeLogic stakeLogic;
-    [SerializeField] private ThrowBomb throwBomb;
     [SerializeField] private PauseScript pauseScript;
     [SerializeField] private ControllerMenuNavigation menuNavigation;
     [SerializeField] private PlayerStats playerStats;
@@ -36,7 +35,6 @@ public class InputHandler : MonoBehaviour
         playerCombat = GameObject.Find("PlayerModel").GetComponent<PlayerCombat>();
         mouseLook = GetComponent<MouseLook>();
         stakeLogic = GameObject.Find("Stake").GetComponent<StakeLogic>();
-        throwBomb = GameObject.Find("SilverBomb").GetComponent<ThrowBomb>();
         pauseScript = GameObject.Find("PauseManager").GetComponent<PauseScript>();
         menuNavigation = GameObject.Find("InputManager").GetComponent<ControllerMenuNavigation>();
         playerStats = GameObject.FindGameObjectWithTag("PlayerStats").GetComponent<PlayerStats>();
