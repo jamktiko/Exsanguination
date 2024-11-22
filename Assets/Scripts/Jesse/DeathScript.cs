@@ -18,6 +18,9 @@ public class DeathScript : MonoBehaviour
         mainMenuButton.onClick.AddListener(ExitToMainMenu);
         retryButton.onClick.AddListener(Retry);
         pauseScript = GameObject.Find("PauseManager").GetComponent<PauseScript>();
+        controllerHandler = GameObject.Find("InputManager").GetComponent<ControllerHandler>();
+        controllerMenuNavigation = GameObject.Find("InputManager").GetComponent<ControllerMenuNavigation>();
+
     }
 
     public void Die()
