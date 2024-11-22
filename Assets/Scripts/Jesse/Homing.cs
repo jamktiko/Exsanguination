@@ -61,7 +61,7 @@ public class Homing : MonoBehaviour
         if (targetDirection != Vector3.zero)
         {
             Quaternion targetRotation = Quaternion.LookRotation(targetDirection, transform.up);
-            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, turnSpeed);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
         }
     }
 
