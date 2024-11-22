@@ -16,7 +16,7 @@ public class InputHandler : MonoBehaviour
     [SerializeField] private PlayerStats playerStats;
     [SerializeField] private GameObject[] pickUpItems;
     private PlayerInput playerInput;
-    private InputAction movementAction, jumpAction, dashAction, slideAction, attackAction, grapplingAction, stakeAction, useAction, blockAction, throwableAction, pauseAction, weapon1Action, weapon2Action, pointAction, menuInteractionAction, menuNavigateAction, mouselookAround;
+    private InputAction movementAction, jumpAction, dashAction, slideAction, attackAction, grapplingAction, stakeAction, useAction, blockAction, pauseAction, weapon1Action, weapon2Action, pointAction, menuInteractionAction, menuNavigateAction, mouselookAround;
     private Vector2 horizontalInput;
     private Vector2 mouseInput;
     private Vector2 cursorPosition;
@@ -50,7 +50,6 @@ public class InputHandler : MonoBehaviour
         stakeAction = playerInput.actions["Stake"];
         useAction = playerInput.actions["Use"];
         blockAction = playerInput.actions["Block"];
-        throwableAction = playerInput.actions["Throwable"];
         pauseAction = playerInput.actions["Pause"];
         weapon1Action = playerInput.actions["Weapon1"];
         weapon2Action = playerInput.actions["Weapon2"];
@@ -225,12 +224,6 @@ public class InputHandler : MonoBehaviour
                 Debug.Log("Open door = false");
             }
             
-        };
-
-        throwableAction.performed += ctx =>
-        {
-            if (inputsEnabled)
-                throwBomb.Throw();
         };
 
         weapon1Action.performed += ctx =>
