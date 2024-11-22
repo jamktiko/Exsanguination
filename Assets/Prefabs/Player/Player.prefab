@@ -1432,7 +1432,7 @@ MonoBehaviour:
   grapplePoint: {x: 0, y: 0, z: 0}
   arrowPosition: {x: 0, y: 0, z: 0}
   arrowStartPosition: {x: 0, y: 0, z: 0}
-  grapplingCd: 3
+  grapplingCd: 1
 --- !u!114 &-5272548372710602540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4285,6 +4285,7 @@ MonoBehaviour:
   slayMore: {fileID: 4809923830058385625}
   isAttacking: 0
   starterSwordDamage: {fileID: 891369567968641765}
+  comboCooldownDuration: 0.4
 --- !u!114 &8773021674598466667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4305,7 +4306,6 @@ MonoBehaviour:
   enemyType: 
   particleInstantiateSpot: {fileID: 2774828645583269638}
   isFinishing: 0
-  volume: {fileID: 0}
 --- !u!1 &4144531346931834670
 GameObject:
   m_ObjectHideFlags: 0
@@ -13997,9 +13997,33 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2047758919817120588}
     m_Modifications:
+    - target: {fileID: 189151598336397907, guid: 7a1c6c1419e247844975897ddf56eee6, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1517750593208256389, guid: 7a1c6c1419e247844975897ddf56eee6, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2248503556581208051, guid: 7a1c6c1419e247844975897ddf56eee6, type: 3}
       propertyPath: m_Name
       value: GrapplingHook
+      objectReference: {fileID: 0}
+    - target: {fileID: 2248503556581208051, guid: 7a1c6c1419e247844975897ddf56eee6, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2248503556581208051, guid: 7a1c6c1419e247844975897ddf56eee6, type: 3}
+      propertyPath: m_TagString
+      value: GrappleModel
+      objectReference: {fileID: 0}
+    - target: {fileID: 4919022761607383708, guid: 7a1c6c1419e247844975897ddf56eee6, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5567129139432854040, guid: 7a1c6c1419e247844975897ddf56eee6, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7713944813080136367, guid: 7a1c6c1419e247844975897ddf56eee6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14040,6 +14064,10 @@ PrefabInstance:
     - target: {fileID: 7713944813080136367, guid: 7a1c6c1419e247844975897ddf56eee6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 27.193
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193099188679471725, guid: 7a1c6c1419e247844975897ddf56eee6, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14427,7 +14455,7 @@ PrefabInstance:
       objectReference: {fileID: 5528116302790637123}
     - target: {fileID: 7488811631312195304, guid: 269a9c97df8a8814e82c1090375f0f96, type: 3}
       propertyPath: thirdAttackDamage
-      value: 40
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8885812706605862700, guid: 269a9c97df8a8814e82c1090375f0f96, type: 3}
       propertyPath: m_Volume

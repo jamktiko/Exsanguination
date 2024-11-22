@@ -14,7 +14,7 @@ public class PickUpItem : MonoBehaviour
     };
 
     [SerializeField] public UtilityTool tool;
-
+    [SerializeField] GameObject grappleModel;
     PlayerStats playerStats;
     InputHandler inputManager;
     [SerializeField] GameObject thisScroll;
@@ -29,10 +29,12 @@ public class PickUpItem : MonoBehaviour
         lightComponent = GetComponentInChildren<Light>();
         text = GetComponentInChildren<TMP_Text>();
         closeBook = GameObject.FindGameObjectWithTag("Scroll").GetComponent<CloseBook>();
+        grappleModel = GameObject.FindGameObjectWithTag("GrappleModel");
     }
 
     private void Start()
     {
+        grappleModel.SetActive(false);
         lightComponent.enabled = false;
         text.enabled = false;     
     }
@@ -70,7 +72,7 @@ public class PickUpItem : MonoBehaviour
             if (tool == UtilityTool.GrapplingHook)
             {
                 playerStats.foundGrapplinghook = true;
-                playerStats.grapple.SetActive(true);
+                grappleModel.SetActive(true);
                 gameObject.SetActive(false);
             }
 

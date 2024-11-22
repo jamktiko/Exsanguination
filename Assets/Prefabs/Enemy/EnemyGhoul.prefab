@@ -2396,6 +2396,7 @@ MonoBehaviour:
   stakeLogic: {fileID: 0}
   boss: {fileID: 0}
   isBoss: 0
+  hasBeenDamaged: 0
 --- !u!114 &4788433511447380642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2432,6 +2433,7 @@ MonoBehaviour:
   enemyAnimator: {fileID: 9016512344435087899}
   enemyAlertAudioSource: {fileID: 6701046629129589312}
   enemyFootstepAudioSource: {fileID: 4555619591960417357}
+  pouncingEnemy: 0
   isGrounded: 1
   enemyIsTriggered: 0
 --- !u!82 &8042239175878887669
@@ -2446,7 +2448,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0

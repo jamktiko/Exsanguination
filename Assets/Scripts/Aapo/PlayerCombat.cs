@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerCombat : MonoBehaviour
 {
@@ -19,6 +20,9 @@ public class PlayerCombat : MonoBehaviour
     public bool isAttacking;
     [SerializeField] StarterSwordDamage starterSwordDamage;
     private EnemyHealthScript[] enemies;
+    private Image comboCooldownImage;
+    [SerializeField] float comboCooldownDuration;
+
     //[SerializeField] private ParticleSystem starterSwordSwing1;
     //[SerializeField] private ParticleSystem starterSwordSwing2;
     //[SerializeField] private ParticleSystem starterSwordSwing3;
@@ -28,6 +32,7 @@ public class PlayerCombat : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        comboCooldownImage = GameObject.FindGameObjectWithTag("ComboCooldown").GetComponent<Image>();
 
         GameObject[] enemyObjects = GameObject.FindGameObjectsWithTag("Enemy");
         enemies = new EnemyHealthScript[enemyObjects.Length];
@@ -41,7 +46,27 @@ public class PlayerCombat : MonoBehaviour
         animator.runtimeAnimatorController = weaponAnimators[0];
        slayMore.SetActive(false);
         audioManager.PlaySwordEquipClips();
+        comboCooldownImage.fillAmount = 0;
 
+
+    }
+
+    private IEnumerator ComboTimer()
+    {
+        float elapsed = 0f;
+        comboCooldownImage.fillAmount = 1f;
+        Debug.Log("ComboTimer started");
+
+        while (elapsed < comboCooldownDuration)
+        {
+            elapsed += Time.deltaTime;
+            float fillValue = Mathf.Lerp(1f, 0f, elapsed / comboCooldownDuration);
+            comboCooldownImage.fillAmount = fillValue;
+            yield return null;
+        }
+
+        comboCooldownImage.fillAmount = 0f;
+        Debug.Log("ComboTimer ended");
     }
 
 
@@ -165,7 +190,6 @@ public class PlayerCombat : MonoBehaviour
 
     public void StopCombo()
     {
-        canCombo = false;
         animator.SetBool("isAttacking", false);
         animator.SetBool("startedAttack", false);
         animator.SetBool("failedCombo", false);
@@ -196,13 +220,17 @@ public class PlayerCombat : MonoBehaviour
     {
         if (!animator.GetBool("failedCombo"))
         {
+            Debug.Log("cancombo");
             canCombo = true;
+            StartCoroutine(ComboTimer());
         }
     }
 
     public void CantCombo()
     {
         canCombo = false;
+        Debug.Log("cantcombo");
+
         //animator.SetBool("isAttacking", false);
 
 
@@ -245,3 +273,6 @@ public class PlayerCombat : MonoBehaviour
 
     }
 }
+
+
+
