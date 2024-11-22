@@ -20,6 +20,7 @@ public class DashState : BossAbstractState
         boss.bossAnimator.SetBool("moveForward", true);
         boss.DeactivateBossCollider();
         boss.ChooseWaypoint();
+        boss.StartOfDash();
     }
 
     public override void ExitState()

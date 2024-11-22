@@ -71,6 +71,10 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioClip batDieAudioClip;
     [SerializeField] AudioClip batAlertAudioClip;
 
+    [Header("Boss")]
+    [SerializeField] AudioClip bossTakeDamageAudioClip;
+    [SerializeField] AudioClip bossDashAudioClip;
+
 
 
     private void Awake()
@@ -319,16 +323,31 @@ public class AudioManager : MonoBehaviour
         audioSource.PlayOneShot(enemyDieAudioClip);
     }
 
-    public void PlayEnemyBatAttackClip(AudioSource audiosource)
+    public void PlayEnemyBatAlertClip(AudioSource audioSource)
     {
-        audiosource.clip = batAttackAudioClip;
-        audiosource.PlayOneShot(batAttackAudioClip);
-    }
-
-    public void PlayEnemyBatAlertClip(AudioSource audiosource)
-    {
-        audiosource.clip = batAlertAudioClip;
-        audiosource.PlayOneShot(batAlertAudioClip);
+        audioSource.clip = batAlertAudioClip;
+        audioSource.PlayOneShot(batAlertAudioClip);
 
     }
+
+    // Bat
+    public void PlayEnemyBatAttackClip(AudioSource audioSource)
+    {
+        audioSource.clip = batAttackAudioClip;
+        audioSource.PlayOneShot(batAttackAudioClip);
+    }
+
+    // Boss
+    public void PlayBossTakeDamageClip(AudioSource audioSource)
+    {
+        audioSource.clip = bossTakeDamageAudioClip;
+        audioSource.PlayOneShot(bossTakeDamageAudioClip);
+    }
+
+    public void PlayBossDashDamageClip(AudioSource audioSource)
+    {
+        audioSource.clip = bossDashAudioClip;
+        audioSource.PlayOneShot(bossDashAudioClip);
+    }
+
 }

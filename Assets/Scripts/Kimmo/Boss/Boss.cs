@@ -59,6 +59,10 @@ public class Boss : MonoBehaviour
     [SerializeField] GameObject hellfirePoint;
     [SerializeField] AudioClip[] bossCasts;
     [SerializeField] AudioSource castSpecialAttack;
+
+    AudioManager audioManager;
+    [SerializeField] AudioSource bossDashAudioSource;
+
     private void Awake()
     {
         bossStateManager = new BossStateManager();
@@ -71,6 +75,7 @@ public class Boss : MonoBehaviour
         specialAttackState = new SpecialAttackState(this, bossStateManager);
 
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
     }
 
     private void Start()
@@ -180,6 +185,11 @@ public class Boss : MonoBehaviour
         var actualTargetPosition = new Vector3(targetPosition.x, bossTransform.position.y, targetPosition.z);
         bossTransform.position = Vector3.MoveTowards(bossTransform.position, actualTargetPosition,
             moveSpeed * Time.deltaTime);
+    }
+
+    public void StartOfDash()
+    {
+        audioManager.PlayBossDashDamageClip(bossDashAudioSource);
     }
 
     public void MoveSideways()

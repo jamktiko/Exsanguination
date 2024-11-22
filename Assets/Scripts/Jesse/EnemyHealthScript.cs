@@ -7,6 +7,7 @@ public class EnemyHealthScript : MonoBehaviour
     public int health = 100;
     AudioManager audioManager;
     [SerializeField] AudioSource enemyTakeDamageAudioSource;
+    [SerializeField] AudioSource bossTakeDamageAudioSource;
     private EnemyFinisher stuckEnemyFinisher;
     private EnemyDeathScript enemyDeathScript;
     [SerializeField] private BloodFXController bloodController;
@@ -56,6 +57,7 @@ public class EnemyHealthScript : MonoBehaviour
         
         if (isBoss)
         {
+            audioManager.PlayBossTakeDamageClip(bossTakeDamageAudioSource);
             BossHealthEffects();
         }
     }
