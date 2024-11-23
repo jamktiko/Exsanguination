@@ -177,7 +177,7 @@ public class InputHandler : MonoBehaviour
             if (inputsEnabled && playerStats.foundStake)
             {
                 stakeHoldDown = true;
-                canAttack = false;
+                //canAttack = false;
                 stakeLogic.StartThrowingChargingVisual();
             }
         };
@@ -190,7 +190,7 @@ public class InputHandler : MonoBehaviour
                 stakeLogic.StartThrowVisual();
                 stakeLogic.ThrowStake(stakeButtonDownTimer);
                 stakeButtonDownTimer = 0f;
-                canAttack = true;
+                //canAttack = true;
             }
 
         };

@@ -13,10 +13,15 @@ public class StakeLogic : MonoBehaviour
     private EnemyFinisher stuckEnemyFinisher;
     private Transform playerTransform;
     public Camera playerCamera;
+    public SkinnedMeshRenderer[] skinnedMeshRenderersToHide;
+   public MeshRenderer[] meshRenderersToHide;
+
 
     private Quaternion stakeRotation = Quaternion.Euler(0f, 0f, 0f);
 
     [SerializeField] private GameObject stakeLocationOnPlayer;
+
+    private Animator animator;
 
     private void Awake()
     {
@@ -24,6 +29,27 @@ public class StakeLogic : MonoBehaviour
         playerTransform = GameObject.FindWithTag("Player").transform;
         playerCamera = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
         stuckEnemyFinisher = GameObject.FindGameObjectWithTag("PlayerModel").GetComponent<EnemyFinisher>();
+        animator = GetComponent<Animator>();
+
+        //dont mind these :D
+
+        GameObject[] gameObjectsWithTag = GameObject.FindGameObjectsWithTag("GunMeshRenderer");
+        meshRenderersToHide = new MeshRenderer[gameObjectsWithTag.Length];
+
+        for (int i = 0; i < gameObjectsWithTag.Length; i++)
+        {
+            meshRenderersToHide[i] = gameObjectsWithTag[i].GetComponent<MeshRenderer>();
+        }
+
+        GameObject[] gameObjectsWithTag2 = GameObject.FindGameObjectsWithTag("HandSkinRenderer");
+        skinnedMeshRenderersToHide = new SkinnedMeshRenderer[gameObjectsWithTag2.Length];
+
+        for (int i = 0; i < gameObjectsWithTag2.Length; i++) // Note: Use gameObjectsWithTag2.Length
+        {
+            skinnedMeshRenderersToHide[i] = gameObjectsWithTag2[i].GetComponent<SkinnedMeshRenderer>();
+        }
+
+
     }
 
     void Start()
@@ -195,12 +221,32 @@ public class StakeLogic : MonoBehaviour
 
     public void StartThrowingChargingVisual()
     {
-        //Charge backwards animation
+        prefab.SetActive(true);
+        animator.enabled = true;
+        animator.SetBool("isWinding", true);
+        foreach (SkinnedMeshRenderer renderer in skinnedMeshRenderersToHide)
+        {
+            renderer.enabled = false;
+        }
+        foreach (MeshRenderer mrenderer in meshRenderersToHide)
+        {
+            mrenderer.enabled = false;
+        }
     }
 
     public void StartThrowVisual()
     {
-        // Throw Stake
+        animator.SetBool("isWinding", false);
+        animator.enabled = false;
+        foreach (SkinnedMeshRenderer renderer in skinnedMeshRenderersToHide)
+        {
+            renderer.enabled = true;
+        }
+        foreach (MeshRenderer mrenderer in meshRenderersToHide)
+        {
+            mrenderer.enabled = true;
+        }
+
     }
 
     public void ResetConnectionToEnemy()
