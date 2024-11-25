@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -9,16 +10,18 @@ public class PauseScript : MonoBehaviour
     [SerializeField] Button continueButton;
     [SerializeField] Button settingsButton;
     [SerializeField] Button mainMenuButton;
+    [SerializeField] GameObject generalButton;
 
     [SerializeField] SettingsMenu settingsMenu;
     [SerializeField] GameObject victoryScreen;
 
     [SerializeField] public bool paused;
-    [SerializeField] ControllerHandler controllerHandler;
-    [SerializeField] InputHandler inputManager;
+    private ControllerHandler controllerHandler;
+    private InputHandler inputHandler;
     void Awake()
     {
-        inputManager = GameObject.FindGameObjectWithTag("Player").GetComponent<InputHandler>();
+        inputHandler = GameObject.FindGameObjectWithTag("Player").GetComponent<InputHandler>();
+        controllerHandler = GameObject.Find("InputManager").GetComponent<ControllerHandler>();
         continueButton.onClick.AddListener(UnPauseGame);
         settingsButton.onClick.AddListener(OpenSettings);
         mainMenuButton.onClick.AddListener(ExitToMainMenu);
@@ -32,7 +35,7 @@ public class PauseScript : MonoBehaviour
 
     public void DisableButtons()
     {
-        inputManager.DisableInput();
+        inputHandler.DisableInput();
     }
 
     public void PauseGame()
@@ -50,7 +53,7 @@ public class PauseScript : MonoBehaviour
         {
             Cursor.visible = false;
         }
-        inputManager.DisableInput(); //how to press buttons if input is disabled on pause? Maybe instead a bool to stop moving things?
+        inputHandler.DisableInput(); //how to press buttons if input is disabled on pause? Maybe instead a bool to stop moving things?
     }
 
     public void UnPauseGame()
@@ -58,14 +61,25 @@ public class PauseScript : MonoBehaviour
         Debug.Log("game unpaused");
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        inputManager.EnableInput();
+        inputHandler.EnableInput();
         Time.timeScale = 1f;
         paused = false;
         settingsMenu.CloseSettings();
         pauseMenu.SetActive(false);
         
     }
+    public void SetFirstButtonInPauseMenu()
+    {
+        StartCoroutine(DelaySetFirstButton());
 
+    }
+    private IEnumerator DelaySetFirstButton()
+    {
+        yield return null; // Wait one frame
+        inputHandler.SetFirstButton(continueButton.gameObject);
+    }
+
+    
     public void OpenSettings()
     {
         Debug.Log("settings opened");
@@ -75,7 +89,7 @@ public class PauseScript : MonoBehaviour
     public void ExitToMainMenu()
     {
         Debug.Log("exited");
-        inputManager.EnableInput();
+        inputHandler.EnableInput();
         SceneManager.LoadScene(0);
     }
 

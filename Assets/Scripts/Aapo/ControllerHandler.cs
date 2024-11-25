@@ -6,36 +6,26 @@ using UnityEngine.InputSystem;
 public class ControllerHandler : MonoBehaviour
 {
     public bool controllerIsConnected;
-    //private ControllerAim controllerAim;
-    //private MouseLook mouselook;
-    private MouseMenuNavigation navigation;
-    //private ControllerMenuNavigation controllerMenuNavigation;
+    
     void Awake()
     {
         InputSystem.onDeviceChange += OnDeviceChange;
-        //controllerAim = GameObject.FindGameObjectWithTag("Player").GetComponent<ControllerAim>();
-        //mouselook = GameObject.FindGameObjectWithTag("Player").GetComponent<MouseLook>();
-        navigation = GetComponent<MouseMenuNavigation>();
-        //controllerMenuNavigation = GetComponent<ControllerMenuNavigation>();
+       
     }
 
     public void ControllerEnabled()
     {
 
-        navigation.enabled = false;
-        //controllerMenuNavigation.enabled = true;
+        
         controllerIsConnected = true;
-        //controllerAim.enabled = true;
-        //mouselook.enabled = false;
+        
     }
 
     public void ControllerDisabled()
     {
-        navigation.enabled = true;
-        //mouselook.enabled = true;
+        
         controllerIsConnected = false;
-        //controllerAim.enabled = false;
-        //controllerMenuNavigation.enabled = false;
+        
 
     }
 

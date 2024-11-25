@@ -1186,9 +1186,13 @@ MonoBehaviour:
   mouseLook: {fileID: 0}
   stakeLogic: {fileID: 0}
   pauseScript: {fileID: 0}
-  menuNavigation: {fileID: 0}
   playerStats: {fileID: 0}
   pickUpItems: []
+  firstMenuButton: {fileID: 0}
+  firstDeathButton: {fileID: 0}
+  deathScript: {fileID: 0}
+  eventSystem: {fileID: 0}
+  inputCooldown: 0.2
   inputsEnabled: 0
   openDoor: 0
 --- !u!114 &2303243253875908596
@@ -1513,7 +1517,7 @@ MonoBehaviour:
     m_ActionId: 1adc1f9b-8d80-4b0b-a9bd-4e25301e2053
     m_ActionName: Movement/PauseMenu[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Keyboard and Mouse
+  m_DefaultControlScheme: 
   m_DefaultActionMap: Movement
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 8944920751175303245}

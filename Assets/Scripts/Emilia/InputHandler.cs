@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.ProBuilder.MeshOperations;
+using UnityEngine.UI;
 
 public class InputHandler : MonoBehaviour
 {
@@ -11,15 +13,19 @@ public class InputHandler : MonoBehaviour
     [SerializeField] private MouseLook mouseLook;
     [SerializeField] private StakeLogic stakeLogic;
     [SerializeField] private PauseScript pauseScript;
-    [SerializeField] private ControllerMenuNavigation menuNavigation;
     [SerializeField] private PlayerStats playerStats;
     [SerializeField] private GameObject[] pickUpItems;
+    public GameObject firstMenuButton; // The default button when the menu is opened
+    public GameObject firstDeathButton; // The default button when the menu is opened
+    [SerializeField] private DeathScript deathScript; // The default button when the menu is opened
+    public EventSystem eventSystem; // Unity EventSystem for handling selections
     private PlayerInput playerInput;
     private InputAction movementAction, jumpAction, dashAction, slideAction, attackAction, grapplingAction, stakeAction, useAction, blockAction, pauseAction, weapon1Action, weapon2Action, pointAction, menuInteractionAction, menuNavigateAction, mouselookAround;
     private Vector2 horizontalInput;
     private Vector2 mouseInput;
     private Vector2 cursorPosition;
-
+    [SerializeField] float inputCooldown = 0.2f; // Time delay between inputs
+    private float lastInputTime = 0f;
     private bool stakeHoldDown;
     public bool inputsEnabled;
     private float stakeButtonDownTimer = 0f;
@@ -36,7 +42,6 @@ public class InputHandler : MonoBehaviour
         mouseLook = GetComponent<MouseLook>();
         stakeLogic = GameObject.Find("Stake").GetComponent<StakeLogic>();
         pauseScript = GameObject.Find("PauseManager").GetComponent<PauseScript>();
-        menuNavigation = GameObject.Find("InputManager").GetComponent<ControllerMenuNavigation>();
         playerStats = GameObject.FindGameObjectWithTag("PlayerStats").GetComponent<PlayerStats>();
 
         movementAction = playerInput.actions["HorizontalMovement"];
@@ -67,10 +72,10 @@ public class InputHandler : MonoBehaviour
                 if (!pauseScript.paused)
                 {
                     pauseScript.PauseGame();
-                    menuNavigation.SelectFirstMenuButton();
+                    SetFirstButton(firstMenuButton);
 
                 }
-                
+
             }
 
             else
@@ -87,8 +92,15 @@ public class InputHandler : MonoBehaviour
         {
             if (pauseScript.paused)
             {
-                Vector2 navigationInput = ctx.ReadValue<Vector2>();
-                menuNavigation.Navigate(navigationInput);
+                HandleMenuNavigation(ctx.ReadValue<Vector2>());
+
+            }
+
+            else if (deathScript.isDead)
+            {
+                SetFirstButton(firstDeathButton);
+
+                HandleMenuNavigation(ctx.ReadValue<Vector2>());
 
             }
         };
@@ -253,6 +265,78 @@ public class InputHandler : MonoBehaviour
         }
 
     }
+
+    public void SetFirstButton(GameObject button)
+    {
+        eventSystem.SetSelectedGameObject(button);
+
+    }
+
+
+    private void NavigateMenu(Vector2 input)
+    {
+
+        // Get the currently selected object
+        GameObject selectedObject = eventSystem.currentSelectedGameObject;
+
+        //if (selectedObject == null)
+        //{
+        //    // If no object is selected, set the default button
+        //    selectedObject = firstMenuButton.gameObject;
+        //    eventSystem.SetSelectedGameObject(selectedObject);
+        //    return;
+        //}
+
+        // Use the Event System to navigate
+        Selectable current = selectedObject.GetComponent<Selectable>();
+        if (input.y > 0) // Navigate Up
+        {
+            Selectable next = current.FindSelectableOnUp();
+            if (next != null)
+            {
+                eventSystem.SetSelectedGameObject(next.gameObject);
+                Debug.Log("Navigate Up");
+            }
+        }
+        else if (input.y < 0) // Navigate Down
+        {
+            Selectable next = current.FindSelectableOnDown();
+            if (next != null)
+            {
+                eventSystem.SetSelectedGameObject(next.gameObject);
+                Debug.Log("Navigate Down");
+            }
+        }
+        else if (input.x > 0) // Navigate Right
+        {
+            Selectable next = current.FindSelectableOnRight();
+            if (next != null)
+            {
+                eventSystem.SetSelectedGameObject(next.gameObject);
+                Debug.Log("Navigate Right");
+            }
+        }
+        else if (input.x < 0) // Navigate Left
+        {
+            Selectable next = current.FindSelectableOnLeft();
+            if (next != null)
+            {
+                eventSystem.SetSelectedGameObject(next.gameObject);
+                Debug.Log("Navigate Left");
+            }
+        }
+    }
+
+    private void HandleMenuNavigation(Vector2 navigationInput)
+    {
+        float currentTime = Time.time;
+        if (currentTime - lastInputTime > inputCooldown)
+        {
+            lastInputTime = currentTime;
+            NavigateMenu(navigationInput);
+        }
+    }
+
 
     private void OnApplicationFocus(bool focus)
     {

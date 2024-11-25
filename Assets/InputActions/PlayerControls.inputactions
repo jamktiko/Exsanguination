@@ -557,19 +557,8 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "",
-                    "id": "f2f6e0be-2499-4d2f-ab84-4cc529ad9bb6",
-                    "path": "<Gamepad>/dpad",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "MenuNavigate",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
                     "name": "2D Vector",
-                    "id": "17fa3726-6be8-4560-bfe8-94f30e6aaec3",
+                    "id": "a57b465c-0e9f-45ee-b5f4-ef6f2f928e02",
                     "path": "2DVector",
                     "interactions": "",
                     "processors": "",
@@ -580,22 +569,44 @@
                 },
                 {
                     "name": "up",
-                    "id": "13e8962d-6f31-4aa2-8d52-21a8aec08887",
-                    "path": "<Keyboard>/upArrow",
+                    "id": "055c3fe4-c0f6-4218-8640-2c11b1f26337",
+                    "path": "<Gamepad>/dpad/up",
                     "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard and Mouse",
+                    "processors": "AxisDeadzone",
+                    "groups": "",
                     "action": "MenuNavigate",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "down",
-                    "id": "da58f248-5052-4f5a-86e5-730e45fc4e6b",
-                    "path": "<Keyboard>/downArrow",
+                    "id": "50e92e12-0b53-4f3d-a56d-b0cdb3a4a140",
+                    "path": "<Gamepad>/dpad/down",
                     "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard and Mouse",
+                    "processors": "AxisDeadzone",
+                    "groups": "",
+                    "action": "MenuNavigate",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "411293c2-113f-4c5d-bd94-48514a936f6c",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "AxisDeadzone",
+                    "groups": "",
+                    "action": "MenuNavigate",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "5f932f4c-3907-488a-9a05-a1b3b399e136",
+                    "path": "<Gamepad>/dpad/right",
+                    "interactions": "",
+                    "processors": "AxisDeadzone",
+                    "groups": "Gamepad",
                     "action": "MenuNavigate",
                     "isComposite": false,
                     "isPartOfComposite": true

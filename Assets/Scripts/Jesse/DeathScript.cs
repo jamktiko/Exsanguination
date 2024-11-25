@@ -12,14 +12,14 @@ public class DeathScript : MonoBehaviour
     [SerializeField] Button retryButton;
     public bool isDead;
     [SerializeField] ControllerHandler controllerHandler;
-    [SerializeField] ControllerMenuNavigation controllerMenuNavigation;
+    private InputHandler inputHandler; 
     private void Awake()
     {
         mainMenuButton.onClick.AddListener(ExitToMainMenu);
         retryButton.onClick.AddListener(Retry);
         pauseScript = GameObject.Find("PauseManager").GetComponent<PauseScript>();
         controllerHandler = GameObject.Find("InputManager").GetComponent<ControllerHandler>();
-        controllerMenuNavigation = GameObject.Find("InputManager").GetComponent<ControllerMenuNavigation>();
+        inputHandler = GameObject.Find("Player").GetComponent<InputHandler>();
 
     }
 
@@ -38,7 +38,6 @@ public class DeathScript : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
-            controllerMenuNavigation.SelectFirstDeathButton();
         }
         
         deathScreen.SetActive(true);
