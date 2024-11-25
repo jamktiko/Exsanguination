@@ -60,21 +60,32 @@ public class RebindingSystem : MonoBehaviour
         }
     }
 
-    // Method to load all saved bindings
+    private void SaveBindings()
+    {
+        // Save only the overrides (bindings that have been modified) to PlayerPrefs
+        string bindingsToSave = inputActions.SaveBindingOverridesAsJson();
+        PlayerPrefs.SetString(BINDINGS_SAVE_KEY, bindingsToSave);
+        Debug.Log("Bindings saved: " + bindingsToSave);
+    }
+
+    // Method to load saved bindings
     private void LoadBindings()
     {
         if (PlayerPrefs.HasKey(BINDINGS_SAVE_KEY))
         {
             string savedBindings = PlayerPrefs.GetString(BINDINGS_SAVE_KEY);
-            inputActions.LoadFromJson(savedBindings);
-        }
-    }
+            Debug.Log("Loaded bindings: " + savedBindings);
 
-    // Method to save all bindings
-    private void SaveBindings()
-    {
-        string bindingsToSave = inputActions.SaveBindingOverridesAsJson();
-        PlayerPrefs.SetString(BINDINGS_SAVE_KEY, bindingsToSave);
+            try
+            {
+                // Load only the binding overrides and not the full InputActionAsset
+                inputActions.LoadBindingOverridesFromJson(savedBindings);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError("Failed to load bindings: " + e.Message);
+            }
+        }
     }
 
     // Generates UI for each binding to allow rebinding
@@ -92,14 +103,9 @@ public class RebindingSystem : MonoBehaviour
         // Iterate through each action map
         foreach (var actionMap in inputActions.actionMaps)
         {
-            Debug.Log($"Action Map: {actionMap.name}");
-
             // Now loop through each action in this action map
             foreach (var action in actionMap.actions)
             {
-                Debug.Log($"Generating UI for action: {action.name}");
-
-                // Continue with your UI generation logic...
                 for (int i = 0; i < action.bindings.Count; i++)
                 {
                     var binding = action.bindings[i];
@@ -112,10 +118,10 @@ public class RebindingSystem : MonoBehaviour
                     GameObject rebindUIObject = Instantiate(rebindUIPrefab, rebindUIParent);
 
                     // Find relevant components in the prefab structure
-                    TMP_Text rebindText = rebindUIObject.GetComponent<TMP_Text>();
-                    TMP_InputField keybindInputField = rebindUIObject.transform.Find("InputField (TMP)").GetComponent<TMP_InputField>();
-                    Button resetButton = rebindUIObject.transform.Find("ResetButton").GetComponent<Button>();
-                    TMP_Text resetButtonText = rebindUIObject.transform.Find("ResetButton/Text (TMP)").GetComponent<TMP_Text>();
+                    TMP_Text rebindText = rebindUIObject.GetComponentInChildren<TMP_Text>();
+                    TMP_InputField keybindInputField = rebindUIObject.GetComponentInChildren<TMP_InputField>();
+                    Button resetButton = rebindUIObject.GetComponentInChildren<Button>();
+                    TMP_Text resetButtonText = resetButton.GetComponentInChildren<TMP_Text>();
 
                     // Set the action name in the RebindText field
                     rebindText.text = action.name;
@@ -144,12 +150,25 @@ public class RebindingSystem : MonoBehaviour
     // Check if the binding is for Keyboard or Mouse only
     private bool IsKeyboardOrMouseBinding(InputBinding binding)
     {
+        // Skip bindings with Vector2 type (e.g., joystick, mouse movement)
+        if (binding.effectivePath.Contains("<Gamepad>/leftStick") ||
+            binding.effectivePath.Contains("<Gamepad>/rightStick") ||
+            binding.effectivePath.Contains("<Mouse>/position") ||
+            binding.effectivePath.Contains("<Mouse>/delta"))
+        {
+            return false;
+        }
+
+        // Ensure it's specifically a Keyboard or Mouse binding
         return binding.groups.Contains("Keyboard") || binding.groups.Contains("Mouse");
     }
 
     // Starts the rebinding process for the given action and binding index
     private void StartRebinding(InputAction action, int bindingIndex)
     {
+        // Disable all inputs during rebinding
+        DisableInputs();
+
         // Show the UI waiting for input
         waitingForInputPanel.SetActive(true);
         isRebinding = true;
@@ -178,6 +197,9 @@ public class RebindingSystem : MonoBehaviour
             rebindOperation = null;
         }
 
+        // Enable all inputs after rebinding cancellation
+        EnableInputs();
+
         // Optionally, refresh the UI after cancellation
         RefreshUI();
     }
@@ -191,11 +213,19 @@ public class RebindingSystem : MonoBehaviour
 
         // Ensure no duplicate bindings by removing old ones
         string newPath = rebindOperation.selectedControl.path;
+
+        // Remove duplicates across all actions
         RemoveDuplicateBindings(action, newPath, bindingIndex);
 
-        // Save new binding
+        // Apply the new binding only if it's unique across all actions
+        action.ApplyBindingOverride(bindingIndex, newPath);
+
+        // Save new binding and refresh UI
         rebindOperation.Dispose();
         SaveBindings();
+
+        // Enable all inputs after rebinding
+        EnableInputs();
 
         // Refresh UI to display updated bindings
         RefreshUI();
@@ -206,18 +236,20 @@ public class RebindingSystem : MonoBehaviour
     {
         foreach (var otherAction in inputActions)
         {
-            for (int i = 0; i < otherAction.bindings.Count; i++)
+            if (otherAction != action)  // Don't check the same action that was rebinding
             {
-                var binding = otherAction.bindings[i];
-                if (binding.effectivePath == newPath && i != bindingIndex)
+                for (int i = 0; i < otherAction.bindings.Count; i++)
                 {
-                    otherAction.RemoveBindingOverride(i);
+                    var binding = otherAction.bindings[i];
+                    if (binding.effectivePath == newPath)
+                    {
+                        // If a duplicate is found, remove it
+                        otherAction.RemoveBindingOverride(i);
+                        Debug.Log($"Removed duplicate binding for {otherAction.name} at binding index {i}");
+                    }
                 }
             }
         }
-
-        // Apply new binding to the specified binding index
-        action.ApplyBindingOverride(bindingIndex, newPath);
     }
 
     // Resets a specific binding to its original configuration
@@ -259,5 +291,29 @@ public class RebindingSystem : MonoBehaviour
             Destroy(child.gameObject);
         }
         GenerateRebindingUI();
+    }
+
+    // Disables all inputs during rebinding
+    private void DisableInputs()
+    {
+        foreach (var actionMap in inputActions.actionMaps)
+        {
+            foreach (var action in actionMap.actions)
+            {
+                action.Disable();
+            }
+        }
+    }
+
+    // Enables all inputs after rebinding
+    private void EnableInputs()
+    {
+        foreach (var actionMap in inputActions.actionMaps)
+        {
+            foreach (var action in actionMap.actions)
+            {
+                action.Enable();
+            }
+        }
     }
 }
