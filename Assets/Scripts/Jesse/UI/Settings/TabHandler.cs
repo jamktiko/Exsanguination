@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class TabHandler : MonoBehaviour
@@ -33,11 +34,11 @@ public class TabHandler : MonoBehaviour
     void Update()
     {
         // Only run if the current selected object is valid
-        if (eventSystem.currentSelectedGameObject != null)
+        if (eventSystem.currentSelectedGameObject != null && SceneManager.GetActiveScene().buildIndex == 1) //CHANGE 1 to 2 when tutorial is being built!
         {
             Transform selectedObject = eventSystem.currentSelectedGameObject.transform;
 
-            if (selectedObject.name == "VolumeSlider") 
+            if (selectedObject.name == "VolumeSlider")
             {
                 // Get the third child (0-indexed), then get its first child (the arrow)
                 Transform arrowTransform = selectedObject.GetChild(2).GetChild(0);
@@ -61,12 +62,12 @@ public class TabHandler : MonoBehaviour
             {
                 foreach (Image arrow in arrowImages)
                 {
-                        arrow.color = normalColor;
+                    arrow.color = normalColor;
                 }
             }
 
             if (selectedObject.name != "MouseSlider")
-            {  
+            {
                 mouseArrow.color = normalColor;
 
             }
@@ -76,6 +77,9 @@ public class TabHandler : MonoBehaviour
                 mouseArrow.color = highlightColor;
             }
         }
+
+        else
+            return;
     }
 
 
@@ -84,7 +88,7 @@ public class TabHandler : MonoBehaviour
         activeTab.SetActive(false);
         tabs[tabNumber].SetActive(true);
         activeTab = tabs[tabNumber];
-        if (controllerHandler.controllerIsConnected)
+        if (controllerHandler.controllerIsConnected && SceneManager.GetActiveScene().buildIndex == 1) //CHANGE 1 to 2 when tutorial is being built!
         {
             StartCoroutine(DelaySetFirstButton(tabNumber));
         }

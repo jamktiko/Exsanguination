@@ -435,6 +435,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &232567757 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1940684130087553706, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
+  m_PrefabInstance: {fileID: 2119100836}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &264376594 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 75032864327946114, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
@@ -558,6 +569,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &379431241 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7504691702001518813, guid: 607241fc019739a44b320e48be37d371, type: 3}
+  m_PrefabInstance: {fileID: 624416959}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 706560c5bfcc07341870af2ab81f4db6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &419639526 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3933704555273558957, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
@@ -956,14 +978,6 @@ PrefabInstance:
       propertyPath: mainMenuButton
       value: 
       objectReference: {fileID: 972954410}
-    - target: {fileID: 4195301651310897938, guid: 607241fc019739a44b320e48be37d371, type: 3}
-      propertyPath: controllerHandler
-      value: 
-      objectReference: {fileID: 198018154}
-    - target: {fileID: 5299683435000209853, guid: 607241fc019739a44b320e48be37d371, type: 3}
-      propertyPath: m_FirstSelected
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 5717705164929670246, guid: 607241fc019739a44b320e48be37d371, type: 3}
       propertyPath: InjuredVFX0
       value: 
@@ -2987,6 +3001,14 @@ PrefabInstance:
       propertyPath: controllerHandler
       value: 
       objectReference: {fileID: 198018154}
+    - target: {fileID: 1654027192884476809, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
+      propertyPath: mouseLookScript
+      value: 
+      objectReference: {fileID: 1483992026734261170}
+    - target: {fileID: 1820434520974362527, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1854449229347885103, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -3091,6 +3113,18 @@ PrefabInstance:
       propertyPath: cameraTransform
       value: 
       objectReference: {fileID: 426510529}
+    - target: {fileID: 7228746183391082605, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
+      propertyPath: m_TargetGraphic
+      value: 
+      objectReference: {fileID: 232567757}
+    - target: {fileID: 7228746183391082605, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 379431241}
+    - target: {fileID: 7228746183391082605, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: EnableFPSCounter
+      objectReference: {fileID: 0}
     - target: {fileID: 8306886513490813497, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
       propertyPath: m_Name
       value: PlayerCanvas
@@ -3402,6 +3436,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b62a4bb8cc8efb4aae4dc9174a7bd6b, type: 3}
+--- !u!114 &1483992026734261170 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6138562787838184655, guid: 1b62a4bb8cc8efb4aae4dc9174a7bd6b, type: 3}
+  m_PrefabInstance: {fileID: 1483992026734261169}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87ad2894667258947a2e39e49d7f297d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!33 &1541495196554278049
 MeshFilter:
   m_ObjectHideFlags: 0

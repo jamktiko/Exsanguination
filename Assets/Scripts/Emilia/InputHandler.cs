@@ -146,11 +146,10 @@ public class InputHandler : MonoBehaviour
         {
             if (inputsEnabled)
             {
-                if (!controllerHandler.controllerIsConnected)
-                {
+               
                     mouseInput = ctx.ReadValue<Vector2>();
                     mouseLook.ReceiveInput(mouseInput);
-                }
+ 
             }
 
                 
@@ -159,11 +158,10 @@ public class InputHandler : MonoBehaviour
         {
             if (inputsEnabled)
             {
-                if (!controllerHandler.controllerIsConnected)
-                {
+               
                     mouseInput = Vector2.zero;
                     mouseLook.ReceiveInput(mouseInput);
-                }
+ 
             }
       
         };

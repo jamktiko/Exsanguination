@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SettingsMenu : MonoBehaviour
@@ -25,7 +26,7 @@ public class SettingsMenu : MonoBehaviour
         activator = activatorObject;
         gameObject.SetActive(true);
         activator.SetActive(false);
-        if (controllerHandler.controllerIsConnected) 
+        if (controllerHandler.controllerIsConnected && SceneManager.GetActiveScene().buildIndex == 1) //CHANGE 1 to 2 when tutorial is being built!
         {
             StartCoroutine(DelaySetFirstButton());
         }
@@ -38,7 +39,7 @@ public class SettingsMenu : MonoBehaviour
 
     public void CloseSettings()
     {
-        if (controllerHandler.controllerIsConnected)
+        if (controllerHandler.controllerIsConnected && SceneManager.GetActiveScene().buildIndex == 1) //CHANGE 1 to 2 when tutorial is being built!
         {
             pauseScript.SetFirstButtonInPauseMenu();
         }

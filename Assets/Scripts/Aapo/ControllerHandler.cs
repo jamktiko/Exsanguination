@@ -1,34 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine;
 
 public class ControllerHandler : MonoBehaviour
 {
     public bool controllerIsConnected;
-    
+    private bool cursorVisible = true; // Track cursor visibility state.
+
     void Awake()
     {
         InputSystem.onDeviceChange += OnDeviceChange;
-       
     }
 
     public void ControllerEnabled()
     {
-
-        
+        if (cursorVisible)
+        {
+            Cursor.visible = false;
+            cursorVisible = false;
+        }
         controllerIsConnected = true;
-        
     }
 
     public void ControllerDisabled()
     {
-        
+        if (!cursorVisible)
+        {
+            Cursor.visible = true;
+            cursorVisible = true;
+        }
         controllerIsConnected = false;
-        
-
     }
-
 
     private void Start()
     {
@@ -38,10 +39,10 @@ public class ControllerHandler : MonoBehaviour
         }
         else
         {
-
             ControllerDisabled();
         }
     }
+
     void OnDestroy()
     {
         InputSystem.onDeviceChange -= OnDeviceChange;
@@ -52,23 +53,16 @@ public class ControllerHandler : MonoBehaviour
         switch (change)
         {
             case InputDeviceChange.Added:
-                // New Device.
                 ControllerEnabled();
                 break;
             case InputDeviceChange.Disconnected:
                 ControllerDisabled();
-                // Device got unplugged.
                 break;
             case InputDeviceChange.Reconnected:
-                // Plugged back in.
                 ControllerEnabled();
                 break;
             case InputDeviceChange.Removed:
                 ControllerDisabled();
-                // Remove from Input System entirely; by default, Devices stay in the system once discovered.
-                break;
-            default:
-                // See InputDeviceChange reference for other event types.
                 break;
         }
     }

@@ -11,13 +11,12 @@ public class FPSCounter : MonoBehaviour
     int frames = 0;
     float timeleft;
     float fps;
-    bool canCall = false;
+    bool canCall = true;
 
     GUIStyle textStyle = new GUIStyle();
 
     private void Awake()
     {
-        gameObject.SetActive(false);
     }
 
     // Alustus
@@ -27,6 +26,8 @@ public class FPSCounter : MonoBehaviour
 
         textStyle.fontStyle = FontStyle.Bold;
         textStyle.normal.textColor = Color.white;
+        gameObject.SetActive(false);
+
     }
     // Tehd‰‰n pari kovaa kikkaa
     void Update()
