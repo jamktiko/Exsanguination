@@ -15,6 +15,7 @@ public class InputHandler : MonoBehaviour
     [SerializeField] private PauseScript pauseScript;
     [SerializeField] private PlayerStats playerStats;
     [SerializeField] private GameObject[] pickUpItems;
+    private ControllerHandler controllerHandler;
     public GameObject firstMenuButton; // The default button when the menu is opened
     public GameObject firstDeathButton; // The default button when the menu is opened
     [SerializeField] private DeathScript deathScript; // The default button when the menu is opened
@@ -43,6 +44,7 @@ public class InputHandler : MonoBehaviour
         stakeLogic = GameObject.Find("Stake").GetComponent<StakeLogic>();
         pauseScript = GameObject.Find("PauseManager").GetComponent<PauseScript>();
         playerStats = GameObject.FindGameObjectWithTag("PlayerStats").GetComponent<PlayerStats>();
+        controllerHandler = GameObject.FindGameObjectWithTag("InputManager").GetComponent<ControllerHandler>();
 
         movementAction = playerInput.actions["HorizontalMovement"];
         jumpAction = playerInput.actions["Jump"];
@@ -72,7 +74,11 @@ public class InputHandler : MonoBehaviour
                 if (!pauseScript.paused)
                 {
                     pauseScript.PauseGame();
-                    SetFirstButton(firstMenuButton);
+                    if (controllerHandler.controllerIsConnected) 
+                    {
+                        SetFirstButton(firstMenuButton);
+                    }
+
 
                 }
 
@@ -90,18 +96,23 @@ public class InputHandler : MonoBehaviour
         menuNavigateAction.performed += ctx =>
 
         {
-            if (pauseScript.paused)
+            if (controllerHandler.controllerIsConnected)
             {
-                HandleMenuNavigation(ctx.ReadValue<Vector2>());
+                if (pauseScript.paused)
+                {
+                    HandleMenuNavigation(ctx.ReadValue<Vector2>());
 
-            }
+                }
 
-            else if (deathScript.isDead)
-            {
-                SetFirstButton(firstDeathButton);
+                else if (deathScript.isDead)
+                {
+                    if (controllerHandler.controllerIsConnected)
+                    {
+                        SetFirstButton(firstDeathButton);
+                    }
+                    HandleMenuNavigation(ctx.ReadValue<Vector2>());
 
-                HandleMenuNavigation(ctx.ReadValue<Vector2>());
-
+                }
             }
         };
 
@@ -135,8 +146,11 @@ public class InputHandler : MonoBehaviour
         {
             if (inputsEnabled)
             {
-                mouseInput = ctx.ReadValue<Vector2>();
-                mouseLook.ReceiveInput(mouseInput);
+                if (!controllerHandler.controllerIsConnected)
+                {
+                    mouseInput = ctx.ReadValue<Vector2>();
+                    mouseLook.ReceiveInput(mouseInput);
+                }
             }
 
                 
@@ -145,9 +159,11 @@ public class InputHandler : MonoBehaviour
         {
             if (inputsEnabled)
             {
-                mouseInput = Vector2.zero;
-                mouseLook.ReceiveInput(mouseInput);
-
+                if (!controllerHandler.controllerIsConnected)
+                {
+                    mouseInput = Vector2.zero;
+                    mouseLook.ReceiveInput(mouseInput);
+                }
             }
       
         };

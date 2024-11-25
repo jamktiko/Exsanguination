@@ -12,7 +12,7 @@ public class DeathScript : MonoBehaviour
     [SerializeField] Button mainMenuButton;
     [SerializeField] Button retryButton;
     public bool isDead;
-    [SerializeField] ControllerHandler controllerHandler;
+    private ControllerHandler controllerHandler;
     private InputHandler inputHandler; 
     private void Awake()
     {
@@ -21,6 +21,7 @@ public class DeathScript : MonoBehaviour
         pauseScript = GameObject.Find("PauseManager").GetComponent<PauseScript>();
         controllerHandler = GameObject.Find("InputManager").GetComponent<ControllerHandler>();
         inputHandler = GameObject.Find("Player").GetComponent<InputHandler>();
+
 
     }
 

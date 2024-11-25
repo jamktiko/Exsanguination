@@ -408,6 +408,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6f8885ab2b0d444bb4877407d84a522, type: 3}
+--- !u!114 &198018154 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2525541771505127582, guid: 607241fc019739a44b320e48be37d371, type: 3}
+  m_PrefabInstance: {fileID: 624416959}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fbb6b0603497054c8c0cd71f9d39887, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &199460926 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6752509764480996776, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
@@ -945,10 +956,14 @@ PrefabInstance:
       propertyPath: mainMenuButton
       value: 
       objectReference: {fileID: 972954410}
+    - target: {fileID: 4195301651310897938, guid: 607241fc019739a44b320e48be37d371, type: 3}
+      propertyPath: controllerHandler
+      value: 
+      objectReference: {fileID: 198018154}
     - target: {fileID: 5299683435000209853, guid: 607241fc019739a44b320e48be37d371, type: 3}
       propertyPath: m_FirstSelected
       value: 
-      objectReference: {fileID: 1311210334}
+      objectReference: {fileID: 0}
     - target: {fileID: 5717705164929670246, guid: 607241fc019739a44b320e48be37d371, type: 3}
       propertyPath: InjuredVFX0
       value: 
@@ -2578,28 +2593,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1898572262 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8473434895840151572, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
-  m_PrefabInstance: {fileID: 2119100836}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1924459289 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3455017249875111621, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
-  m_PrefabInstance: {fileID: 2119100836}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!43 &1947470421
 Mesh:
   m_ObjectHideFlags: 0
@@ -2990,6 +2983,10 @@ PrefabInstance:
       propertyPath: inputHandler
       value: 
       objectReference: {fileID: 1449359844}
+    - target: {fileID: 1530992120805512062, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
+      propertyPath: controllerHandler
+      value: 
+      objectReference: {fileID: 198018154}
     - target: {fileID: 1854449229347885103, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -3078,18 +3075,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3175149787516995430, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3579915563035063462, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
-      propertyPath: m_Name
-      value: VolumeSlider
-      objectReference: {fileID: 0}
-    - target: {fileID: 4080691799500274451, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
-      propertyPath: mouseArrow
-      value: 
-      objectReference: {fileID: 1898572262}
     - target: {fileID: 4080691799500274451, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
       propertyPath: eventSystem
       value: 
@@ -3098,49 +3083,17 @@ PrefabInstance:
       propertyPath: inputHandler
       value: 
       objectReference: {fileID: 1449359844}
-    - target: {fileID: 5093816885376583796, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
-      propertyPath: m_Name
-      value: VolumeSlider
-      objectReference: {fileID: 0}
-    - target: {fileID: 5267752662812907046, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5611837383199245022, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
-      propertyPath: m_Name
-      value: VolumeSlider
-      objectReference: {fileID: 0}
-    - target: {fileID: 6050902476658974900, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6383361617592987126, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
-      propertyPath: m_Name
-      value: MouseSlider
-      objectReference: {fileID: 0}
+    - target: {fileID: 4080691799500274451, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
+      propertyPath: controllerHandler
+      value: 
+      objectReference: {fileID: 198018154}
     - target: {fileID: 6984771965536967876, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
       propertyPath: cameraTransform
       value: 
       objectReference: {fileID: 426510529}
-    - target: {fileID: 7228746183391082605, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
-      propertyPath: m_IsOn
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7228746183391082605, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
-      propertyPath: m_TargetGraphic
-      value: 
-      objectReference: {fileID: 1924459289}
-    - target: {fileID: 7956052296948069230, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8306886513490813497, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
       propertyPath: m_Name
       value: PlayerCanvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 8473434895840151572, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

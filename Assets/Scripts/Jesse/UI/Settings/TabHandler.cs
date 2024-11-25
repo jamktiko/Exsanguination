@@ -13,6 +13,7 @@ public class TabHandler : MonoBehaviour
     [SerializeField] Image[] arrowImages = new Image[3]; // Assuming you have an array of Image references for arrows
     public EventSystem eventSystem;
     [SerializeField] Image mouseArrow;
+    [SerializeField] ControllerHandler controllerHandler;
 
     private Color normalColor = Color.white; // Color for normal (unselected) options
     private Color highlightColor = Color.gray; // Color for highlighted (selected) options
@@ -83,7 +84,10 @@ public class TabHandler : MonoBehaviour
         activeTab.SetActive(false);
         tabs[tabNumber].SetActive(true);
         activeTab = tabs[tabNumber];
-        StartCoroutine(DelaySetFirstButton(tabNumber));
+        if (controllerHandler.controllerIsConnected)
+        {
+            StartCoroutine(DelaySetFirstButton(tabNumber));
+        }
     }
 
     private IEnumerator DelaySetFirstButton(int tabNumber)

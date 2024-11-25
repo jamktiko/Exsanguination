@@ -11,8 +11,9 @@ public class SettingsMenu : MonoBehaviour
     [SerializeField] GameObject generalButton;
     [SerializeField] PauseScript pauseScript;
     private GameObject activator;
+    [SerializeField] ControllerHandler controllerHandler;
 
-    
+
     void Start()
     {
         backButton.onClick.AddListener(CloseSettings);
@@ -20,12 +21,14 @@ public class SettingsMenu : MonoBehaviour
 
     public void OpenSettings(GameObject activatorObject)
     {
-        inputHandler.SetFirstButton(generalButton); // Set default button
         Debug.Log("opening settings");
         activator = activatorObject;
         gameObject.SetActive(true);
         activator.SetActive(false);
-        StartCoroutine(DelaySetFirstButton());
+        if (controllerHandler.controllerIsConnected) 
+        {
+            StartCoroutine(DelaySetFirstButton());
+        }
     }
     private IEnumerator DelaySetFirstButton()
     {
@@ -35,7 +38,10 @@ public class SettingsMenu : MonoBehaviour
 
     public void CloseSettings()
     {
-        pauseScript.SetFirstButtonInPauseMenu();
+        if (controllerHandler.controllerIsConnected)
+        {
+            pauseScript.SetFirstButtonInPauseMenu();
+        }
         if (activator != null)
         {
             activator.SetActive(true);
