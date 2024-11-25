@@ -1,4 +1,5 @@
 using EmiliaScripts;
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -41,6 +42,12 @@ public class DeathScript : MonoBehaviour
         }
         
         deathScreen.SetActive(true);
+        StartCoroutine(DelaySetFirstButton());
+    }
+    private IEnumerator DelaySetFirstButton()
+    {
+        yield return null; // Wait one frame
+        inputHandler.SetFirstButton(retryButton.gameObject);
     }
 
     public void ExitToMainMenu()

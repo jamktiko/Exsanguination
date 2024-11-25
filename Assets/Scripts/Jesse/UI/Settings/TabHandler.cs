@@ -12,6 +12,7 @@ public class TabHandler : MonoBehaviour
     [SerializeField] GameObject[] firstOptions = new GameObject[4];
     [SerializeField] Image[] arrowImages = new Image[3]; // Assuming you have an array of Image references for arrows
     public EventSystem eventSystem;
+    [SerializeField] Image mouseArrow;
 
     private Color normalColor = Color.white; // Color for normal (unselected) options
     private Color highlightColor = Color.gray; // Color for highlighted (selected) options
@@ -33,10 +34,9 @@ public class TabHandler : MonoBehaviour
         // Only run if the current selected object is valid
         if (eventSystem.currentSelectedGameObject != null)
         {
-            // Ensure that the current selected object has at least 3 children
             Transform selectedObject = eventSystem.currentSelectedGameObject.transform;
 
-            if (selectedObject.childCount > 2) // Check if the object has at least 3 children
+            if (selectedObject.name == "VolumeSlider") 
             {
                 // Get the third child (0-indexed), then get its first child (the arrow)
                 Transform arrowTransform = selectedObject.GetChild(2).GetChild(0);
@@ -55,6 +55,24 @@ public class TabHandler : MonoBehaviour
                         arrow.color = normalColor;
                     }
                 }
+            }
+            else
+            {
+                foreach (Image arrow in arrowImages)
+                {
+                        arrow.color = normalColor;
+                }
+            }
+
+            if (selectedObject.name != "MouseSlider")
+            {  
+                mouseArrow.color = normalColor;
+
+            }
+
+            else
+            {
+                mouseArrow.color = highlightColor;
             }
         }
     }
