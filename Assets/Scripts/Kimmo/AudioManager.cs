@@ -20,9 +20,6 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioSource stakeHitAudioSource;
     [SerializeField] AudioSource stakePickUpAudioSource;
     [SerializeField] AudioSource stakeFinisherAudioSource;
-    [SerializeField] AudioSource bombIgniteAudioSource;
-    [SerializeField] AudioSource bombSizzleAudioSource;
-    [SerializeField] AudioSource bombExplosionAudioSource;
     [SerializeField] AudioSource playerTakeDamageAudioSource;
     [SerializeField] AudioSource playerDieAudioSource;
     [SerializeField] AudioSource playerHealAudioSource;
@@ -50,9 +47,6 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioClip stakeHitAudioClip;
     [SerializeField] AudioClip stakePickUpAudioClip;
     [SerializeField] AudioClip stakeFinisherAudioClip;
-    //[SerializeField] AudioClip bombIgniteAudioClip;
-    //[SerializeField] AudioClip bombSizzleAudioClip;
-    //[SerializeField] AudioClip bombExplosionAudioClip;
     [SerializeField] AudioClip playerTakeDamageAudioClip;
     [SerializeField] AudioClip playerDieAudioClip;
     [SerializeField] AudioClip playerHealAudioClip;
@@ -72,7 +66,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioClip batAlertAudioClip;
 
     [Header("Boss")]
-    [SerializeField] AudioClip bossTakeDamageAudioClip;
+    [SerializeField] AudioClip[] bossTakeDamageAudioClips;
     [SerializeField] AudioClip bossDashAudioClip;
 
 
@@ -94,9 +88,6 @@ public class AudioManager : MonoBehaviour
         stakeHitAudioSource = GameObject.Find("StakeHitAudioSource").GetComponent<AudioSource>();
         stakePickUpAudioSource = GameObject.Find("StakePickUpAudioSource").GetComponent<AudioSource>();
         stakeFinisherAudioSource = GameObject.Find("StakeFinisherAudioSource").GetComponent<AudioSource>();
-        //bombIgniteAudioSource = GameObject.Find("BombIgniteAudioSource").GetComponent<AudioSource>();
-        //bombSizzleAudioSource = GameObject.Find("BombSizzleAudioSource").GetComponent<AudioSource>();
-        //bombExplosionAudioSource = GameObject.Find("BombExplosionAudioSource").GetComponent<AudioSource>();
         playerTakeDamageAudioSource = GameObject.Find("PlayerTakeDamageAudioSource").GetComponent<AudioSource>();
         playerDieAudioSource = GameObject.Find("PlayerDieAudioSource").GetComponent<AudioSource>();
         playerHealAudioSource = GameObject.Find("PlayerHealAudioSource").GetComponent<AudioSource>();
@@ -235,27 +226,6 @@ public class AudioManager : MonoBehaviour
         stakeFinisherAudioSource.PlayOneShot(stakeFinisherAudioClip);
     }
 
-    //// Bomb ignite
-    //public void PlayBombIgniteAudioClip()
-    //{
-    //    bombIgniteAudioSource.clip = bombIgniteAudioClip;
-    //    bombIgniteAudioSource.PlayOneShot(bombIgniteAudioClip);
-    //}
-
-    //// Bomb sizzle
-    //public void PlayBombSizzleAudioClip()
-    //{
-    //    bombSizzleAudioSource.clip = bombSizzleAudioClip;
-    //    bombSizzleAudioSource.PlayOneShot(bombSizzleAudioClip);
-    //}
-
-    //// Bomb explode
-    //public void PlayBombExplosionAudioClip()
-    //{
-    //    bombExplosionAudioSource.clip = bombExplosionAudioClip;
-    //    bombExplosionAudioSource.PlayOneShot(bombExplosionAudioClip);
-    //}
-
     // Player take damage
     public void PlayPlayerTakeDamageAudioClip()
     {
@@ -337,13 +307,15 @@ public class AudioManager : MonoBehaviour
         audioSource.PlayOneShot(batAttackAudioClip);
     }
 
-    // Boss
+    // Boss take damage voice
     public void PlayBossTakeDamageClip(AudioSource audioSource)
     {
-        audioSource.clip = bossTakeDamageAudioClip;
-        audioSource.PlayOneShot(bossTakeDamageAudioClip);
+        AudioClip clip = bossTakeDamageAudioClips[Random.Range(0, bossTakeDamageAudioClips.Length)];
+        audioSource.clip = clip;
+        audioSource.PlayOneShot(clip);
     }
 
+    // Boss dash voice
     public void PlayBossDashDamageClip(AudioSource audioSource)
     {
         audioSource.clip = bossDashAudioClip;
