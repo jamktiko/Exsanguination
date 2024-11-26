@@ -71,25 +71,21 @@ namespace EmiliaScripts
                 if (currentHealth >= maxHealth) {
                     currentHealth = maxHealth;
                 }
-                else if (currentHealth <= 0)
+                if (currentHealth <= 0)
                 {
                     OnDeath?.Invoke();
                 }
                 OnHealthUpdate?.Invoke();
-                //Debug.Log("Updating player health with modifier: " + healthNumber);
             }
             else if (currentHealth <= 0)
             {
                 OnDeath?.Invoke();
-                //Debug.Log("Player is dead. Health: " + currentHealth);
             }
             else if (currentHealth > maxHealth) // avoid overheal
             {
                 currentHealth = maxHealth;
-                //Debug.Log("Current Health over max, setting to max health: " + currentHealth);
             }
 
-            //Debug.Log("Current Player Health: " + currentHealth);
             healthVFXUpdater.UpdateInjuryVFX(currentHealth);
             if (healthNumber < 0) //check for damage
             {
