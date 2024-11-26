@@ -36,7 +36,10 @@ public class PickUpItem : MonoBehaviour
     private void Start()
     {
         grappleModel.SetActive(false);
-        scrollData.SetActive(false);
+        if(tool == UtilityTool.Scroll)
+        {
+            scrollData.SetActive(false);
+        }
         lightComponent.enabled = false;
         text.enabled = false;     
     }
