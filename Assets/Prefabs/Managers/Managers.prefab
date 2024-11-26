@@ -331,6 +331,10 @@ PrefabInstance:
       value: EnemySpawnManager
       objectReference: {fileID: 0}
     - target: {fileID: 2398424862858709069, guid: 0ecb2fe74a9f5fb43895ea092462ed61, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2398424862858709069, guid: 0ecb2fe74a9f5fb43895ea092462ed61, type: 3}
       propertyPath: m_TagString
       value: EnemySpawnManager
       objectReference: {fileID: 0}
@@ -646,9 +650,25 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2906012231817273351, guid: 12f81e84250ef2745aa6b145e836e17f, type: 3}
+      propertyPath: bossDashAudioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 66f7d1bd1b92d1c4c8b9b57fbc70fea5, type: 3}
+    - target: {fileID: 2906012231817273351, guid: 12f81e84250ef2745aa6b145e836e17f, type: 3}
       propertyPath: playerHealAudioClip
       value: 
       objectReference: {fileID: 8300000, guid: ed76b17422ca04241bc959b9e1027065, type: 3}
+    - target: {fileID: 2906012231817273351, guid: 12f81e84250ef2745aa6b145e836e17f, type: 3}
+      propertyPath: bossTakeDamageAudioClips.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2906012231817273351, guid: 12f81e84250ef2745aa6b145e836e17f, type: 3}
+      propertyPath: bossTakeDamageAudioClips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 6a56944a62076514092bcfe1d1ed58ce, type: 3}
+    - target: {fileID: 2906012231817273351, guid: 12f81e84250ef2745aa6b145e836e17f, type: 3}
+      propertyPath: bossTakeDamageAudioClips.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 55d1c46d81a452c43a4266720c3622c2, type: 3}
     - target: {fileID: 3349195350527978954, guid: 12f81e84250ef2745aa6b145e836e17f, type: 3}
       propertyPath: m_Name
       value: AudioManager

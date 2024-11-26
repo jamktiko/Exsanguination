@@ -26,6 +26,8 @@ public class Boss : MonoBehaviour
     Vector3 startPosition;
     float minDistance = 5f; // Minimum distance from player to exclude a waypoint
     public bool isInMeleeRange;
+    [SerializeField] float meleeAttackSpeed;
+    [SerializeField] float meleeAttackDistance;
 
     [Header("Vent")]
     [SerializeField] List<GameObject> vents;
@@ -213,6 +215,14 @@ public class Boss : MonoBehaviour
         else if (stateInfo.IsName("Stalking Left"))
         {
             bossTransform.position -= bossTransform.right * stalkSpeed * Time.deltaTime;
+        }
+    }
+
+    public void MeleeAttackMove()
+    {
+        if (Vector3.Distance(startPosition, bossTransform.position) < meleeAttackDistance)
+        {
+            bossTransform.Translate(Vector3.forward * meleeAttackSpeed * Time.deltaTime);
         }
     }
 
