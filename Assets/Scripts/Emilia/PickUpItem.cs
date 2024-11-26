@@ -14,11 +14,11 @@ public class PickUpItem : MonoBehaviour
     };
 
     [SerializeField] public UtilityTool tool;
-    [SerializeField] GameObject grappleModel;
+    private GameObject grappleModel;
     PlayerStats playerStats;
     InputHandler inputManager;
     [SerializeField] GameObject thisScroll;
-    [SerializeField] GameObject scrollData;
+    private GameObject scrollData;
     CloseBook closeBook;
     private Light lightComponent;
     private TMP_Text text;
@@ -30,11 +30,13 @@ public class PickUpItem : MonoBehaviour
         text = GetComponentInChildren<TMP_Text>();
         closeBook = GameObject.FindGameObjectWithTag("Scroll").GetComponent<CloseBook>();
         grappleModel = GameObject.FindGameObjectWithTag("GrappleModel");
+        scrollData = GameObject.FindGameObjectWithTag("ScrollData");
     }
 
     private void Start()
     {
         grappleModel.SetActive(false);
+        scrollData.SetActive(false);
         lightComponent.enabled = false;
         text.enabled = false;     
     }
