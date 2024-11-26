@@ -7,14 +7,16 @@ public class HellfireBehaviour : MonoBehaviour
 {
     [SerializeField] int damage;
     PlayerHealthManager playerHealthManager;
+    PlayerCombat playerCombat;
     [SerializeField] Vector3 startingPosition;
     [SerializeField] ParticleSystem flameParticle;
 
     private void Awake()
     {
         playerHealthManager = GameObject.FindGameObjectWithTag("HealthManager").GetComponent<PlayerHealthManager>();
+        playerCombat = GameObject.FindGameObjectWithTag("PlayerModel").GetComponent<PlayerCombat>();
         startingPosition = transform.localPosition;
-        gameObject.SetActive(false);
+        gameObject.GetComponent<ParticleSystem>().Play();
     }
 
     private void OnEnable()
@@ -27,7 +29,11 @@ public class HellfireBehaviour : MonoBehaviour
         if (other.tag == "Player")
         {
             ResetObject();
-            playerHealthManager.UpdatePlayerHealth(-damage);
+
+            if (!playerCombat.isBlocking)
+            {
+                playerHealthManager.UpdatePlayerHealth(-damage);
+            }
         }
         if (other.tag == "Wall")
         {
@@ -40,6 +46,6 @@ public class HellfireBehaviour : MonoBehaviour
         Debug.Log("Hellfire is reset");
         flameParticle.Stop();
         transform.localPosition = startingPosition;
-        gameObject.SetActive(false);
+        gameObject.GetComponent<ParticleSystem>().Play();
     }
 }
