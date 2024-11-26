@@ -228,10 +228,6 @@ public class InputHandler : MonoBehaviour
                 stakeLogic.RetrieveStake();
                 openDoor = true;
                 Debug.Log("Open door = true");
-                if (!stakeLogic.startedFinishing && stakeLogic.isStuck || !stakeLogic.isThrown && !stakeLogic.startedFinishing)
-                {
-                    horizontalInput = Vector2.zero;
-                }
 
                 foreach (var item in pickUpItems)
                 {

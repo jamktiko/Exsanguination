@@ -14,7 +14,7 @@ public class StakeLogic : MonoBehaviour
     private Transform playerTransform;
     public Camera playerCamera;
     public SkinnedMeshRenderer[] skinnedMeshRenderersToHide;
-   public MeshRenderer[] meshRenderersToHide;
+    public MeshRenderer[] meshRenderersToHide;
 
 
     private Quaternion stakeRotation = Quaternion.Euler(0f, 0f, 0f);

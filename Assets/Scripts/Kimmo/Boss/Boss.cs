@@ -13,6 +13,7 @@ public class Boss : MonoBehaviour
     public MeleeAttackState meleeAttackState { get; set; }
     public SpecialAttackState specialAttackState { get; set; }
 
+    [Header("Movement")]
     public Animator bossAnimator;
     [SerializeField] Collider bossDamageCollider;
     [SerializeField] float moveSpeed;
@@ -23,28 +24,34 @@ public class Boss : MonoBehaviour
     public Transform playerTransform;
     public Vector3 targetPosition;
     Vector3 startPosition;
-    float minDistance = 5f; // Minimum distance from player to exclude waypoint
+    float minDistance = 5f; // Minimum distance from player to exclude a waypoint
     public bool isInMeleeRange;
 
+    [Header("Vent")]
     [SerializeField] List<GameObject> vents;
 
+    [Header("Stun")]
     public bool isStunned;
     public float stunDuration;
     public float idleDuration;
 
+    [Header("SpecialAttacks")]
     System.Action[] specialAttacks;
     System.Action currentSpecialAttack;
     string[] animationTriggers;
     float[] castingTimes;
     public bool isCastingSpecialAttack;
 
+    [Header("SpikeGrowth")]
     [SerializeField] GameObject spikeTrap;
     [SerializeField] Vector3 spikeTrapStartingPosition;
 
+    [Header("Firewall")]
     FirewallBehaviour fireWallBehaviour;
     [SerializeField] GameObject firewall;
     [SerializeField] GameObject firewallPoint;
 
+    [Header("Pirouette")]
     [SerializeField] Transform spinSpoint;
     public float spinDuration;
     [SerializeField] float elapsedSpinTime;
@@ -55,11 +62,13 @@ public class Boss : MonoBehaviour
     GameObject currentDagger;
     int daggerIndex;
 
+    [Header("Hellfire")]
     [SerializeField] GameObject hellfire;
     [SerializeField] GameObject hellfirePoint;
     [SerializeField] AudioClip[] bossCasts;
     [SerializeField] AudioSource castSpecialAttack;
 
+    [Header("Audio")]
     AudioManager audioManager;
     [SerializeField] AudioSource bossDashAudioSource;
 
@@ -80,7 +89,7 @@ public class Boss : MonoBehaviour
 
     private void Start()
     {
-        bossStateManager.states = new BossAbstractState[] { chargeState, meleeAttackState, stunState, dashState, idleState, dashState, specialAttackState, dashState, idleState, dashState };
+        bossStateManager.states = new BossAbstractState[] { chargeState, meleeAttackState, stunState, dashState, idleState, dashState, specialAttackState };
         bossStateManager.Initialize(bossStateManager.states[0]);
 
         specialAttacks = new System.Action[] { CastSpikeGrowth, CastPirouette, CastFirewall, CastHellfire };

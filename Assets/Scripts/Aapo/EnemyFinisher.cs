@@ -36,6 +36,8 @@ public class EnemyFinisher : MonoBehaviour
     private LensDistortion lensDistortion;
     private Vignette vignette;
 
+    PlayerMovement playerMovement;
+
     private void Awake()
     {
         playerAnimator = GetComponent<Animator>();
@@ -50,6 +52,8 @@ public class EnemyFinisher : MonoBehaviour
         volume.profile.TryGet(out colorAdjustments);
         volume.profile.TryGet(out lensDistortion);
         volume.profile.TryGet(out vignette);
+
+        playerMovement = GetComponentInParent<PlayerMovement>();
     }
 
     private void Start()
@@ -212,8 +216,14 @@ public class EnemyFinisher : MonoBehaviour
         colorAdjustments.colorFilter.value = new Color(1f, greenBlueValue, greenBlueValue);
     }
 
+    public void OnFinisherStarted()
+    {
+        playerMovement.EnableMovement();
+    }
 
-
-
+    public void OnFinisherEnded()
+    {
+        playerMovement.DisableMovement();
+    }
 }
 

@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     Vector2 horizontalInput;
     Rigidbody rb;
     private Animator animator;
+    StakeLogic stakeLogic;
 
     [Header("Jump")]
     [SerializeField] float jumpForce;
@@ -85,6 +86,7 @@ public class PlayerMovement : MonoBehaviour
         animator = GameObject.FindGameObjectWithTag("PlayerModel").GetComponent<Animator>();
         grapplingHookShoot = GetComponent<GrapplingHookShoot>();
         cooldownUI = GameObject.Find("DashCooldownBar").GetComponent<CooldownUI>();
+        stakeLogic = GameObject.FindGameObjectWithTag("Stake").GetComponent<StakeLogic>();
     }
 
     private void Start()
@@ -509,5 +511,21 @@ public class PlayerMovement : MonoBehaviour
         audioManager.PlayPlayerFootstepsAudioClips();
         yield return new WaitForSeconds(1);
         Debug.Log("Footstep audio is playing.");
+    }
+
+    public void EnableMovement()
+    {
+        canMove = false;
+        canJump = false;
+        canDash = false;
+        canSlide = false;
+    }
+
+    public void DisableMovement()
+    {
+        canMove = true;
+        canJump = true;
+        canDash = true;
+        canSlide = true;
     }
 }
