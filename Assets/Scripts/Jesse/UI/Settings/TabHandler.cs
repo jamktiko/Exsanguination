@@ -16,8 +16,7 @@ public class TabHandler : MonoBehaviour
     [SerializeField] Image mouseArrow;
     [SerializeField] ControllerHandler controllerHandler;
 
-    private Color normalColor = Color.white; // Color for normal (unselected) options
-    private Color highlightColor = Color.gray; // Color for highlighted (selected) options
+    
 
     void Start()
     {
@@ -31,56 +30,7 @@ public class TabHandler : MonoBehaviour
         activeTab.SetActive(true);
     }
 
-    void Update()
-    {
-        // Only run if the current selected object is valid
-        if (eventSystem.currentSelectedGameObject != null && SceneManager.GetActiveScene().buildIndex == 1) //CHANGE 1 to 2 when tutorial is being built!
-        {
-            Transform selectedObject = eventSystem.currentSelectedGameObject.transform;
-
-            if (selectedObject.name == "VolumeSlider")
-            {
-                // Get the third child (0-indexed), then get its first child (the arrow)
-                Transform arrowTransform = selectedObject.GetChild(2).GetChild(0);
-
-                // Check if this arrow is part of the arrowImages array
-                foreach (Image arrow in arrowImages)
-                {
-                    if (arrow.transform == arrowTransform)
-                    {
-                        // Set the selected arrow to gray
-                        arrow.color = highlightColor;
-                    }
-                    else
-                    {
-                        // Set all other arrows to white
-                        arrow.color = normalColor;
-                    }
-                }
-            }
-            else
-            {
-                foreach (Image arrow in arrowImages)
-                {
-                    arrow.color = normalColor;
-                }
-            }
-
-            if (selectedObject.name != "MouseSlider")
-            {
-                mouseArrow.color = normalColor;
-
-            }
-
-            else
-            {
-                mouseArrow.color = highlightColor;
-            }
-        }
-
-        else
-            return;
-    }
+    
 
 
     public void ChangeTab(int tabNumber)
@@ -88,7 +38,7 @@ public class TabHandler : MonoBehaviour
         activeTab.SetActive(false);
         tabs[tabNumber].SetActive(true);
         activeTab = tabs[tabNumber];
-        if (controllerHandler.controllerIsConnected && SceneManager.GetActiveScene().buildIndex == 1) //CHANGE 1 to 2 when tutorial is being built!
+        if (controllerHandler.controllerIsConnected && SceneManager.GetActiveScene().buildIndex == 2) 
         {
             StartCoroutine(DelaySetFirstButton(tabNumber));
         }

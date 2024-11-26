@@ -26,7 +26,7 @@ public class SettingsMenu : MonoBehaviour
         activator = activatorObject;
         gameObject.SetActive(true);
         activator.SetActive(false);
-        if (controllerHandler.controllerIsConnected && SceneManager.GetActiveScene().buildIndex == 1) //CHANGE 1 to 2 when tutorial is being built!
+        if (controllerHandler.controllerIsConnected && SceneManager.GetActiveScene().buildIndex == 2) 
         {
             StartCoroutine(DelaySetFirstButton());
         }
@@ -39,7 +39,7 @@ public class SettingsMenu : MonoBehaviour
 
     public void CloseSettings()
     {
-        if (controllerHandler.controllerIsConnected && SceneManager.GetActiveScene().buildIndex == 1) //CHANGE 1 to 2 when tutorial is being built!
+        if (controllerHandler.controllerIsConnected && SceneManager.GetActiveScene().buildIndex == 2) 
         {
             pauseScript.SetFirstButtonInPauseMenu();
         }

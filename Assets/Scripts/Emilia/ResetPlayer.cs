@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class ResetPlayer : MonoBehaviour
 {
-    [SerializeField] Transform resetSpot;
+    [SerializeField] Transform[] resetSpot;
     GameObject player;
+    public bool hasTriggered;
 
     // Start is called before the first frame update
     void Awake()
@@ -17,7 +18,15 @@ public class ResetPlayer : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            player.transform.SetPositionAndRotation(resetSpot.position, Quaternion.identity);
+            if (!hasTriggered)
+            {
+                player.transform.SetPositionAndRotation(resetSpot[0].position, Quaternion.identity);
+            }
+
+            else
+            {
+                player.transform.SetPositionAndRotation(resetSpot[1].position, Quaternion.identity);
+            }
         }
     }
 }
