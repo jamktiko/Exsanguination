@@ -50,7 +50,7 @@ ParticleSystem:
   emitterVelocityMode: 0
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -4950,7 +4950,7 @@ ParticleSystem:
   emitterVelocityMode: 0
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -9853,9 +9853,9 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -14685,7 +14685,7 @@ ParticleSystem:
   emitterVelocityMode: 0
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -19585,7 +19585,7 @@ ParticleSystem:
   emitterVelocityMode: 0
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -24443,6 +24443,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5782886423638655414}
     m_Modifications:
+    - target: {fileID: 1123553832941555821, guid: f385e8cfe7b5df442ae90808641b1478, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1228464521798003583, guid: f385e8cfe7b5df442ae90808641b1478, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5
@@ -24463,6 +24467,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2553392953617758327, guid: f385e8cfe7b5df442ae90808641b1478, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2553392953617758328, guid: f385e8cfe7b5df442ae90808641b1478, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5
@@ -24482,6 +24490,10 @@ PrefabInstance:
     - target: {fileID: 2553392953875592654, guid: f385e8cfe7b5df442ae90808641b1478, type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2553392953875592655, guid: f385e8cfe7b5df442ae90808641b1478, type: 3}
+      propertyPath: playOnAwake
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2553392953875592656, guid: f385e8cfe7b5df442ae90808641b1478, type: 3}
       propertyPath: m_LocalScale.x
@@ -24594,9 +24606,9 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
