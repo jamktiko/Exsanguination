@@ -21,7 +21,7 @@ public class EnemyHealthScript : MonoBehaviour
     PauseScript pauseScript;
 
     [SerializeField] Renderer modelRenderer;
-    Color damagedEffectColor = new Color(1.0f, 0.5f, 0.5f);
+    Color damagedEffectColor = new Color(0.5f, 0.25f, 0.25f);
 
     private void Awake()
     {
