@@ -9786,7 +9786,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 281726982477808485}
-  - component: {fileID: 724913093071584808}
+  - component: {fileID: 5686066453693619218}
   - component: {fileID: 5263032163709520177}
   - component: {fileID: 5649305983104111814}
   - component: {fileID: 2820797282871110906}
@@ -9817,7 +9817,7 @@ Transform:
   - {fileID: 8708667954578678550}
   m_Father: {fileID: 5190598444027043415}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &724913093071584808
+--- !u!114 &5686066453693619218
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9826,17 +9826,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3909928039517153447}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f645b2318ecd10d41aa5779988bd0a20, type: 3}
+  m_Script: {fileID: 11500000, guid: 6077092c92b13fb4290a5a31243b5018, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boxCastSize: {x: 100, y: 100, z: 100}
-  trackingLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  turnSpeed: 0.05
-  tracking: 1
-  permamentLock: 1
-  speed: 5
+  rotationSpeed: 10
+  moveSpeed: 5
 --- !u!114 &5263032163709520177
 MonoBehaviour:
   m_ObjectHideFlags: 0

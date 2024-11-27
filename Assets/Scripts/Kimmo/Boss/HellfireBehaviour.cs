@@ -17,6 +17,7 @@ public class HellfireBehaviour : MonoBehaviour
         playerCombat = GameObject.FindGameObjectWithTag("PlayerModel").GetComponent<PlayerCombat>();
         startingPosition = transform.localPosition;
         gameObject.GetComponent<ParticleSystem>().Play();
+        gameObject.SetActive(false);
     }
 
     private void OnEnable()
@@ -46,6 +47,7 @@ public class HellfireBehaviour : MonoBehaviour
         Debug.Log("Hellfire is reset");
         flameParticle.Stop();
         transform.localPosition = startingPosition;
+        gameObject.SetActive(false);
         gameObject.GetComponent<ParticleSystem>().Play();
     }
 }
