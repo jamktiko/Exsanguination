@@ -94,11 +94,8 @@ public class Boss : MonoBehaviour
         bossStateManager.states = new BossAbstractState[] { chargeState, meleeAttackState, stunState, dashState, idleState, dashState, specialAttackState };
         bossStateManager.Initialize(bossStateManager.states[0]);
 
-        //specialAttacks = new System.Action[] { CastSpikeGrowth, CastPirouette, CastFirewall, CastHellfire };
-        //animationTriggers = new string[] { "spikeGrowth", "pirouette", "firewall", "hellfire" };
-
-        specialAttacks = new System.Action[] { CastHellfire, CastHellfire, CastHellfire, CastHellfire };
-        animationTriggers = new string[] { "hellfire", "hellfire", "hellfire", "hellfire" };
+        specialAttacks = new System.Action[] { CastSpikeGrowth, CastPirouette, CastFirewall, CastHellfire };
+        animationTriggers = new string[] { "spikeGrowth", "pirouette", "firewall", "hellfire" };
         castingTimes = new float[] { 2f, 1.5f, 2f, 1f };
         
     }

@@ -20,6 +20,9 @@ public class EnemyHealthScript : MonoBehaviour
     int previousHealth;
     PauseScript pauseScript;
 
+    [SerializeField] Renderer modelRenderer;
+    Color damagedEffectColor = new Color(1.0f, 0.5f, 0.5f);
+
     private void Awake()
     {
         stuckEnemyFinisher = GameObject.Find("PlayerModel").GetComponent<EnemyFinisher>();
@@ -33,6 +36,10 @@ public class EnemyHealthScript : MonoBehaviour
         if (isBoss)
         {
             boss = GetComponent<Boss>();
+        }
+        else
+        {
+            modelRenderer = GetComponentInChildren<Renderer>();
         }
     }
 
@@ -49,6 +56,11 @@ public class EnemyHealthScript : MonoBehaviour
         bloodSplatterParticle.Play(true);
         health = Mathf.Clamp(health - changeAmount, 0, maxHealth);
         Debug.Log("Enemy health = " + health);
+
+        if (health <= 15 && !isBoss)
+        {
+            modelRenderer.material.SetColor("_BaseColor", damagedEffectColor);
+        }
         if (health <= 0 && !isBoss)
         {
             Debug.Log("Enemy health is zero");
