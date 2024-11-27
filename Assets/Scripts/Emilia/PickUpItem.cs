@@ -22,20 +22,34 @@ public class PickUpItem : MonoBehaviour
     CloseBook closeBook;
     private Light lightComponent;
     private TMP_Text text;
+    private TMP_Text keyCardPickedText;
     private void Awake()
     {
         playerStats = GameObject.FindGameObjectWithTag("PlayerStats").GetComponent<PlayerStats>();
         inputManager = GameObject.FindGameObjectWithTag("Player").GetComponent<InputHandler>();
         lightComponent = GetComponentInChildren<Light>();
         text = GetComponentInChildren<TMP_Text>();
-        closeBook = GameObject.FindGameObjectWithTag("Scroll").GetComponent<CloseBook>();
-        grappleModel = GameObject.FindGameObjectWithTag("GrappleModel");
-        scrollData = GameObject.FindGameObjectWithTag("ScrollData");
+        if (tool == UtilityTool.Scroll)
+        {
+            closeBook = GameObject.FindGameObjectWithTag("Scroll").GetComponent<CloseBook>();
+            scrollData = GameObject.FindGameObjectWithTag("ScrollData");
+        }
+        if (tool == UtilityTool.GrapplingHook)
+        {
+            grappleModel = GameObject.FindGameObjectWithTag("GrappleModel");
+        }
+        if (tool == UtilityTool.Keycard)
+        {
+            keyCardPickedText = GameObject.Find("KeyCardFindUI").GetComponent<TMP_Text>();
+        }
     }
 
     private void Start()
     {
-        grappleModel.SetActive(false);
+        if (tool == UtilityTool.GrapplingHook)
+        {
+            grappleModel.SetActive(false);
+        }
         if(tool == UtilityTool.Scroll)
         {
             scrollData.SetActive(false);
@@ -97,6 +111,7 @@ public class PickUpItem : MonoBehaviour
             if(tool == UtilityTool.Keycard)
             {
                 playerStats.foundKeycard = true;
+                keyCardPickedText.text = "Keycard found!";
                 gameObject.SetActive(false);
 
             }

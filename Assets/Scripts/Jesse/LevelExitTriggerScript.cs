@@ -10,16 +10,26 @@ public class LevelExitTriggerScript : MonoBehaviour
     private PlayerStats playerStats;
     [SerializeField] TransitionToBossroom transition;
     [SerializeField] Image transitionImage;
-    private TMP_Text text;
+    private TMP_Text[] texts;
+    public bool isTutorialRoom;
     void Awake()
     {
         playerStats = GameObject.FindWithTag("PlayerStats").GetComponent<PlayerStats>();
-        text = GetComponentInChildren<TMP_Text>();
+        if (!isTutorialRoom)
+        {
+            texts = GetComponentsInChildren<TMP_Text>();
+        }
     }
 
     private void Start()
     {
-        text.enabled = false;
+        if (!isTutorialRoom)
+        {
+            foreach (var text in texts)
+            {
+                text.enabled = false;
+            }
+        }
     }
 
 
@@ -27,22 +37,39 @@ public class LevelExitTriggerScript : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            if (playerStats.foundKeycard)
+            if (!isTutorialRoom)
             {
-                transitionImage.enabled = true;
-                transition.TransitionToBoss();
+                if (playerStats.foundKeycard)
+                {
+                    transitionImage.enabled = true;
+                    transition.TransitionToBoss();
 
+                }
+                else
+                {
+                    foreach (var text in texts)
+                    {
+                        text.enabled = true;
+                    }
+                }
             }
             else
             {
-                text.enabled = true;
+                SceneManager.LoadScene(2);
             }
+
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        text.enabled = false;
+        if (!isTutorialRoom)
+        {
+            foreach (var text in texts)
+            {
+                text.enabled = false;
+            }
+        }
     }
 
     //public void CheckExit()

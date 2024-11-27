@@ -55,7 +55,6 @@ public class PlayerCombat : MonoBehaviour
     {
         float elapsed = 0f;
         comboCooldownImage.fillAmount = 1f;
-        Debug.Log("ComboTimer started");
 
         while (elapsed < comboCooldownDuration)
         {
@@ -66,7 +65,6 @@ public class PlayerCombat : MonoBehaviour
         }
 
         comboCooldownImage.fillAmount = 0f;
-        Debug.Log("ComboTimer ended");
     }
 
 
@@ -220,7 +218,6 @@ public class PlayerCombat : MonoBehaviour
     {
         if (!animator.GetBool("failedCombo"))
         {
-            Debug.Log("cancombo");
             canCombo = true;
             StartCoroutine(ComboTimer());
         }
@@ -229,7 +226,6 @@ public class PlayerCombat : MonoBehaviour
     public void CantCombo()
     {
         canCombo = false;
-        Debug.Log("cantcombo");
 
         //animator.SetBool("isAttacking", false);
 

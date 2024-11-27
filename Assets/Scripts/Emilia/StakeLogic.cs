@@ -115,6 +115,17 @@ public class StakeLogic : MonoBehaviour
             StickToEnemy(collision.gameObject.GetComponent<EnemyAI>());
             stuckEnemyFinisher.SetEnemyType(stuckEnemy.gameObject.name);
         }
+
+        if (collision.gameObject.CompareTag("EnemyHead"))
+        {
+            isStuck = true;
+            isThrown = false;
+            rb.isKinematic = true; // Stop physics movement when stuck
+            GameObject go = collision.gameObject.GetComponentInChildren(typeof(StakeSpot)).gameObject;
+            transform.SetParent(go.transform);
+            transform.localPosition = Vector3.zero;
+        }
+
     }
 
     private void StickToEnemy(EnemyAI enemy)
@@ -216,6 +227,16 @@ public class StakeLogic : MonoBehaviour
                 // Ensure stake returns to player
                 ReturnToPlayer();
             }
+        }
+
+        if(isStuck && stuckEnemy == null && Vector3.Distance(playerTransform.position, transform.position) <= retrievalRange)
+        {
+            UnstickFromEnemy(true);
+            // Cancel previous invoke in case it's still active
+            CancelInvoke(nameof(ReturnToPlayer));
+
+            // Ensure stake returns to player
+            ReturnToPlayer();
         }
     }
 

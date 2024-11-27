@@ -12,6 +12,10 @@ public class TutorialTrigger : MonoBehaviour
     {
         thisName = gameObject.name;
         tutorialText = GameObject.Find(thisName + "UI").GetComponent<TextMeshProUGUI>();
+    }
+
+    private void Start()
+    {
         tutorialText.enabled = false;
     }
 

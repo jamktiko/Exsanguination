@@ -35,7 +35,6 @@ public class TransitionToBossroom : MonoBehaviour
         {
             background.color = new Color(0, 0, 0, background.color.a + Time.unscaledDeltaTime / blackFadeTime);
             yield return null;
-            Debug.Log(background.color.a);
         }
 
 
@@ -50,7 +49,7 @@ public class TransitionToBossroom : MonoBehaviour
 
         yield return new WaitForSecondsRealtime(timeBeforeSceneChange);
 
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(3);
     }
 
     public void TransitionToBoss()

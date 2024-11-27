@@ -204,17 +204,7 @@ public class EnemyFinisher : MonoBehaviour
         vignette.intensity.value = 0;
     }
 
-    public void UpdateHealthRedness(float healthPercentage)
-    {
-        // Convert health percentage to a scale of 0 to 1
-        float normalizedHealth = Mathf.Clamp01(healthPercentage);
-
-        // Calculate the green and blue values based on health
-        float greenBlueValue = normalizedHealth;
-
-        // Set the color filter value, keeping red at full intensity (1f)
-        colorAdjustments.colorFilter.value = new Color(1f, greenBlueValue, greenBlueValue);
-    }
+   
 
     public void OnFinisherStarted()
     {

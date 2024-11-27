@@ -1,6 +1,8 @@
 ﻿using EmiliaScripts;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 namespace CrusaderUI.Scripts
 {
@@ -8,12 +10,16 @@ namespace CrusaderUI.Scripts
     {
         private Material _material;
         private PlayerHealthManager playerHealthManager;
-        private EnemyFinisher enemyFinisher;
+        private Volume volume;
+        private ColorAdjustments colorAdjustments;
 
         private void Awake()
         {
             playerHealthManager = GameObject.FindGameObjectWithTag("HealthManager").GetComponent<PlayerHealthManager>();
-            enemyFinisher = GameObject.FindGameObjectWithTag("PlayerModel").GetComponent<EnemyFinisher>();
+            volume = GameObject.FindWithTag("FinisherVolume").GetComponent<Volume>();
+
+            // Retrieve ColorAdjustments from the volume profile
+            volume.profile.TryGet(out colorAdjustments);
         }
 
         private void Start()
@@ -43,7 +49,19 @@ namespace CrusaderUI.Scripts
             float healthPercentage = (float)playerHealthManager.CurrentPlayerHealth() / playerHealthManager.MaxPlayerHealth();
             SetValue(healthPercentage);
 
-            enemyFinisher.UpdateHealthRedness(healthPercentage);
+            UpdateHealthRedness(healthPercentage);
+        }
+
+        private void UpdateHealthRedness(float healthPercentage)
+        {
+            // Convert health percentage to a scale of 0 to 1
+            float normalizedHealth = Mathf.Clamp01(healthPercentage);
+
+            // Reduce the green and blue contribution by 50%
+            float greenBlueValue = 0.5f + (normalizedHealth * 0.5f);
+
+            // Set the color filter value, keeping red at full intensity (1f)
+            colorAdjustments.colorFilter.value = new Color(1f, greenBlueValue, greenBlueValue);
         }
     }
 }
