@@ -21,47 +21,54 @@ public class Homing : MonoBehaviour
     [Tooltip("Tracks first detected target forever, otherwise tracks whatever is detected in BoxCast")]
     [SerializeField] bool permamentLock = true;
 
-    private Transform targetObject;
+    [SerializeField] Transform targetObject;
 
             [Header("Movement")]
     [Tooltip("Speed at which object moves forward.")]
     [SerializeField] float speed;
 
+    private void Awake()
+    {
+        //targetObject = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+
     void Update()
     {
-        if (targetObject == null)
-        {
-            targetObject = rayHit();
-            Move();
-            return;
-        }
+        //if (targetObject == null)
+        //{
+        //    targetObject = rayHit();
+        //    Move();
+        //    return;
+        //}
+
         if (permamentLock)
         {
             RotateTowardsTarget(targetObject);
         }
-        else if (rayHit() != null)
-        {
-            RotateTowardsTarget(rayHit());
-        }
+        //else if (rayHit() != null)
+        //{
+        //    RotateTowardsTarget(rayHit());
+        //}
         Move();
     }
 
     void RotateTowardsTarget(Transform target)
     { //rotates object towards target
-        Vector3 targetPredict = (target.position + TargetVelocity(target));
-        Vector3 targetDirection;
+        //Vector3 targetPredict = (target.position + TargetVelocity(target));
         //if (Vector3.Distance(transform.position, target.position) < speed / 4)
         //{
         //    targetPredict = target.position;
         //}
-        targetDirection = targetPredict - transform.position;
 
-        Debug.DrawLine(transform.position, targetPredict, Color.red);
+        Vector3 targetDirection;
+        targetDirection = target.position;
+
+        //Debug.DrawLine(transform.position, targetPredict, Color.red);
+            Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
 
         if (targetDirection != Vector3.zero)
         {
-            Quaternion targetRotation = Quaternion.LookRotation(targetDirection, transform.up);
-            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
         }
     }
 
@@ -69,28 +76,29 @@ public class Homing : MonoBehaviour
     { //moves object forwards
         transform.position += transform.forward * speed * Time.deltaTime;
     }
-    Transform rayHit()
-    { //returns transform of hit object
-        if (Physics.BoxCast(transform.position - boxCastSize.z * transform.forward, new Vector3(boxCastSize.x, boxCastSize.y, 0) * 0.5f, transform.forward, out RaycastHit hit, transform.rotation, boxCastSize.z, trackingLayer))
-        {
-            return hit.transform;
-        }
-        else { return null; }
-    }
 
-    Vector3 TargetVelocity(Transform target)
-    { //calculates velocity of target without using rigidbody to use in "leading"
-        Vector3 targetVelocity = (target.position - targetPreviousPosition) / Time.deltaTime;
-        targetPreviousPosition = target.position;
-        return targetVelocity;
-    }
+    //Transform rayHit()
+    //{ //returns transform of hit object
+    //    if (Physics.BoxCast(transform.position - boxCastSize.z * transform.forward, new Vector3(boxCastSize.x, boxCastSize.y, 0) * 0.5f, transform.forward, out RaycastHit hit, transform.rotation, boxCastSize.z, trackingLayer))
+    //    {
+    //        return hit.transform;
+    //    }
+    //    else { return null; }
+    //}
 
-    private void OnDrawGizmos()
-    {
-        //this thing doesnt rotate with the boxcast because that code would be 14 elephants in length. Also actual boxcast is around 1 unit further than this because idfk
-        Gizmos.color = Color.magenta;
+    //Vector3 TargetVelocity(Transform target)
+    //{ //calculates velocity of target without using rigidbody to use in "leading"
+    //    Vector3 targetVelocity = (target.position - targetPreviousPosition) / Time.deltaTime;
+    //    targetPreviousPosition = target.position;
+    //    return targetVelocity;
+    //}
 
-        Vector3 cubePosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-        Gizmos.DrawWireCube(cubePosition, new Vector3(boxCastSize.x, boxCastSize.y, boxCastSize.z));
-    }
+    //private void OnDrawGizmos()
+    //{
+    //    //this thing doesnt rotate with the boxcast because that code would be 14 elephants in length. Also actual boxcast is around 1 unit further than this because idfk
+    //    Gizmos.color = Color.magenta;
+
+    //    Vector3 cubePosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+    //    Gizmos.DrawWireCube(cubePosition, new Vector3(boxCastSize.x, boxCastSize.y, boxCastSize.z));
+    //}
 }
