@@ -7,7 +7,7 @@ public class HazardDamage : MonoBehaviour
 {
     [SerializeField] int damage;
     PlayerHealthManager playerHealthManager;
-    [SerializeField] bool canDamage;
+    bool canDamage = true;
     bool isTouchingPlayer;
     
     private void Awake()

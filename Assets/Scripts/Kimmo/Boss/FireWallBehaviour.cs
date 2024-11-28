@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class FirewallBehaviour : MonoBehaviour
 {
-    public Vector3 targetScale = new Vector3(1, 1, 1);
-    [SerializeField] float fireWallLength;
-    [SerializeField] float firewallHorizontalGrowthSpeed;
-    [SerializeField] float firewallVerticalShrinkSpeed;
+    Vector3 targetScale = new Vector3(1, 1, 3);
+    //[SerializeField] float fireWallLength;
+    //[SerializeField] float firewallHorizontalGrowthSpeed;
+    //[SerializeField] float firewallVerticalShrinkSpeed;
     [SerializeField] GameObject smoulderingLineObject;
     [SerializeField] GameObject flamesObject;
     [SerializeField] Vector3 startingPosition;
