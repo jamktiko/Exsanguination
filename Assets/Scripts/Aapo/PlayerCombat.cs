@@ -28,6 +28,7 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private ParticleSystem starterSwordSwing3;
     //[SerializeField] private ParticleSystem failedComboVFX;
     //[SerializeField] private ParticleSystem playerIsBlockingVFX;
+    public int comboStep;
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -115,53 +116,62 @@ public class PlayerCombat : MonoBehaviour
         }
     }
 
- 
+
 
     public void Attack()
     {
         if (isPerformingAction || isBlocking) return; // Prevent action if another is in progress
         isAttacking = true;
-        //StarterSword
+
+        // StarterSword
         if (currentWeaponNumber == 0)
         {
-            // Check if the attack just started
+            // Step 1: Check if starting a new attack sequence
             if (!animator.GetBool("startedAttack"))
             {
                 starterSwordSwing1.Play();
                 animator.SetBool("startedAttack", true);
-                // Reset any combo-related states
-                animator.SetBool("failedCombo", false);
-                return;  // Exit to ensure we only set startedAttack on the first click
+                animator.SetBool("failedCombo", false); // Reset combo failure state
+                comboStep = 1; // Move to the second step in the combo
+                Debug.Log("First Swing");
+                return; // Exit to ensure the first swing finishes before checking others
             }
-            if (canCombo && animator.GetBool("startedAttack"))
+
+            // Step 2: Handle combo progression based on `comboStep`
+            if (canCombo && comboStep == 1)
             {
                 starterSwordSwing2.Play();
                 animator.SetBool("isAttacking", true);
-                animator.SetBool("failedCombo", false);  // Ensure failedCombo is reset
+                comboStep = 2; // Move to the third step in the combo
+                Debug.Log("Second Swing");
+                return; // Exit to prevent triggering multiple swings at once
             }
-            // Now handle the combo continuation after the first attack has started
-            if (canCombo && animator.GetBool("startedAttack"))
+
+            if (canCombo && comboStep == 2)
             {
                 starterSwordSwing3.Play();
                 animator.SetBool("isAttacking", true);
-                animator.SetBool("failedCombo", false);  // Ensure failedCombo is reset
+                comboStep = 0; // Reset combo back to the start
+                Debug.Log("Third Swing");
+                return; // Exit to prevent triggering multiple swings at once
             }
-            else if (!canCombo && animator.GetBool("startedAttack"))
+
+            // Step 3: Handle failed combo scenario
+            if (!canCombo)
             {
-                //failedComboVFX.Play();
                 animator.SetBool("failedCombo", true);
-                animator.SetBool("isAttacking", false);  // Stop attacking if failedCombo
+                animator.SetBool("isAttacking", false); // Stop attacking if combo fails
+                Debug.Log("Failed Combo");
             }
         }
 
-        //SlayMore
-
-        if(currentWeaponNumber == 1)
+        // SlayMore
+        if (currentWeaponNumber == 1)
         {
             animator.SetTrigger("Attack");
         }
-        
     }
+
 
     public void BlockAction()
     {
