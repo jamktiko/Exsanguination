@@ -19,6 +19,7 @@ public class EnemyHealthScript : MonoBehaviour
     public bool hasBeenDamaged;
     int previousHealth;
     PauseScript pauseScript;
+    PlayerStats playerStats;
 
     [SerializeField] Renderer modelRenderer;
     Color damagedEffectColor = new Color(0.5f, 0.25f, 0.25f);
@@ -32,6 +33,7 @@ public class EnemyHealthScript : MonoBehaviour
         audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();   
         stakeLogic = GameObject.FindGameObjectWithTag("Stake").GetComponent<StakeLogic>();
         pauseScript = GameObject.Find("PauseManager").GetComponent<PauseScript>();
+        playerStats = GameObject.FindWithTag("PlayerStats").GetComponent<PlayerStats>();
 
         if (isBoss)
         {
@@ -124,6 +126,7 @@ public class EnemyHealthScript : MonoBehaviour
         {
             pauseScript.PauseGame();
             pauseScript.ShowVictoryScreen();
+            playerStats.StopTimer();
         }
 
         previousHealth = health;
