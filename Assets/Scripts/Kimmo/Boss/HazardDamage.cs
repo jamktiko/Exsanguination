@@ -3,28 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VentDamage : MonoBehaviour
+public class HazardDamage : MonoBehaviour
 {
     [SerializeField] int damage;
     PlayerHealthManager playerHealthManager;
     [SerializeField] bool canDamage;
     bool isTouchingPlayer;
-    [SerializeField] GameObject gasObject;
-
+    
     private void Awake()
     {
         playerHealthManager = GameObject.FindGameObjectWithTag("HealthManager").GetComponent<PlayerHealthManager>();
-    }
-
-    private void Start()
-    {
-        gasObject.SetActive(false);
-    }
-
-    public void SetGasActive()
-    {
-        gasObject.SetActive(true);
-        canDamage = true;
     }
 
     private void OnTriggerStay(Collider other)

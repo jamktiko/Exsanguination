@@ -9,7 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8232565604020029388}
-  - component: {fileID: 4867256043523176681}
+  - component: {fileID: 814759117967699572}
+  - component: {fileID: 5720843764584127046}
   - component: {fileID: 8986455410035338536}
   m_Layer: 0
   m_Name: Vent
@@ -35,7 +36,7 @@ Transform:
   - {fileID: 4790592641683078234}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4867256043523176681
+--- !u!114 &814759117967699572
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -48,8 +49,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 34
-  isActive: 0
-  gasObject: {fileID: 6231151920822704915}
+  canDamage: 0
+--- !u!114 &5720843764584127046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4755836323825853473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 664531c9828440947a562fea83d5c4e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gasObject: {fileID: 0}
 --- !u!65 &8986455410035338536
 BoxCollider:
   m_ObjectHideFlags: 0

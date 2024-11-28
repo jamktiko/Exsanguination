@@ -150,7 +150,7 @@ public class Boss : MonoBehaviour
         // Activate the method on each chosen vent
         foreach (GameObject vent in chosenVents)
         {
-            vent.GetComponent<VentDamage>().SetGasActive();
+            vent.GetComponent<VentActivation>().SetGasActive();
         }
     }
 
