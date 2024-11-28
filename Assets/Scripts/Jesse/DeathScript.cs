@@ -21,8 +21,11 @@ public class DeathScript : MonoBehaviour
         pauseScript = GameObject.Find("PauseManager").GetComponent<PauseScript>();
         controllerHandler = GameObject.Find("InputManager").GetComponent<ControllerHandler>();
         inputHandler = GameObject.Find("Player").GetComponent<InputHandler>();
+    }
 
-
+    private void Start()
+    {
+        deathScreen.SetActive(false);
     }
 
     public void Die()

@@ -3,23 +3,31 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class PlayerStats : MonoBehaviour
 {
     [SerializeField] public bool foundSlaymore, foundGrapplinghook, foundStake, foundKeycard;
-    [SerializeField] float preBossTime, bossTime, totalTime;
+    [SerializeField] float tutorialTime, levelTime, bossTime, totalTime;
     [SerializeField] float timer;
 
-    [SerializeField] TimeSpan preBoss, boss, total;
+    [SerializeField] TimeSpan tutorial, level, boss, total;
 
     PlayerHealthManager healthManager;
     public static PlayerStats playerStats;
 
-    [SerializeField] public string preBossTimeString;
+    [SerializeField] public string tutorialTimeString;
+    [SerializeField] public string levelTimeString;
     [SerializeField] public string bossTimeString;
     [SerializeField] public string totalTimeString;
 
     public bool cutSceneSeen;
+
+    TMP_Text totalTimeText;
+    TMP_Text totalTimeTextShadow;
+    TMP_Text statsText;
+
+    int deathCount;
 
     private void Awake()
     {
@@ -34,23 +42,54 @@ public class PlayerStats : MonoBehaviour
         }
         else if (playerStats != this)
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
-
-        healthManager = GameObject.FindWithTag("HealthManager").GetComponent<PlayerHealthManager>();
 
         if (healthManager != null)
         {
-            healthManager.OnDeath += StopTimer;
+            healthManager.OnDeath += RestartTimer;
         }
 
-       
-        //boss death event += StopTimer;
+
+        totalTimeText = GameObject.Find("GameCompletionTimeText").GetComponent<TextMeshProUGUI>();
+        totalTimeTextShadow = totalTimeText.transform.Find("GameCompletionTimeTextShadow").GetComponent<TextMeshProUGUI>();
+        statsText = GameObject.Find("StatText").GetComponent<TextMeshProUGUI>();
     }
     
     private void Update()
     {
-        //Debug.Log(TimeInString(timer));
+        if (healthManager == null && SceneManager.GetActiveScene().buildIndex != 0)
+        {
+            healthManager = GameObject.FindWithTag("HealthManager").GetComponent<PlayerHealthManager>();
+
+            healthManager.OnDeath += AddDeath;
+            healthManager.OnDeath += RestartTimer;
+        }
+    }
+
+    void AddDeath()
+    {
+        if (SceneManager.GetActiveScene().buildIndex != 1) { deathCount += 1; }
+    }
+
+    private void OnEnable()
+    {
+        if (healthManager != null)
+        {
+            healthManager.OnDeath += AddDeath;
+            healthManager.OnDeath += StopTimer;
+
+            //boss death event += StopTimer;
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (healthManager != null)
+        {
+            healthManager.OnDeath -= AddDeath;
+            healthManager.OnDeath -= StopTimer;
+        }
     }
 
     IEnumerator Timer()
@@ -64,6 +103,9 @@ public class PlayerStats : MonoBehaviour
 
     public void RestartTimer()
     { //restarts timer from 0
+        float time = tutorialTime + levelTime + timer;
+        statsText.text = "Time: " + TimeInString(time);
+
         StopAllCoroutines();
         StartCoroutine(Timer());
         timer = 0;
@@ -71,37 +113,44 @@ public class PlayerStats : MonoBehaviour
 
     public void StopTimer()
     {
+        Debug.Log("Time stopped");
         StopAllCoroutines();
-        if (SceneManager.GetActiveScene().buildIndex == 2 )
+
+        if (SceneManager.GetActiveScene().buildIndex == 3 )
         {
             bossTime = timer;
-            totalTime = preBossTime + bossTime;
+            totalTime = tutorialTime + levelTime + bossTime;
             bossTimeString = $"Boss completion time: {TimeInString(bossTime)}";
             totalTimeString = $"Total time: {TimeInString(totalTime)}";
+            totalTimeText.text = TimeInString(totalTime);
+            totalTimeTextShadow.text = TimeInString(totalTime);
         }
+
+        
     }
 
     public void ResetSavedTimes()
     { //resets saved times
-        preBossTime = bossTime = totalTime = 0;
+        tutorialTime = levelTime = bossTime = totalTime = 0;
     }
 
     private void OnLevelLoad(Scene scene, LoadSceneMode sceneMode)
     {
-        if (scene.buildIndex == 2 && preBossTime == 0) 
+        if (scene.buildIndex == 3 && bossTime == 0)
         {
-            preBossTime = timer;
-            preBossTimeString = $"Level completion time: {TimeInString(preBossTime)}";
-
-
+            levelTime = timer;
+            levelTimeString = $"Level completion time: {TimeInString(levelTime)}";
+        }
+        if (scene.buildIndex == 2 && levelTime == 0)
+        {
+            tutorialTime = timer;
+            tutorialTimeString = $"Level completion time: {TimeInString(tutorialTime)}";
         }
         RestartTimer();
         if (scene.buildIndex == 1)
         { //set all found bools to false and fully resets saved times if in base level
             foundGrapplinghook = foundKeycard = foundSlaymore = foundStake = false;
             ResetSavedTimes();
-            
-
         }
     }
 
