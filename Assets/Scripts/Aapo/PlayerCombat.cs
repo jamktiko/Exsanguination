@@ -23,9 +23,9 @@ public class PlayerCombat : MonoBehaviour
     private Image comboCooldownImage;
     [SerializeField] float comboCooldownDuration;
 
-    //[SerializeField] private ParticleSystem starterSwordSwing1;
-    //[SerializeField] private ParticleSystem starterSwordSwing2;
-    //[SerializeField] private ParticleSystem starterSwordSwing3;
+    [SerializeField] private ParticleSystem starterSwordSwing1;
+    [SerializeField] private ParticleSystem starterSwordSwing2;
+    [SerializeField] private ParticleSystem starterSwordSwing3;
     //[SerializeField] private ParticleSystem failedComboVFX;
     //[SerializeField] private ParticleSystem playerIsBlockingVFX;
     private void Awake()
@@ -127,7 +127,7 @@ public class PlayerCombat : MonoBehaviour
             // Check if the attack just started
             if (!animator.GetBool("startedAttack"))
             {
-                //starterSwordSwing1.Play();
+                starterSwordSwing1.Play();
                 animator.SetBool("startedAttack", true);
                 // Reset any combo-related states
                 animator.SetBool("failedCombo", false);
@@ -198,6 +198,7 @@ public class PlayerCombat : MonoBehaviour
     public void CanDamageMethod()
     {
         canDamage = true;
+        //starterSwordSwing1.Play();
     }
 
     public void CantDamageMethod()
