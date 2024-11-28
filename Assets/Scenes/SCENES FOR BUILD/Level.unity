@@ -1231,6 +1231,22 @@ PrefabInstance:
       propertyPath: m_Convex
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6741350911161584824, guid: 45bb6cfe7ae2e704daf0258f9b9ee5ef, type: 3}
+      propertyPath: m_Size.x
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 6741350911161584824, guid: 45bb6cfe7ae2e704daf0258f9b9ee5ef, type: 3}
+      propertyPath: m_Center.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6741350911161584824, guid: 45bb6cfe7ae2e704daf0258f9b9ee5ef, type: 3}
+      propertyPath: m_Center.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6741350911161584824, guid: 45bb6cfe7ae2e704daf0258f9b9ee5ef, type: 3}
+      propertyPath: m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7026994600463624901, guid: 45bb6cfe7ae2e704daf0258f9b9ee5ef, type: 3}
       propertyPath: m_Convex
       value: 1
@@ -4615,6 +4631,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0.000091552734
       objectReference: {fileID: 0}
+    - target: {fileID: 365210913179383038, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 633990221508550470, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
       propertyPath: inputManager
       value: 
@@ -4754,6 +4774,10 @@ PrefabInstance:
     - target: {fileID: 6050902476658974900, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6405755559311482898, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6984771965536967876, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
       propertyPath: cameraTransform
@@ -6121,11 +6145,13 @@ MonoBehaviour:
   foundGrapplinghook: 1
   foundStake: 1
   foundKeycard: 0
-  preBossTime: 0
+  tutorialTime: 0
+  levelTime: 0
   bossTime: 0
   totalTime: 0
   timer: 0
-  preBossTimeString: 
+  tutorialTimeString: 
+  levelTimeString: 
   bossTimeString: 
   totalTimeString: 
   cutSceneSeen: 0
