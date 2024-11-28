@@ -135,14 +135,14 @@ public class PlayerCombat : MonoBehaviour
             }
             if (canCombo && animator.GetBool("startedAttack"))
             {
-                //starterSwordSwing2.Play();
+                starterSwordSwing2.Play();
                 animator.SetBool("isAttacking", true);
                 animator.SetBool("failedCombo", false);  // Ensure failedCombo is reset
             }
             // Now handle the combo continuation after the first attack has started
             if (canCombo && animator.GetBool("startedAttack"))
             {
-                //starterSwordSwing3.Play();
+                starterSwordSwing3.Play();
                 animator.SetBool("isAttacking", true);
                 animator.SetBool("failedCombo", false);  // Ensure failedCombo is reset
             }
