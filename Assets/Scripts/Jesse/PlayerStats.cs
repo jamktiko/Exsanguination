@@ -27,6 +27,7 @@ public class PlayerStats : MonoBehaviour
     TMP_Text totalTimeTextShadow;
     TMP_Text statsText;
 
+    private Coroutine timerCoroutine;
     int deathCount;
 
     private void Awake()
@@ -42,7 +43,7 @@ public class PlayerStats : MonoBehaviour
         }
         else if (playerStats != this)
         {
-            //Destroy(gameObject);
+            Destroy(gameObject);
         }
 
         if (healthManager != null)
@@ -103,18 +104,29 @@ public class PlayerStats : MonoBehaviour
 
     public void RestartTimer()
     { //restarts timer from 0
+
+        if (timerCoroutine != null)
+        {
+            StopCoroutine(timerCoroutine);
+        }
+
         float time = tutorialTime + levelTime + timer;
         statsText.text = "Time: " + TimeInString(time);
 
-        StopAllCoroutines();
-        StartCoroutine(Timer());
         timer = 0;
+        timerCoroutine = StartCoroutine(Timer());
     }
 
     public void StopTimer()
     {
         Debug.Log("Time stopped");
         StopAllCoroutines();
+
+        if (timerCoroutine != null)
+        {
+            StopCoroutine(timerCoroutine);
+            timerCoroutine = null;
+        }
 
         if (SceneManager.GetActiveScene().buildIndex == 3 )
         {
@@ -125,8 +137,6 @@ public class PlayerStats : MonoBehaviour
             totalTimeText.text = TimeInString(totalTime);
             totalTimeTextShadow.text = TimeInString(totalTime);
         }
-
-        
     }
 
     public void ResetSavedTimes()
