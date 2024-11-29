@@ -128,12 +128,12 @@ public class PlayerMovement : MonoBehaviour
             coyoteTimeCounter += Time.deltaTime;
         }
 
-        if (rb.velocity.y < 0 || activeGrapple)
+        if (rb.velocity.y < 0)
         {
             rb.drag = airDrag;
         }
 
-        if (isGrounded && !activeGrapple || isJumping)
+        if (isGrounded || activeGrapple || isJumping)
         {
             rb.drag = groundDrag;
         }
@@ -343,6 +343,8 @@ public class PlayerMovement : MonoBehaviour
     private void Dash()
     {
         rb.AddForce(dashDirection * dashSpeed, ForceMode.Impulse);
+
+        
     }
 
     public void GetDirection()
