@@ -51,6 +51,7 @@ private Vector3 separationForce;             // Reusable vector for separation f
 
     private void Start()
     {
+        moveSpeed = Mathf.Round(Random.Range(7f, 8f) * 10f) / 10f;
         storedSeparationDistance = separationDistance;
         navMeshAgent.speed = moveSpeed;  // Sync NavMeshAgent speed
         navMeshAgent.stoppingDistance = stoppingDistance;
