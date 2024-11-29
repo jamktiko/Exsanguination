@@ -25,7 +25,6 @@ public class PlayerStats : MonoBehaviour
 
     [SerializeField] TMP_Text totalTimeText;
     [SerializeField] TMP_Text totalTimeTextShadow;
-    [SerializeField] TMP_Text statsText;
 
     private Coroutine timerCoroutine;
     int deathCount;
@@ -105,9 +104,6 @@ public class PlayerStats : MonoBehaviour
             StopCoroutine(timerCoroutine);
         }
 
-        totalTime += timer;
-        statsText.text = "Time: " + TimeInString(totalTime);
-
         timer = 0;
         timerCoroutine = StartCoroutine(Timer());
     }
@@ -126,7 +122,7 @@ public class PlayerStats : MonoBehaviour
         if (SceneManager.GetActiveScene().buildIndex == 3 )
         {
             bossTime = timer;
-            totalTime = tutorialTime + levelTime + bossTime;
+            totalTime += bossTime;
             bossTimeString = $"Boss completion time: {TimeInString(bossTime)}";
             totalTimeString = $"Total time: {TimeInString(totalTime)}";
             totalTimeText.text = TimeInString(totalTime);
@@ -143,16 +139,17 @@ public class PlayerStats : MonoBehaviour
     {
         totalTimeText = GameObject.Find("GameCompletionTimeText").GetComponent<TextMeshProUGUI>();
         totalTimeTextShadow = totalTimeText.transform.Find("GameCompletionTimeTextShadow").GetComponent<TextMeshProUGUI>();
-        statsText = GameObject.Find("StatText").GetComponent<TextMeshProUGUI>();
 
-        if (scene.buildIndex == 3 && bossTime == 0)
+        if (scene.buildIndex == 3 && levelTime == 0)
         {
             levelTime = timer;
+            totalTime += levelTime;
             levelTimeString = $"Level completion time: {TimeInString(levelTime)}";
         }
-        if (scene.buildIndex == 2 && levelTime == 0)
+        if (scene.buildIndex == 2 && tutorialTime == 0)
         {
             tutorialTime = timer;
+            totalTime += tutorialTime;
             tutorialTimeString = $"Level completion time: {TimeInString(tutorialTime)}";
         }
         RestartTimer();
