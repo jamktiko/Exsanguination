@@ -23,9 +23,9 @@ public class PlayerStats : MonoBehaviour
 
     public bool cutSceneSeen;
 
-    TMP_Text totalTimeText;
-    TMP_Text totalTimeTextShadow;
-    TMP_Text statsText;
+    [SerializeField] TMP_Text totalTimeText;
+    [SerializeField] TMP_Text totalTimeTextShadow;
+    [SerializeField] TMP_Text statsText;
 
     private Coroutine timerCoroutine;
     int deathCount;
@@ -50,11 +50,6 @@ public class PlayerStats : MonoBehaviour
         {
             healthManager.OnDeath += RestartTimer;
         }
-
-
-        totalTimeText = GameObject.Find("GameCompletionTimeText").GetComponent<TextMeshProUGUI>();
-        totalTimeTextShadow = totalTimeText.transform.Find("GameCompletionTimeTextShadow").GetComponent<TextMeshProUGUI>();
-        statsText = GameObject.Find("StatText").GetComponent<TextMeshProUGUI>();
     }
     
     private void Update()
@@ -110,8 +105,8 @@ public class PlayerStats : MonoBehaviour
             StopCoroutine(timerCoroutine);
         }
 
-        float time = tutorialTime + levelTime + timer;
-        statsText.text = "Time: " + TimeInString(time);
+        totalTime += timer;
+        statsText.text = "Time: " + TimeInString(totalTime);
 
         timer = 0;
         timerCoroutine = StartCoroutine(Timer());
@@ -146,6 +141,10 @@ public class PlayerStats : MonoBehaviour
 
     private void OnLevelLoad(Scene scene, LoadSceneMode sceneMode)
     {
+        totalTimeText = GameObject.Find("GameCompletionTimeText").GetComponent<TextMeshProUGUI>();
+        totalTimeTextShadow = totalTimeText.transform.Find("GameCompletionTimeTextShadow").GetComponent<TextMeshProUGUI>();
+        statsText = GameObject.Find("StatText").GetComponent<TextMeshProUGUI>();
+
         if (scene.buildIndex == 3 && bossTime == 0)
         {
             levelTime = timer;
