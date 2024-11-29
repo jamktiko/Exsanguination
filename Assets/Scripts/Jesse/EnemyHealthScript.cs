@@ -1,5 +1,6 @@
 using KnowerCoder.BloodFX;
 using UnityEngine;
+using System.Collections;
 
 public class EnemyHealthScript : MonoBehaviour
 {
@@ -23,6 +24,8 @@ public class EnemyHealthScript : MonoBehaviour
 
     [SerializeField] Renderer modelRenderer;
     Color damagedEffectColor = new Color(0.5f, 0.25f, 0.25f);
+    private Color originalColor = Color.white; // Assuming the original color is white
+    private bool isTransitioning = false; // Prevent overlapping transitions
 
     private void Awake()
     {
@@ -30,7 +33,7 @@ public class EnemyHealthScript : MonoBehaviour
         enemyDeathScript = GetComponentInChildren<EnemyDeathScript>();
         bloodController = GetComponentInChildren<BloodFXController>();
         bloodSplatterParticle = GetComponentInChildren<ParticleSystem>();
-        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();   
+        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         stakeLogic = GameObject.FindGameObjectWithTag("Stake").GetComponent<StakeLogic>();
         pauseScript = GameObject.Find("PauseManager").GetComponent<PauseScript>();
         playerStats = GameObject.FindWithTag("PlayerStats").GetComponent<PlayerStats>();
@@ -42,6 +45,11 @@ public class EnemyHealthScript : MonoBehaviour
         else
         {
             modelRenderer = GetComponentInChildren<Renderer>();
+
+            if (modelRenderer != null)
+            {
+                originalColor = modelRenderer.material.GetColor("_BaseColor");
+            }
         }
     }
 
@@ -59,21 +67,44 @@ public class EnemyHealthScript : MonoBehaviour
         health = Mathf.Clamp(health - changeAmount, 0, maxHealth);
         Debug.Log("Enemy health = " + health);
 
-        if (health <= 15 && !isBoss)
+        if (health <= 15 && !isBoss && !isTransitioning)
         {
-            modelRenderer.material.SetColor("_BaseColor", damagedEffectColor);
+            StartCoroutine(SmoothlyChangeColor(damagedEffectColor, 0.1f));
         }
         if (health <= 0 && !isBoss)
         {
             Debug.Log("Enemy health is zero");
             EnemyDie();
         }
-        
+
         if (isBoss)
         {
             audioManager.PlayBossTakeDamageClip(bossTakeDamageAudioSource);
             BossHealthEffects();
         }
+    }
+
+
+    private IEnumerator SmoothlyChangeColor(Color targetColor, float duration)
+    {
+        isTransitioning = true;
+        float elapsedTime = 0f;
+
+        Color startingColor = modelRenderer.material.GetColor("_BaseColor");
+
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / duration;
+
+            // Interpolate between the starting color and the target color
+            modelRenderer.material.SetColor("_BaseColor", Color.Lerp(startingColor, targetColor, t));
+            yield return null;
+        }
+
+        // Ensure the color is set to the exact target at the end
+        modelRenderer.material.SetColor("_BaseColor", targetColor);
+        isTransitioning = false;
     }
 
     public void FinishEnemy()
