@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float airMultiplier;
     [SerializeField] float groundDrag;
     [SerializeField] float airDrag;
+    [SerializeField] float grapplingDrag;
     [SerializeField] LayerMask groundMask;
     [SerializeField] bool canMove;
     public bool isMoving;
@@ -133,9 +134,14 @@ public class PlayerMovement : MonoBehaviour
             rb.drag = airDrag;
         }
 
-        if (isGrounded || activeGrapple || isJumping)
+        if (isGrounded || isJumping)
         {
             rb.drag = groundDrag;
+        }
+
+        if (activeGrapple)
+        {
+            rb.drag = grapplingDrag;
         }
 
         if (coyoteTimeCounter < coyoteTime)
