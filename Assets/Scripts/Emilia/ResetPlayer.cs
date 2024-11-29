@@ -8,6 +8,7 @@ public class ResetPlayer : MonoBehaviour
     GameObject player;
     public bool hasTriggered;
     public bool isTutorial;
+    public bool isGrappleRoom;
 
     // Start is called before the first frame update
     void Awake()
@@ -19,24 +20,35 @@ public class ResetPlayer : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (!hasTriggered)
+            if (isGrappleRoom)
             {
-                player.transform.SetPositionAndRotation(resetSpot[0].position, Quaternion.identity);
-                if (!isTutorial) 
-                {
-                    player.transform.rotation = Quaternion.Euler(0, 180, 0);
-                }
-                else
-                    player.transform.rotation = Quaternion.Euler(0, 45, 0);
-
+                player.transform.SetPositionAndRotation(resetSpot[2].position, Quaternion.identity);
+                player.transform.rotation = Quaternion.Euler(0, 180, 0);
+                Debug.Log("grapple drop");
             }
-
             else
             {
-                player.transform.SetPositionAndRotation(resetSpot[1].position, Quaternion.identity);
-                player.transform.rotation = Quaternion.Euler(0, -90f, 0);
+                if (!hasTriggered)
+                {
+                    player.transform.SetPositionAndRotation(resetSpot[0].position, Quaternion.identity);
+                    if (!isTutorial)
+                    {
+                        player.transform.rotation = Quaternion.Euler(0, 180, 0);
+                    }
+                    else
+                        player.transform.rotation = Quaternion.Euler(0, 45, 0);
+
+                }
+
+                else
+                {
+                    player.transform.SetPositionAndRotation(resetSpot[1].position, Quaternion.identity);
+                    player.transform.rotation = Quaternion.Euler(0, -90f, 0);
+
+                }
 
             }
+           
         }
     }
 }
