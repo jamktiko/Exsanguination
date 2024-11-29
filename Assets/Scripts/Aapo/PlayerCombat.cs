@@ -83,11 +83,14 @@ public class PlayerCombat : MonoBehaviour
     public void StopAction()
     {
         isPerformingAction = false;
+
     }
 
     public void FinishAttack()
     {
         isAttacking = false;
+        comboStep = 0; // Reset combo back to the start
+
     }
 
     public void AnimatorAttackingFalse()
@@ -127,32 +130,48 @@ public class PlayerCombat : MonoBehaviour
         if (currentWeaponNumber == 0)
         {
             // Step 1: Check if starting a new attack sequence
-            if (!animator.GetBool("startedAttack"))
+            if (!animator.GetBool("isAttacking") && comboStep == 0)
             {
-                starterSwordSwing1.Play();
                 animator.SetBool("startedAttack", true);
+                animator.SetBool("isAttacking", true);
                 animator.SetBool("failedCombo", false); // Reset combo failure state
-                comboStep = 1; // Move to the second step in the combo
+
+                // Play the particle effect for the first swing
                 Debug.Log("First Swing");
+
+                comboStep = 1; // Move to the second step in the combo
+                animator.SetInteger("comboStep", comboStep);
                 return; // Exit to ensure the first swing finishes before checking others
             }
 
             // Step 2: Handle combo progression based on `comboStep`
             if (canCombo && comboStep == 1)
             {
-                starterSwordSwing2.Play();
-                animator.SetBool("isAttacking", true);
-                comboStep = 2; // Move to the third step in the combo
                 Debug.Log("Second Swing");
+
+                comboStep = 2; // Move to the third step in the combo
+                animator.SetBool("isAttacking", true);
+                animator.SetInteger("comboStep", comboStep);
                 return; // Exit to prevent triggering multiple swings at once
             }
 
             if (canCombo && comboStep == 2)
             {
-                starterSwordSwing3.Play();
-                animator.SetBool("isAttacking", true);
-                comboStep = 0; // Reset combo back to the start
                 Debug.Log("Third Swing");
+
+                comboStep = 3;
+                animator.SetBool("isAttacking", true);
+                animator.SetInteger("comboStep", comboStep);
+                return; // Exit to prevent triggering multiple swings at once
+            }
+
+            if (canCombo && comboStep == 3)
+            {
+                // Reset combo after the final attack
+                Debug.Log("Reset Combo");
+                comboStep = 0;
+                animator.SetBool("isAttacking", true);
+                animator.SetInteger("comboStep", comboStep);
                 return; // Exit to prevent triggering multiple swings at once
             }
 
@@ -171,6 +190,7 @@ public class PlayerCombat : MonoBehaviour
             animator.SetTrigger("Attack");
         }
     }
+
 
 
     public void BlockAction()
@@ -237,8 +257,8 @@ public class PlayerCombat : MonoBehaviour
     public void CantCombo()
     {
         canCombo = false;
-
-        //animator.SetBool("isAttacking", false);
+        // Reset combo step and animator states after the combo is finished
+        
 
 
     }
@@ -263,22 +283,29 @@ public class PlayerCombat : MonoBehaviour
         isBlocking = false;
     }
 
-    public void Attack1Sfx()
+    public void Attack1Fx()
     {
         audioManager.PlaySwordSwingClips1();
+        starterSwordSwing1.Play();
 
     }
 
-    public void Attack2Sfx()
+    public void Attack2Fx()
     {
         audioManager.PlaySwordSwingClips2();
+        starterSwordSwing2.Play();
+
     }
 
-    public void Attack3Sfx()
+    public void Attack3Fx()
     {
         audioManager.PlaySwordSwingClips3();
+        starterSwordSwing3.Play();
+
 
     }
+
+
 }
 
 
