@@ -3328,6 +3328,7 @@ MonoBehaviour:
   - {fileID: 0}
   hasTriggered: 0
   isTutorial: 0
+  isGrappleRoom: 0
 --- !u!65 &1288963147
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3743,6 +3744,10 @@ PrefabInstance:
       propertyPath: playerStats
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1322206298164862062, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1530992120805512062, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
       propertyPath: pauseScript
       value: 
@@ -3769,7 +3774,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2238461276668040472, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -107.1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2721610111829257685, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2830610190821885491, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
+      propertyPath: m_UpdateMode
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3009434299535699901, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -3855,6 +3868,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3902187727695565746, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4080691799500274451, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
       propertyPath: eventSystem
       value: 
@@ -3901,7 +3918,7 @@ PrefabInstance:
       objectReference: {fileID: 1481087141}
     - target: {fileID: 7279332947468592715, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -107.1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7725157924798090585, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
       propertyPath: m_IsActive
@@ -3918,6 +3935,10 @@ PrefabInstance:
     - target: {fileID: 8914413004397452076, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9038463212473449532, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4082,6 +4103,10 @@ PrefabInstance:
       propertyPath: deathScript
       value: 
       objectReference: {fileID: 1215644641}
+    - target: {fileID: 86002565413899968, guid: 3e2ab715ca80448418d489cec1f9c07c, type: 3}
+      propertyPath: introToLoopDelay
+      value: 3.2
+      objectReference: {fileID: 0}
     - target: {fileID: 3087190505802874956, guid: 3e2ab715ca80448418d489cec1f9c07c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -11.430343
