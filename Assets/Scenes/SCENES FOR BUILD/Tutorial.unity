@@ -161,6 +161,7 @@ MonoBehaviour:
   - {fileID: 1070862221}
   hasTriggered: 0
   isTutorial: 1
+  isGrappleRoom: 0
 --- !u!65 &55830520
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -567,7 +568,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 682916761}
     m_Modifications:
     - target: {fileID: 1357016962529456385, guid: 1b62a4bb8cc8efb4aae4dc9174a7bd6b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -576,6 +577,10 @@ PrefabInstance:
     - target: {fileID: 1454188574208328123, guid: 1b62a4bb8cc8efb4aae4dc9174a7bd6b, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2303243253875908596, guid: 1b62a4bb8cc8efb4aae4dc9174a7bd6b, type: 3}
+      propertyPath: dashSpeed
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 4872557799192573021, guid: 1b62a4bb8cc8efb4aae4dc9174a7bd6b, type: 3}
       propertyPath: deathScript
@@ -595,15 +600,15 @@ PrefabInstance:
       objectReference: {fileID: 1499779501}
     - target: {fileID: 8053767885582258442, guid: 1b62a4bb8cc8efb4aae4dc9174a7bd6b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -92.24
+      value: -94.91664
       objectReference: {fileID: 0}
     - target: {fileID: 8053767885582258442, guid: 1b62a4bb8cc8efb4aae4dc9174a7bd6b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.088
+      value: -3.1815984
       objectReference: {fileID: 0}
     - target: {fileID: 8053767885582258442, guid: 1b62a4bb8cc8efb4aae4dc9174a7bd6b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 41.58
+      value: 42.541756
       objectReference: {fileID: 0}
     - target: {fileID: 8053767885582258442, guid: 1b62a4bb8cc8efb4aae4dc9174a7bd6b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -691,11 +696,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2402370926771590053, guid: ea0478523c87a7246a5c7ab954f48669, type: 3}
       propertyPath: m_Size.z
-      value: 10.520599
+      value: 9.379917
       objectReference: {fileID: 0}
     - target: {fileID: 2402370926771590053, guid: ea0478523c87a7246a5c7ab954f48669, type: 3}
       propertyPath: m_Center.z
-      value: 1.2636223
+      value: 0.6932812
       objectReference: {fileID: 0}
     - target: {fileID: 3764235812905424547, guid: ea0478523c87a7246a5c7ab954f48669, type: 3}
       propertyPath: thisScroll
@@ -1207,12 +1212,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6405755559311482898, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8306886513490813497, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
       propertyPath: m_Name
       value: PlayerCanvas
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3902187727695565746, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
@@ -1357,6 +1367,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1509932029 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8053767885582258442, guid: 1b62a4bb8cc8efb4aae4dc9174a7bd6b, type: 3}
+  m_PrefabInstance: {fileID: 463096233}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1519036042 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5906944275741969224, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
@@ -1608,6 +1623,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 454619042838251833, guid: 607241fc019739a44b320e48be37d371, type: 3}
       insertIndex: -1
       addedObject: {fileID: 586020360}
+    - targetCorrespondingSourceObject: {fileID: 454619042838251833, guid: 607241fc019739a44b320e48be37d371, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1509932029}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 607241fc019739a44b320e48be37d371, type: 3}
 --- !u!114 &2042145156 stripped
@@ -4059,7 +4077,6 @@ SceneRoots:
   - {fileID: 1322697035}
   - {fileID: 1119691272}
   - {fileID: 2038203033}
-  - {fileID: 463096233}
   - {fileID: 847760408}
   - {fileID: 328535531}
   - {fileID: 1070862221}
