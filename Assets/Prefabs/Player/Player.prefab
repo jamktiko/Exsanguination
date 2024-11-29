@@ -1211,7 +1211,7 @@ MonoBehaviour:
   airMultiplier: 1
   groundDrag: 10
   airDrag: 0
-  grapplingDrag: 0
+  grapplingDrag: 0.1
   groundMask:
     serializedVersion: 2
     m_Bits: 256
@@ -14340,11 +14340,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6914653638882855476, guid: 269a9c97df8a8814e82c1090375f0f96, type: 3}
       propertyPath: m_Size.x
-      value: 0.05
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6914653638882855476, guid: 269a9c97df8a8814e82c1090375f0f96, type: 3}
+      propertyPath: m_Size.y
+      value: 0.6997296
       objectReference: {fileID: 0}
     - target: {fileID: 6914653638882855476, guid: 269a9c97df8a8814e82c1090375f0f96, type: 3}
       propertyPath: m_Size.z
-      value: 0.05
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6914653638882855476, guid: 269a9c97df8a8814e82c1090375f0f96, type: 3}
+      propertyPath: m_Center.x
+      value: 0.000000053251327
+      objectReference: {fileID: 0}
+    - target: {fileID: 6914653638882855476, guid: 269a9c97df8a8814e82c1090375f0f96, type: 3}
+      propertyPath: m_Center.y
+      value: 0.40986496
+      objectReference: {fileID: 0}
+    - target: {fileID: 6914653638882855476, guid: 269a9c97df8a8814e82c1090375f0f96, type: 3}
+      propertyPath: m_Center.z
+      value: -0.000000005530988
       objectReference: {fileID: 0}
     - target: {fileID: 7488811631312195304, guid: 269a9c97df8a8814e82c1090375f0f96, type: 3}
       propertyPath: playerCombat

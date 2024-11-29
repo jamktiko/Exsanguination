@@ -227,6 +227,7 @@ MonoBehaviour:
   - {fileID: 2134326961}
   hasTriggered: 0
   isTutorial: 0
+  isGrappleRoom: 0
 --- !u!65 &32285340
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -460,6 +461,7 @@ MonoBehaviour:
   - {fileID: 2134326961}
   hasTriggered: 0
   isTutorial: 0
+  isGrappleRoom: 0
 --- !u!65 &101727940
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -988,6 +990,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4088608855840970, guid: a90d2e4dce5384f4c9afa474ccf97099, type: 3}
   m_PrefabInstance: {fileID: 236649272}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &259523998
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 259523999}
+  m_Layer: 0
+  m_Name: SpawnSpot3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &259523999
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259523998}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.7071064, z: -0, w: 0.7071072}
+  m_LocalPosition: {x: 4.3, y: -41.61, z: -32.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &264376594 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 75032864327946114, guid: 83866b8aae70c78488ab05e07446f475, type: 3}
@@ -2920,6 +2953,7 @@ MonoBehaviour:
   - {fileID: 2134326961}
   hasTriggered: 0
   isTutorial: 0
+  isGrappleRoom: 0
 --- !u!65 &607284132
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4928,6 +4962,7 @@ MonoBehaviour:
   - {fileID: 2134326961}
   hasTriggered: 0
   isTutorial: 0
+  isGrappleRoom: 0
 --- !u!65 &1082724026
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5500,6 +5535,7 @@ MonoBehaviour:
   - {fileID: 2134326961}
   hasTriggered: 0
   isTutorial: 0
+  isGrappleRoom: 0
 --- !u!65 &1206443691
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8462,6 +8498,7 @@ MonoBehaviour:
   - {fileID: 2134326961}
   hasTriggered: 0
   isTutorial: 0
+  isGrappleRoom: 0
 --- !u!65 &1909958943
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18002,8 +18039,10 @@ MonoBehaviour:
   resetSpot:
   - {fileID: 1648611655}
   - {fileID: 2134326961}
+  - {fileID: 259523999}
   hasTriggered: 0
   isTutorial: 0
+  isGrappleRoom: 1
 --- !u!4 &857234648253200935
 Transform:
   m_ObjectHideFlags: 0
@@ -20981,6 +21020,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2793980089160119457}
     m_Modifications:
+    - target: {fileID: 1782145088247077646, guid: 98be47a423485194492f4040cf4407b9, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5709894419407248146, guid: 98be47a423485194492f4040cf4407b9, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8968540442603665512, guid: 98be47a423485194492f4040cf4407b9, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3957944919277502909, guid: 1600315efc9c2754a8112e7b72a6d497, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4311105991722747329, guid: 1600315efc9c2754a8112e7b72a6d497, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8910141251334693818, guid: 1600315efc9c2754a8112e7b72a6d497, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1247604006792602, guid: 338cb3d3bdac07349afe82ea736ec37e, type: 3}
       propertyPath: m_Name
       value: dfk_floor_steps_02_side_c
@@ -21028,30 +21091,6 @@ PrefabInstance:
     - target: {fileID: 64207869641853228, guid: 338cb3d3bdac07349afe82ea736ec37e, type: 3}
       propertyPath: m_Convex
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1782145088247077646, guid: 98be47a423485194492f4040cf4407b9, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5709894419407248146, guid: 98be47a423485194492f4040cf4407b9, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8968540442603665512, guid: 98be47a423485194492f4040cf4407b9, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3957944919277502909, guid: 1600315efc9c2754a8112e7b72a6d497, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4311105991722747329, guid: 1600315efc9c2754a8112e7b72a6d497, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8910141251334693818, guid: 1600315efc9c2754a8112e7b72a6d497, type: 3}
-      propertyPath: m_Mesh
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -30966,8 +31005,10 @@ MonoBehaviour:
   resetSpot:
   - {fileID: 1648611655}
   - {fileID: 2134326961}
+  - {fileID: 259523999}
   hasTriggered: 0
   isTutorial: 0
+  isGrappleRoom: 1
 --- !u!1001 &2264957703690692548
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -90056,6 +90097,7 @@ SceneRoots:
   - {fileID: 1678389294468710222}
   - {fileID: 1648611655}
   - {fileID: 2134326961}
+  - {fileID: 259523999}
   - {fileID: 1483992026734261169}
   - {fileID: 742267230}
   - {fileID: 8119045781326461223}
