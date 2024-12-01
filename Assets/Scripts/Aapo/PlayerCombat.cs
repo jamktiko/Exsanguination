@@ -305,6 +305,12 @@ public class PlayerCombat : MonoBehaviour
 
     }
 
+    public void ParryFx()
+    {
+        audioManager.PlaySwordSwingClips3();
+        //vfx for parry
+    }
+
 
 }
 
