@@ -21,7 +21,7 @@ public class MainMenuScript : MonoBehaviour
         startButton.onClick.AddListener(StartGame);
         settingsButton.onClick.AddListener(OpenSettings);
         quitButton.onClick.AddListener(ExitGame);
-
+        musicManager = GameObject.FindGameObjectWithTag("MusicManager").GetComponent<MusicManager>();
         controllerHandler = GetComponent<ControllerHandler>();
     }
 

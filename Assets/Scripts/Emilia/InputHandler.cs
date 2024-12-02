@@ -69,7 +69,7 @@ public class InputHandler : MonoBehaviour
 
         pauseAction.performed += ctx =>
         {
-            if (inputsEnabled)
+            if (inputsEnabled && !deathScript.isDead)
             {
                 if (!pauseScript.paused)
                 {
@@ -350,7 +350,7 @@ public class InputHandler : MonoBehaviour
 
     private void OnApplicationFocus(bool focus)
     {
-        if (!focus)
+        if (!focus && !deathScript.isDead)
             pauseScript.PauseGame();
     }
 

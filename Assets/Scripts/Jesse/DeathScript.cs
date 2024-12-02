@@ -26,6 +26,7 @@ public class DeathScript : MonoBehaviour
 
     private void Start()
     {
+        musicManager = GameObject.Find("MusicManager").GetComponent<MusicManager>();
         deathScreen.SetActive(false);
     }
 

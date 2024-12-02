@@ -10,40 +10,26 @@ public class TransitionToLevel : MonoBehaviour
     [SerializeField] Image background;
     [SerializeField] PlayerInput playerInput;
     [SerializeField] float blackFadeTime;
-    [SerializeField] AudioSource audioSource;
-    [SerializeField] AudioClip[] clips;
     [SerializeField] float timeBeforeSceneChange;
 
-    private bool isPlayingFootsteps = false;
+    private MusicManager musicManager;
+
 
     private void Awake()
     {
         background.color = new Color(0, 0, 0, 0);
     }
 
-    IEnumerator PlayFootstepsUntilTimerEnds()
+    private void Start()
     {
-        isPlayingFootsteps = true;
-
-        while (isPlayingFootsteps)
-        {
-            AudioClip clip = clips[Random.Range(0, clips.Length)];
-            audioSource.clip = clip;
-            audioSource.Play();
-
-            // Wait for the clip to finish
-            yield return new WaitForSecondsRealtime(clip.length);
-
-            // Add a 0.4-second cooldown before playing the next clip
-            yield return new WaitForSecondsRealtime(0.8f);
-        }
+        musicManager = GameObject.Find("MusicManager").GetComponent<MusicManager>();
     }
+
 
     IEnumerator LevelTransition(float blackFadeTime)
     {
         // Start playing footsteps in the background
-        StartCoroutine(PlayFootstepsUntilTimerEnds());
-
+       StartCoroutine(musicManager.PlayFootstepsUntilTimerEnds());
         playerInput.DeactivateInput();
         Time.timeScale = 0f;
         background.enabled = true;
@@ -58,7 +44,7 @@ public class TransitionToLevel : MonoBehaviour
         yield return new WaitForSecondsRealtime(timeBeforeSceneChange);
 
         // Stop the footsteps and transition to the next scene
-        
+        musicManager.isPlayingFootsteps = false;
         SceneManager.LoadScene(2);
     }
 

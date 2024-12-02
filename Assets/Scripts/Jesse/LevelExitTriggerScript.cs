@@ -26,6 +26,7 @@ public class LevelExitTriggerScript : MonoBehaviour
 
     private void Start()
     {
+
         if (!isTutorialRoom)
         {
             foreach (var text in texts)
@@ -33,6 +34,10 @@ public class LevelExitTriggerScript : MonoBehaviour
                 text.enabled = false;
             }
         }
+
+       
+            musicManager = GameObject.Find("MusicManager").GetComponent<MusicManager>();
+        
     }
 
 
