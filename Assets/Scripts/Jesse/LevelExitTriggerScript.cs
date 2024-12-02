@@ -14,6 +14,7 @@ public class LevelExitTriggerScript : MonoBehaviour
     [SerializeField] GameObject tutorialEnemy;
     private TMP_Text[] texts;
     public bool isTutorialRoom;
+    [SerializeField] MusicManager musicManager;
     void Awake()
     {
         playerStats = GameObject.FindWithTag("PlayerStats").GetComponent<PlayerStats>();
@@ -44,6 +45,7 @@ public class LevelExitTriggerScript : MonoBehaviour
                 if (playerStats.foundKeycard)
                 {
                     transitionImage.enabled = true;
+                    musicManager.PlayBossMusic();
                     transition.TransitionToBoss();
 
                 }
@@ -59,6 +61,7 @@ public class LevelExitTriggerScript : MonoBehaviour
             {
                 if (!tutorialEnemy.activeSelf)
                 {
+                    musicManager.PlayLevelMusic();
                     transitionToLevel.LevelTransition();
                 }
             }

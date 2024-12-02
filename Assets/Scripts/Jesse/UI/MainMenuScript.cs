@@ -15,6 +15,7 @@ public class MainMenuScript : MonoBehaviour
     private ControllerHandler controllerHandler;
     [SerializeField] EventSystem eventSystem;
     private bool controllerConnected;
+    [SerializeField] MusicManager musicManager;
     void Awake()
     {
         startButton.onClick.AddListener(StartGame);
@@ -80,6 +81,7 @@ public class MainMenuScript : MonoBehaviour
 
     public void StartGame()
     {
+        musicManager.PlayLevelMusic();
         SceneManager.LoadScene(1);
     }
 

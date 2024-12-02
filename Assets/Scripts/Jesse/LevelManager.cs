@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField] int activeScene;
+    public int activeScene;
     
 
     void Start()

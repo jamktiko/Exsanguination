@@ -5,14 +5,14 @@ using UnityEngine;
 public class TutorialStakeCollider : MonoBehaviour
 {
     [SerializeField] PlayerStats playerStats;
-    [SerializeField] Collider collider;
+    [SerializeField] Collider blockingCollider;
     
     // Update is called once per frame
     void Update()
     {
         if (playerStats.foundStake) 
-        { 
-        collider.enabled = false;
+        {
+            blockingCollider.enabled = false;
             this.enabled = false;
         }
     }

@@ -13,7 +13,9 @@ public class DeathScript : MonoBehaviour
     [SerializeField] Button retryButton;
     public bool isDead;
     private ControllerHandler controllerHandler;
-    private InputHandler inputHandler; 
+    private InputHandler inputHandler;
+    [SerializeField] MusicManager musicManager;
+    [SerializeField] LevelManager levelManager;
     private void Awake()
     {
         mainMenuButton.onClick.AddListener(ExitToMainMenu);
@@ -65,6 +67,7 @@ public class DeathScript : MonoBehaviour
     {
         isDead = false;
         Debug.Log("pressed retry");
+        musicManager.OnPlayerRetry();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
