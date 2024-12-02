@@ -103,7 +103,8 @@ public class Boss : MonoBehaviour
         animationTriggers = new string[] { "pirouette", "pirouette", "pirouette", "pirouette" };
         castingTimes = new float[] { 1.5f, 1.5f, 1.5f, 1.5f };
 
-        timeBetweenDaggers = spinDuration / daggerAmount;
+        //timeBetweenDaggers = spinDuration / daggerAmount;
+        //timeBetweenDaggers = 0.01f;
     }
 
     private void Update()
@@ -281,21 +282,24 @@ public class Boss : MonoBehaviour
 
     private void PirouetteSpin()
     {
-        //elapsedSpinTime += Time.deltaTime;
-        //float rotationAngle = (elapsedSpinTime / spinDuration) * 360f;
-        //spinSpoint.eulerAngles = new Vector3(0, rotationAngle % 360, 0);
+        elapsedSpinTime += Time.deltaTime;
+        float rotationAngle = (elapsedSpinTime / spinDuration) * 360f;
+        spinSpoint.eulerAngles = new Vector3(0, rotationAngle % 360, 0);
 
-        //if (elapsedSpinTime >= spinDuration)
-        //{
-        //    elapsedSpinTime = 0f;
-        //    isSpinning = false;
-        //    isCastingSpecialAttack = false;
-        //}
+        if (elapsedSpinTime >= spinDuration)
+        {
+            elapsedSpinTime = 0f;
+            isSpinning = false;
+            isCastingSpecialAttack = false;
+        }
     }
 
     private void ThrowDagger()
     {
         if (!canThrow) return;
+
+        currentDagger = daggers[daggerIndex];
+        currentDagger.SetActive(true);
 
         if (daggerIndex < daggers.Length - 1)
         {
@@ -306,9 +310,6 @@ public class Boss : MonoBehaviour
             daggerIndex = 0;
         }
 
-        currentDagger = daggers[daggerIndex];
-
-        currentDagger.SetActive(true);
         StartCoroutine(WaitBetweenThrows());
     }
 
