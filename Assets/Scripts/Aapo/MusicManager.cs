@@ -68,7 +68,7 @@ public class MusicManager : MonoBehaviour
 
     public void PlayLevelMusic()
     {
-        StartCoroutine(SequentialFade(menuDeathSource, levelIntroSource, fadeDuration, 3));
+        StartCoroutine(SequentialFade(menuDeathSource, levelIntroSource, fadeDuration, 1));
     }
 
     public void PlayBossMusic()
