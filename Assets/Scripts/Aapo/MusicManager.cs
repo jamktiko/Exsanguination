@@ -93,7 +93,7 @@ public class MusicManager : MonoBehaviour
         hasDeathMusicStarted = false;
         if (levelManager.activeScene == 2 || levelManager.activeScene == 1)
         {
-            PlayLevelMusic();
+            Crossfade(levelIntroSource, fadeDuration);
         }
         if (levelManager.activeScene == 3)
         {
