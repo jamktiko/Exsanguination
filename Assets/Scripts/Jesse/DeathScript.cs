@@ -15,7 +15,6 @@ public class DeathScript : MonoBehaviour
     private ControllerHandler controllerHandler;
     private InputHandler inputHandler;
     [SerializeField] MusicManager musicManager;
-    [SerializeField] LevelManager levelManager;
     private void Awake()
     {
         mainMenuButton.onClick.AddListener(ExitToMainMenu);
