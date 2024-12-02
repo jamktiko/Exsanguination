@@ -20,11 +20,13 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] public string levelTimeString;
     [SerializeField] public string bossTimeString;
     [SerializeField] public string totalTimeString;
-
+    [SerializeField] public string totalDeaths;
     public bool cutSceneSeen;
 
     [SerializeField] TMP_Text totalTimeText;
     [SerializeField] TMP_Text totalTimeTextShadow;
+    [SerializeField] TMP_Text totalDeathsText;
+    [SerializeField] TMP_Text totalDeathsTextShadow;
 
     private Coroutine timerCoroutine;
     int deathCount;
@@ -127,6 +129,9 @@ public class PlayerStats : MonoBehaviour
             totalTimeString = $"Total time: {TimeInString(totalTime)}";
             totalTimeText.text = TimeInString(totalTime);
             totalTimeTextShadow.text = TimeInString(totalTime);
+            totalDeathsText.text = ""+deathCount;
+            totalDeathsTextShadow.text = "" + deathCount;
+
         }
     }
 
@@ -137,11 +142,14 @@ public class PlayerStats : MonoBehaviour
 
     private void OnLevelLoad(Scene scene, LoadSceneMode sceneMode)
     {
-        totalTimeText = GameObject.Find("GameCompletionTimeText").GetComponent<TextMeshProUGUI>();
-        totalTimeTextShadow = totalTimeText.transform.Find("GameCompletionTimeTextShadow").GetComponent<TextMeshProUGUI>();
+       
 
         if (scene.buildIndex == 3 && levelTime == 0)
         {
+            totalTimeText = GameObject.Find("GameCompletionTimeText").GetComponent<TextMeshProUGUI>();
+            totalTimeTextShadow = totalTimeText.transform.Find("GameCompletionTimeTextShadow").GetComponent<TextMeshProUGUI>();
+            totalDeathsText = GameObject.Find("GameDeathText").GetComponent<TextMeshProUGUI>();
+            totalDeathsTextShadow = GameObject.Find("GameDeathTextShadow").GetComponent<TextMeshProUGUI>();
             levelTime = timer;
             totalTime += levelTime;
             levelTimeString = $"Level completion time: {TimeInString(levelTime)}";

@@ -1,14 +1,20 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MusicManager : MonoBehaviour
 {
+    public static MusicManager musicManager;
+
     [Header("Audio Sources")]
     [SerializeField] private AudioSource menuDeathSource; // For main menu and death music
     [SerializeField] private AudioSource levelIntroSource; // For level intro music
     [SerializeField] private AudioSource levelLoopSource; // For level looping music
     [SerializeField] private AudioSource bossIntroSource; // For boss intro music
     [SerializeField] private AudioSource[] bossLoopSources; // Variations for boss loops
+    [SerializeField] AudioSource footstepAudioSource;
+    [SerializeField] AudioClip[] footstepClips;
+    public bool isPlayingFootsteps;
 
     [Header("Settings")]
     [SerializeField] private float fadeDuration = 1f; // Default fade time in seconds
@@ -25,15 +31,17 @@ public class MusicManager : MonoBehaviour
 
     private void Awake()
     {
-        // Singleton pattern for DontDestroyOnLoad
-        if (instance != null && instance != this)
+        SceneManager.sceneLoaded += OnLevelLoad;
+
+        if (musicManager == null)
+        {
+            musicManager = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (musicManager != this)
         {
             Destroy(gameObject);
-            return;
         }
-
-        instance = this;
-        DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
@@ -46,13 +54,10 @@ public class MusicManager : MonoBehaviour
 
     private void Update()
     {
-        if (!isMainMenu)
+        if (!isMainMenu && deathScript.isDead && !hasDeathMusicStarted)
         {
-            if (deathScript.isDead && !hasDeathMusicStarted)
-            {
-                hasDeathMusicStarted = true;
-                PlayMenuDeathMusic(fadeDuration: 0.5f); // Crossfade to menu/death music
-            }
+            hasDeathMusicStarted = true;
+            PlayMenuDeathMusic(fadeDuration: fadeDuration);
         }
     }
 
@@ -63,10 +68,8 @@ public class MusicManager : MonoBehaviour
 
     public void PlayLevelMusic()
     {
-        Crossfade(levelIntroSource, fadeDuration);
+        StartCoroutine(SequentialFade(menuDeathSource, levelIntroSource, fadeDuration, 3));
     }
-
-    
 
     public void PlayBossMusic()
     {
@@ -88,53 +91,55 @@ public class MusicManager : MonoBehaviour
     public void OnPlayerRetry()
     {
         hasDeathMusicStarted = false;
-        if (levelManager.activeScene == 2)
+        if (levelManager.activeScene == 2 || levelManager.activeScene == 1)
         {
-            PlayLevelMusic(); // Restart level music
+            PlayLevelMusic();
         }
-        else
+        if (levelManager.activeScene == 3)
         {
-            PlayBossMusic(); // Restart boss music
+            PlayBossMusic();
         }
-    }
-
-    private IEnumerator LevelMusicSequenceCoroutine()
-    {
-        // Crossfade to level intro
-        Crossfade(levelIntroSource, fadeDuration);
-
-        // Wait for intro to finish
-        yield return new WaitForSecondsRealtime(levelIntroSource.clip.length + introToLoopDelay);
-
-        // Crossfade to level loop
-        Crossfade(levelLoopSource, fadeDuration);
+        if (levelManager.activeScene == 0)
+        {
+            PlayMenuDeathMusic();
+        }
     }
 
     private IEnumerator BossIntroAndLoopCoroutine()
     {
-        // Crossfade to boss intro
-        Crossfade(bossIntroSource, fadeDuration);
+        StartCoroutine(SequentialFade(levelLoopSource, bossIntroSource, fadeDuration, fadeDuration));
 
-        // Wait for intro duration
+        // Wait for boss intro duration
         yield return new WaitForSecondsRealtime(bossIntroSource.clip.length);
 
         // Crossfade to first boss loop
         Crossfade(bossLoopSources[currentBossPhase], fadeDuration);
     }
 
+    private IEnumerator SequentialFade(AudioSource fadeOutSource, AudioSource fadeInSource, float fadeOutDuration, float fadeInDuration)
+    {
+        if (fadeOutSource != null)
+        {
+            yield return FadeOut(fadeOutSource, fadeOutDuration);
+        }
+
+        if (fadeInSource != null)
+        {
+            FadeIn(fadeInSource, fadeInDuration);
+        }
+    }
+
     private void Crossfade(AudioSource newSource, float duration)
     {
-        StopAllCoroutines(); // Stop ongoing crossfade coroutines
+        StopAllCoroutines();
         StartCoroutine(CrossfadeCoroutine(newSource, duration));
     }
 
     private IEnumerator CrossfadeCoroutine(AudioSource newSource, float duration)
     {
-        // Start new source
         newSource.Play();
         newSource.volume = 0;
 
-        // Gradually fade in the new source and fade out others
         float elapsedTime = 0f;
         AudioSource[] allSources = { menuDeathSource, levelIntroSource, levelLoopSource, bossIntroSource };
         allSources = System.Array.FindAll(allSources, s => s != null && s != newSource);
@@ -143,23 +148,88 @@ public class MusicManager : MonoBehaviour
         {
             float t = elapsedTime / duration;
 
-            newSource.volume = Mathf.Lerp(0, 1, t);
+            newSource.volume = Mathf.Lerp(0, 0.5f, t);
 
             foreach (var source in allSources)
             {
-                source.volume = Mathf.Lerp(1, 0, t);
+                source.volume = Mathf.Lerp(0.5f, 0, t);
             }
 
             elapsedTime += Time.unscaledDeltaTime;
             yield return null;
         }
 
-        // Ensure volumes are set
-        newSource.volume = 1;
+        newSource.volume = 0.5f;
         foreach (var source in allSources)
         {
-            source.Stop(); // Stop other sources
+            source.Stop();
             source.volume = 0;
         }
     }
+
+    private IEnumerator FadeOut(AudioSource source, float duration)
+    {
+        float startVolume = source.volume;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration)
+        {
+            float t = elapsedTime / duration;
+            source.volume = Mathf.Lerp(startVolume, 0, t);
+
+            elapsedTime += Time.unscaledDeltaTime;
+            yield return null;
+        }
+
+        source.Stop();
+        source.volume = 0;
+    }
+
+    private void FadeIn(AudioSource source, float duration)
+    {
+        StartCoroutine(FadeInCoroutine(source, duration));
+    }
+
+    private IEnumerator FadeInCoroutine(AudioSource source, float duration)
+    {
+        source.Play();
+        source.volume = 0;
+
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration)
+        {
+            float t = elapsedTime / duration;
+            source.volume = Mathf.Lerp(0, 0.5f, t);
+
+            elapsedTime += Time.unscaledDeltaTime;
+            yield return null;
+        }
+
+        source.volume = 0.5f;
+    }
+
+    private void OnLevelLoad(Scene scene, LoadSceneMode sceneMode)
+    {
+        levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
+    }
+
+   public IEnumerator PlayFootstepsUntilTimerEnds()
+    {
+        isPlayingFootsteps = true;
+
+        while (isPlayingFootsteps)
+        {
+            AudioClip clip = footstepClips[Random.Range(0, footstepClips.Length)];
+            footstepAudioSource.clip = clip;
+            footstepAudioSource.Play();
+
+            // Wait for the clip to finish
+            yield return new WaitForSecondsRealtime(clip.length);
+
+            // Add a 0.4-second cooldown before playing the next clip
+            yield return new WaitForSecondsRealtime(0.8f);
+        }
+    }
+
 }

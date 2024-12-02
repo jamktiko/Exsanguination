@@ -18,6 +18,7 @@ public class PauseScript : MonoBehaviour
     [SerializeField] public bool paused;
     private ControllerHandler controllerHandler;
     private InputHandler inputHandler;
+    MusicManager musicManager;
     void Awake()
     {
         inputHandler = GameObject.FindGameObjectWithTag("Player").GetComponent<InputHandler>();
@@ -25,10 +26,13 @@ public class PauseScript : MonoBehaviour
         continueButton.onClick.AddListener(UnPauseGame);
         settingsButton.onClick.AddListener(OpenSettings);
         mainMenuButton.onClick.AddListener(ExitToMainMenu);
+
+
     }
 
     private void Start()
     {
+        musicManager = GameObject.Find("MusicManager").GetComponent<MusicManager>();
         UnPauseGame();
         victoryScreen.SetActive(false);
     }
@@ -90,6 +94,7 @@ public class PauseScript : MonoBehaviour
     {
         Debug.Log("exited");
         inputHandler.EnableInput();
+        musicManager.PlayMenuDeathMusic();
         SceneManager.LoadScene(0);
     }
 
