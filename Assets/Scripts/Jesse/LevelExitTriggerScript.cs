@@ -9,7 +9,9 @@ public class LevelExitTriggerScript : MonoBehaviour
 {
     private PlayerStats playerStats;
     [SerializeField] TransitionToBossroom transition;
+    [SerializeField] TransitionToLevel transitionToLevel;
     [SerializeField] Image transitionImage;
+    [SerializeField] GameObject tutorialEnemy;
     private TMP_Text[] texts;
     public bool isTutorialRoom;
     void Awake()
@@ -55,11 +57,16 @@ public class LevelExitTriggerScript : MonoBehaviour
             }
             else
             {
-                SceneManager.LoadScene(2);
+                if (!tutorialEnemy.activeSelf)
+                {
+                    transitionToLevel.LevelTransition();
+                }
             }
 
         }
     }
+
+   
 
     private void OnTriggerExit(Collider other)
     {
