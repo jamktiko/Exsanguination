@@ -62,7 +62,8 @@ public class Boss : MonoBehaviour
     bool canThrow;
     public GameObject[] daggers;
     GameObject currentDagger;
-    int daggerIndex;
+    [SerializeField] int daggerIndex;
+    [SerializeField] float timeBetweenDaggers;
 
     [Header("Hellfire")]
     [SerializeField] GameObject hellfire;
@@ -94,10 +95,15 @@ public class Boss : MonoBehaviour
         bossStateManager.states = new BossAbstractState[] { chargeState, meleeAttackState, stunState, dashState, idleState, dashState, specialAttackState };
         bossStateManager.Initialize(bossStateManager.states[0]);
 
-        specialAttacks = new System.Action[] { CastSpikeGrowth, CastPirouette, CastFirewall, CastHellfire };
-        animationTriggers = new string[] { "spikeGrowth", "pirouette", "firewall", "hellfire" };
-        castingTimes = new float[] { 2f, 1.5f, 2f, 1f };
-        
+        //specialAttacks = new System.Action[] { CastSpikeGrowth, CastPirouette, CastFirewall, CastHellfire };
+        //animationTriggers = new string[] { "spikeGrowth", "pirouette", "firewall", "hellfire" };
+        //castingTimes = new float[] { 2f, 1.5f, 2f, 1f };
+
+        specialAttacks = new System.Action[] { CastPirouette, CastPirouette, CastPirouette, CastPirouette };
+        animationTriggers = new string[] { "pirouette", "pirouette", "pirouette", "pirouette" };
+        castingTimes = new float[] { 1.5f, 1.5f, 1.5f, 1.5f };
+
+        timeBetweenDaggers = spinDuration / daggerAmount;
     }
 
     private void Update()
@@ -247,7 +253,7 @@ public class Boss : MonoBehaviour
     {
         yield return new WaitForSeconds(castTime);
         currentSpecialAttack();
-        isCastingSpecialAttack = false;
+        //isCastingSpecialAttack = false;
     }
 
     private void CastSpikeGrowth()
@@ -255,6 +261,7 @@ public class Boss : MonoBehaviour
         Debug.Log("Boss special attack is: SPIKE GROWTH!");
         
         spikeTrap.transform.position = new Vector3(playerTransform.position.x, bossTransform.position.y, playerTransform.position.z);
+        isCastingSpecialAttack = false;
         StartCoroutine(SpikeTrapTimer());
     }
 
@@ -274,15 +281,16 @@ public class Boss : MonoBehaviour
 
     private void PirouetteSpin()
     {
-        elapsedSpinTime += Time.deltaTime;
-        float rotationAngle = (elapsedSpinTime / spinDuration) * 360f;
-        spinSpoint.eulerAngles = new Vector3(0, rotationAngle % 360, 0);
+        //elapsedSpinTime += Time.deltaTime;
+        //float rotationAngle = (elapsedSpinTime / spinDuration) * 360f;
+        //spinSpoint.eulerAngles = new Vector3(0, rotationAngle % 360, 0);
 
-        if (elapsedSpinTime >= spinDuration)
-        {
-            elapsedSpinTime = 0f;
-            isSpinning = false;
-        }
+        //if (elapsedSpinTime >= spinDuration)
+        //{
+        //    elapsedSpinTime = 0f;
+        //    isSpinning = false;
+        //    isCastingSpecialAttack = false;
+        //}
     }
 
     private void ThrowDagger()
@@ -307,7 +315,7 @@ public class Boss : MonoBehaviour
     IEnumerator WaitBetweenThrows()
     {
         canThrow = false;
-        yield return new WaitForSeconds(spinDuration / daggerAmount);
+        yield return new WaitForSeconds(timeBetweenDaggers);
         canThrow = true;
     }
 
@@ -321,7 +329,7 @@ public class Boss : MonoBehaviour
         firewall.transform.eulerAngles = new Vector3(
             firewall.transform.eulerAngles.x, bossRotation.y, firewall.transform.eulerAngles.z);
         firewall.SetActive(true);
-        //StartCoroutine(WaitBeforeCreatingFireWall());
+        isCastingSpecialAttack = false;
     }
 
     private void CastHellfire()
@@ -331,5 +339,6 @@ public class Boss : MonoBehaviour
         hellfire.transform.position = hellfirePoint.transform.position;
         hellfire.SetActive(true);
         hellfire.GetComponent<ParticleSystem>().Play();
+        isCastingSpecialAttack = false;
     }
 }

@@ -23,7 +23,7 @@ public class GrapplingHookShoot : MonoBehaviour
     [Header("Grappling")]
     public float maxGrappleDistance;
     public float grappleDelayTime;
-    float overShootYAxis = 0;
+    [SerializeField] float overShootYAxis = 0;
     [SerializeField] float arrowSpeed;
     bool shootArrow;
     public bool isGrappling;
