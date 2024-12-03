@@ -23,6 +23,7 @@ public class PickUpItem : MonoBehaviour
     private Light lightComponent;
     private TMP_Text text;
     private TMP_Text keyCardPickedText;
+    [SerializeField] GrapplingPointChangeColor gphColorChange;
     private void Awake()
     {
         playerStats = GameObject.FindGameObjectWithTag("PlayerStats").GetComponent<PlayerStats>();
@@ -93,6 +94,7 @@ public class PickUpItem : MonoBehaviour
                 playerStats.foundGrapplinghook = true;
                 grappleModel.SetActive(true);
                 gameObject.SetActive(false);
+                gphColorChange.enabled = true;
             }
 
             if (tool == UtilityTool.Scroll)
