@@ -214,7 +214,7 @@ public class MusicManager : MonoBehaviour
         levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
     }
 
-   public IEnumerator PlayFootstepsUntilTimerEnds()
+    public IEnumerator PlayFootstepsUntilTimerEnds()
     {
         isPlayingFootsteps = true;
 

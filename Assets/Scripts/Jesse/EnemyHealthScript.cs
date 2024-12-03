@@ -26,6 +26,7 @@ public class EnemyHealthScript : MonoBehaviour
     Color damagedEffectColor = new Color(0.5f, 0.25f, 0.25f);
     private Color originalColor = Color.white; // Assuming the original color is white
     private bool isTransitioning = false; // Prevent overlapping transitions
+    private MusicManager musicManager;
 
     private void Awake()
     {
@@ -57,6 +58,7 @@ public class EnemyHealthScript : MonoBehaviour
     {
         health = maxHealth;
         previousHealth = maxHealth;
+        musicManager = GameObject.Find("MusicManager").GetComponent<MusicManager>();
     }
 
     public void ChangeEnemyHealth(int changeAmount)
@@ -137,24 +139,28 @@ public class EnemyHealthScript : MonoBehaviour
     {
         if (previousHealth > 150 && health <= 150)
         {
+            musicManager.ChangeBossMusicVariation(1);
             boss.idleDuration = 3;
             boss.PickAndActivateVents(3);
         }
 
         else if (previousHealth > 100 && health <= 100)
         {
+            musicManager.ChangeBossMusicVariation(2);
             boss.idleDuration = 1;
             boss.PickAndActivateVents(4);
         }
 
         else if (previousHealth > 50 && health <= 50)
         {
+            musicManager.ChangeBossMusicVariation(3);
             boss.idleDuration = 0.1f;
             boss.PickAndActivateVents(7);
         }
 
         else if (previousHealth > 0 && health <= 0)
         {
+            musicManager.ChangeBossMusicVariation(4);
             boss.StartDeathState();
         }
 
