@@ -152,7 +152,7 @@ AnimatorStateMachine:
     m_Position: {x: 1030, y: 660, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1909531357283515358}
-    m_Position: {x: 1133.5906, y: 835.61914, z: 0}
+    m_Position: {x: 870, y: 190, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6659240258959477865}
     m_Position: {x: 104.87286, y: 835.16296, z: 0}
@@ -594,7 +594,7 @@ AnimatorController:
   m_Name: BossAnimatorController
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: IsDying
+  - m_Name: isDying
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -776,7 +776,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: IsDying
+    m_ConditionEvent: isDying
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -1157751962255043132}

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class BossStateManager
 {
@@ -10,6 +11,7 @@ public class BossStateManager
 
     public BossAbstractState[] states;
     int stateIndex;
+    public bool isDead;
 
     private void Start()
     {
@@ -25,6 +27,7 @@ public class BossStateManager
     public void ChangeState()
     {
         currentBossState.ExitState();
+        if (isDead) return;
 
         if (stateIndex < states.Length - 1)
         {

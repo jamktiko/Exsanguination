@@ -12,6 +12,7 @@ public class Boss : MonoBehaviour
     public ChargeState chargeState { get; set; }
     public MeleeAttackState meleeAttackState { get; set; }
     public SpecialAttackState specialAttackState { get; set; }
+    public DeathState deathState { get; set; }
 
     [Header("Movement")]
     public Animator bossAnimator;
@@ -75,6 +76,10 @@ public class Boss : MonoBehaviour
     AudioManager audioManager;
     [SerializeField] AudioSource bossDashAudioSource;
 
+    [Header("Death")]
+    public PauseScript pauseScript;
+    public PlayerStats playerStats;
+
     private void Awake()
     {
         bossStateManager = new BossStateManager();
@@ -85,9 +90,12 @@ public class Boss : MonoBehaviour
         chargeState = new ChargeState(this, bossStateManager);
         meleeAttackState = new MeleeAttackState(this, bossStateManager);
         specialAttackState = new SpecialAttackState(this, bossStateManager);
+        deathState = new DeathState(this, bossStateManager);
 
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        pauseScript = GameObject.Find("PauseManager").GetComponent<PauseScript>();
+        playerStats = GameObject.FindGameObjectWithTag("PlayerStats").GetComponent<PlayerStats>();
     }
 
     private void Start()
@@ -95,13 +103,13 @@ public class Boss : MonoBehaviour
         bossStateManager.states = new BossAbstractState[] { chargeState, meleeAttackState, stunState, dashState, idleState, dashState, specialAttackState };
         bossStateManager.Initialize(bossStateManager.states[0]);
 
-        //specialAttacks = new System.Action[] { CastSpikeGrowth, CastPirouette, CastFirewall, CastHellfire };
-        //animationTriggers = new string[] { "spikeGrowth", "pirouette", "firewall", "hellfire" };
-        //castingTimes = new float[] { 2f, 1.5f, 2f, 1f };
+        specialAttacks = new System.Action[] { CastSpikeGrowth, CastPirouette, CastFirewall, CastHellfire };
+        animationTriggers = new string[] { "spikeGrowth", "pirouette", "firewall", "hellfire" };
+        castingTimes = new float[] { 2f, 1.5f, 2f, 1f };
 
-        specialAttacks = new System.Action[] { CastPirouette, CastPirouette, CastPirouette, CastPirouette };
-        animationTriggers = new string[] { "pirouette", "pirouette", "pirouette", "pirouette" };
-        castingTimes = new float[] { 1.5f, 1.5f, 1.5f, 1.5f };
+        //specialAttacks = new System.Action[] { CastPirouette, CastPirouette, CastPirouette, CastPirouette };
+        //animationTriggers = new string[] { "pirouette", "pirouette", "pirouette", "pirouette" };
+        //castingTimes = new float[] { 1.5f, 1.5f, 1.5f, 1.5f };
 
         //timeBetweenDaggers = spinDuration / daggerAmount;
         //timeBetweenDaggers = 0.01f;
@@ -342,4 +350,24 @@ public class Boss : MonoBehaviour
         hellfire.GetComponent<ParticleSystem>().Play();
         isCastingSpecialAttack = false;
     }
+
+    public void StartDeathState()
+    {
+        bossStateManager.isDead = true;
+        deathState.EnterState();
+    }
+
+    public void ShowVictoryScreen()
+    {
+        StartCoroutine(WaitBeforeVictoryScreen());
+    }
+
+    public IEnumerator WaitBeforeVictoryScreen()
+    {
+        yield return new WaitForSeconds(5);
+        pauseScript.PauseGame();
+        pauseScript.ShowVictoryScreen();
+        playerStats.StopTimer();
+    }
+
 }

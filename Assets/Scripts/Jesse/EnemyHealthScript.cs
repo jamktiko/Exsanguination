@@ -155,9 +155,7 @@ public class EnemyHealthScript : MonoBehaviour
 
         else if (previousHealth > 0 && health <= 0)
         {
-            pauseScript.PauseGame();
-            pauseScript.ShowVictoryScreen();
-            playerStats.StopTimer();
+            boss.StartDeathState();
         }
 
         previousHealth = health;
