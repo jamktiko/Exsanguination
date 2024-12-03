@@ -6,6 +6,8 @@ public class GrapplingPointChangeColor : MonoBehaviour
     [SerializeField] float noticeDistance;
     private HookPointData lastHitHookPoint; // Tracks the last aimed-at hook point
     public bool activateRay;
+    public LayerMask whatIsGrappleable;
+    [SerializeField] Transform cam;
 
     private void Start()
     {
@@ -14,8 +16,9 @@ public class GrapplingPointChangeColor : MonoBehaviour
 
     private void Update()
     {
-        ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
-        if (Physics.Raycast(ray, out RaycastHit hit, noticeDistance) && hit.collider.CompareTag("HookHitPoint"))
+        RaycastHit hit;
+
+        if (Physics.Raycast(cam.position, cam.forward, out hit, noticeDistance, whatIsGrappleable))
         {
             var currentHookPoint = hit.collider.GetComponent<HookPointData>();
 
@@ -25,6 +28,7 @@ public class GrapplingPointChangeColor : MonoBehaviour
                 UpdateHookPointState(lastHitHookPoint, true);  // Reset the previous hook point
                 UpdateHookPointState(currentHookPoint, false); // Highlight the new hook point
                 lastHitHookPoint = currentHookPoint;
+                Debug.Log("hit hookpoint");
             }
         }
         else
@@ -42,4 +46,6 @@ public class GrapplingPointChangeColor : MonoBehaviour
         hookPoint.unAimedObject?.SetActive(isUnAimed);
         hookPoint.aimedObject?.SetActive(!isUnAimed);
     }
+
+
 }
