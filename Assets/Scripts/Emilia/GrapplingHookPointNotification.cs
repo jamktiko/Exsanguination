@@ -15,6 +15,11 @@ public class GrapplingHookPointNotification : MonoBehaviour
 
     private bool isCoroutineRunning = false; // Flag to track coroutine state
 
+    private void Start()
+    {
+        this.enabled = false;
+    }
+
     // Update is called once per frame
     void Update()
     {
