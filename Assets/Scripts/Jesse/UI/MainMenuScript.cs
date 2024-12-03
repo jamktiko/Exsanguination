@@ -81,7 +81,7 @@ public class MainMenuScript : MonoBehaviour
 
     public void StartGame()
     {
-        musicManager.PlayLevelMusic();
+       StartCoroutine(musicManager.PlayLevelMusic());
         SceneManager.LoadScene(1);
     }
 

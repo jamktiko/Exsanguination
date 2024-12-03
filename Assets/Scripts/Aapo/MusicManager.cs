@@ -66,9 +66,22 @@ public class MusicManager : MonoBehaviour
         Crossfade(menuDeathSource, fadeDuration);
     }
 
-    public void PlayLevelMusic()
+    public IEnumerator PlayLevelMusic()
     {
-        StartCoroutine(SequentialFade(menuDeathSource, levelIntroSource, fadeDuration, 1));
+        if(levelManager.activeScene == 0)
+        {
+            StartCoroutine(SequentialFade(menuDeathSource, levelIntroSource, fadeDuration, 1));
+            yield return new WaitForSeconds(introToLoopDelay); // Add a small delay
+            Crossfade(levelLoopSource, fadeDuration);
+        }
+
+        if(levelManager.activeScene == 1 || levelManager.activeScene == 2)
+        {
+            StartCoroutine(SequentialFade(levelLoopSource, levelIntroSource, fadeDuration, 1));
+            yield return new WaitForSeconds(introToLoopDelay); // Add a small delay
+            Crossfade(levelLoopSource, fadeDuration);
+        }
+        
     }
 
     public void PlayBossMusic()
