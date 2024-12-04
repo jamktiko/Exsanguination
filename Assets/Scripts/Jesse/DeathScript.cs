@@ -49,6 +49,8 @@ public class DeathScript : MonoBehaviour
         
         deathScreen.SetActive(true);
         StartCoroutine(DelaySetFirstButton());
+        musicManager.hasDeathMusicStarted = true;
+        musicManager.PlayMenuDeathMusic();
     }
     private IEnumerator DelaySetFirstButton()
     {

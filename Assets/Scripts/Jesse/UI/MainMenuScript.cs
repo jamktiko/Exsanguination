@@ -81,9 +81,24 @@ public class MainMenuScript : MonoBehaviour
 
     public void StartGame()
     {
-       StartCoroutine(musicManager.PlayLevelMusic());
-        SceneManager.LoadScene(1);
+        StartCoroutine(StartGameWithMusic());
     }
+
+    private IEnumerator StartGameWithMusic()
+    {
+        // Start playing the level music
+        StartCoroutine(musicManager.PlayLevelMusic());
+
+        // Load the scene while the intro music plays
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(1);
+
+        // Optionally wait until the scene is fully loaded
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+    }
+
 
     private void OpenSettings()
     {

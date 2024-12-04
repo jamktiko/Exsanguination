@@ -22,16 +22,15 @@ public class MusicManager : MonoBehaviour
     [SerializeField] private float introToLoopDelay = 0f; // Delay between intro and loop music
 
     private static MusicManager instance;
-    private bool hasDeathMusicStarted;
+    public bool hasDeathMusicStarted;
     private bool isBossMusicActive;
     private int currentBossPhase;
 
-    public bool isMainMenu;
     [SerializeField] private LevelManager levelManager;
+    private Coroutine currentCrossfade;
 
     private void Awake()
     {
-        SceneManager.sceneLoaded += OnLevelLoad;
 
         if (musicManager == null)
         {
@@ -46,20 +45,12 @@ public class MusicManager : MonoBehaviour
 
     private void Start()
     {
-        if (isMainMenu)
-        {
+       
             PlayMenuDeathMusic();
-        }
+
     }
 
-    private void Update()
-    {
-        if (!isMainMenu && deathScript.isDead && !hasDeathMusicStarted)
-        {
-            hasDeathMusicStarted = true;
-            PlayMenuDeathMusic(fadeDuration: fadeDuration);
-        }
-    }
+   
 
     public void PlayMenuDeathMusic(float fadeDuration = 1f)
     {
@@ -68,21 +59,18 @@ public class MusicManager : MonoBehaviour
 
     public IEnumerator PlayLevelMusic()
     {
-        if(levelManager.activeScene == 0)
-        {
-            StartCoroutine(SequentialFade(menuDeathSource, levelIntroSource, fadeDuration, 1));
-            yield return new WaitForSeconds(introToLoopDelay); // Add a small delay
-            Crossfade(levelLoopSource, fadeDuration);
-        }
+        // Fade into the intro track
+        Crossfade(levelIntroSource, fadeDuration);
 
-        if(levelManager.activeScene == 1 || levelManager.activeScene == 2)
-        {
-            StartCoroutine(SequentialFade(levelLoopSource, levelIntroSource, fadeDuration, 1));
-            yield return new WaitForSeconds(introToLoopDelay); // Add a small delay
-            Crossfade(levelLoopSource, fadeDuration);
-        }
-        
+        // Wait for the intro music to finish
+        yield return new WaitForSecondsRealtime(levelIntroSource.clip.length);
+
+        // Set the loop volume and start playing the loop track
+        levelLoopSource.volume = 0.5f; // Ensure the volume is set
+        levelLoopSource.Play();
     }
+
+
 
     public void PlayBossMusic()
     {
@@ -144,8 +132,14 @@ public class MusicManager : MonoBehaviour
 
     private void Crossfade(AudioSource newSource, float duration)
     {
-        StopAllCoroutines();
-        StartCoroutine(CrossfadeCoroutine(newSource, duration));
+        // Stop only the current crossfade coroutine
+        if (currentCrossfade != null)
+        {
+            StopCoroutine(currentCrossfade);
+        }
+
+        // Start a new crossfade coroutine
+        currentCrossfade = StartCoroutine(CrossfadeCoroutine(newSource, duration));
     }
 
     private IEnumerator CrossfadeCoroutine(AudioSource newSource, float duration)
@@ -222,10 +216,6 @@ public class MusicManager : MonoBehaviour
         source.volume = 0.5f;
     }
 
-    private void OnLevelLoad(Scene scene, LoadSceneMode sceneMode)
-    {
-        levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
-    }
 
     public IEnumerator PlayFootstepsUntilTimerEnds()
     {
@@ -244,5 +234,23 @@ public class MusicManager : MonoBehaviour
             yield return new WaitForSecondsRealtime(0.8f);
         }
     }
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode sceneMode)
+    {
+        levelManager = GameObject.Find("LevelManager")?.GetComponent<LevelManager>();
+        if(scene.buildIndex !=0)
+            deathScript = GameObject.FindGameObjectWithTag("DeathManager").GetComponent<DeathScript>();
+   
+    }
+
 
 }
