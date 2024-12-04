@@ -54,6 +54,6 @@ public class TransitionToBossroom : MonoBehaviour
 
     public void TransitionToBoss()
     {
-        StartCoroutine(BossTransition(2, text, 2));
+        StartCoroutine(BossTransition(3.5f, text, 3.5f));
     }
 }

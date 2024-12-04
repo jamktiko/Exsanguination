@@ -20,12 +20,16 @@ public class LevelTransition : MonoBehaviour
     public Vector3 teleportTarget;
 
     private GameObject playerPrefab;
+    Rigidbody rb;
+   [SerializeField] AudioSource playerFootstepsSource;
 
     private void Awake()
     {
         background.color = new Color(0, 0, 0, 0);
         musicManager = GameObject.Find("MusicManager").GetComponent<MusicManager>();
         playerPrefab = GameObject.Find("Player");
+        rb = playerPrefab.GetComponent<Rigidbody>();
+        
     }
 
 
@@ -33,6 +37,8 @@ public class LevelTransition : MonoBehaviour
     IEnumerator LevelTransitionTimer(float blackFadeTime)
     {
         // Start playing footsteps in the background
+        rb.velocity = Vector3.zero;
+        playerFootstepsSource.Stop();
         inputHandler.DisableInput();
         background.enabled = true;
         // Fade the screen to black
