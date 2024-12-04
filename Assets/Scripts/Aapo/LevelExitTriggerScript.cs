@@ -51,6 +51,7 @@ public class LevelExitTriggerScript : MonoBehaviour
                 {
                     transitionImage.enabled = true;
                     musicManager.PlayBossMusic();
+                    musicManager.PlayFootstepsUntilTimerEnds();
                     transition.TransitionToBoss();
 
                 }

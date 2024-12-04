@@ -160,7 +160,6 @@ public class EnemyHealthScript : MonoBehaviour
 
         else if (previousHealth > 0 && health <= 0)
         {
-            musicManager.ChangeBossMusicVariation(4);
             boss.StartDeathState();
         }
 
