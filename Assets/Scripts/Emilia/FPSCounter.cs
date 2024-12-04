@@ -11,13 +11,9 @@ public class FPSCounter : MonoBehaviour
     int frames = 0;
     float timeleft;
     float fps;
-    bool canCall = true;
 
     GUIStyle textStyle = new GUIStyle();
 
-    private void Awake()
-    {
-    }
 
     // Alustus
     void Start()
@@ -55,16 +51,11 @@ public class FPSCounter : MonoBehaviour
 
     public void EnableFPSCounter()
     {
-        if (canCall)
+        if (gameObject.activeInHierarchy)
         {
-            if (gameObject.activeInHierarchy)
-            {
-                gameObject.SetActive(false);
-            }
-            else
-                gameObject.SetActive(true);
+            gameObject.SetActive(false);
         }
-        
-        canCall = true;
+        else
+            gameObject.SetActive(true);
     }
 }

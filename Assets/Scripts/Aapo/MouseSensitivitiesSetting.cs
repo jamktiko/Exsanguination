@@ -8,13 +8,20 @@ public class MouseSensitivitiesSetting : MonoBehaviour
     [SerializeField] private Slider sensitivitySlider;
     [SerializeField] private TextMeshProUGUI sensitivityText;
 
+    private SettingsSaver settingsSaver;
 
-    
+    private void Awake()
+    {
+        settingsSaver = GameObject.FindGameObjectWithTag("SettingsSaver").GetComponent<SettingsSaver>();
+        sensitivitySlider.value = settingsSaver.GetSensitivity();
+        ChangeSensitivity(settingsSaver.GetSensitivity());
+    }
+
     private void Start()
     {
         if(mouseLookScript != null)
         {
-            sensitivityText.text = $"Sensitivity: {mouseLookScript.sensitivity:F1}";
+            sensitivityText.text = $"{mouseLookScript.sensitivity:F1}";
             sensitivitySlider.value = mouseLookScript.sensitivity;
             sensitivitySlider.onValueChanged.AddListener(ChangeSensitivity);
         }
@@ -26,10 +33,14 @@ public class MouseSensitivitiesSetting : MonoBehaviour
         if (mouseLookScript != null)
         {
             mouseLookScript.sensitivity = newValue;
-            sensitivityText.text = $"Sensitivity: {newValue:F1}";
+            sensitivityText.text = $"{newValue:F1}";
+            UpdateSensitivitySetting(newValue);
         }
     }
 
-   
+    private void UpdateSensitivitySetting(float newValue)
+    {
+        settingsSaver.SetSensitivity(newValue);
+    }
 
 }
