@@ -21,10 +21,10 @@ public class SettingsSaver : MonoBehaviour
     {
         if (PlayerPrefs.HasKey(SETTINGS_SAVE_KEY_GRAPHIC_LEVEL))
         {
-            return PlayerPrefs.GetInt(SETTINGS_SAVE_KEY_GRAPHIC_LEVEL);
+            return PlayerPrefs.GetInt(SETTINGS_SAVE_KEY_GRAPHIC_LEVEL, 0);
         }
         else
-            return 0;
+            return -1;
     }
 
     public void SetResolution(int _value)
@@ -36,7 +36,7 @@ public class SettingsSaver : MonoBehaviour
     {
         if (PlayerPrefs.HasKey(SETTINGS_SAVE_KEY_RES))
         {
-            return PlayerPrefs.GetInt(SETTINGS_SAVE_KEY_RES);
+            return PlayerPrefs.GetInt(SETTINGS_SAVE_KEY_RES, -1);
         }
         else
             return -1;
@@ -51,7 +51,7 @@ public class SettingsSaver : MonoBehaviour
     {
         if (PlayerPrefs.HasKey(SETTINGS_SAVE_KEY_VOLUME))
         {
-            return PlayerPrefs.GetFloat(SETTINGS_SAVE_KEY_VOLUME);
+            return PlayerPrefs.GetFloat(SETTINGS_SAVE_KEY_VOLUME, 100f);
         }
         else
             return 100f;
@@ -66,7 +66,7 @@ public class SettingsSaver : MonoBehaviour
     {
         if (PlayerPrefs.HasKey(SETTINGS_SAVE_KEY_MUSIC_VOLUME))
         {
-            return PlayerPrefs.GetFloat(SETTINGS_SAVE_KEY_MUSIC_VOLUME);
+            return PlayerPrefs.GetFloat(SETTINGS_SAVE_KEY_MUSIC_VOLUME, 100f);
         }
         else
             return 100f;
@@ -81,7 +81,7 @@ public class SettingsSaver : MonoBehaviour
     {
         if (PlayerPrefs.HasKey(SETTINGS_SAVE_KEY_SFX_VOLUME))
         {
-            return PlayerPrefs.GetFloat(SETTINGS_SAVE_KEY_SFX_VOLUME);
+            return PlayerPrefs.GetFloat(SETTINGS_SAVE_KEY_SFX_VOLUME, 100f);
         }
         else
             return 100f;
@@ -96,7 +96,7 @@ public class SettingsSaver : MonoBehaviour
     {
         if (PlayerPrefs.HasKey(SETTINGS_SAVE_KEY_FPS_MAX))
         {
-            return PlayerPrefs.GetInt(SETTINGS_SAVE_KEY_FPS_MAX);
+            return PlayerPrefs.GetInt(SETTINGS_SAVE_KEY_FPS_MAX, 60);
         }
         else
             return 60;
@@ -111,7 +111,7 @@ public class SettingsSaver : MonoBehaviour
     {
         if (PlayerPrefs.HasKey(SETTINGS_SAVE_KEY_SENSITIVITY))
         {
-            return PlayerPrefs.GetFloat(SETTINGS_SAVE_KEY_SENSITIVITY);
+            return PlayerPrefs.GetFloat(SETTINGS_SAVE_KEY_SENSITIVITY, 10f);
         }
         else
             return 10f;
