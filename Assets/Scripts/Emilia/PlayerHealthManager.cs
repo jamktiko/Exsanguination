@@ -24,6 +24,8 @@ namespace EmiliaScripts
         /// </summary>
         public event HealthUpdate OnHealthUpdate;
 
+        public bool canTakeDamage = true;
+
         private void Awake()
         {
             healthVFXUpdater = GetComponent<HealthVFXUpdater>();
@@ -65,6 +67,8 @@ namespace EmiliaScripts
         /// <param name="healthNumber">Int</param>
         public void UpdatePlayerHealth(int healthNumber)
         {
+            if (!canTakeDamage) return;
+
             if (healthNumber != 0 && currentHealth > 0 && currentHealth <= maxHealth)
             {
                 currentHealth += healthNumber;
