@@ -58,7 +58,7 @@ public class EnemyHealthScript : MonoBehaviour
     {
         health = maxHealth;
         previousHealth = maxHealth;
-        musicManager = GameObject.Find("MusicManager").GetComponent<MusicManager>();
+        musicManager = GameObject.FindGameObjectWithTag("MusicManager").GetComponent<MusicManager>();
     }
 
     public void ChangeEnemyHealth(int changeAmount)

@@ -32,7 +32,7 @@ public class PauseScript : MonoBehaviour
 
     private void Start()
     {
-        musicManager = GameObject.Find("MusicManager").GetComponent<MusicManager>();
+        musicManager = GameObject.FindGameObjectWithTag("MusicManager").GetComponent<MusicManager>();
         UnPauseGame();
         victoryScreen.SetActive(false);
     }

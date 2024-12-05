@@ -26,8 +26,8 @@ public class LevelTransition : MonoBehaviour
     private void Awake()
     {
         background.color = new Color(0, 0, 0, 0);
-        musicManager = GameObject.Find("MusicManager").GetComponent<MusicManager>();
-        playerPrefab = GameObject.Find("Player");
+        musicManager = GameObject.FindGameObjectWithTag("MusicManager").GetComponent<MusicManager>();
+        playerPrefab = GameObject.FindGameObjectWithTag("Player");
         rb = playerPrefab.GetComponent<Rigidbody>();
         
     }
