@@ -15,6 +15,7 @@ public class SettingsSaver : MonoBehaviour
     public void SetGraphicLevel (int _value)
     {
         PlayerPrefs.SetInt(SETTINGS_SAVE_KEY_GRAPHIC_LEVEL, _value);
+        PlayerPrefs.Save();
     }
 
     public int GetGraphicLevel()
@@ -30,6 +31,7 @@ public class SettingsSaver : MonoBehaviour
     public void SetResolution(int _value)
     {
         PlayerPrefs.SetInt(SETTINGS_SAVE_KEY_GRAPHIC_LEVEL, _value);
+        PlayerPrefs.Save();
     }
 
     public int GetResolution()
@@ -45,6 +47,7 @@ public class SettingsSaver : MonoBehaviour
     public void SetMainVolume(float _value)
     {
         PlayerPrefs.SetFloat(SETTINGS_SAVE_KEY_VOLUME, _value);
+        PlayerPrefs.Save();
     }
 
     public float GetMainVolume()
@@ -60,6 +63,7 @@ public class SettingsSaver : MonoBehaviour
     public void SetMusicVolume(float _value)
     {
         PlayerPrefs.SetFloat(SETTINGS_SAVE_KEY_MUSIC_VOLUME, _value);
+        PlayerPrefs.Save();
     }
 
     public float GetMusicVolume()
@@ -75,6 +79,7 @@ public class SettingsSaver : MonoBehaviour
     public void SetSFXVolume(float _value)
     {
         PlayerPrefs.SetFloat(SETTINGS_SAVE_KEY_SFX_VOLUME, _value);
+        PlayerPrefs.Save();
     }
 
     public float GetSFXVolume()
@@ -90,6 +95,7 @@ public class SettingsSaver : MonoBehaviour
     public void SetFPSMax(int _value)
     {
         PlayerPrefs.SetInt(SETTINGS_SAVE_KEY_FPS_MAX, _value);
+        PlayerPrefs.Save();
     }
 
     public int GetFPSMax()
@@ -105,6 +111,7 @@ public class SettingsSaver : MonoBehaviour
     public void SetSensitivity(float _value)
     {
         PlayerPrefs.SetFloat(SETTINGS_SAVE_KEY_SENSITIVITY, _value);
+        PlayerPrefs.Save();
     }
 
     public float GetSensitivity()
