@@ -24,6 +24,23 @@ public class FPSManager : MonoBehaviour
     void Start()
     {
         Application.targetFrameRate = targetFramerate;
+
+        switch (targetFramerate)
+        {
+            case 60:
+                fpsDropdown.value = 0;
+                break;
+            case 120:
+                fpsDropdown.value = 1;
+                break;
+            case 144:
+                fpsDropdown.value = 2;
+                break;
+            case 200:
+                fpsDropdown.value = 3;
+                break;
+
+        }
     }
 
     public void UpdateFPSMax(int fps)

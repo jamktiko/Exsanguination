@@ -43,4 +43,10 @@ public class MouseSensitivitiesSetting : MonoBehaviour
         settingsSaver.SetSensitivity(newValue);
     }
 
+    public void MainMenuUpdateSens()
+    {
+        settingsSaver.SetSensitivity(sensitivitySlider.value);
+        sensitivityText.text = $"{sensitivitySlider.value:F1}";
+    }
+
 }
