@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8083116903310823397}
   m_Layer: 0
   m_Name: MusicManager_Level
-  m_TagString: Untagged
+  m_TagString: MusicManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,12 +47,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1acad8e0cc3f9d4488fc4cc447d42f0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  introSource: {fileID: 8700689824484954032}
-  loopSource: {fileID: 5426104937015299210}
-  deathSource: {fileID: 8626289069643047862}
+  menuDeathSource: {fileID: 0}
+  levelIntroSource: {fileID: 0}
+  levelLoopSource: {fileID: 0}
+  bossIntroSource: {fileID: 0}
+  bossLoopSources: []
+  fadeDuration: 1
+  levelManager: {fileID: 0}
   deathScript: {fileID: 0}
-  introToLoopDelay: 4
-  isBossScene: 0
+  footstepAudioSource: {fileID: 0}
+  footstepClips: []
+  isPlayingFootsteps: 0
 --- !u!1 &5273361551041837242
 GameObject:
   m_ObjectHideFlags: 0
