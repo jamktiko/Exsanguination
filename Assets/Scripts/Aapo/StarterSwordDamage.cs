@@ -5,8 +5,8 @@ using UnityEngine;
 public class StarterSwordDamage : MonoBehaviour
 {
     [SerializeField] private PlayerCombat playerCombat;
-    [SerializeField] private int damage;
-    [SerializeField] private int thirdAttackDamage;
+    public int damage;
+    public int thirdAttackDamage;
     
 
 
