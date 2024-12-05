@@ -25,12 +25,13 @@ public class GraphicalSettings : MonoBehaviour
     private void Awake()
     {
         settingsSaver = GameObject.FindGameObjectWithTag("SettingsSaver").GetComponent<SettingsSaver>();
-        currentQualityIndex = settingsSaver.GetGraphicLevel();
-        currentResIndex = settingsSaver.GetResolution();
+        
     }
 
     void Start()
     {
+        currentQualityIndex = settingsSaver.GetGraphicLevel();
+        currentResIndex = settingsSaver.GetResolution();
         availableResolutions = FilterResolutions(Screen.resolutions);
 
         if (currentResIndex < 0 || currentResIndex >= availableResolutions.Length)
@@ -38,6 +39,7 @@ public class GraphicalSettings : MonoBehaviour
             currentResIndex = GetHighestResolutionIndex();
             settingsSaver.SetResolution(currentResIndex);
         }
+
         ApplyResolution();
         UpdateResolutionText();
 
