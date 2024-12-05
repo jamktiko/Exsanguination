@@ -15,13 +15,12 @@ public class MainMenuScript : MonoBehaviour
     private ControllerHandler controllerHandler;
     [SerializeField] EventSystem eventSystem;
     private bool controllerConnected;
-    [SerializeField] MusicManager musicManager;
+    [SerializeField] IntroCutscene introCutscene;
     void Awake()
     {
         startButton.onClick.AddListener(StartGame);
         settingsButton.onClick.AddListener(OpenSettings);
         quitButton.onClick.AddListener(ExitGame);
-        musicManager = GameObject.FindGameObjectWithTag("MusicManager").GetComponent<MusicManager>();
         controllerHandler = GetComponent<ControllerHandler>();
     }
 
@@ -81,23 +80,10 @@ public class MainMenuScript : MonoBehaviour
 
     public void StartGame()
     {
-        StartCoroutine(StartGameWithMusic());
+        introCutscene.StartCutscene();
     }
 
-    private IEnumerator StartGameWithMusic()
-    {
-        // Start playing the level music
-        musicManager.PlayLevelMusic();
-
-        // Load the scene while the intro music plays
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(1);
-
-        // Optionally wait until the scene is fully loaded
-        while (!asyncLoad.isDone)
-        {
-            yield return null;
-        }
-    }
+    
 
 
     private void OpenSettings()
