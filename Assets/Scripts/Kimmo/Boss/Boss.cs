@@ -1,3 +1,4 @@
+using EmiliaScripts;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -79,6 +80,7 @@ public class Boss : MonoBehaviour
     [Header("Death")]
     public PauseScript pauseScript;
     public PlayerStats playerStats;
+    PlayerHealthManager playerHealthManager;
 
     private void Awake()
     {
@@ -96,6 +98,7 @@ public class Boss : MonoBehaviour
         audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         pauseScript = GameObject.Find("PauseManager").GetComponent<PauseScript>();
         playerStats = GameObject.FindGameObjectWithTag("PlayerStats").GetComponent<PlayerStats>();
+        playerHealthManager = GameObject.FindGameObjectWithTag("HealthManager").GetComponent<PlayerHealthManager>();
     }
 
     private void Start()
@@ -359,6 +362,7 @@ public class Boss : MonoBehaviour
 
     public void ShowVictoryScreen()
     {
+        playerHealthManager.canTakeDamage = false;
         StartCoroutine(WaitBeforeVictoryScreen());
     }
 
