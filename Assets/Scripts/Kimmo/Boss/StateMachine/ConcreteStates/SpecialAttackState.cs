@@ -33,9 +33,7 @@ public class SpecialAttackState : BossAbstractState
             boss.RotateTowardsTarget();
         }
 
-        AnimatorStateInfo stateInfo = boss.bossAnimator.GetCurrentAnimatorStateInfo(0);
-
-        if (stateInfo.normalizedTime >= 1.0f && !boss.isCastingSpecialAttack)
+        if (!boss.isCastingSpecialAttack)
         {
             boss.bossStateManager.ChangeState();
         }
