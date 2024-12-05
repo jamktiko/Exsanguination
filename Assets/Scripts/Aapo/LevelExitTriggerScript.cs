@@ -36,7 +36,7 @@ public class LevelExitTriggerScript : MonoBehaviour
         }
 
        
-            musicManager = GameObject.Find("MusicManager").GetComponent<MusicManager>();
+            musicManager = GameObject.FindGameObjectWithTag("MusicManager").GetComponent<MusicManager>();
         
     }
 
