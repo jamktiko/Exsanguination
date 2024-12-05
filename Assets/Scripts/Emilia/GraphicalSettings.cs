@@ -32,6 +32,9 @@ public class GraphicalSettings : MonoBehaviour
     {
         availableResolutions = FilterResolutions(Screen.resolutions);
 
+        Debug.Log($"Current quality index loaded: {currentQualityIndex}"); // Log loaded quality index
+        Debug.Log($"Available quality levels: {QualitySettings.names.Length}");
+
         if (currentResIndex < 0 || currentResIndex >= availableResolutions.Length)
         {
             currentResIndex = GetHighestResolutionIndex();
@@ -40,9 +43,16 @@ public class GraphicalSettings : MonoBehaviour
         ApplyResolution();
         UpdateResolutionText();
 
+        if (currentQualityIndex < 0 || currentQualityIndex >= QualitySettings.names.Length)
+        {
+            currentQualityIndex = QualitySettings.names.Length - 1;
+            settingsSaver.SetGraphicLevel(currentQualityIndex);
+        }
+
         QualitySettings.SetQualityLevel(currentQualityIndex);
         UpdateQualityText();
 
+        Debug.Log($"Quality index after validation: {currentQualityIndex}");
     }
 
     #region Resolution
@@ -124,6 +134,7 @@ public class GraphicalSettings : MonoBehaviour
 
     private void ApplyQualitySetting()
     {
+        Debug.Log($"Applying quality setting: {currentQualityIndex}");
         QualitySettings.SetQualityLevel(currentQualityIndex);
         UpdateQualityText();
     }
