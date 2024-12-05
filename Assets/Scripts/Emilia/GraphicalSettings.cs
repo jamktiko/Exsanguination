@@ -43,11 +43,6 @@ public class GraphicalSettings : MonoBehaviour
         QualitySettings.SetQualityLevel(currentQualityIndex);
         UpdateQualityText();
 
-        // Assign button actions
-        previousResButton.onClick.AddListener(SelectPreviousResolution);
-        nextResButton.onClick.AddListener(SelectNextResolution);
-        previousQualityButton.onClick.AddListener(SelectPreviousQuality);
-        nextQualityButton.onClick.AddListener(SelectNextQuality);
     }
 
     #region Resolution

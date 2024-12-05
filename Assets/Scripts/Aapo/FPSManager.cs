@@ -19,10 +19,6 @@ public class FPSManager : MonoBehaviour
     {
         settingsSaver = GameObject.FindGameObjectWithTag("SettingsSaver").GetComponent<SettingsSaver>();
         targetFramerate = settingsSaver.GetFPSMax();
-        if (fpsDropdown != null)
-        {
-            fpsDropdown.onValueChanged.AddListener(ChangeFPSTarget);
-        }
     }
 
     void Start()
@@ -58,11 +54,4 @@ public class FPSManager : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
-    {
-        if (fpsDropdown != null)
-        {
-            fpsDropdown.onValueChanged.RemoveListener(ChangeFPSTarget);
-        }
-    }
 }
