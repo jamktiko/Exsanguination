@@ -2,6 +2,7 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GraphicalSettings : MonoBehaviour
 {
@@ -32,9 +33,6 @@ public class GraphicalSettings : MonoBehaviour
     {
         availableResolutions = FilterResolutions(Screen.resolutions);
 
-        Debug.Log($"Current quality index loaded: {currentQualityIndex}"); // Log loaded quality index
-        Debug.Log($"Available quality levels: {QualitySettings.names.Length}");
-
         if (currentResIndex < 0 || currentResIndex >= availableResolutions.Length)
         {
             currentResIndex = GetHighestResolutionIndex();
@@ -51,8 +49,6 @@ public class GraphicalSettings : MonoBehaviour
 
         QualitySettings.SetQualityLevel(currentQualityIndex);
         UpdateQualityText();
-
-        Debug.Log($"Quality index after validation: {currentQualityIndex}");
     }
 
     #region Resolution
