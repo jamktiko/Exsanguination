@@ -67,11 +67,11 @@ public class PlayerMovement : MonoBehaviour
     CooldownUI cooldownUI;
 
     [Header("Audio")]
-    AudioManager audioManager;
     [SerializeField] float footstepTimer;
     [SerializeField] float footStepAudioCooldown;
     bool firstStepPlayed;
     bool isLanded;
+    AudioManager audioManager;
 
     [Header("Controller")]
     private ControllerHandler controllerHandler;
@@ -168,29 +168,14 @@ public class PlayerMovement : MonoBehaviour
         {
             if (rb.velocity != Vector3.zero)
             {
-                if (!firstStepPlayed)
+                footstepTimer += Time.deltaTime;
+
+                if (footstepTimer >= footStepAudioCooldown)
                 {
                     audioManager.PlayPlayerFootstepsAudioClips();
-
-                    firstStepPlayed = true;
                     footstepTimer = 0f;
                 }
-                else
-                {
-                    footstepTimer += Time.deltaTime;
-
-                    if (footstepTimer >= footStepAudioCooldown)
-                    {
-                        audioManager.PlayPlayerFootstepsAudioClips();
-                        footstepTimer = 0f;
-                    }
-                }
             }
-        }
-        else
-        {
-            firstStepPlayed = false;
-            footstepTimer = 0f;
         }
 
         SpeedControl();
