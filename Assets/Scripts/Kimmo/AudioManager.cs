@@ -24,6 +24,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioSource playerDieAudioSource;
     [SerializeField] AudioSource playerHealAudioSource;
     [SerializeField] AudioSource playerFallAudioSource;
+    [SerializeField] AudioSource ventAudioSource;
 
 
     [Header("SFX clips")]
@@ -69,7 +70,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioClip[] bossTakeDamageAudioClips;
     [SerializeField] AudioClip bossDashAudioClip;
 
-
+    [Header("Vent")]
+    [SerializeField] AudioClip ventAudioClip;
 
     private void Awake()
     {
@@ -320,6 +322,13 @@ public class AudioManager : MonoBehaviour
     {
         audioSource.clip = bossDashAudioClip;
         audioSource.PlayOneShot(bossDashAudioClip);
+    }
+
+    // Vent
+    public void PlayVentClip(AudioSource audioSource)
+    {
+        audioSource.clip = ventAudioClip;
+        audioSource.PlayOneShot(ventAudioClip);
     }
 
 }

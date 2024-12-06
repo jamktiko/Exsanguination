@@ -372,6 +372,7 @@ public class Boss : MonoBehaviour
         pauseScript.PauseGame();
         pauseScript.ShowVictoryScreen();
         playerStats.StopTimer();
+        playerStats.hasWon = true;
     }
 
 }

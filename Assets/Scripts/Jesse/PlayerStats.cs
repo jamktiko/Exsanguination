@@ -30,6 +30,7 @@ public class PlayerStats : MonoBehaviour
 
     private Coroutine timerCoroutine;
     int deathCount;
+    public bool hasWon;
 
     private void Awake()
     {
