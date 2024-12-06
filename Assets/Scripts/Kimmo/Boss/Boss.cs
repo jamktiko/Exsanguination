@@ -106,13 +106,13 @@ public class Boss : MonoBehaviour
         bossStateManager.states = new BossAbstractState[] { chargeState, meleeAttackState, stunState, dashState, idleState, dashState, specialAttackState };
         bossStateManager.Initialize(bossStateManager.states[0]);
 
-        specialAttacks = new System.Action[] { CastSpikeGrowth, CastPirouette, CastFirewall, CastHellfire };
-        animationTriggers = new string[] { "spikeGrowth", "pirouette", "firewall", "hellfire" };
-        castingTimes = new float[] { 2f, 1.5f, 2f, 1f };
+        //specialAttacks = new System.Action[] { CastSpikeGrowth, CastPirouette, CastFirewall, CastHellfire };
+        //animationTriggers = new string[] { "spikeGrowth", "pirouette", "firewall", "hellfire" };
+        //castingTimes = new float[] { 2f, 1.5f, 2f, 1f };
 
-        //specialAttacks = new System.Action[] { CastPirouette, CastPirouette, CastPirouette, CastPirouette };
-        //animationTriggers = new string[] { "pirouette", "pirouette", "pirouette", "pirouette" };
-        //castingTimes = new float[] { 1.5f, 1.5f, 1.5f, 1.5f };
+        specialAttacks = new System.Action[] { CastSpikeGrowth, CastSpikeGrowth, CastSpikeGrowth, CastSpikeGrowth };
+        animationTriggers = new string[] { "spikeGrowth", "spikeGrowth", "spikeGrowth", "spikeGrowth" };
+        castingTimes = new float[] { 2f, 2f, 2f, 2f };
 
         //timeBetweenDaggers = spinDuration / daggerAmount;
         //timeBetweenDaggers = 0.01f;

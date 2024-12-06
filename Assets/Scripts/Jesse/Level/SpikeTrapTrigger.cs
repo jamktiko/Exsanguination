@@ -8,7 +8,7 @@ public class SpikeTrapTrigger : MonoBehaviour
     [Header("Speeds as values from 0-1")]
     [SerializeField] float riseSpeed;
     [SerializeField] float lowerSpeed;
-    private Vector3 inactivePosition;
+    [SerializeField] private Vector3 inactivePosition;
     [SerializeField] float inactiveYOffset;
 
     [SerializeField] float upTime;
@@ -18,8 +18,10 @@ public class SpikeTrapTrigger : MonoBehaviour
 
     private void Awake()
     {
-        inactivePosition = spikes.transform.position + new Vector3(0, inactiveYOffset * transform.root.transform.localScale.y, 0);
-        spikes.transform.position = inactivePosition;
+        //inactivePosition = spikes.transform.position + new Vector3(0, inactiveYOffset * transform.root.transform.localScale.y, 0);
+        //spikes.transform.position = inactivePosition;
+        inactivePosition = spikes.transform.localPosition = new Vector3(0, inactiveYOffset, 0);
+        spikes.transform.localPosition = inactivePosition;
     }
 
 
@@ -28,6 +30,7 @@ public class SpikeTrapTrigger : MonoBehaviour
         if (other.CompareTag("Player") || other.CompareTag("Enemy"))
         {
             if (active) { return; }
+            inactivePosition = spikes.transform.localPosition = new Vector3(0, inactiveYOffset, 0);
             StartCoroutine(Thrust());
         }
     }
@@ -44,9 +47,9 @@ public class SpikeTrapTrigger : MonoBehaviour
 
         yield return new WaitForSeconds(upTime);
 
-        while (spikes.transform.position != inactivePosition)
+        while (spikes.transform.localPosition != inactivePosition)
         {
-            spikes.transform.position = Vector3.MoveTowards(spikes.transform.position, inactivePosition, lowerSpeed * Time.deltaTime);
+            spikes.transform.position = Vector3.MoveTowards(spikes.transform.localPosition, inactivePosition, lowerSpeed * Time.deltaTime);
             yield return null;
         }
 
