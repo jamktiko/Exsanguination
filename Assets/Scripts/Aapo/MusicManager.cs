@@ -13,7 +13,7 @@ public class MusicManager : MonoBehaviour
     [SerializeField] private AudioSource bossIntroSource; // For boss intro music
     [SerializeField] private AudioSource[] bossLoopSources; // Variations for boss loops
     [SerializeField] private AudioSource bossTransitionSource;
-    private AudioSource currentSource;
+    public AudioSource currentSource;
 
     [Header("Settings")]
     [SerializeField] private float fadeDuration = 1f; // Default fade time in seconds
@@ -70,6 +70,10 @@ public class MusicManager : MonoBehaviour
 
     private IEnumerator HandleLevelIntroAndLoop()
     {
+        if (!levelIntroSource.isPlaying)
+        {
+            levelIntroSource.Play();
+        }
         // Wait for intro to finish before starting the loop music
         yield return new WaitForSecondsRealtime(levelIntroSource.clip.length);
         levelIntroSource.Stop();

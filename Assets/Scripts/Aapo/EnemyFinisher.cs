@@ -3,6 +3,8 @@ using UnityEngine;
 using EmiliaScripts;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.Audio;
+
 public class EnemyFinisher : MonoBehaviour
 {
     private Animator playerAnimator;
@@ -37,6 +39,12 @@ public class EnemyFinisher : MonoBehaviour
     private Vignette vignette;
 
     PlayerMovement playerMovement;
+
+    public AudioMixer musicMixer;
+    public string volumeParameter = "MusicVolume"; // Name of the exposed parameter
+    public float transitionDuration = 1f; // Time for smooth transitions
+
+    private float currentVolume; // Store the original volume value
 
     private void Awake()
     {
@@ -101,9 +109,32 @@ public class EnemyFinisher : MonoBehaviour
 
         }
     }
+    private IEnumerator SmoothVolumeTransition(float targetVolume, float duration, System.Action onComplete = null)
+    {
+        if (musicMixer.GetFloat(volumeParameter, out float startVolume))
+        {
+            float elapsed = 0f;
+
+            while (elapsed < duration)
+            {
+                elapsed += Time.deltaTime;
+                float newVolume = Mathf.Lerp(startVolume, targetVolume, elapsed / duration);
+                musicMixer.SetFloat(volumeParameter, newVolume);
+                yield return null;
+            }
+
+            musicMixer.SetFloat(volumeParameter, targetVolume); // Ensure it reaches the target
+            onComplete?.Invoke();
+        }
+    }
 
     public void Finish()
     {
+        if (musicMixer.GetFloat(volumeParameter, out float volume))
+        {
+            currentVolume = volume;
+        }
+        StartCoroutine(SmoothVolumeTransition(-10f, transitionDuration));
         audioManager.PlayStakeFinisherAudioClip();
         enemyMesh.enabled = true;
         finisherstickRenderer.enabled = true;
@@ -111,6 +142,7 @@ public class EnemyFinisher : MonoBehaviour
         InputManager.DisableInput();
         mLook.enabled = false;
         isFinishing = true;
+        rb.isKinematic = true;
         StartCoroutine(ApplyPostProcessingEffects());
     }
 
@@ -123,9 +155,30 @@ public class EnemyFinisher : MonoBehaviour
         enemyDeathAudio.PlayOneShot(finisherGhoulAudioSource.clip);
 
     }
+    public void SetVolumeBackToSaved()
+    {
+        StartCoroutine(SmoothVolumeRestore());
+    }
+    private System.Collections.IEnumerator SmoothVolumeRestore()
+    {
+        if (musicMixer.GetFloat(volumeParameter, out float startVolume))
+        {
+            float elapsed = 0f;
 
+            while (elapsed < transitionDuration)
+            {
+                elapsed += Time.deltaTime;
+                float newVolume = Mathf.Lerp(startVolume, currentVolume, elapsed / transitionDuration);
+                musicMixer.SetFloat(volumeParameter, newVolume);
+                yield return null;
+            }
+
+            musicMixer.SetFloat(volumeParameter, currentVolume); // Ensure it reaches the target
+        }
+    }
     public void FinishFinisherAnimation()
     {
+        SetVolumeBackToSaved();
         //enemyParticleSystem.Stop();
         isFinishing = false;
         finisherstickRenderer.enabled = false;
@@ -133,6 +186,7 @@ public class EnemyFinisher : MonoBehaviour
         mLook.enabled = true;
         Destroy(tmpParticle);
         tmpParticle = null;
+        rb.isKinematic = false;
     }
 
     public void RotateToTarget()

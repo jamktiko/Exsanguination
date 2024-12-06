@@ -64,6 +64,10 @@ public class TutorialCombat : MonoBehaviour
             starterSwordDamage.damage = 0;
             starterSwordDamage.thirdAttackDamage = 0;
         }
+        if (!parryTutorialGhoul.parriedCorrectly && tutorialStep ==1)
+        {
+            starterSwordDamage.thirdAttackDamage = 0;
+        }
 
     }
 
