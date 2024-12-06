@@ -11,6 +11,7 @@ public class TransitionToLevel : MonoBehaviour
     [SerializeField] PlayerInput playerInput;
     [SerializeField] float blackFadeTime;
     [SerializeField] float timeBeforeSceneChange;
+    [SerializeField] GameObject doneUI;
 
     private MusicManager musicManager;
 
@@ -28,6 +29,7 @@ public class TransitionToLevel : MonoBehaviour
 
     IEnumerator LevelTransition(float blackFadeTime)
     {
+        doneUI.SetActive(false);
         // Start playing footsteps in the background
        StartCoroutine(musicManager.PlayFootstepsUntilTimerEnds());
         playerInput.DeactivateInput();

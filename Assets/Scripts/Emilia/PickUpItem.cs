@@ -113,7 +113,7 @@ public class PickUpItem : MonoBehaviour
             if(tool == UtilityTool.Keycard)
             {
                 playerStats.foundKeycard = true;
-                keyCardPickedText.text = "Keycard found!";
+                keyCardPickedText.text = "Key found!";
                 gameObject.SetActive(false);
 
             }
