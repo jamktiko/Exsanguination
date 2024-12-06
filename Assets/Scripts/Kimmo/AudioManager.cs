@@ -69,6 +69,7 @@ public class AudioManager : MonoBehaviour
     [Header("Boss")]
     [SerializeField] AudioClip[] bossTakeDamageAudioClips;
     [SerializeField] AudioClip bossDashAudioClip;
+    [SerializeField] AudioClip bossDiesAudioClip;
 
     [Header("Vent")]
     [SerializeField] AudioClip ventAudioClip;
@@ -317,11 +318,20 @@ public class AudioManager : MonoBehaviour
         audioSource.PlayOneShot(clip);
     }
 
+    // Boss
+
     // Boss dash voice
     public void PlayBossDashDamageClip(AudioSource audioSource)
     {
         audioSource.clip = bossDashAudioClip;
         audioSource.PlayOneShot(bossDashAudioClip);
+    }
+
+    // Boss dies voice
+    public void PlayBossDiesClip(AudioSource audioSource)
+    {
+        audioSource.clip = bossDiesAudioClip;
+        audioSource.PlayOneShot(bossDiesAudioClip);
     }
 
     // Vent

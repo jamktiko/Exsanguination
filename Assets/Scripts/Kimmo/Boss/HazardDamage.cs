@@ -20,8 +20,11 @@ public class HazardDamage : MonoBehaviour
         if (other.tag == "Player")
         {
             isTouchingPlayer = true;
- 
-            Damage();
+            
+            if (canDamage)
+            {
+                Damage();
+            }
         }
     }
 

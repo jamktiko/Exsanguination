@@ -71,12 +71,13 @@ public class Boss : MonoBehaviour
     [Header("Hellfire")]
     [SerializeField] GameObject hellfire;
     [SerializeField] GameObject hellfirePoint;
-    [SerializeField] AudioClip[] bossCasts;
-    [SerializeField] AudioSource castSpecialAttack;
 
     [Header("Audio")]
-    AudioManager audioManager;
+    [SerializeField] AudioClip[] bossCasts;
+    [SerializeField] AudioSource castSpecialAttack;
     [SerializeField] AudioSource bossDashAudioSource;
+    [SerializeField] AudioSource bossDiesAudioSource;
+    AudioManager audioManager;
 
     [Header("Death")]
     public PauseScript pauseScript;
@@ -85,6 +86,7 @@ public class Boss : MonoBehaviour
 
     [Header("SFX")]
     public AudioMixer SFXMixer;
+
     private void Awake()
     {
         bossStateManager = new BossStateManager();
@@ -365,6 +367,7 @@ public class Boss : MonoBehaviour
 
     public void ShowVictoryScreen()
     {
+        audioManager.PlayBossDiesClip(bossDiesAudioSource);
         playerHealthManager.canTakeDamage = false;
         StartCoroutine(WaitBeforeVictoryScreen());
     }
