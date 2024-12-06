@@ -32,8 +32,7 @@ public class IntroCutscene : MonoBehaviour
         topText.color = topText.color = new Color(1, 1, 1, 0);
         middleText.color = middleText.color = new Color(1, 1, 1, 0);
         bottomText.color = bottomText.color = new Color(1, 1, 1, 0);
-
-
+        musicManager = GameObject.FindGameObjectWithTag("MusicManager").GetComponent<MusicManager>();
     }
 
     private void Start()

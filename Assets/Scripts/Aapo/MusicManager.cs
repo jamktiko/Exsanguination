@@ -51,12 +51,19 @@ public class MusicManager : MonoBehaviour
     // Play Menu/Death music, crossfading from any current track
     public void PlayMenuDeathMusic(float fadeDuration = 1f)
     {
+        StopAllCoroutines();
+        levelIntroSource.Stop();
+        levelLoopSource.Stop();
         CrossfadeToSource(menuDeathSource, fadeDuration);
+        
     }
 
     // Play Level music: Crossfade from current track to level intro, then immediately to loop
     public void PlayLevelMusic()
     {
+        levelIntroSource.Stop();
+        levelLoopSource.Stop();
+        levelLoopSource.volume = 0.5f;
         CrossfadeToSource(levelIntroSource, fadeDuration);
         StartCoroutine(HandleLevelIntroAndLoop());
     }
@@ -65,7 +72,7 @@ public class MusicManager : MonoBehaviour
     {
         // Wait for intro to finish before starting the loop music
         yield return new WaitForSecondsRealtime(levelIntroSource.clip.length);
-
+        levelIntroSource.Stop();
         // Immediately switch to level loop without crossfade
         levelLoopSource.Play();
         currentSource = levelLoopSource;

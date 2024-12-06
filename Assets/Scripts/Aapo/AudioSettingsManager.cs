@@ -1,76 +1,56 @@
 using UnityEngine;
 using UnityEngine.Audio;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class AudioSettingsManager : MonoBehaviour
 {
-    [SerializeField] AudioMixer musicMixer;
-    [SerializeField] AudioMixer sfxMixer;
+    [SerializeField] private AudioMixer musicMixer;
+    [SerializeField] private AudioMixer sfxMixer;
+    [SerializeField] private AudioMixer masterMixer;
+
     [SerializeField] Slider masterSlider;
     [SerializeField] Slider musicSlider;
     [SerializeField] Slider sfxSlider;
-    [SerializeField] private LevelManager levelManager;
 
     private void Start()
     {
-        // Load saved volume levels
-        masterSlider.value = PlayerPrefs.GetFloat("MasterVolume", 0.75f);
-        musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 0.75f);
-        sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume", 0.75f);
-
-        ApplyVolume();
-    }
-
-    public void OnMasterVolumeChange()
-    {
-        float volume = Mathf.Log10(masterSlider.value) * 20;
-        AudioListener.volume = masterSlider.value; // Adjust overall volume
-        PlayerPrefs.SetFloat("MasterVolume", masterSlider.value);
-    }
-
-    public void OnMusicVolumeChange()
-    {
-        float volume = Mathf.Log10(musicSlider.value) * 20;
-        musicMixer.SetFloat("MusicVolume", volume);
-        PlayerPrefs.SetFloat("MusicVolume", musicSlider.value);
-    }
-
-    public void OnSFXVolumeChange()
-    {
-        float volume = Mathf.Log10(sfxSlider.value) * 20;
-        sfxMixer.SetFloat("SFXVolume", volume);
-        PlayerPrefs.SetFloat("SFXVolume", sfxSlider.value);
-    }
-
-    private void ApplyVolume()
-    {
-        // Apply initial saved volumes
-        OnMasterVolumeChange();
-        OnMusicVolumeChange();
-        OnSFXVolumeChange();
-    }
-
-    private void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    private void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
-
-    private void OnSceneLoaded(Scene scene, LoadSceneMode sceneMode)
-    {
-        levelManager = GameObject.Find("LevelManager")?.GetComponent<LevelManager>();
-        if (scene.buildIndex != 0)
+        // Ensure that VolumeSettingsManager is initialized before accessing it
+        if (VolumeSettingsManager.Instance == null)
         {
-            masterSlider = GameObject.Find("MasterVolumeSlider").GetComponent<Slider>();
-            musicSlider = GameObject.Find("MusicVolumeSlider").GetComponent<Slider>();
-            sfxSlider = GameObject.Find("SoundVolumeSlider").GetComponent<Slider>();
-
-
+            Debug.LogError("VolumeSettingsManager instance is missing!");
+            return;
         }
+
+        // Load saved volume settings from VolumeSettingsManager
+        VolumeSettingsManager.Instance.LoadVolumeSettings();
+
+        // Apply saved volume settings to the sliders
+        if (masterSlider != null) masterSlider.value = VolumeSettingsManager.Instance.masterVolume;
+        if (musicSlider != null) musicSlider.value = VolumeSettingsManager.Instance.musicVolume;
+        if (sfxSlider != null) sfxSlider.value = VolumeSettingsManager.Instance.sfxVolume;
+
+        // Apply those values to the mixers
+        SetMasterVolume(VolumeSettingsManager.Instance.masterVolume);
+        SetMusicVolume(VolumeSettingsManager.Instance.musicVolume);
+        SetSFXVolume(VolumeSettingsManager.Instance.sfxVolume);
+    }
+
+    public void SetMusicVolume(float sliderValue)
+    {
+        musicMixer.SetFloat("MusicVolume", Mathf.Log10(sliderValue) * 20);
+        VolumeSettingsManager.Instance.SaveVolumeSettings(masterSlider.value, sliderValue, sfxSlider.value);
+    }
+
+    public void SetSFXVolume(float sliderValue)
+    {
+        sfxMixer.SetFloat("SFXVolume", Mathf.Log10(sliderValue) * 20);
+        VolumeSettingsManager.Instance.SaveVolumeSettings(masterSlider.value, musicSlider.value, sliderValue);
+    }
+
+    public void SetMasterVolume(float sliderValue)
+    {
+        masterMixer.SetFloat("MasterVolume", Mathf.Log10(sliderValue) * 20);
+        VolumeSettingsManager.Instance.SaveVolumeSettings(sliderValue, musicSlider.value, sfxSlider.value);
     }
 }
