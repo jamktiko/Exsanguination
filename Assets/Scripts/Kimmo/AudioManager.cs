@@ -338,7 +338,7 @@ public class AudioManager : MonoBehaviour
     public void PlayVentClip(AudioSource audioSource)
     {
         audioSource.clip = ventAudioClip;
-        audioSource.PlayOneShot(ventAudioClip);
+        audioSource.Play();
     }
 
 }
