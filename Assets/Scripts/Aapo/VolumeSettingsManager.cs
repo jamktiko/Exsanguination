@@ -32,8 +32,8 @@ public class VolumeSettingsManager : MonoBehaviour
 
     public void LoadVolumeSettings()
     {
-        
-        //masterVolume = masterVolume;
+
+        masterVolume = masterVolume;
         musicVolume = musicVolume ;
         sfxVolume = sfxVolume;
     }
