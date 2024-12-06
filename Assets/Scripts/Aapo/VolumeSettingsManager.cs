@@ -4,14 +4,12 @@ public class VolumeSettingsManager : MonoBehaviour
 {
     public static VolumeSettingsManager Instance;
 
-    // Stored values for master, music, and SFX volumes
     public float masterVolume = 1f;
     public float musicVolume = 1f;
     public float sfxVolume = 1f;
 
     private void Awake()
     {
-        // Ensures only one instance exists
         if (Instance == null)
         {
             Instance = this;
@@ -19,22 +17,21 @@ public class VolumeSettingsManager : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject); // Destroy if another instance already exists
+            Destroy(gameObject);
         }
     }
 
     public void SaveVolumeSettings(float master, float music, float sfx)
     {
-        //masterVolume = master;
+        masterVolume = master;
         musicVolume = music;
         sfxVolume = sfx;
     }
 
-    public void LoadVolumeSettings()
+    public void GetVolumeSettings(out float master, out float music, out float sfx)
     {
-
-        masterVolume = masterVolume;
-        musicVolume = musicVolume ;
-        sfxVolume = sfxVolume;
+        master = masterVolume;
+        music = musicVolume;
+        sfx = sfxVolume;
     }
 }
