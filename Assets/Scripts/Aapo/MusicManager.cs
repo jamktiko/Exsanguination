@@ -12,6 +12,7 @@ public class MusicManager : MonoBehaviour
     [SerializeField] private AudioSource levelLoopSource; // For level looping music
     [SerializeField] private AudioSource bossIntroSource; // For boss intro music
     [SerializeField] private AudioSource[] bossLoopSources; // Variations for boss loops
+    [SerializeField] private AudioSource bossTransitionSource;
     private AudioSource currentSource;
 
     [Header("Settings")]
@@ -67,7 +68,6 @@ public class MusicManager : MonoBehaviour
 
         // Immediately switch to level loop without crossfade
         levelLoopSource.Play();
-        levelIntroSource.Stop();
         currentSource = levelLoopSource;
     }
 
@@ -91,24 +91,36 @@ public class MusicManager : MonoBehaviour
 
         // Stop the intro music and start the first loop variation
         bossLoopSources[0].Play();
-        bossIntroSource.Stop();        
         bossLoopSources[1].Play();
-        bossLoopSources[2].Play();
         currentSource = bossLoopSources[0];
-        //CrossfadeToSource(bossLoopSources[currentBossPhase], fadeDuration);
+        
     }
 
-    public void ChangeBossMusicVariation(int phase)
+    public void BossSecondPhase()
     {
-        if (phase < 0 || phase >= bossLoopSources.Length || phase == currentBossPhase) return;
-
-        // Update the current phase
-        currentBossPhase = phase;
-        currentSource = bossLoopSources[currentBossPhase];
-        // Crossfade from the current loop to the new one
-        CrossfadeToSource(bossLoopSources[currentBossPhase], fadeDuration);
+        CrossfadeToSource(bossLoopSources[1], fadeDuration);
     }
 
+    public void BossThirdPhase()
+    { 
+        StartCoroutine(HandleBossThirdPhase());
+    }
+
+
+    private IEnumerator HandleBossThirdPhase()
+    {
+        // Crossfade into the boss intro music first
+        CrossfadeToSource(bossTransitionSource, fadeDuration);
+
+        // Wait for the intro to finish
+        yield return new WaitForSecondsRealtime(bossTransitionSource.clip.length);
+
+        // Stop the intro music and start the first loop variation
+        bossLoopSources[2].Play();
+
+        currentSource = bossLoopSources[2];
+
+    }
 
 
     // Crossfade from current track to a new one
