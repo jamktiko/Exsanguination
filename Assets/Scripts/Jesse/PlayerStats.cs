@@ -142,8 +142,6 @@ public class PlayerStats : MonoBehaviour
 
     private void OnLevelLoad(Scene scene, LoadSceneMode sceneMode)
     {
-       
-
         if (scene.buildIndex == 3 && levelTime == 0)
         {
             totalTimeText = GameObject.Find("GameCompletionTimeText").GetComponent<TextMeshProUGUI>();
@@ -160,7 +158,10 @@ public class PlayerStats : MonoBehaviour
             totalTime += tutorialTime;
             tutorialTimeString = $"Level completion time: {TimeInString(tutorialTime)}";
         }
-        RestartTimer();
+        if (scene.buildIndex != 0)
+        {
+            RestartTimer();
+        }
         if (scene.buildIndex == 1)
         { //set all found bools to false and fully resets saved times if in base level
             foundGrapplinghook = foundKeycard = foundSlaymore = foundStake = false;

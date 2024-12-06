@@ -18,10 +18,10 @@ public class SpikeTrapTrigger : MonoBehaviour
 
     private void Awake()
     {
-        //inactivePosition = spikes.transform.position + new Vector3(0, inactiveYOffset * transform.root.transform.localScale.y, 0);
-        //spikes.transform.position = inactivePosition;
-        inactivePosition = spikes.transform.localPosition = new Vector3(0, inactiveYOffset, 0);
-        spikes.transform.localPosition = inactivePosition;
+        inactivePosition = spikes.transform.position + new Vector3(0, inactiveYOffset * transform.root.transform.localScale.y, 0);
+        spikes.transform.position = inactivePosition;
+        //inactivePosition = spikes.transform.localPosition = new Vector3(0, inactiveYOffset, 0);
+        //spikes.transform.localPosition = inactivePosition;
     }
 
 
@@ -30,7 +30,8 @@ public class SpikeTrapTrigger : MonoBehaviour
         if (other.CompareTag("Player") || other.CompareTag("Enemy"))
         {
             if (active) { return; }
-            inactivePosition = spikes.transform.localPosition = new Vector3(0, inactiveYOffset, 0);
+            inactivePosition = spikes.transform.position = 
+                new Vector3(transform.position.x, transform.position.y + inactiveYOffset, transform.position.z);
             StartCoroutine(Thrust());
         }
     }
@@ -47,9 +48,9 @@ public class SpikeTrapTrigger : MonoBehaviour
 
         yield return new WaitForSeconds(upTime);
 
-        while (spikes.transform.localPosition != inactivePosition)
+        while (spikes.transform.position != inactivePosition)
         {
-            spikes.transform.position = Vector3.MoveTowards(spikes.transform.localPosition, inactivePosition, lowerSpeed * Time.deltaTime);
+            spikes.transform.position = Vector3.MoveTowards(spikes.transform.position, inactivePosition, lowerSpeed * Time.deltaTime);
             yield return null;
         }
 
