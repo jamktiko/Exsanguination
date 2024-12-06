@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Boss : MonoBehaviour
 {
@@ -82,6 +83,8 @@ public class Boss : MonoBehaviour
     public PlayerStats playerStats;
     PlayerHealthManager playerHealthManager;
 
+    [Header("SFX")]
+    public AudioMixer SFXMixer;
     private void Awake()
     {
         bossStateManager = new BossStateManager();
@@ -373,6 +376,10 @@ public class Boss : MonoBehaviour
         pauseScript.ShowVictoryScreen();
         playerStats.StopTimer();
         playerStats.hasWon = true;
+        if (SFXMixer != null)
+        {
+            SFXMixer.SetFloat("SFXVolume", -999f); // 0 dB is represented by 0 in AudioMixer
+        }
     }
 
 }
