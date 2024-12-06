@@ -137,23 +137,22 @@ public class EnemyHealthScript : MonoBehaviour
 
     private void BossHealthEffects()
     {
-        if (previousHealth > 150 && health <= 150)
+        if (previousHealth > 200 && health <= 200)
         {
-            musicManager.ChangeBossMusicVariation(1);
+            musicManager.BossSecondPhase();
             boss.idleDuration = 3;
             boss.PickAndActivateVents(3);
         }
 
         else if (previousHealth > 100 && health <= 100)
         {
-            musicManager.ChangeBossMusicVariation(2);
+            musicManager.BossThirdPhase();
             boss.idleDuration = 1;
             boss.PickAndActivateVents(4);
         }
 
         else if (previousHealth > 50 && health <= 50)
         {
-            musicManager.ChangeBossMusicVariation(3);
             boss.idleDuration = 0.1f;
             boss.PickAndActivateVents(7);
         }
