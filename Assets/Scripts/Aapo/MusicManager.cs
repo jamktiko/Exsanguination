@@ -76,9 +76,9 @@ public class MusicManager : MonoBehaviour
         }
         // Wait for intro to finish before starting the loop music
         yield return new WaitForSecondsRealtime(levelIntroSource.clip.length);
-        levelIntroSource.Stop();
         // Immediately switch to level loop without crossfade
         levelLoopSource.Play();
+        levelIntroSource.Stop();
         currentSource = levelLoopSource;
     }
 
@@ -95,14 +95,13 @@ public class MusicManager : MonoBehaviour
     private IEnumerator HandleBossIntroAndLoop()
     {
         // Crossfade into the boss intro music first
-        CrossfadeToSource(bossIntroSource, fadeDuration);
-
-        // Wait for the intro to finish
-        yield return new WaitForSecondsRealtime(bossIntroSource.clip.length);
-
-        // Stop the intro music and start the first loop variation
-        bossLoopSources[0].Play();
+        CrossfadeToSource(bossIntroSource, 3f);
         bossLoopSources[1].Play();
+        // Wait for the intro to finish
+        yield return new WaitForSecondsRealtime(bossIntroSource.clip.length-0.005f);
+        bossLoopSources[0].Play();
+        // Stop the intro music and start the first loop variation
+
         currentSource = bossLoopSources[0];
         
     }
@@ -127,7 +126,7 @@ public class MusicManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(bossTransitionSource.clip.length);
 
         // Stop the intro music and start the first loop variation
-        bossLoopSources[2].Play();
+        CrossfadeToSource(bossLoopSources[2], fadeDuration);
 
         currentSource = bossLoopSources[2];
 

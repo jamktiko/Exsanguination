@@ -62,7 +62,8 @@ MonoBehaviour:
   - {fileID: 6096312353647379057}
   - {fileID: 7339040227657563444}
   bossTransitionSource: {fileID: 2182595622444361954}
-  fadeDuration: 3
+  currentSource: {fileID: 0}
+  fadeDuration: 0.3
   levelManager: {fileID: 0}
   deathScript: {fileID: 0}
   footstepAudioSource: {fileID: 4446496055416075779}
@@ -659,7 +660,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24300002, guid: 73826392ade3ce946bcd8a1fef2e2676, type: 2}
   m_audioClip: {fileID: 8300000, guid: e4725154356ebc84d935ff079f6eb41c, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 0
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -752,7 +753,7 @@ AudioSource:
   m_GameObject: {fileID: 1374779579999991260}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 73826392ade3ce946bcd8a1fef2e2676, type: 2}
   m_audioClip: {fileID: 8300000, guid: 7a52a4e9f25c0c74f909b8cab0a95189, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0
@@ -848,7 +849,7 @@ AudioSource:
   m_GameObject: {fileID: 1374779579999991260}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 90c60e7cf74415044bc61df24ccd1a08, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 0.5

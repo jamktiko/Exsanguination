@@ -34,7 +34,7 @@ public class ResetPlayer : MonoBehaviour
                 player.transform.rotation = Quaternion.Euler(0, 180, 0);
                 Debug.Log("grapple drop");
             }
-            else
+            if(!isGrappleRoom || !isCharlesHyppyHuone)
             {
                 if (!hasTriggered)
                 {
