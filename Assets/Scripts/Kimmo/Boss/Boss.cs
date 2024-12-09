@@ -362,13 +362,13 @@ public class Boss : MonoBehaviour
     public void StartDeathState()
     {
         bossStateManager.isDead = true;
+        audioManager.PlayBossDiesClip(bossDiesAudioSource);
+        playerHealthManager.canTakeDamage = false;
         deathState.EnterState();
     }
 
     public void ShowVictoryScreen()
     {
-        audioManager.PlayBossDiesClip(bossDiesAudioSource);
-        playerHealthManager.canTakeDamage = false;
         StartCoroutine(WaitBeforeVictoryScreen());
     }
 

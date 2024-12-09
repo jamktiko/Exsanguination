@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DeathState : BossAbstractState
 {
+    Vector3 initialPosition;
+
     public DeathState(Boss boss, BossStateManager bossStateManager) : base(boss, bossStateManager)
     {
 
@@ -16,6 +18,7 @@ public class DeathState : BossAbstractState
 
         boss.bossAnimator.SetTrigger("isDying");
         boss.ShowVictoryScreen();
+        initialPosition = boss.bossTransform.position;
     }
 
     public override void ExitState()
@@ -27,6 +30,8 @@ public class DeathState : BossAbstractState
     public override void FrameUpdate()
     {
         base.FrameUpdate();
+
+        boss.bossTransform.position = initialPosition;
     }
 
     public override void PhysicsUpdate()
