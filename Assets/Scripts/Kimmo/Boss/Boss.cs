@@ -195,7 +195,8 @@ public class Boss : MonoBehaviour
 
         foreach (Transform waypoint in waypoints)
         {
-            if (Vector3.Distance(waypoint.position, playerTransform.position) >= minDistance)
+            if (Vector3.Distance(waypoint.position, playerTransform.position) >= minDistance 
+                && (Vector3.Distance(waypoint.position, bossTransform.position) >= minDistance))
             {
                 availableWaypoints.Add(waypoint);
             }

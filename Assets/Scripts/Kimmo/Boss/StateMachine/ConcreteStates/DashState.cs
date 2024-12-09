@@ -20,13 +20,12 @@ public class DashState : BossAbstractState
         boss.DeactivateBossCollider();
         boss.ChooseWaypoint();
         boss.StartOfDash();
+        boss.smokeEffect.Play();
 
         foreach (GameObject modelObject in boss.modelObjects)
         {
             modelObject.SetActive(false);
         }
-
-        boss.smokeEffect.Play();
     }
 
     public override void ExitState()
