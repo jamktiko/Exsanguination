@@ -18,7 +18,7 @@ public class EnemyHealthScript : MonoBehaviour
     [SerializeField] Boss boss;
     [SerializeField] bool isBoss;
     public bool hasBeenDamaged;
-    int previousHealth;
+     int previousHealth;
     PauseScript pauseScript;
     PlayerStats playerStats;
 
@@ -137,21 +137,21 @@ public class EnemyHealthScript : MonoBehaviour
 
     private void BossHealthEffects()
     {
-        if (previousHealth > 200 && health <= 200)
+        if (previousHealth > 300 && health <= 300)
         {
             musicManager.BossSecondPhase();
             boss.idleDuration = 3;
             boss.PickAndActivateVents(3);
         }
 
-        else if (previousHealth > 100 && health <= 100)
+        else if (previousHealth > 150 && health <= 150)
         {
             musicManager.BossThirdPhase();
             boss.idleDuration = 1;
             boss.PickAndActivateVents(4);
         }
 
-        else if (previousHealth > 50 && health <= 50)
+        else if (previousHealth > 100 && health <= 100)
         {
             boss.idleDuration = 0.1f;
             boss.PickAndActivateVents(7);
