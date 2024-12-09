@@ -190,6 +190,7 @@ public class MusicManager : MonoBehaviour
     {
         if (levelManager.activeScene == 2 || levelManager.activeScene == 1)
         {
+            menuDeathSource.Stop();
             PlayLevelMusic();
         }
         if (levelManager.activeScene == 3)
