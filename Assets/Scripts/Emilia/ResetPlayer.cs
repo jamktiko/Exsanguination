@@ -6,10 +6,10 @@ public class ResetPlayer : MonoBehaviour
 {
     [SerializeField] Transform[] resetSpot;
     GameObject player;
-    public bool hasTriggered;
     public bool isTutorial;
     public bool isGrappleRoom;
     public bool isCharlesHyppyHuone;
+    public bool standardRoom;
 
     // Start is called before the first frame update
     void Awake()
@@ -34,24 +34,19 @@ public class ResetPlayer : MonoBehaviour
                 player.transform.rotation = Quaternion.Euler(0, 180, 0);
                 Debug.Log("grapple drop");
             }
-            if(!isGrappleRoom || !isCharlesHyppyHuone)
+            if (standardRoom)
             {
-                if (!hasTriggered)
-                {
-                    player.transform.SetPositionAndRotation(resetSpot[0].position, Quaternion.identity);
-                    if (!isTutorial)
-                    {
-                        player.transform.rotation = Quaternion.Euler(0, 180, 0);
-                    }
-                    else
-                        player.transform.rotation = Quaternion.Euler(0, 45, 0);
-
-                }
-
-               
-
+                player.transform.SetPositionAndRotation(resetSpot[0].position, Quaternion.identity);
+                player.transform.rotation = Quaternion.Euler(0, 180, 0);
             }
-           
+
+
+
+
         }
+
     }
+
 }
+
+

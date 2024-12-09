@@ -53,7 +53,7 @@ public class LevelTransition : MonoBehaviour
 
         // Stop the footsteps and transition to the next scene
         background.enabled = false;
-        resetPlayer.hasTriggered = true;
+        //resetPlayer.hasTriggered = true;
         playerPrefab.transform.position = teleportTarget;
         inputHandler.EnableInput();
 

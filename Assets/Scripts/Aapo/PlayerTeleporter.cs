@@ -23,7 +23,7 @@ public class PlayerTeleporter : MonoBehaviour
         if (other.CompareTag(playerTag) && playerPrefab != null)
         {
             // Teleport the player prefab to the specified position
-            resetPlayer.hasTriggered = true;
+            //resetPlayer.hasTriggered = true;
             playerPrefab.transform.position = teleportTarget;
         }
     }
