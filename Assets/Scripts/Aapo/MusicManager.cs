@@ -18,7 +18,6 @@ public class MusicManager : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private float fadeDuration = 1f; // Default fade time in seconds
     [SerializeField] private LevelManager levelManager;
-    [SerializeField] private DeathScript deathScript; // Reference to death detection
     [SerializeField] private AudioSource footstepAudioSource;
     [SerializeField] private AudioClip[] footstepClips;
     public bool isPlayingFootsteps;
@@ -104,7 +103,7 @@ public class MusicManager : MonoBehaviour
         CrossfadeToSource(bossIntroSource, 3f);
         bossLoopSources[1].Play();
         // Wait for the intro to finish
-        yield return new WaitForSecondsRealtime(bossIntroSource.clip.length-0.01f);
+        yield return new WaitForSecondsRealtime(bossIntroSource.clip.length-0.1f);
         bossLoopSources[0].Play();
         // Stop the intro music and start the first loop variation
 
@@ -195,6 +194,7 @@ public class MusicManager : MonoBehaviour
         }
         if (levelManager.activeScene == 3)
         {
+            menuDeathSource.Stop();
             CrossfadeToSource(bossLoopSources[0], fadeDuration);
             isBossMusicActive = true;
             currentSource = bossLoopSources[0];
@@ -237,9 +237,6 @@ public class MusicManager : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode sceneMode)
     {
         levelManager = GameObject.Find("LevelManager")?.GetComponent<LevelManager>();
-        if (scene.buildIndex != 0)
-        {
-            deathScript = GameObject.FindGameObjectWithTag("DeathManager").GetComponent<DeathScript>();
-        }
+        
     }
 }
