@@ -31,6 +31,8 @@ public class Boss : MonoBehaviour
     public bool isInMeleeRange;
     [SerializeField] float meleeAttackSpeed;
     [SerializeField] float meleeAttackDistance;
+    public GameObject[] modelObjects;
+    public ParticleSystem smokeEffect;
 
     [Header("Vent")]
     [SerializeField] List<GameObject> vents;
