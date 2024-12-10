@@ -108,14 +108,19 @@ public class PlayerStats : MonoBehaviour
             StopCoroutine(timerCoroutine);
         }
 
-        timer = 0;
         timerCoroutine = StartCoroutine(Timer());
+        timer = 0;
     }
 
     public void StopTimer()
     {
         Debug.Log("Time stopped");
         StopAllCoroutines();
+
+        totalTimeText = GameObject.Find("GameCompletionTimeText").GetComponent<TextMeshProUGUI>();
+        totalTimeTextShadow = totalTimeText.transform.Find("GameCompletionTimeTextShadow").GetComponent<TextMeshProUGUI>();
+        totalDeathsText = GameObject.Find("GameDeathText").GetComponent<TextMeshProUGUI>();
+        totalDeathsTextShadow = GameObject.Find("GameDeathTextShadow").GetComponent<TextMeshProUGUI>();
 
         if (timerCoroutine != null)
         {
@@ -146,10 +151,6 @@ public class PlayerStats : MonoBehaviour
     {
         if (scene.buildIndex == 3 && levelTime == 0)
         {
-            totalTimeText = GameObject.Find("GameCompletionTimeText").GetComponent<TextMeshProUGUI>();
-            totalTimeTextShadow = totalTimeText.transform.Find("GameCompletionTimeTextShadow").GetComponent<TextMeshProUGUI>();
-            totalDeathsText = GameObject.Find("GameDeathText").GetComponent<TextMeshProUGUI>();
-            totalDeathsTextShadow = GameObject.Find("GameDeathTextShadow").GetComponent<TextMeshProUGUI>();
             levelTime = timer;
             totalTime += levelTime;
             levelTimeString = $"Level completion time: {TimeInString(levelTime)}";
