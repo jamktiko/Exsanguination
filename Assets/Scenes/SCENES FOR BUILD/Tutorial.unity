@@ -521,10 +521,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resetSpot:
   - {fileID: 1070862221}
-  hasTriggered: 0
   isTutorial: 1
   isGrappleRoom: 0
   isCharlesHyppyHuone: 0
+  standardRoom: 0
 --- !u!65 &55830520
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -555,7 +555,7 @@ Transform:
   m_GameObject: {fileID: 55830518}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.63, y: -15.4, z: 24.8}
+  m_LocalPosition: {x: 2.63, y: -24.2, z: 24.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14909,6 +14909,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8810692143959073170, guid: ea0478523c87a7246a5c7ab954f48669, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 718bf2538a76516459bfcd8627028c8b, type: 2}
     - target: {fileID: 8836109896238153106, guid: ea0478523c87a7246a5c7ab954f48669, type: 3}
       propertyPath: m_LocalPosition.x
       value: 69.986
@@ -14928,6 +14932,10 @@ PrefabInstance:
     - target: {fileID: 8836109896238153106, guid: ea0478523c87a7246a5c7ab954f48669, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8838978012594855232, guid: ea0478523c87a7246a5c7ab954f48669, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8854369933414532161, guid: ea0478523c87a7246a5c7ab954f48669, type: 3}
       propertyPath: m_Layer
@@ -31729,11 +31737,19 @@ PrefabInstance:
     - target: {fileID: 5150323068438133173, guid: 607241fc019739a44b320e48be37d371, type: 3}
       propertyPath: m_MoveAction
       value: 
-      objectReference: {fileID: -2412085637789726613, guid: 00d8693135ebdc04b8021371282768ef, type: 3}
+      objectReference: {fileID: 0}
+    - target: {fileID: 5150323068438133173, guid: 607241fc019739a44b320e48be37d371, type: 3}
+      propertyPath: m_CancelAction
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5150323068438133173, guid: 607241fc019739a44b320e48be37d371, type: 3}
       propertyPath: m_SubmitAction
       value: 
-      objectReference: {fileID: 7448991347710890010, guid: 00d8693135ebdc04b8021371282768ef, type: 3}
+      objectReference: {fileID: 0}
+    - target: {fileID: 5150323068438133173, guid: 607241fc019739a44b320e48be37d371, type: 3}
+      propertyPath: m_LeftClickAction
+      value: 
+      objectReference: {fileID: -7003183246183269068, guid: 00d8693135ebdc04b8021371282768ef, type: 3}
     - target: {fileID: 5717705164929670246, guid: 607241fc019739a44b320e48be37d371, type: 3}
       propertyPath: InjuredVFX0
       value: 

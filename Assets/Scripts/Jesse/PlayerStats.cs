@@ -36,7 +36,6 @@ public class PlayerStats : MonoBehaviour
     {
        
         
-        SceneManager.sceneLoaded += OnLevelLoad;
 
         if (playerStats == null)
         {
@@ -52,8 +51,10 @@ public class PlayerStats : MonoBehaviour
         {
             healthManager.OnDeath += RestartTimer;
         }
+        SceneManager.sceneLoaded += OnLevelLoad;
+
     }
-    
+
     private void Update()
     {
         if (healthManager == null && SceneManager.GetActiveScene().buildIndex != 0)
@@ -167,6 +168,12 @@ public class PlayerStats : MonoBehaviour
         { //set all found bools to false and fully resets saved times if in base level
             foundGrapplinghook = foundKeycard = foundSlaymore = foundStake = false;
             ResetSavedTimes();
+        }
+
+        if (scene.buildIndex == 2)
+        { //set all found bools to false and fully resets saved times if in base level
+            foundGrapplinghook = false;
+                foundStake = true;
         }
     }
 

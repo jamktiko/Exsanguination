@@ -40,7 +40,11 @@ public class ResetPlayer : MonoBehaviour
                 player.transform.rotation = Quaternion.Euler(0, 180, 0);
             }
 
-
+            if (isTutorial)
+            {
+                player.transform.SetPositionAndRotation(resetSpot[0].position, Quaternion.identity);
+                player.transform.rotation = Quaternion.Euler(0, 180, 0);
+            }
 
 
         }
