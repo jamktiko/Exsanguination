@@ -1,6 +1,7 @@
 using EmiliaScripts;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -33,6 +34,7 @@ public class Boss : MonoBehaviour
     [SerializeField] float meleeAttackDistance;
     public GameObject[] modelObjects;
     public ParticleSystem smokeEffect;
+    bool isDashState;
 
     [Header("Vent")]
     [SerializeField] List<GameObject> vents;
@@ -156,7 +158,23 @@ public class Boss : MonoBehaviour
             isInMeleeRange = false;
         }
     }
-    
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            TurnToSmoke();
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Wall") && !isDashState)
+        {
+            TurnToPhysical();
+        }
+    }
+
     public void PickAndActivateVents(int ventsNumber)
     {
         List<GameObject> chosenVents = new List<GameObject>();
@@ -179,14 +197,26 @@ public class Boss : MonoBehaviour
         }
     }
 
-    public void DeactivateBossCollider()
+    public void TurnToSmoke()
     {
+        smokeEffect.Play();
         bossDamageCollider.enabled = false;
+
+        foreach (GameObject modelObject in modelObjects)
+        {
+            modelObject.SetActive(false);
+        }
     }
 
-    public void ActivateBossCollider()
+    public void TurnToPhysical()
     {
+        smokeEffect.Stop();
         bossDamageCollider.enabled = true;
+
+        foreach (GameObject modelObject in modelObjects)
+        {
+            modelObject.SetActive(true);
+        }
     }
 
     public void ChooseWaypoint()
@@ -226,7 +256,13 @@ public class Boss : MonoBehaviour
 
     public void StartOfDash()
     {
+        isDashState = true;
         audioManager.PlayBossDashDamageClip(bossDashAudioSource);
+    }
+
+    public void EndOfDash()
+    {
+        isDashState = false;
     }
 
     public void MoveSideways()

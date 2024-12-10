@@ -16,7 +16,6 @@ public class ChargeState : BossAbstractState
         Debug.Log("Boss entered to CHARGE state.");
 
         boss.bossAnimator.SetBool("moveForward", true);
-        boss.DeactivateBossCollider();
     }
 
     public override void ExitState()
@@ -24,7 +23,6 @@ public class ChargeState : BossAbstractState
         base.ExitState();
 
         boss.bossAnimator.SetBool("moveForward", false);
-        boss.ActivateBossCollider();
     }
 
     public override void FrameUpdate()
