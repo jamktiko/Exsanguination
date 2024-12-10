@@ -330,7 +330,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Dash()
     {
-        rb.AddForce(dashDirection * dashSpeed, ForceMode.Impulse);
+        rb.velocity = dashDirection * dashSpeed;
 
         
     }
