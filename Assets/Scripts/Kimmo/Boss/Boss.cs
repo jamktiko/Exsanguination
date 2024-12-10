@@ -35,6 +35,7 @@ public class Boss : MonoBehaviour
     public GameObject[] modelObjects;
     public ParticleSystem smokeEffect;
     bool isDashState;
+    bool isSmoke;
 
     [Header("Vent")]
     [SerializeField] List<GameObject> vents;
@@ -145,9 +146,14 @@ public class Boss : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player" && !isSmoke)
         {
             isInMeleeRange = true;
+        }
+
+        if (other.tag == "Wall")
+        {
+            TurnToSmoke();
         }
     }
 
@@ -157,21 +163,34 @@ public class Boss : MonoBehaviour
         {
             isInMeleeRange = false;
         }
-    }
 
-    private void OnCollisionStay(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Wall"))
+        if (other.tag == "Wall")
         {
-            TurnToSmoke();
+            TurnToPhysical();
         }
     }
 
-    private void OnCollisionExit(Collision collision)
+    public void TurnToSmoke()
     {
-        if (collision.gameObject.CompareTag("Wall") && !isDashState)
+        smokeEffect.Play();
+        bossDamageCollider.enabled = false;
+        isSmoke = true;
+
+        foreach (GameObject modelObject in modelObjects)
         {
-            TurnToPhysical();
+            modelObject.SetActive(false);
+        }
+    }
+
+    public void TurnToPhysical()
+    {
+        smokeEffect.Stop();
+        bossDamageCollider.enabled = true;
+        isSmoke = false;
+
+        foreach (GameObject modelObject in modelObjects)
+        {
+            modelObject.SetActive(true);
         }
     }
 
@@ -194,28 +213,6 @@ public class Boss : MonoBehaviour
         foreach (GameObject vent in chosenVents)
         {
             vent.GetComponent<VentActivation>().SetGasActive();
-        }
-    }
-
-    public void TurnToSmoke()
-    {
-        smokeEffect.Play();
-        bossDamageCollider.enabled = false;
-
-        foreach (GameObject modelObject in modelObjects)
-        {
-            modelObject.SetActive(false);
-        }
-    }
-
-    public void TurnToPhysical()
-    {
-        smokeEffect.Stop();
-        bossDamageCollider.enabled = true;
-
-        foreach (GameObject modelObject in modelObjects)
-        {
-            modelObject.SetActive(true);
         }
     }
 
