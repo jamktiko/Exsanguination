@@ -114,11 +114,19 @@ public class MusicManager : MonoBehaviour
     public void BossSecondPhase()
     {
         CrossfadeToSource(bossLoopSources[1], fadeDuration);
+        if (bossLoopSources[0].volume >=0.5f)
+        {
+            bossLoopSources[0].volume = 0f;
+        }   
     }
 
     public void BossThirdPhase()
     { 
         StartCoroutine(HandleBossThirdPhase());
+        if (bossLoopSources[1].volume >= 0.5f)
+        {
+            bossLoopSources[1].volume = 0f;
+        }
     }
 
 
@@ -126,13 +134,19 @@ public class MusicManager : MonoBehaviour
     {
         // Crossfade into the boss intro music first
         CrossfadeToSource(bossTransitionSource, fadeDuration);
-
+        if (bossLoopSources[0].volume >= 0.5f)
+        {
+            bossLoopSources[0].volume = 0f;
+        }
         // Wait for the intro to finish
         yield return new WaitForSecondsRealtime(bossTransitionSource.clip.length-0.1f);
 
         // Stop the intro music and start the first loop variation
         CrossfadeToSource(bossLoopSources[2], fadeDuration);
-
+        if (bossTransitionSource.volume >= 0.5f)
+        {
+            bossTransitionSource.volume = 0f;
+        }
         currentSource = bossLoopSources[2];
 
     }
@@ -197,6 +211,7 @@ public class MusicManager : MonoBehaviour
         {
             menuDeathSource.Stop();
             CrossfadeToSource(bossLoopSources[0], fadeDuration);
+            bossLoopSources[1].Play();
             isBossMusicActive = true;
             currentSource = bossLoopSources[0];
         }

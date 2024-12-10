@@ -144,7 +144,7 @@ public class EnemyHealthScript : MonoBehaviour
             boss.PickAndActivateVents(3);
         }
 
-        else if (previousHealth > 150 && health <= 150)
+        else if (previousHealth > 200 && health <= 200)
         {
             musicManager.BossThirdPhase();
             boss.idleDuration = 1;
