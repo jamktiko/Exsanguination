@@ -21,8 +21,8 @@ public class MouseLook : MonoBehaviour
         if (!enemyFinisher.isFinishing)
         {
             // Calculate rotations based on input
-            float mouseX = input.x * sensitivity * 0.05f; 
-            float mouseY = input.y * sensitivity * 0.05f;
+            float mouseX = input.x * Time.deltaTime; 
+            float mouseY = input.y * Time.deltaTime;
 
             // Vertical rotation for camera (clamped)
             xRotation -= mouseY;
