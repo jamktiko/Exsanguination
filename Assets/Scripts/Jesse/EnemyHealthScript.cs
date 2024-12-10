@@ -18,7 +18,7 @@ public class EnemyHealthScript : MonoBehaviour
     [SerializeField] Boss boss;
     [SerializeField] bool isBoss;
     public bool hasBeenDamaged;
-     int previousHealth;
+    int previousHealth;
     PauseScript pauseScript;
     PlayerStats playerStats;
 
@@ -63,6 +63,8 @@ public class EnemyHealthScript : MonoBehaviour
 
     public void ChangeEnemyHealth(int changeAmount)
     {
+        if (boss != null && boss.isSmoke) return;
+
         audioManager.PlayEnemyTakeDamageAudioClip(enemyTakeDamageAudioSource);
         bloodController.Shoot();
         bloodSplatterParticle.Play(true);

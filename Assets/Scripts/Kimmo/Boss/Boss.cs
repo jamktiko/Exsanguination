@@ -35,7 +35,7 @@ public class Boss : MonoBehaviour
     public GameObject[] modelObjects;
     public ParticleSystem smokeEffect;
     bool isDashState;
-    bool isSmoke;
+    public bool isSmoke;
 
     [Header("Vent")]
     [SerializeField] List<GameObject> vents;
@@ -166,6 +166,7 @@ public class Boss : MonoBehaviour
 
         if (other.tag == "Wall")
         {
+            Debug.Log("Not touching wall");
             TurnToPhysical();
         }
     }
@@ -173,7 +174,6 @@ public class Boss : MonoBehaviour
     public void TurnToSmoke()
     {
         smokeEffect.Play();
-        bossDamageCollider.enabled = false;
         isSmoke = true;
 
         foreach (GameObject modelObject in modelObjects)
@@ -185,7 +185,6 @@ public class Boss : MonoBehaviour
     public void TurnToPhysical()
     {
         smokeEffect.Stop();
-        bossDamageCollider.enabled = true;
         isSmoke = false;
 
         foreach (GameObject modelObject in modelObjects)
