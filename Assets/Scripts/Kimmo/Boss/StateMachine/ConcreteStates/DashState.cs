@@ -17,15 +17,10 @@ public class DashState : BossAbstractState
         Debug.Log("Boss entered to DASH state.");
 
         boss.bossAnimator.SetBool("moveForward", true);
-        boss.DeactivateBossCollider();
-        boss.ChooseWaypoint();
         boss.StartOfDash();
-        boss.smokeEffect.Play();
-
-        foreach (GameObject modelObject in boss.modelObjects)
-        {
-            modelObject.SetActive(false);
-        }
+        boss.TurnToSmoke();
+        boss.ChooseWaypoint();
+        
     }
 
     public override void ExitState()
@@ -33,7 +28,8 @@ public class DashState : BossAbstractState
         base.ExitState();
 
         boss.bossAnimator.SetBool("moveForward", false);
-        boss.ActivateBossCollider();
+        boss.EndOfDash();
+        boss.TurnToPhysical();
 
         foreach (GameObject modelObject in boss.modelObjects)
         {
