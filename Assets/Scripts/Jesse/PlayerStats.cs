@@ -168,6 +168,7 @@ public class PlayerStats : MonoBehaviour
         if (scene.buildIndex == 1)
         { //set all found bools to false and fully resets saved times if in base level
             foundGrapplinghook = false; foundKeycard = false; foundSlaymore = false; foundStake = false;
+            deathCount = 0;
             ResetSavedTimes();
         }
 
@@ -175,6 +176,8 @@ public class PlayerStats : MonoBehaviour
         { //set all found bools to false and fully resets saved times if in base level
             foundGrapplinghook = false;
                 foundStake = true;
+            foundKeycard = false;
+
         }
     }
 

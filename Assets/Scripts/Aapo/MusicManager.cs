@@ -71,9 +71,9 @@ public class MusicManager : MonoBehaviour
     // Play Level music: Crossfade from current track to level intro, then immediately to loop
     public void PlayLevelMusic()
     {
-        
         CrossfadeToSource(levelIntroSource, 2);
         StartCoroutine(HandleLevelIntroAndLoop());
+        isBossMusicActive = false;
     }
 
     private IEnumerator HandleLevelIntroAndLoop()
