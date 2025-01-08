@@ -15,6 +15,11 @@ public class GrapplingHookPointNotification : MonoBehaviour
 
     private bool isCoroutineRunning = false; // Flag to track coroutine state
 
+    private void Start()
+    {
+        this.enabled = false;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -27,7 +32,6 @@ public class GrapplingHookPointNotification : MonoBehaviour
             
             if (hit.collider.CompareTag("HookHitPoint"))
             {
-                Debug.Log("hit light");
                 hookPointLight = hit.collider.GetComponentInChildren<Light>();
                 if (lastHookPointLight == null)
                 {
@@ -37,7 +41,6 @@ public class GrapplingHookPointNotification : MonoBehaviour
                 {
                     lastHookPointLight.intensity = defaultLightAmount;
                     lastHookPointLight = hookPointLight;
-                    Debug.Log("looked away from light");
                 }
 
                 if (hookPointLight != null)

@@ -15,8 +15,8 @@ public class BatEnemyAI : MonoBehaviour
     private bool enemyIsTriggered;
     private Animator enemyAnimator;
     private AudioManager audioManager;
-    [SerializeField] private AudioSource enemyBatAlertAudioSource;
     private Animator animator;
+    private AudioSource audioSource;
 
     void Awake()
     {
@@ -25,14 +25,14 @@ public class BatEnemyAI : MonoBehaviour
         enemyAnimator = GetComponent<Animator>();
         audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         animator = GetComponent<Animator>();
-
+        audioSource = GetComponent<AudioSource>();
     }
  
     public void ActivateEnemy()
     {
         enemyIsTriggered = true;
         enemyAnimator.SetTrigger("detect");
-        audioManager.PlayEnemyAlertAudioClip(enemyBatAlertAudioSource);
+        audioManager.PlayEnemyBatAlertClip(audioSource);
 
     }
 
@@ -106,5 +106,10 @@ public class BatEnemyAI : MonoBehaviour
     private void EndAttack()
     {
         isAttacking = false;
+    }
+
+    public void AttackSfx()
+    {
+        audioManager.PlayEnemyBatAttackClip(audioSource);
     }
 }

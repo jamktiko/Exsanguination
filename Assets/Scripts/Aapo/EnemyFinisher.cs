@@ -1,5 +1,9 @@
 using System.Collections;
 using UnityEngine;
+using EmiliaScripts;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
+using UnityEngine.Audio;
 
 public class EnemyFinisher : MonoBehaviour
 {
@@ -13,12 +17,12 @@ public class EnemyFinisher : MonoBehaviour
     [SerializeField] MeshRenderer finisherstickRenderer;
     private AudioManager audioManager;
     public float duration; // Time to complete the rotation
-
+    private PlayerHealthManager playerHealth;
     private Quaternion targetRotation; // Desired target rotation
     private Quaternion startRotation;  // Starting rotation
     private float elapsedTime = 0f;    // Time passed since the start of the rotation
     private bool isRotating = false;   // Flag to track if a rotation is happening
-   [SerializeField] private string enemyType;
+    [SerializeField] private string enemyType;
     private SkinnedMeshRenderer enemyMesh;
     private AudioSource finisherAudio;
     private AudioSource enemyDeathAudio;
@@ -28,15 +32,36 @@ public class EnemyFinisher : MonoBehaviour
     private Rigidbody rb;
     public bool isFinishing;
 
+    // URP Volume components
+    private Volume volume;
+    private ColorAdjustments colorAdjustments;
+    private LensDistortion lensDistortion;
+    private Vignette vignette;
+
+    PlayerMovement playerMovement;
+
+    public AudioMixer musicMixer;
+    public string volumeParameter = "MusicVolume"; // Name of the exposed parameter
+    public float transitionDuration = 1f; // Time for smooth transitions
+
+    private float currentVolume; // Store the original volume value
+
     private void Awake()
     {
         playerAnimator = GetComponent<Animator>();
         InputManager = GetComponentInParent<InputHandler>();
         playerCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Transform>();
         mLook = GetComponentInParent<MouseLook>();
+        playerHealth = GameObject.FindWithTag("HealthManager").GetComponent<PlayerHealthManager>();
         audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         rb = GetComponentInParent<Rigidbody>();
+        volume = GameObject.FindWithTag("FinisherVolume").GetComponent<Volume>();
 
+        volume.profile.TryGet(out colorAdjustments);
+        volume.profile.TryGet(out lensDistortion);
+        volume.profile.TryGet(out vignette);
+
+        playerMovement = GetComponentInParent<PlayerMovement>();
     }
 
     private void Start()
@@ -76,7 +101,7 @@ public class EnemyFinisher : MonoBehaviour
 
     private void SetEnemySettings()
     {
-        if(enemyType == "EnemyGhoul")
+        if (enemyType == "EnemyGhoul")
         {
             enemyParticleSystem = finisherGhoulParticleSystem;
             enemyMesh = finisherGhoulRenderer;
@@ -84,30 +109,76 @@ public class EnemyFinisher : MonoBehaviour
 
         }
     }
+    private IEnumerator SmoothVolumeTransition(float targetVolume, float duration, System.Action onComplete = null)
+    {
+        if (musicMixer.GetFloat(volumeParameter, out float startVolume))
+        {
+            float elapsed = 0f;
+
+            while (elapsed < duration)
+            {
+                elapsed += Time.deltaTime;
+                float newVolume = Mathf.Lerp(startVolume, targetVolume, elapsed / duration);
+                musicMixer.SetFloat(volumeParameter, newVolume);
+                yield return null;
+            }
+
+            musicMixer.SetFloat(volumeParameter, targetVolume); // Ensure it reaches the target
+            onComplete?.Invoke();
+        }
+    }
 
     public void Finish()
     {
+        if (musicMixer.GetFloat(volumeParameter, out float volume))
+        {
+            currentVolume = volume;
+        }
+        StartCoroutine(SmoothVolumeTransition(-10f, transitionDuration));
         audioManager.PlayStakeFinisherAudioClip();
-        enemyMesh.enabled = true;          
+        enemyMesh.enabled = true;
         finisherstickRenderer.enabled = true;
         playerAnimator.SetTrigger("finish");
         InputManager.DisableInput();
         mLook.enabled = false;
         isFinishing = true;
+        rb.isKinematic = true;
+        StartCoroutine(ApplyPostProcessingEffects());
     }
 
     public void EnemyExplode()
     {
-
+        playerHealth.UpdatePlayerHealth(playerHealth.MaxPlayerHealth() / 2);
         //enemyParticleSystem.Play();
         tmpParticle = Instantiate(enemyParticleSystem, particleInstantiateSpot.transform);
         enemyMesh.enabled = false;
         enemyDeathAudio.PlayOneShot(finisherGhoulAudioSource.clip);
 
     }
+    public void SetVolumeBackToSaved()
+    {
+        StartCoroutine(SmoothVolumeRestore());
+    }
+    private System.Collections.IEnumerator SmoothVolumeRestore()
+    {
+        if (musicMixer.GetFloat(volumeParameter, out float startVolume))
+        {
+            float elapsed = 0f;
 
+            while (elapsed < transitionDuration)
+            {
+                elapsed += Time.deltaTime;
+                float newVolume = Mathf.Lerp(startVolume, currentVolume, elapsed / transitionDuration);
+                musicMixer.SetFloat(volumeParameter, newVolume);
+                yield return null;
+            }
+
+            musicMixer.SetFloat(volumeParameter, currentVolume); // Ensure it reaches the target
+        }
+    }
     public void FinishFinisherAnimation()
     {
+        SetVolumeBackToSaved();
         //enemyParticleSystem.Stop();
         isFinishing = false;
         finisherstickRenderer.enabled = false;
@@ -115,13 +186,14 @@ public class EnemyFinisher : MonoBehaviour
         mLook.enabled = true;
         Destroy(tmpParticle);
         tmpParticle = null;
+        rb.isKinematic = false;
     }
 
     public void RotateToTarget()
     {
         if (!isRotating)
         {
-            startRotation =  Quaternion.Euler(playerCamera.rotation.x, 0,0);               // Record the current rotation
+            startRotation = Quaternion.Euler(playerCamera.rotation.x, 0, 0);               // Record the current rotation
             targetRotation = Quaternion.Euler(-50, 0, 0);     // Set target rotation
             elapsedTime = 0f;                                 // Reset elapsed time
             isRotating = true;                                // Set rotation flag
@@ -133,7 +205,6 @@ public class EnemyFinisher : MonoBehaviour
     {
         if (!isRotating)
         {
-
             startRotation = Quaternion.Euler(-50, 0, 0);               // Record the current rotation
             targetRotation = Quaternion.Euler(0, 0, 0);       // Set target rotation back to (0,0,0)
             elapsedTime = 0f;                                 // Reset elapsed time
@@ -141,5 +212,62 @@ public class EnemyFinisher : MonoBehaviour
         }
     }
 
+    private IEnumerator ApplyPostProcessingEffects()
+    {
+        float duration = 1.44f;
+        float holdTime = 0.96f;
+        float fadeOutTime = 1.2f;
 
+        // Animate from 0 to target values
+        for (float t = 0; t <= duration; t += Time.deltaTime)
+        {
+            float normalizedTime = t / duration;
+            UpdatePostProcessingValues(normalizedTime);
+            yield return null;
+        }
+
+        // Hold target values
+        yield return new WaitForSeconds(holdTime);
+
+        // Animate back to 0
+        for (float t = 0; t <= fadeOutTime; t += Time.deltaTime)
+        {
+            float normalizedTime = t / fadeOutTime;
+            UpdatePostProcessingValues(1 - normalizedTime);
+            yield return null;
+        }
+
+        ResetPostProcessingValues();
+    }
+
+    private void UpdatePostProcessingValues(float t)
+    {
+        colorAdjustments.postExposure.value = Mathf.Lerp(0, 7, t);
+        colorAdjustments.contrast.value = Mathf.Lerp(0, 100, t);
+        colorAdjustments.saturation.value = Mathf.Lerp(0, -100, t);
+        lensDistortion.intensity.value = Mathf.Lerp(0, -0.3f, t);
+        vignette.intensity.value = Mathf.Lerp(0, 0.5f, t);
+    }
+
+    private void ResetPostProcessingValues()
+    {
+        colorAdjustments.postExposure.value = 0;
+        colorAdjustments.contrast.value = 0;
+        colorAdjustments.saturation.value = 0;
+        lensDistortion.intensity.value = 0;
+        vignette.intensity.value = 0;
+    }
+
+   
+
+    public void OnFinisherStarted()
+    {
+        playerMovement.EnableMovement();
+    }
+
+    public void OnFinisherEnded()
+    {
+        playerMovement.DisableMovement();
+    }
 }
+

@@ -1,41 +1,46 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ChargeState : BossAbstractState
 {
-    Transform playerTransform;
-    [SerializeField] float moveSpeed;
-
-    public ChargeState(Boss boss, BossStateManager bossStateManager) : base(boss, bossStateManager)
+    public ChargeState(Boss boss,  BossStateManager bossStateManager) : base(boss, bossStateManager)
     {
-        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        
     }
 
     public override void EnterState()
     {
         base.EnterState();
+        Debug.Log("Boss entered to CHARGE state.");
+
+        boss.bossAnimator.SetBool("moveForward", true);
     }
 
     public override void ExitState()
     {
         base.ExitState();
+
+        boss.bossAnimator.SetBool("moveForward", false);
     }
 
     public override void FrameUpdate()
     {
         base.FrameUpdate();
+        
+        boss.targetPosition = boss.playerTransform.position;
+        boss.RotateTowardsTarget();
+        boss.MoveTowardsTarget();
+
+        if (boss.isInMeleeRange)
+        {
+            boss.bossStateManager.ChangeState();
+        }
     }
 
     public override void PhysicsUpdate()
     {
-        base.PhysicsUpdate();
-
-        boss.transform.Translate(playerTransform.position * moveSpeed * Time.deltaTime);
-    }
-
-    public override void OnTriggerEnter(Collider other)
-    {
-        base.OnTriggerEnter(other);
+        base.PhysicsUpdate();  
     }
 }

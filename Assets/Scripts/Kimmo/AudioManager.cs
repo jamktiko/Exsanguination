@@ -20,16 +20,18 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioSource stakeHitAudioSource;
     [SerializeField] AudioSource stakePickUpAudioSource;
     [SerializeField] AudioSource stakeFinisherAudioSource;
-    [SerializeField] AudioSource bombIgniteAudioSource;
-    [SerializeField] AudioSource bombSizzleAudioSource;
-    [SerializeField] AudioSource bombExplosionAudioSource;
     [SerializeField] AudioSource playerTakeDamageAudioSource;
     [SerializeField] AudioSource playerDieAudioSource;
     [SerializeField] AudioSource playerHealAudioSource;
     [SerializeField] AudioSource playerFallAudioSource;
+    [SerializeField] AudioSource ventAudioSource;
+
 
     [Header("SFX clips")]
-    [SerializeField] AudioClip[] playerFootstepsAudioClips; 
+
+    [Header("Player")]
+
+    [SerializeField] AudioClip[] playerFootstepsAudioClips;
     [SerializeField] AudioClip playerJumpAudioClip;
     [SerializeField] AudioClip playerLandAudioClip;
     [SerializeField] AudioClip dashAudioClip;
@@ -46,18 +48,31 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioClip stakeHitAudioClip;
     [SerializeField] AudioClip stakePickUpAudioClip;
     [SerializeField] AudioClip stakeFinisherAudioClip;
-    [SerializeField] AudioClip bombIgniteAudioClip;
-    [SerializeField] AudioClip bombSizzleAudioClip;
-    [SerializeField] AudioClip bombExplosionAudioClip;
     [SerializeField] AudioClip playerTakeDamageAudioClip;
     [SerializeField] AudioClip playerDieAudioClip;
     [SerializeField] AudioClip playerHealAudioClip;
     [SerializeField] AudioClip playerFallAudioClip;
+
+    [Header("Ghoul")]
+
     [SerializeField] AudioClip enemyAlertAudioClip;
     [SerializeField] AudioClip[] enemyFootstepsAudioClips;
     [SerializeField] AudioClip[] enemyMeleeAudioClips;
     [SerializeField] AudioClip enemyTakeDamageAudioClip;
     [SerializeField] AudioClip enemyDieAudioClip;
+
+    [Header("Bat")]
+    [SerializeField] AudioClip batAttackAudioClip;
+    [SerializeField] AudioClip batDieAudioClip;
+    [SerializeField] AudioClip batAlertAudioClip;
+
+    [Header("Boss")]
+    [SerializeField] AudioClip[] bossTakeDamageAudioClips;
+    [SerializeField] AudioClip bossDashAudioClip;
+    [SerializeField] AudioClip bossDiesAudioClip;
+
+    [Header("Vent")]
+    [SerializeField] AudioClip ventAudioClip;
 
     private void Awake()
     {
@@ -76,9 +91,6 @@ public class AudioManager : MonoBehaviour
         stakeHitAudioSource = GameObject.Find("StakeHitAudioSource").GetComponent<AudioSource>();
         stakePickUpAudioSource = GameObject.Find("StakePickUpAudioSource").GetComponent<AudioSource>();
         stakeFinisherAudioSource = GameObject.Find("StakeFinisherAudioSource").GetComponent<AudioSource>();
-        bombIgniteAudioSource = GameObject.Find("BombIgniteAudioSource").GetComponent<AudioSource>();
-        bombSizzleAudioSource = GameObject.Find("BombSizzleAudioSource").GetComponent<AudioSource>();
-        bombExplosionAudioSource = GameObject.Find("BombExplosionAudioSource").GetComponent<AudioSource>();
         playerTakeDamageAudioSource = GameObject.Find("PlayerTakeDamageAudioSource").GetComponent<AudioSource>();
         playerDieAudioSource = GameObject.Find("PlayerDieAudioSource").GetComponent<AudioSource>();
         playerHealAudioSource = GameObject.Find("PlayerHealAudioSource").GetComponent<AudioSource>();
@@ -134,6 +146,8 @@ public class AudioManager : MonoBehaviour
     // Sword swing combo 1
     public void PlaySwordSwingClips1()
     {
+        float pitchValue = Random.Range(0.95f, 1.05f);
+        swordSwingAudioSource.pitch = pitchValue;
         AudioClip clip = swordSwingCombo1AudioClips[Random.Range(0, swordSwingCombo1AudioClips.Length)];
         swordSwingAudioSource.clip = clip;
         swordSwingAudioSource.PlayOneShot(clip);
@@ -142,7 +156,9 @@ public class AudioManager : MonoBehaviour
     // Sword swing combo 2
     public void PlaySwordSwingClips2()
     {
-        AudioClip clip = swordSwingCombo1AudioClips[Random.Range(0, swordSwingCombo2AudioClips.Length)];
+        float pitchValue = Random.Range(0.95f, 1.05f);
+        swordSwingAudioSource.pitch = pitchValue;
+        AudioClip clip = swordSwingCombo2AudioClips[Random.Range(0, swordSwingCombo2AudioClips.Length)];
         swordSwingAudioSource.clip = clip;
         swordSwingAudioSource.PlayOneShot(clip);
     }
@@ -150,7 +166,9 @@ public class AudioManager : MonoBehaviour
     // Sword swing combo 3
     public void PlaySwordSwingClips3()
     {
-        AudioClip clip = swordSwingCombo1AudioClips[Random.Range(0, swordSwingCombo3AudioClips.Length)];
+        float pitchValue = Random.Range(0.95f, 1.05f);
+        swordSwingAudioSource.pitch = pitchValue;
+        AudioClip clip = swordSwingCombo3AudioClips[Random.Range(0, swordSwingCombo3AudioClips.Length)];
         swordSwingAudioSource.clip = clip;
         swordSwingAudioSource.PlayOneShot(clip);
     }
@@ -158,8 +176,8 @@ public class AudioManager : MonoBehaviour
     // Parry
     public void PlayParryAudioClip()
     {
-        playerLandAudioSource.clip = parryAudioClip;
-        playerLandAudioSource.PlayOneShot(parryAudioClip);
+        parryAudioSource.clip = parryAudioClip;
+        parryAudioSource.PlayOneShot(parryAudioClip);
     }
 
     // Grappling hook ready
@@ -209,27 +227,6 @@ public class AudioManager : MonoBehaviour
     {
         stakeFinisherAudioSource.clip = stakeFinisherAudioClip;
         stakeFinisherAudioSource.PlayOneShot(stakeFinisherAudioClip);
-    }
-
-    // Bomb ignite
-    public void PlayBombIgniteAudioClip()
-    {
-        bombIgniteAudioSource.clip = bombIgniteAudioClip;
-        bombIgniteAudioSource.PlayOneShot(bombIgniteAudioClip);
-    }
-
-    // Bomb sizzle
-    public void PlayBombSizzleAudioClip()
-    {
-        bombSizzleAudioSource.clip = bombSizzleAudioClip;
-        bombSizzleAudioSource.PlayOneShot(bombSizzleAudioClip);
-    }
-
-    // Bomb explode
-    public void PlayBombExplosionAudioClip()
-    {
-        bombExplosionAudioSource.clip = bombExplosionAudioClip;
-        bombExplosionAudioSource.PlayOneShot(bombExplosionAudioClip);
     }
 
     // Player take damage
@@ -298,4 +295,50 @@ public class AudioManager : MonoBehaviour
         audioSource.clip = enemyDieAudioClip;
         audioSource.PlayOneShot(enemyDieAudioClip);
     }
+
+    public void PlayEnemyBatAlertClip(AudioSource audioSource)
+    {
+        audioSource.clip = batAlertAudioClip;
+        audioSource.PlayOneShot(batAlertAudioClip);
+
+    }
+
+    // Bat
+    public void PlayEnemyBatAttackClip(AudioSource audioSource)
+    {
+        audioSource.clip = batAttackAudioClip;
+        audioSource.PlayOneShot(batAttackAudioClip);
+    }
+
+    // Boss take damage voice
+    public void PlayBossTakeDamageClip(AudioSource audioSource)
+    {
+        AudioClip clip = bossTakeDamageAudioClips[Random.Range(0, bossTakeDamageAudioClips.Length)];
+        audioSource.clip = clip;
+        audioSource.PlayOneShot(clip);
+    }
+
+    // Boss
+
+    // Boss dash voice
+    public void PlayBossDashDamageClip(AudioSource audioSource)
+    {
+        audioSource.clip = bossDashAudioClip;
+        audioSource.PlayOneShot(bossDashAudioClip);
+    }
+
+    // Boss dies voice
+    public void PlayBossDiesClip(AudioSource audioSource)
+    {
+        audioSource.clip = bossDiesAudioClip;
+        audioSource.PlayOneShot(bossDiesAudioClip);
+    }
+
+    // Vent
+    public void PlayVentClip(AudioSource audioSource)
+    {
+        audioSource.clip = ventAudioClip;
+        audioSource.Play();
+    }
+
 }

@@ -6,8 +6,8 @@ using UnityEngine.Rendering.Universal;
 
 public class Crt : VolumeComponent, IPostProcessComponent
 {
-    public FloatParameter scanlinesWeight = new FloatParameter(1f);
-    public FloatParameter noiseWeight = new FloatParameter(1f);
+    //public FloatParameter scanlinesWeight = new FloatParameter(1f);
+    //public FloatParameter noiseWeight = new FloatParameter(1f);
 
     public FloatParameter screenBendX = new FloatParameter(1000.0f);
     public FloatParameter screenBendY = new FloatParameter(1000.0f);
@@ -16,9 +16,9 @@ public class Crt : VolumeComponent, IPostProcessComponent
     public FloatParameter vignetteRounding = new FloatParameter(2.0f);
     public FloatParameter vignetteSmoothing = new FloatParameter(1.0f);
 
-    public FloatParameter scanlinesDensity = new FloatParameter(200.0f);
-    public FloatParameter scanlinesSpeed = new FloatParameter(-10.0f);
-    public FloatParameter noiseAmount = new FloatParameter(250.0f);
+    //public FloatParameter scanlinesDensity = new FloatParameter(200.0f);
+    //public FloatParameter scanlinesSpeed = new FloatParameter(-10.0f);
+    //public FloatParameter noiseAmount = new FloatParameter(250.0f);
     
     public Vector2Parameter chromaticRed = new Vector2Parameter(new Vector2());
     public Vector2Parameter chromaticGreen = new Vector2Parameter(new Vector2());

@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class ResetPlayer : MonoBehaviour
 {
-    [SerializeField] Transform resetSpot;
+    [SerializeField] Transform[] resetSpot;
     GameObject player;
+    public bool isTutorial;
+    public bool isGrappleRoom;
+    public bool isCharlesHyppyHuone;
+    public bool standardRoom;
 
     // Start is called before the first frame update
     void Awake()
@@ -17,7 +21,36 @@ public class ResetPlayer : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            player.transform.SetPositionAndRotation(resetSpot.position, Quaternion.identity);
+            if (isGrappleRoom)
+            {
+                player.transform.SetPositionAndRotation(resetSpot[1].position, Quaternion.identity);
+                player.transform.rotation = Quaternion.Euler(0, 180, 0);
+                Debug.Log("grapple drop");
+            }
+
+            if (isCharlesHyppyHuone)
+            {
+                player.transform.SetPositionAndRotation(resetSpot[2].position, Quaternion.identity);
+                player.transform.rotation = Quaternion.Euler(0, 180, 0);
+                Debug.Log("grapple drop");
+            }
+            if (standardRoom)
+            {
+                player.transform.SetPositionAndRotation(resetSpot[0].position, Quaternion.identity);
+                player.transform.rotation = Quaternion.Euler(0, 180, 0);
+            }
+
+            if (isTutorial)
+            {
+                player.transform.SetPositionAndRotation(resetSpot[0].position, Quaternion.identity);
+                player.transform.rotation = Quaternion.Euler(0, 180, 0);
+            }
+
+
         }
+
     }
+
 }
+
+

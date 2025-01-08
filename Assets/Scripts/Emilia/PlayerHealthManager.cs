@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,8 +8,9 @@ namespace EmiliaScripts
     {
         [SerializeField] int currentHealth;
         [SerializeField] int maxHealth;
-        [SerializeField] Image injuredVFXImage;
-        [SerializeField] Image flashImage;
+
+        HealthVFXUpdater healthVFXUpdater;
+        private AudioManager audioManager;
 
         public delegate void DeathInvokerEvent();
         /// <summary>
@@ -22,11 +24,17 @@ namespace EmiliaScripts
         /// </summary>
         public event HealthUpdate OnHealthUpdate;
 
+        public bool canTakeDamage = true;
+
+        private void Awake()
+        {
+            healthVFXUpdater = GetComponent<HealthVFXUpdater>();
+            audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        }
+
         void Start()
         {
             currentHealth = maxHealth;
-            injuredVFXImage.color = new(1, 1, 1, 0);
-            flashImage.color = new(1, 1, 1, 0);
             Debug.Log("Updated Player Health to MAX: " + currentHealth);
         }
 
@@ -59,44 +67,43 @@ namespace EmiliaScripts
         /// <param name="healthNumber">Int</param>
         public void UpdatePlayerHealth(int healthNumber)
         {
+            if (!canTakeDamage) return;
+
             if (healthNumber != 0 && currentHealth > 0 && currentHealth <= maxHealth)
             {
                 currentHealth += healthNumber;
                 if (currentHealth >= maxHealth) {
                     currentHealth = maxHealth;
                 }
-                else if (currentHealth <= 0)
+                if (currentHealth <= 0)
                 {
                     OnDeath?.Invoke();
                 }
                 OnHealthUpdate?.Invoke();
-                //Debug.Log("Updating player health with modifier: " + healthNumber);
             }
             else if (currentHealth <= 0)
             {
                 OnDeath?.Invoke();
-                //Debug.Log("Player is dead. Health: " + currentHealth);
             }
             else if (currentHealth > maxHealth) // avoid overheal
             {
                 currentHealth = maxHealth;
-                //Debug.Log("Current Health over max, setting to max health: " + currentHealth);
             }
 
-            //Debug.Log("Current Player Health: " + currentHealth);
-            UpdateInjuryVFX(currentHealth);
+            healthVFXUpdater.UpdateInjuryVFX(currentHealth);
+            if (healthNumber < 0) //check for damage
+            {
+                StopAllCoroutines();
+                StartCoroutine(healthVFXUpdater.FlashDamageTakenVFXCoroutine());
+                audioManager.PlayPlayerTakeDamageAudioClip();
+            }
+            if (healthNumber > 0)
+            {
+                //healthVFXUpdater.HealingVFXActivate();
+                audioManager.PlayPlayerHealAudioClip();
+            }
         }
 
-        private void UpdateInjuryVFX(int health)
-        {
-            Color tmpColor = injuredVFXImage.color;
-            if (health <= 80) 
-                tmpColor.a = 1 - (health / 80f);
-            else
-                tmpColor.a = 0;
-
-            injuredVFXImage.color = tmpColor;
-        }
 
     }
 }

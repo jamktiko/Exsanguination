@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2906012231817273351}
   m_Layer: 0
   m_Name: AudioManager
-  m_TagString: Untagged
+  m_TagString: AudioManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -59,62 +59,61 @@ MonoBehaviour:
   stakeHitAudioSource: {fileID: 0}
   stakePickUpAudioSource: {fileID: 0}
   stakeFinisherAudioSource: {fileID: 0}
-  bombIgniteAudioSource: {fileID: 0}
-  bombSizzleAudioSource: {fileID: 0}
-  bombExplosionAudioSource: {fileID: 0}
   playerTakeDamageAudioSource: {fileID: 0}
   playerDieAudioSource: {fileID: 0}
   playerHealAudioSource: {fileID: 0}
   playerFallAudioSource: {fileID: 0}
-  enemyAlertAudioSource: {fileID: 0}
-  enemyFootstepsAudioSource: {fileID: 0}
-  enemyMeleeAudioSource: {fileID: 0}
-  enemyTakeDamageAudioSource: {fileID: 0}
-  enemyDieAudioSource: {fileID: 0}
+  ventAudioSource: {fileID: 0}
   playerFootstepsAudioClips:
   - {fileID: 8300000, guid: 080660eeba69ba3efa029effddad1363, type: 3}
   - {fileID: 8300000, guid: bfebeebe3e37f445d9dc512e0340a4a5, type: 3}
   - {fileID: 8300000, guid: 4e07dc4c5f3d23beba29707af79666da, type: 3}
-  playerJumpAudioClip: {fileID: 8300000, guid: 03b1a4212c660a94eb1e13669ec57dfa, type: 3}
-  playerLandAudioClip: {fileID: 8300000, guid: 7437dbf027368c74497f2aeee60811d6, type: 3}
-  dashAudioClip: {fileID: 8300000, guid: 7a84eefc8b0565149af6ac655904587a, type: 3}
-  slideAudioClip: {fileID: 8300000, guid: 01da3c68091a93341bd2e397d4e3b95f, type: 3}
+  playerJumpAudioClip: {fileID: 8300000, guid: 13a34dbcb8d788c4dbd2c630c154585e, type: 3}
+  playerLandAudioClip: {fileID: 8300000, guid: ba33c621301d45d458b4213157a7daf0, type: 3}
+  dashAudioClip: {fileID: 8300000, guid: 5862939446bb52c4190d7f481ce00757, type: 3}
+  slideAudioClip: {fileID: 8300000, guid: 31cd08cf390deaf41bc21e4f46519709, type: 3}
   swordEquipAudioClips:
-  - {fileID: 8300000, guid: bac810f1ff39948468c2dd3d05b130e1, type: 3}
-  - {fileID: 8300000, guid: 0fe753bde5897904680a1616c14674f0, type: 3}
-  - {fileID: 8300000, guid: c32fe7e555f947f44aa6df0af19075cc, type: 3}
+  - {fileID: 8300000, guid: 91ef7c79af2cd374f881b90195afe746, type: 3}
   swordSwingCombo1AudioClips:
-  - {fileID: 8300000, guid: 690f139e0726c3e429c64d3856ab2841, type: 3}
-  - {fileID: 8300000, guid: 9a56c7af69f24214a9d0efcb2fcb638b, type: 3}
-  - {fileID: 8300000, guid: 1aab56710c679ed4db251c636698f0e7, type: 3}
+  - {fileID: 8300000, guid: f1a21b64aae8481428d73a4781fbdfe2, type: 3}
+  - {fileID: 8300000, guid: db816363ae7a96540bfc2e8f93b83385, type: 3}
+  - {fileID: 8300000, guid: 31ca2234fa57b2f4db7c24ed958ee1c3, type: 3}
   swordSwingCombo2AudioClips:
-  - {fileID: 8300000, guid: 3489860e0245b03489dca3d139c9142b, type: 3}
-  - {fileID: 8300000, guid: 0468536738ec09c4e8d4aa9c3f411593, type: 3}
+  - {fileID: 8300000, guid: 6b81209791e56fd46a5ced1ad68b0264, type: 3}
+  - {fileID: 8300000, guid: c25f85401e584b64695b16a7df5fcc34, type: 3}
+  - {fileID: 8300000, guid: 2eda3815425797840833948889da2560, type: 3}
   swordSwingCombo3AudioClips:
-  - {fileID: 8300000, guid: cadebfea8b8a85ff6a9db0f5d84195ad, type: 3}
-  - {fileID: 8300000, guid: 7e41ebba04479919cbf4850960cd7b28, type: 3}
-  - {fileID: 8300000, guid: b99f5f9d19da49380b531e1d6649a8de, type: 3}
-  parryAudioClip: {fileID: 8300000, guid: 790c386f4e8e0024aaa4535acead954e, type: 3}
-  grapplingHookReadyAudioClip: {fileID: 0}
-  grapplingHookShootAudioClip: {fileID: 8300000, guid: 204c2564397866a45b614739447f6608, type: 3}
-  grapplingHookHitAudioClip: {fileID: 8300000, guid: 9666bbe96120c3743812db6b90795505, type: 3}
+  - {fileID: 8300000, guid: 6afec3c6929a4c3438f5de8d23bc5147, type: 3}
+  - {fileID: 8300000, guid: d7e39163142285b479071ee6bd96d864, type: 3}
+  - {fileID: 8300000, guid: d0a49e7ce869f5146a2b23f925544299, type: 3}
+  parryAudioClip: {fileID: 8300000, guid: 0beb44fed617722458ce165890a90eaa, type: 3}
+  grapplingHookReadyAudioClip: {fileID: 8300000, guid: 4906b3d8e74f6a9408b4ebc59288b475, type: 3}
+  grapplingHookShootAudioClip: {fileID: 8300000, guid: 451457232b16ec6439905d795ad28c87, type: 3}
+  grapplingHookHitAudioClip: {fileID: 8300000, guid: 21cfc9c737b049c419a569f79bfe7fe3, type: 3}
   stakeThrowAudioClip: {fileID: 8300000, guid: d1cffddc6b0b91c4e8d59d8297a8558f, type: 3}
   stakeHitAudioClip: {fileID: 8300000, guid: a37f44cbf8c2a7443a3c361efa2f233a, type: 3}
   stakePickUpAudioClip: {fileID: 0}
-  stakeFinisherAudioClip: {fileID: 8300000, guid: 73ee2de461b84114596d5369caf54372, type: 3}
-  bombIgniteAudioClip: {fileID: 8300000, guid: c48a998b3033c9d4ba45517c1d9f34f5, type: 3}
-  bombSizzleAudioClip: {fileID: 8300000, guid: d74e72d1f550c7e4284869f6d3ba5b7e, type: 3}
-  bombExplosionAudioClip: {fileID: 0}
-  playerTakeDamageAudioClip: {fileID: 8300000, guid: 4a9a94c990c401740946866215aeebba, type: 3}
+  stakeFinisherAudioClip: {fileID: 8300000, guid: 5870686bd15a27443aa12d45c0964b6b, type: 3}
+  playerTakeDamageAudioClip: {fileID: 8300000, guid: 933e350795bbad245bf8c2cc9bb63484, type: 3}
   playerDieAudioClip: {fileID: 8300000, guid: 78a1afc09092db943b51f1cc762c8260, type: 3}
   playerHealAudioClip: {fileID: 8300000, guid: 4eb590e70db17be4dbba6cfced943675, type: 3}
   playerFallAudioClip: {fileID: 8300000, guid: 61762438efd146b41a79d2278fb07ba7, type: 3}
-  enemyAlertAudioClip: {fileID: 8300000, guid: a58e773572185ca4e9275570a5f66b7e, type: 3}
+  enemyAlertAudioClip: {fileID: 8300000, guid: 076123e3ed87d6543b1afb62aecc5668, type: 3}
   enemyFootstepsAudioClips:
   - {fileID: 8300000, guid: 72592571152575c4bb450088b6560e08, type: 3}
   - {fileID: 8300000, guid: 9c15e347be9b96147963c98ac5b5f7e1, type: 3}
   - {fileID: 8300000, guid: ede127eed55d8e14ab6a5fc1980e99c5, type: 3}
   - {fileID: 8300000, guid: 96e98ee4f525eeb4f973f62c459d7df6, type: 3}
-  enemyMeleeAudioClips: []
+  enemyMeleeAudioClips:
+  - {fileID: 8300000, guid: e129885d08ca5f64cbb81871e0292061, type: 3}
+  - {fileID: 8300000, guid: 34bd7de22706f9b4e86e244a1ab34bf6, type: 3}
+  - {fileID: 8300000, guid: eeb5fb3c8f618114f974dc94f00e4ae6, type: 3}
   enemyTakeDamageAudioClip: {fileID: 8300000, guid: 3df9bbbc130ccb344af5f3fc793a630f, type: 3}
   enemyDieAudioClip: {fileID: 8300000, guid: aa4cea0908892094193e76ed944b011b, type: 3}
+  batAttackAudioClip: {fileID: 8300000, guid: 5439b51dbed269d4298051714d159cf0, type: 3}
+  batDieAudioClip: {fileID: 8300000, guid: aa4cea0908892094193e76ed944b011b, type: 3}
+  batAlertAudioClip: {fileID: 8300000, guid: f681b9f1a639ee848ace84ffec94a688, type: 3}
+  bossTakeDamageAudioClips: []
+  bossDashAudioClip: {fileID: 8300000, guid: bd4308f778d9eaa4b85f7f6b7caa5184, type: 3}
+  bossDiesAudioClip: {fileID: 8300000, guid: 24de9b267ce415d428177ceba1831e1b, type: 3}
+  ventAudioClip: {fileID: 8300000, guid: 1ceaf99509fad6349822d23fa3e27338, type: 3}

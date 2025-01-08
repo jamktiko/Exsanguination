@@ -5,12 +5,14 @@ using UnityEngine;
 
 public class DoorFunctions : MonoBehaviour
 {
-    InputHandler inputManager;
+    InputHandler inputHandler;
+    PlayerStats playerStats;
     bool doorIsOpening;
     bool isOpen;
-    bool isRotatingDoor;
+    bool canOpen;
     Vector3 rotation;
     [SerializeField] float rotationSpeed;
+    [SerializeField] bool requiresKey;
     Transform doorTransform;
     float RotationAmount = 90f;
     float forwardDirection;
@@ -20,7 +22,8 @@ public class DoorFunctions : MonoBehaviour
 
     private void Awake()
     {
-        inputManager = FindAnyObjectByType<InputHandler>();
+        inputHandler = GameObject.FindGameObjectWithTag("Player").GetComponent<InputHandler>();
+        playerStats = GameObject.FindGameObjectWithTag("PlayerStats").GetComponent<PlayerStats>();
         doorTransform = GetComponent<Transform>();
         startRotation = transform.rotation.eulerAngles;
         forward = transform.right;
@@ -28,10 +31,34 @@ public class DoorFunctions : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.CompareTag("Player") && inputManager.openDoor)
+        if (other.tag == "Player" && inputHandler.openDoor)
         {
             Debug.Log("Try open door");
+
+            CheckIfCanOpen();
+        }
+        if (canOpen)
+        {
             Open(other.transform.position);
+        }
+    }
+
+    private void CheckIfCanOpen()
+    {
+        if (requiresKey)
+        {
+            if (playerStats.foundKeycard)
+            {
+                canOpen = true;
+            }
+            else
+            {
+                canOpen = false;
+            }
+        }
+        else
+        {
+            canOpen = true;
         }
     }
 
@@ -41,7 +68,6 @@ public class DoorFunctions : MonoBehaviour
         if (!isOpen)
         {
             float dot = Vector3.Dot(forward, (UserPosition - transform.position).normalized);
-            Debug.Log($"Dot: {dot.ToString("N3")}");
             StartCoroutine(OpenDoorRotation(dot));
         }
     }

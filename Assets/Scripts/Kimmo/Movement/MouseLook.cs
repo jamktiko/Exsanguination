@@ -12,6 +12,7 @@ public class MouseLook : MonoBehaviour
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        cameraTransform.localRotation = Quaternion.Euler(Vector3.zero);
     }
 
     // Method to receive input from Input System action
@@ -20,7 +21,7 @@ public class MouseLook : MonoBehaviour
         if (!enemyFinisher.isFinishing)
         {
             // Calculate rotations based on input
-            float mouseX = input.x * sensitivity * Time.deltaTime;
+            float mouseX = input.x * sensitivity * Time.deltaTime; 
             float mouseY = input.y * sensitivity * Time.deltaTime;
 
             // Vertical rotation for camera (clamped)

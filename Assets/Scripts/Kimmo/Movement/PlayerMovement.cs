@@ -8,22 +8,26 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
     [SerializeField] float moveSpeed;
+    [SerializeField] float airMultiplier;
     [SerializeField] float groundDrag;
     [SerializeField] float airDrag;
+    [SerializeField] float grapplingDrag;
     [SerializeField] LayerMask groundMask;
     [SerializeField] bool canMove;
     public bool isMoving;
     Vector2 horizontalInput;
     Rigidbody rb;
     private Animator animator;
+    StakeLogic stakeLogic;
 
     [Header("Jump")]
     [SerializeField] float jumpForce;
-    [SerializeField] float airMultiplier;
     public bool isGrounded;
     [SerializeField] bool isJumping;
     bool canJump;
     Vector3 verticalVelocity = Vector3.zero;
+    [SerializeField] float coyoteTime;
+    float coyoteTimeCounter;
 
     [Header("Dash")]
     [SerializeField] Vector3 dashDirection;
@@ -41,7 +45,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float slideSpeed;
     [SerializeField] float slideSpeedMultiplier;
     [SerializeField] float slideTime;
-    float slideCooldownTimer;
+    [SerializeField] float slideCooldown;
+    [SerializeField] float slideCooldownTimer;
     [SerializeField] CapsuleCollider playerCollider;
     [SerializeField] float playerColliderHeight;
     [SerializeField] bool canSlide;
@@ -55,16 +60,18 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Vector3 playerModelSlidingPos;
 
     [Header("Grapple")]
-    public bool freeze;
     public bool activeGrapple;
     GrapplingHookShoot grapplingHookShoot;
 
+    [Header("UI")]
+    CooldownUI cooldownUI;
+
     [Header("Audio")]
-    AudioManager audioManager;
     [SerializeField] float footstepTimer;
     [SerializeField] float footStepAudioCooldown;
     bool firstStepPlayed;
     bool isLanded;
+    AudioManager audioManager;
 
     [Header("Controller")]
     private ControllerHandler controllerHandler;
@@ -73,11 +80,14 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        playerCollider = GetComponent<CapsuleCollider>();
         dashDirection = orientation.forward;
         audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         controllerHandler = GameObject.FindGameObjectWithTag("InputManager").GetComponent<ControllerHandler>();
         animator = GameObject.FindGameObjectWithTag("PlayerModel").GetComponent<Animator>();
         grapplingHookShoot = GetComponent<GrapplingHookShoot>();
+        cooldownUI = GameObject.Find("DashCooldownBar").GetComponent<CooldownUI>();
+        stakeLogic = GameObject.FindGameObjectWithTag("Stake").GetComponent<StakeLogic>();
     }
 
     private void Start()
@@ -87,54 +97,76 @@ public class PlayerMovement : MonoBehaviour
         canDash = true;
         canSlide = true;
         isLanded = true;
+        dashCooldownTimer = dashCooldown;
+        slideCooldownTimer = slideCooldown;
+
+        cooldownUI.SetDashCooldownMaxValue(dashCooldown);
     }
 
     private void Update()
     {
-        //if (freeze)
-        //{
-        //    rb.velocity = Vector3.zero;
-        //}
-
         isGrounded = Physics.CheckSphere(groundCheck.position, 0.1f, groundMask);
 
-        if (isGrounded && !isLanded) 
+        if (isGrounded) 
         {
-            audioManager.PlayPlayerLandAudioClip();
-            isLanded = true;
-        }
+            if (!isLanded)
+            {
+                audioManager.PlayPlayerLandAudioClip();
+                isLanded = true;
+            }
 
-        if (isGrounded && !activeGrapple)
-        {
-            rb.drag = groundDrag;
-            verticalVelocity.y = 0;
+            if (!activeGrapple)
+            {
+                verticalVelocity.y = 0;
+            }
+
+            coyoteTimeCounter = 0;
         }
 
         if (!isGrounded)
         {
             isLanded = false;
-
-            if(rb.velocity.y < 0 || activeGrapple)
-            {
-                rb.drag = airDrag;
-            }
+            coyoteTimeCounter += Time.deltaTime;
         }
 
-        if (dashCooldownTimer > 0)
+        if (rb.velocity.y < 0)
         {
-            dashCooldownTimer -= Time.deltaTime;
+            rb.drag = airDrag;
+        }
+
+        if (isGrounded || isJumping)
+        {
+            rb.drag = groundDrag;
+        }
+
+        if (activeGrapple)
+        {
+            rb.drag = grapplingDrag;
+        }
+
+        if (coyoteTimeCounter < coyoteTime)
+        {
+            canJump = true;
+        }
+        else
+        {
+            canJump = false;
+        }
+
+        if (dashCooldownTimer < dashCooldown)
+        {
+            dashCooldownTimer += Time.deltaTime;
+            cooldownUI.UpdateDashCooldownBar(dashCooldownTimer);
+        }
+
+        if (slideCooldownTimer < slideCooldown)
+        {
+            slideCooldownTimer += Time.deltaTime;
         }
 
         if (isMoving && isGrounded)
         {
-            if (!firstStepPlayed)
-            {
-                audioManager.PlayPlayerFootstepsAudioClips();
-                
-                firstStepPlayed = true;
-                footstepTimer = 0f;
-            }
-            else
+            if (rb.velocity != Vector3.zero)
             {
                 footstepTimer += Time.deltaTime;
 
@@ -144,11 +176,6 @@ public class PlayerMovement : MonoBehaviour
                     footstepTimer = 0f;
                 }
             }
-        }
-        else
-        {
-            firstStepPlayed = false;
-            footstepTimer = 0f;
         }
 
         SpeedControl();
@@ -272,41 +299,40 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Jump methods
+    public void OnJumpPressed()
+    {
+        if (canJump)
+        {
+            isJumping = true;
+        }
+    }
+
     private void Jump()
     {
-        if (!isGrounded) return;
-
+        coyoteTimeCounter = coyoteTime;
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
         audioManager.PlayPlayerJumpAudioClip();
         isJumping = false;
     }
 
-    public void OnJumpPressed()
-    {
-        if (isGrounded && canJump)
-        {
-            isJumping = true;
-        }
-    }
-
     // Dash methods
-    private void Dash()
-    {
-        rb.AddForce(dashDirection * dashSpeed, ForceMode.Impulse);
-    }
-
     public void OnDashPressed()
     {
-        if (dashCooldownTimer > 0 || !isMoving) return;
-        else dashCooldownTimer = dashCooldown;
+        if (dashCooldownTimer < dashCooldown || !isMoving || !canDash) return;
+        else dashCooldownTimer = 0;
 
-        if (canDash)
-        {
-            //audioManager.PlayDashAudioClip();
-            canMove = false;
-            StartCoroutine(DashCoroutine());
-        }
+        //audioManager.PlayDashAudioClip();
+        canMove = false;
+        canSlide = false;
+        StartCoroutine(DashCoroutine());
+    }
+
+    private void Dash()
+    {
+        rb.velocity = dashDirection * dashSpeed;
+
+        
     }
 
     public void GetDirection()
@@ -337,6 +363,7 @@ public class PlayerMovement : MonoBehaviour
         {
             isDashing = true;
             canMove = false;
+            canSlide = false;
             
             yield return null;
         }
@@ -345,6 +372,22 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Slide methods
+    public void OnSlidePressed()
+    {
+        if (slideCooldownTimer < slideCooldown || !isMoving || !canSlide) return;
+        else slideCooldownTimer = 0;
+
+        if (isGrounded || isOnWall)
+        {
+            canMove = false;
+            canDash = false;
+            canSlide = false;
+            cam.localPosition = camSlidingPos;
+            //audioManager.PlaySlideAudioClip();
+            StartCoroutine(SlideCoroutine());
+        }
+    }
+
     private void Slide()
     {
         slideSpeed = moveSpeed * slideSpeedMultiplier;
@@ -352,22 +395,6 @@ public class PlayerMovement : MonoBehaviour
         if (isOnWall)
         {
             rb.AddForce(orientation.up * 9.81f, ForceMode.Force);
-        }
-    }
-
-    public void OnSlidePressed()
-    {
-        if (canSlide && isMoving)
-        {
-            if (isGrounded || isOnWall)
-            {
-                canMove = false;
-                canDash = false;
-                canSlide = false;
-                cam.localPosition = camSlidingPos;
-                //audioManager.PlaySlideAudioClip();
-                StartCoroutine(SlideCoroutine());
-            }
         }
     }
 
@@ -445,7 +472,10 @@ public class PlayerMovement : MonoBehaviour
         {
             enableMovementOnNextTouch = false;
 
-            grapplingHookShoot.StopGrapple();
+            if (grapplingHookShoot.isGrappling)
+            {
+                grapplingHookShoot.StopGrapple();
+            }
         }
     }
 
@@ -468,5 +498,21 @@ public class PlayerMovement : MonoBehaviour
         audioManager.PlayPlayerFootstepsAudioClips();
         yield return new WaitForSeconds(1);
         Debug.Log("Footstep audio is playing.");
+    }
+
+    public void EnableMovement()
+    {
+        canMove = false;
+        canJump = false;
+        canDash = false;
+        canSlide = false;
+    }
+
+    public void DisableMovement()
+    {
+        canMove = true;
+        canJump = true;
+        canDash = true;
+        canSlide = true;
     }
 }

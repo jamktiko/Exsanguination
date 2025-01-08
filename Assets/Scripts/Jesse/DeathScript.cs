@@ -1,4 +1,5 @@
 using EmiliaScripts;
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,13 +12,22 @@ public class DeathScript : MonoBehaviour
     [SerializeField] Button mainMenuButton;
     [SerializeField] Button retryButton;
     public bool isDead;
-    [SerializeField] ControllerHandler controllerHandler;
-    [SerializeField] ControllerMenuNavigation controllerMenuNavigation;
+    private ControllerHandler controllerHandler;
+    private InputHandler inputHandler;
+    [SerializeField] MusicManager musicManager;
     private void Awake()
     {
         mainMenuButton.onClick.AddListener(ExitToMainMenu);
         retryButton.onClick.AddListener(Retry);
         pauseScript = GameObject.Find("PauseManager").GetComponent<PauseScript>();
+        controllerHandler = GameObject.Find("InputManager").GetComponent<ControllerHandler>();
+        inputHandler = GameObject.Find("Player").GetComponent<InputHandler>();
+    }
+
+    private void Start()
+    {
+        musicManager = GameObject.FindGameObjectWithTag("MusicManager").GetComponent<MusicManager>();
+        deathScreen.SetActive(false);
     }
 
     public void Die()
@@ -35,10 +45,16 @@ public class DeathScript : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
-            controllerMenuNavigation.SelectFirstDeathButton();
         }
         
         deathScreen.SetActive(true);
+        StartCoroutine(DelaySetFirstButton());
+        musicManager.PlayMenuDeathMusic();
+    }
+    private IEnumerator DelaySetFirstButton()
+    {
+        yield return null; // Wait one frame
+        inputHandler.SetFirstButton(retryButton.gameObject);
     }
 
     public void ExitToMainMenu()
@@ -52,6 +68,7 @@ public class DeathScript : MonoBehaviour
     {
         isDead = false;
         Debug.Log("pressed retry");
+        musicManager.OnPlayerRetry();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 

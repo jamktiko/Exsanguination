@@ -1,0 +1,189 @@
+using EmiliaScripts;
+using System;
+using System.Collections;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using TMPro;
+
+public class PlayerStats : MonoBehaviour
+{
+    [SerializeField] public bool foundSlaymore, foundGrapplinghook, foundStake, foundKeycard;
+    [SerializeField] float tutorialTime, levelTime, bossTime, totalTime;
+    [SerializeField] float timer;
+
+    [SerializeField] TimeSpan tutorial, level, boss, total;
+
+    PlayerHealthManager healthManager;
+    public static PlayerStats playerStats;
+
+    [SerializeField] public string tutorialTimeString;
+    [SerializeField] public string levelTimeString;
+    [SerializeField] public string bossTimeString;
+    [SerializeField] public string totalTimeString;
+    [SerializeField] public string totalDeaths;
+    public bool cutSceneSeen;
+
+    [SerializeField] TMP_Text totalTimeText;
+    [SerializeField] TMP_Text totalTimeTextShadow;
+    [SerializeField] TMP_Text totalDeathsText;
+    [SerializeField] TMP_Text totalDeathsTextShadow;
+
+    private Coroutine timerCoroutine;
+    int deathCount;
+    public bool hasWon;
+
+    private void Awake()
+    {
+       
+        
+
+        if (playerStats == null)
+        {
+            playerStats = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (playerStats != this)
+        {
+            Destroy(gameObject);
+        }
+
+        if (healthManager != null)
+        {
+            healthManager.OnDeath += RestartTimer;
+        }
+        SceneManager.sceneLoaded += OnLevelLoad;
+
+    }
+
+    private void Update()
+    {
+        if (healthManager == null && SceneManager.GetActiveScene().buildIndex != 0)
+        {
+            healthManager = GameObject.FindWithTag("HealthManager").GetComponent<PlayerHealthManager>();
+
+            healthManager.OnDeath += AddDeath;
+            healthManager.OnDeath += RestartTimer;
+        }
+    }
+
+    void AddDeath()
+    {
+        if (SceneManager.GetActiveScene().buildIndex != 1) { deathCount += 1; }
+    }
+
+    private void OnEnable()
+    {
+        if (healthManager != null)
+        {
+            healthManager.OnDeath += AddDeath;
+            healthManager.OnDeath += StopTimer;
+
+            //boss death event += StopTimer;
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (healthManager != null)
+        {
+            healthManager.OnDeath -= AddDeath;
+            healthManager.OnDeath -= StopTimer;
+        }
+    }
+
+    IEnumerator Timer()
+    { //adds deltatime to timer variable until stopped
+        while (true)
+        {
+            timer += Time.deltaTime;
+            yield return null;
+        }
+    }
+
+    public void RestartTimer()
+    { //restarts timer from 0
+
+        if (timerCoroutine != null)
+        {
+            StopCoroutine(timerCoroutine);
+        }
+
+        timerCoroutine = StartCoroutine(Timer());
+        timer = 0;
+    }
+
+    public void StopTimer()
+    {
+        Debug.Log("Time stopped");
+        StopAllCoroutines();
+
+        totalTimeText = GameObject.Find("GameCompletionTimeText").GetComponent<TextMeshProUGUI>();
+        totalTimeTextShadow = totalTimeText.transform.Find("GameCompletionTimeTextShadow").GetComponent<TextMeshProUGUI>();
+        totalDeathsText = GameObject.Find("GameDeathText").GetComponent<TextMeshProUGUI>();
+        totalDeathsTextShadow = GameObject.Find("GameDeathTextShadow").GetComponent<TextMeshProUGUI>();
+
+        if (timerCoroutine != null)
+        {
+            StopCoroutine(timerCoroutine);
+            timerCoroutine = null;
+        }
+
+        if (SceneManager.GetActiveScene().buildIndex == 3 )
+        {
+            bossTime = timer;
+            totalTime += bossTime;
+            bossTimeString = $"Boss completion time: {TimeInString(bossTime)}";
+            totalTimeString = $"Total time: {TimeInString(totalTime)}";
+            totalTimeText.text = TimeInString(totalTime);
+            totalTimeTextShadow.text = TimeInString(totalTime);
+            totalDeathsText.text = ""+deathCount;
+            totalDeathsTextShadow.text = "" + deathCount;
+
+        }
+    }
+
+    public void ResetSavedTimes()
+    { //resets saved times
+        tutorialTime = levelTime = bossTime = totalTime = 0;
+    }
+
+    private void OnLevelLoad(Scene scene, LoadSceneMode sceneMode)
+    {
+        if (scene.buildIndex == 3 && levelTime == 0)
+        {
+            levelTime = timer;
+            totalTime += levelTime;
+            levelTimeString = $"Level completion time: {TimeInString(levelTime)}";
+        }
+        if (scene.buildIndex == 2 && tutorialTime == 0)
+        {
+            tutorialTime = timer;
+            totalTime += tutorialTime;
+            tutorialTimeString = $"Level completion time: {TimeInString(tutorialTime)}";
+        }
+        if (scene.buildIndex != 0)
+        {
+            RestartTimer();
+        }
+        if (scene.buildIndex == 1)
+        { //set all found bools to false and fully resets saved times if in base level
+            foundGrapplinghook = false; foundKeycard = false; foundSlaymore = false; foundStake = false;
+            deathCount = 0;
+            ResetSavedTimes();
+        }
+
+        if (scene.buildIndex == 2)
+        { //set all found bools to false and fully resets saved times if in base level
+            foundGrapplinghook = false;
+                foundStake = true;
+            foundKeycard = false;
+
+        }
+    }
+
+    public string TimeInString(float time)
+    {
+        var timeSpan = TimeSpan.FromSeconds(time);
+        return string.Format("{0:00}:{1:00}:{2:00}.{3:000}", timeSpan.Hours, timeSpan.Minutes, timeSpan.Seconds, timeSpan.Milliseconds);
+    }
+}

@@ -4,28 +4,52 @@ using UnityEngine;
 public class StakeLogic : MonoBehaviour
 {
     [SerializeField] private GameObject prefab;
-    [SerializeField] private float throwForce = 50f, stickDuration = 10f, returnCooldown = 10f, slowAmount = 0.5f, finisherThreshold = 50f, retrievalRange = 2f, stickTimer = 0f;
-    [SerializeField] private bool isThrown = false, isStuck = false, isReturning = false;
+    [SerializeField] private float throwForce = 50f, stickDuration = 10f, returnCooldown = 10f, slowAmount = 0.5f, finisherThreshold = 0.25f, retrievalRange = 2f, stickTimer = 0f;
+    public bool isThrown = false, isStuck = false, isReturning = false;
     public bool startedFinishing;
     private Rigidbody rb;
-    [SerializeField] private EnemyAI stuckEnemy;
-    private EnemyHealthScript stuckEnemyHealth;
+    public EnemyAI stuckEnemy;
+    public EnemyHealthScript stuckEnemyHealth;
     private EnemyFinisher stuckEnemyFinisher;
-    private PlayerHealthManager playerHealth;
     private Transform playerTransform;
     public Camera playerCamera;
+    public SkinnedMeshRenderer[] skinnedMeshRenderersToHide;
+    public MeshRenderer[] meshRenderersToHide;
 
-    private Quaternion stakeRotation = Quaternion.Euler(90f, 0f, 0f);
+
+    private Quaternion stakeRotation = Quaternion.Euler(0f, 0f, 0f);
 
     [SerializeField] private GameObject stakeLocationOnPlayer;
+
+    private Animator animator;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         playerTransform = GameObject.FindWithTag("Player").transform;
         playerCamera = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
-        playerHealth = GameObject.FindWithTag("HealthManager").GetComponent<PlayerHealthManager>();
         stuckEnemyFinisher = GameObject.FindGameObjectWithTag("PlayerModel").GetComponent<EnemyFinisher>();
+        animator = GetComponent<Animator>();
+
+        //dont mind these :D
+
+        GameObject[] gameObjectsWithTag = GameObject.FindGameObjectsWithTag("GunMeshRenderer");
+        meshRenderersToHide = new MeshRenderer[gameObjectsWithTag.Length];
+
+        for (int i = 0; i < gameObjectsWithTag.Length; i++)
+        {
+            meshRenderersToHide[i] = gameObjectsWithTag[i].GetComponent<MeshRenderer>();
+        }
+
+        GameObject[] gameObjectsWithTag2 = GameObject.FindGameObjectsWithTag("HandSkinRenderer");
+        skinnedMeshRenderersToHide = new SkinnedMeshRenderer[gameObjectsWithTag2.Length];
+
+        for (int i = 0; i < gameObjectsWithTag2.Length; i++) // Note: Use gameObjectsWithTag2.Length
+        {
+            skinnedMeshRenderersToHide[i] = gameObjectsWithTag2[i].GetComponent<SkinnedMeshRenderer>();
+        }
+
+
     }
 
     void Start()
@@ -91,6 +115,17 @@ public class StakeLogic : MonoBehaviour
             StickToEnemy(collision.gameObject.GetComponent<EnemyAI>());
             stuckEnemyFinisher.SetEnemyType(stuckEnemy.gameObject.name);
         }
+
+        if (collision.gameObject.CompareTag("EnemyHead"))
+        {
+            isStuck = true;
+            isThrown = false;
+            rb.isKinematic = true; // Stop physics movement when stuck
+            GameObject go = collision.gameObject.GetComponentInChildren(typeof(StakeSpot)).gameObject;
+            transform.SetParent(go.transform);
+            transform.localPosition = Vector3.zero;
+        }
+
     }
 
     private void StickToEnemy(EnemyAI enemy)
@@ -117,7 +152,7 @@ public class StakeLogic : MonoBehaviour
         startedFinishing = false;
         if (isFinished)
         {
-            playerHealth.UpdatePlayerHealth(playerHealth.MaxPlayerHealth() / 2);
+            //playerHealth.UpdatePlayerHealth(playerHealth.MaxPlayerHealth() / 2); I put this into enemyFinisher script when enemy explodes - Aapo
         }
 
         // Re-enable collision between stake and enemy
@@ -174,7 +209,7 @@ public class StakeLogic : MonoBehaviour
             // Check if within retrieval range
             if (Vector3.Distance(playerTransform.position, transform.position) <= retrievalRange)
             {
-                if (stuckEnemyHealth.GetEnemyHealth() <= (int)(stuckEnemyHealth.GetEnemyMaxHealth() * 0.25f))
+                if (stuckEnemyHealth.GetEnemyHealth() <= (int)(stuckEnemyHealth.GetEnemyMaxHealth() * finisherThreshold))
                 {
                     startedFinishing = true;
                     stuckEnemyHealth.FinishEnemy();
@@ -193,16 +228,51 @@ public class StakeLogic : MonoBehaviour
                 ReturnToPlayer();
             }
         }
+
+        if(isStuck && stuckEnemy == null && Vector3.Distance(playerTransform.position, transform.position) <= retrievalRange)
+        {
+            UnstickFromEnemy(true);
+            // Cancel previous invoke in case it's still active
+            CancelInvoke(nameof(ReturnToPlayer));
+
+            // Ensure stake returns to player
+            ReturnToPlayer();
+        }
     }
 
     public void StartThrowingChargingVisual()
     {
-        //Charge backwards animation
+        prefab.SetActive(true);
+        animator.enabled = true;
+        animator.SetBool("isWinding", true);
+        foreach (SkinnedMeshRenderer renderer in skinnedMeshRenderersToHide)
+        {
+            renderer.enabled = false;
+        }
+        foreach (MeshRenderer mrenderer in meshRenderersToHide)
+        {
+            mrenderer.enabled = false;
+        }
     }
 
     public void StartThrowVisual()
     {
-        // Throw Stake
+        animator.SetBool("isWinding", false);
+        animator.enabled = false;
+        foreach (SkinnedMeshRenderer renderer in skinnedMeshRenderersToHide)
+        {
+            renderer.enabled = true;
+        }
+        foreach (MeshRenderer mrenderer in meshRenderersToHide)
+        {
+            mrenderer.enabled = true;
+        }
+
+    }
+
+    public void ResetConnectionToEnemy()
+    {
+        CompleteReturnToPlayer();
     }
 
 }
