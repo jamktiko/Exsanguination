@@ -21,7 +21,7 @@ public class InputHandler : MonoBehaviour
     [SerializeField] private DeathScript deathScript; // The default button when the menu is opened
     public EventSystem eventSystem; // Unity EventSystem for handling selections
     private PlayerInput playerInput;
-    private InputAction movementAction, jumpAction, dashAction, slideAction, attackAction, grapplingAction, stakeAction, useAction, blockAction, pauseAction, weapon1Action, weapon2Action, pointAction, menuInteractionAction, menuNavigateAction, mouselookAround;
+    private InputAction movementAction, jumpAction, dashAction, slideAction, attackAction, grapplingAction, stakeAction, useAction, blockAction, pauseAction, pointAction, menuInteractionAction, menuNavigateAction, mouselookAround;
     private Vector2 horizontalInput;
     private Vector2 mouseInput;
     private Vector2 cursorPosition;
@@ -56,8 +56,6 @@ public class InputHandler : MonoBehaviour
         useAction = playerInput.actions["Use"];
         blockAction = playerInput.actions["Block"];
         pauseAction = playerInput.actions["Pause"];
-        weapon1Action = playerInput.actions["Weapon1"];
-        weapon2Action = playerInput.actions["Weapon2"];
         pointAction = playerInput.actions["Point"];
         menuInteractionAction = playerInput.actions["MenuInteraction"];
         menuNavigateAction = playerInput.actions["MenuNavigate"];
@@ -246,17 +244,7 @@ public class InputHandler : MonoBehaviour
             
         };
 
-        weapon1Action.performed += ctx =>
-        {
-            if (inputsEnabled && playerStats.foundSlaymore)
-                playerCombat.SetWeaponLogics(0);
-        };
-
-        weapon2Action.performed += ctx =>
-        {
-            if (inputsEnabled && playerStats.foundSlaymore)
-                playerCombat.SetWeaponLogics(1);
-        };
+       
 
     }
 

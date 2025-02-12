@@ -65,13 +65,14 @@ public class MusicManager : MonoBehaviour
         bossLoopSources[2].volume = 0;
         bossTransitionSource.volume = 0;
         CrossfadeToSource(menuDeathSource, fadeDuration);
-        
+        currentSource = menuDeathSource;
     }
 
     // Play Level music: Crossfade from current track to level intro, then immediately to loop
     public void PlayLevelMusic()
     {
         CrossfadeToSource(levelIntroSource, 2);
+        currentSource = levelIntroSource;
         StartCoroutine(HandleLevelIntroAndLoop());
         isBossMusicActive = false;
     }
@@ -113,40 +114,28 @@ public class MusicManager : MonoBehaviour
 
     public void BossSecondPhase()
     {
-        CrossfadeToSource(bossLoopSources[1], fadeDuration);
-        if (bossLoopSources[0].volume >=0.5f)
-        {
-            bossLoopSources[0].volume = 0f;
-        }   
+        CrossfadeToSource(bossLoopSources[1], 1f);
+        currentSource = bossLoopSources[1];
+
     }
 
     public void BossThirdPhase()
     { 
         StartCoroutine(HandleBossThirdPhase());
-        if (bossLoopSources[1].volume >= 0.5f)
-        {
-            bossLoopSources[1].volume = 0f;
-        }
+        
     }
 
 
     private IEnumerator HandleBossThirdPhase()
     {
-        // Crossfade into the boss intro music first
-        CrossfadeToSource(bossTransitionSource, fadeDuration);
-        if (bossLoopSources[0].volume >= 0.5f)
-        {
-            bossLoopSources[0].volume = 0f;
-        }
+        CrossfadeToSource(bossTransitionSource, 1f);
+        currentSource = bossTransitionSource;
         // Wait for the intro to finish
         yield return new WaitForSecondsRealtime(bossTransitionSource.clip.length-0.1f);
 
         // Stop the intro music and start the first loop variation
+        
         CrossfadeToSource(bossLoopSources[2], fadeDuration);
-        if (bossTransitionSource.volume >= 0.5f)
-        {
-            bossTransitionSource.volume = 0f;
-        }
         currentSource = bossLoopSources[2];
 
     }
@@ -204,12 +193,13 @@ public class MusicManager : MonoBehaviour
     {
         if (levelManager.activeScene == 2 || levelManager.activeScene == 1)
         {
-            menuDeathSource.Stop();
+            ResetManagerValues();
             PlayLevelMusic();
         }
         if (levelManager.activeScene == 3)
         {
             menuDeathSource.Stop();
+            ResetManagerValues();
             CrossfadeToSource(bossLoopSources[0], fadeDuration);
             bossLoopSources[1].Play();
             isBossMusicActive = true;
@@ -254,5 +244,23 @@ public class MusicManager : MonoBehaviour
     {
         levelManager = GameObject.Find("LevelManager")?.GetComponent<LevelManager>();
         
+    }
+
+    private void ResetManagerValues()
+    {
+        StopAllCoroutines();
+        levelIntroSource.Stop();
+        levelLoopSource.Stop();
+        bossLoopSources[0].Stop();
+        bossLoopSources[1].Stop();
+        bossTransitionSource.Stop();
+        bossLoopSources[2].Stop();
+        levelIntroSource.volume = 0f;
+        levelLoopSource.volume = 0.5f;
+        bossIntroSource.volume = 0f;
+        bossLoopSources[0].volume = 0.5f;
+        bossLoopSources[1].volume = 0;
+        bossLoopSources[2].volume = 0;
+        bossTransitionSource.volume = 0;
     }
 }
