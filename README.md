@@ -1,6 +1,4 @@
 # Exsanguination
-Repository for Exsanguination
+Exsanguination is a fast-paced, first-person melee combat game where you play as a former vampire hunter turned into a vampire. With your new vampiric powers, fight against your enemies to reclaim your humanity in a dark, brutal world. 
 
-
-Builds:
-https://drive.google.com/drive/folders/1DmQV-b2-ZmjGsnfcxbIgcNhe5K24I9R5?usp=sharing
+## [Steam Page](https://store.steampowered.com/app/3286090/Exsanguination/)
